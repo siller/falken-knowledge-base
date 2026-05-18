@@ -1,12 +1,7 @@
-"""Mini-UI für die Falken-Wissensdatenbank.
+"""UI für die Falken-Wissensdatenbank — schickes Falken-Design.
 
-Aufruf:
-    cd /Users/marksiller/Dropbox/1Privat/_SSO_KI_/FalkenDaten/_Code_/falken-knowledge-base
+Aufruf lokal:
     streamlit run frontend/falken_ui.py
-
-Optional: per Env-Variable das Backend wechseln (Default = OpenRouter, was in .env steht):
-    DGX_BASE_URL=https://pgxapi.siller.io/v1 DGX_API_KEY=... DGX_CHAT_MODEL=gemma \\
-      streamlit run frontend/falken_ui.py
 """
 from __future__ import annotations
 
@@ -15,57 +10,182 @@ import sys
 import time
 from pathlib import Path
 
-# Repo-Root in PATH einbinden (damit `falken_kb.*` importierbar ist)
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 import streamlit as st  # noqa: E402
 
-# IMMER zuerst — muss vor jedem anderen st.* call stehen.
-st.set_page_config(page_title="Falken-Wissensdatenbank", page_icon="🏒", layout="wide")
+st.set_page_config(
+    page_title="Falken-KB",
+    page_icon="🦅",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
 
-# Streamlit-Cloud + lokal: alle st.secrets in os.environ überführen, BEVOR
-# falken_kb.config geladen wird (pydantic-settings liest dann env-vars).
-# In Streamlit Cloud sind secrets via Settings injiziert (kein secrets.toml-File
-# notwendig). Lokal: existiert nur wenn .streamlit/secrets.toml angelegt.
-def _load_secrets_into_env() -> None:
+# ──────────────────────────────────────────────────────────────────────────────
+# Secrets → env (Streamlit Cloud + lokal). MUSS vor falken_kb.config laufen.
+# ──────────────────────────────────────────────────────────────────────────────
+def _load_secrets_into_env() -> dict[str, str]:
+    """Liest st.secrets in os.environ. Returnt dict der gesetzten keys (für Debug)."""
+    loaded: dict[str, str] = {}
     try:
         secrets = st.secrets
     except Exception:
-        return  # keine secrets verfügbar
+        return loaded
     try:
         keys = list(secrets.keys())
     except Exception:
-        return
-    if not keys:
-        return
-    # Flat lesen
+        return loaded
     for k in keys:
         try:
             v = secrets[k]
         except Exception:
             continue
         if isinstance(v, (str, int, float, bool)):
-            os.environ.setdefault(k, str(v))
-    # Sub-Section [default] zusätzlich (falls so strukturiert)
+            os.environ[k] = str(v)  # OVERRIDE (statt setdefault!) — Streamlit-Secrets sind die Wahrheit
+            loaded[k] = "***" if "key" in k.lower() or "password" in k.lower() or "token" in k.lower() else str(v)[:50]
     if "default" in keys:
         try:
             for k, v in dict(secrets["default"]).items():
                 if isinstance(v, (str, int, float, bool)):
-                    os.environ.setdefault(k, str(v))
+                    os.environ[k] = str(v)
+                    loaded[k] = "***" if "key" in k.lower() or "password" in k.lower() else str(v)[:50]
         except Exception:
             pass
+    return loaded
 
 
-_load_secrets_into_env()
+_SECRETS_LOADED = _load_secrets_into_env()
 
 from falken_kb.config import settings  # noqa: E402
 from falken_kb.genai.orchestrator import answer as kb_answer  # noqa: E402
 
 
+# ──────────────────────────────────────────────────────────────────────────────
+# FALKEN-DESIGN: Custom CSS — schwarz / Falken-Gold / weiß
+# ──────────────────────────────────────────────────────────────────────────────
+FALKEN_GOLD = "#F5B81C"  # offizielles Falken-Gold
+FALKEN_BLACK = "#0A0A0A"
+LOGO_URL = "https://www.heilbronner-falken.de/wp-content/uploads/2023/02/HNECF_Logo-01-150x150.png"
+
+st.markdown(
+    f"""
+    <style>
+    /* Background dark */
+    .stApp {{
+        background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+        color: #f0f0f0;
+    }}
+    /* Sidebar */
+    section[data-testid="stSidebar"] {{
+        background: #000000;
+        border-right: 2px solid {FALKEN_GOLD};
+    }}
+    section[data-testid="stSidebar"] * {{
+        color: #f0f0f0 !important;
+    }}
+    /* Headlines */
+    h1, h2, h3 {{
+        color: {FALKEN_GOLD} !important;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }}
+    /* Buttons (Beispielfragen etc.) */
+    .stButton > button {{
+        background: rgba(245, 184, 28, 0.08);
+        color: #f0f0f0 !important;
+        border: 1px solid rgba(245, 184, 28, 0.3);
+        border-radius: 8px;
+        transition: all 0.15s ease;
+        text-align: left;
+        font-size: 0.85rem;
+    }}
+    .stButton > button:hover {{
+        background: {FALKEN_GOLD};
+        color: {FALKEN_BLACK} !important;
+        border-color: {FALKEN_GOLD};
+        transform: translateY(-1px);
+    }}
+    /* Primary button (Anmelden, Submit) */
+    .stButton > button[kind="primary"] {{
+        background: {FALKEN_GOLD};
+        color: {FALKEN_BLACK} !important;
+        border: none;
+        font-weight: 700;
+    }}
+    .stButton > button[kind="primary"]:hover {{
+        background: #ffcb3a;
+    }}
+    /* Chat-Messages */
+    [data-testid="stChatMessage"] {{
+        background: rgba(255,255,255,0.03);
+        border-left: 3px solid {FALKEN_GOLD};
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+    }}
+    /* Code-Blocks */
+    .stCodeBlock, code {{
+        background: #0a0a0a !important;
+        border: 1px solid rgba(245, 184, 28, 0.2);
+    }}
+    /* Input */
+    .stTextInput input, .stChatInput textarea {{
+        background: #1a1a1a !important;
+        color: #f0f0f0 !important;
+        border: 1px solid rgba(245, 184, 28, 0.4) !important;
+    }}
+    /* Expander */
+    .streamlit-expanderHeader {{
+        background: rgba(245, 184, 28, 0.05);
+        border-radius: 6px;
+        color: {FALKEN_GOLD} !important;
+    }}
+    /* Divider */
+    hr {{
+        border-color: rgba(245, 184, 28, 0.2) !important;
+    }}
+    /* Falken Branding Header */
+    .falken-header {{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 2px solid {FALKEN_GOLD};
+        margin-bottom: 1.5rem;
+    }}
+    .falken-header img {{
+        width: 64px;
+        height: 64px;
+    }}
+    .falken-header-text h1 {{
+        margin: 0;
+        font-size: 1.8rem;
+    }}
+    .falken-header-text p {{
+        margin: 0;
+        color: #aaa;
+        font-size: 0.9rem;
+    }}
+    /* Sidebar-Logo */
+    .sidebar-logo {{
+        text-align: center;
+        padding: 1rem 0;
+    }}
+    .sidebar-logo img {{
+        width: 96px;
+        filter: drop-shadow(0 2px 8px rgba(245, 184, 28, 0.4));
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Auth-Wrapper
+# ──────────────────────────────────────────────────────────────────────────────
 def _get_app_password() -> str | None:
-    """APP_PASSWORD aus env ODER st.secrets."""
     env_pw = os.environ.get("APP_PASSWORD")
     if env_pw:
         return env_pw
@@ -75,20 +195,20 @@ def _get_app_password() -> str | None:
         return None
 
 
-# ──────────────────────────────────────────────────────────────────────────────
-# Auth-Wrapper: Shared-Password-Schutz (für Streamlit Cloud + Team-Zugriff)
-# Passwort kommt aus secrets[\"app_password\"] oder env APP_PASSWORD.
-# Wenn kein Passwort gesetzt → öffentlich (local dev).
-# ──────────────────────────────────────────────────────────────────────────────
 def _password_protect() -> bool:
     expected = _get_app_password()
     if not expected:
-        return True  # kein Passwort konfiguriert → frei
+        return True
     if st.session_state.get("authenticated"):
         return True
-    st.title("🏒 Falken-Wissensdatenbank")
-    st.caption("Bitte Passwort eingeben")
-    pw = st.text_input("Passwort", type="password")
+    st.markdown(
+        f"""<div class="falken-header">
+        <img src="{LOGO_URL}" alt="Falken">
+        <div class="falken-header-text"><h1>Falken-Wissensdatenbank</h1><p>Bitte Passwort eingeben</p></div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
+    pw = st.text_input("Passwort", type="password", label_visibility="collapsed", placeholder="Passwort eingeben…")
     if st.button("Anmelden", type="primary") and pw == expected:
         st.session_state["authenticated"] = True
         st.rerun()
@@ -100,29 +220,46 @@ def _password_protect() -> bool:
 if not _password_protect():
     st.stop()
 
+
 # ──────────────────────────────────────────────────────────────────────────────
-# Sidebar: Backend-Info + Beispielfragen
+# Sidebar
 # ──────────────────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.title("🏒 Falken-KB")
+    st.markdown(f'<div class="sidebar-logo"><img src="{LOGO_URL}" alt="Falken-Logo"></div>', unsafe_allow_html=True)
+    st.markdown(f"<h2 style='text-align:center; margin-top:0;'>Falken-KB</h2>", unsafe_allow_html=True)
     st.caption("Heilbronner Falken — GenAI-Wissensdatenbank")
 
-    st.subheader("Backend")
+    st.divider()
+    st.subheader("⚙ Backend")
+
     def _device_label(url: str) -> str:
         u = (url or "").lower()
         if "pgxapi.siller.io" in u: return "DGX (siller.io, self-hosted)"
         if "openrouter" in u: return "OpenRouter (cloud)"
-        if "openai.com" in u: return "OpenAI"
+        if "openai.com" in u: return "OpenAI (cloud)"
         return "Custom Endpoint"
+
     st.code(
         f"Gerät:      {_device_label(settings.dgx_base_url)}\n"
-        f"Chat:       {settings.dgx_chat_model}\n"
-        f"Embeddings: {settings.dgx_embed_model} ({settings.dgx_embed_dim}d)",
+        f"Chat:       {settings.dgx_chat_model or '(leer)'}\n"
+        f"Embeddings: {settings.dgx_embed_model or '(leer)'} ({settings.dgx_embed_dim}d)",
         language="text",
     )
 
+    # Debug-Sektion: hilft wenn secrets nicht ankommen
+    with st.expander("🔧 Diagnose"):
+        st.markdown("**Aus st.secrets/env geladen:**")
+        if _SECRETS_LOADED:
+            for k, v in sorted(_SECRETS_LOADED.items()):
+                st.text(f"  {k} = {v}")
+        else:
+            st.warning("Keine Secrets geladen! Bitte in Streamlit Cloud → Settings → Secrets eintragen.")
+        st.markdown("**Aktive Config:**")
+        st.text(f"  DGX_API_KEY gesetzt: {'✓' if settings.dgx_api_key else '✗'}")
+        st.text(f"  SUPABASE_SERVICE_ROLE_KEY gesetzt: {'✓' if settings.supabase_service_role_key else '✗'}")
+
     st.divider()
-    st.subheader("Beispielfragen")
+    st.subheader("💡 Beispielfragen")
     examples = [
         "Auf welchem Tabellenplatz beendeten die Falken die Saison 2022/23?",
         "Wer war Topscorer der Falken in der Saison 2024/25?",
@@ -144,57 +281,59 @@ with st.sidebar:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Main: Chat
+# Main
 # ──────────────────────────────────────────────────────────────────────────────
-st.title("Frag die Falken-Wissensdatenbank")
-st.caption(
-    "Tippe eine Frage zu Heilbronner-Falken-Eishockey ein — Saisons, Spiele, "
-    "Trainer, Spielerstatistiken, Playoffs. Antwort kommt aus der lokalen DB "
-    "via GenAI-Pipeline (kein Internet-Lookup)."
+st.markdown(
+    f"""<div class="falken-header">
+    <img src="{LOGO_URL}" alt="Falken">
+    <div class="falken-header-text">
+        <h1>Frag die Falken-Wissensdatenbank</h1>
+        <p>Eishockey-Wissen aus 45+ Jahren Vereinsgeschichte — Saisons · Spiele · Trainer · Spielerstatistiken · Playoffs · News</p>
+    </div>
+    </div>""",
+    unsafe_allow_html=True,
 )
 
 if "history" not in st.session_state:
-    st.session_state.history = []  # list of {q, result, t_sec}
+    st.session_state.history = []
 
-# Wenn Beispielfrage geklickt, pre-fill
 prefilled = st.session_state.pop("pending_q", "")
 
-q = st.chat_input("Frage eingeben...")
+q = st.chat_input("Stell deine Falken-Frage…")
 if not q and prefilled:
     q = prefilled
 
-# Render existing history
+# Render history
 for entry in st.session_state.history:
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="👤"):
         st.markdown(entry["q"])
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="🦅"):
         result = entry["result"]
         st.markdown(result.get("answer", "(keine Antwort)"))
         cat = result.get("category", "?")
-        t_sec = entry.get("t_sec", "?")
-        st.caption(f"Kategorie: `{cat}` · Antwortzeit: {t_sec:.1f}s")
+        t_sec = entry.get("t_sec", 0)
+        st.caption(f"📂 `{cat}` · ⏱ {t_sec:.1f}s")
         sql = result.get("sql")
         if sql:
-            with st.expander("SQL"):
+            with st.expander("🔎 SQL"):
                 st.code(sql, language="sql")
         rows = result.get("rows")
         if rows:
-            with st.expander(f"DB-Resultat ({len(rows)} Zeilen)"):
+            with st.expander(f"📊 DB-Resultat ({len(rows)} Zeilen)"):
                 st.dataframe(rows, use_container_width=True)
         sources = result.get("sources")
         if sources:
-            with st.expander(f"Quellen ({len(sources)})"):
+            with st.expander(f"📰 Quellen ({len(sources)})"):
                 for s in sources:
                     st.write(f"- {s.get('title', '?')} ({s.get('source', '?')})")
 
-# Process new question
+# Neue Frage
 if q:
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="👤"):
         st.markdown(q)
-    with st.chat_message("assistant"):
-        with st.spinner("Frage wird verarbeitet (Klassifikation → SQL/RAG → Synthese)..."):
+    with st.chat_message("assistant", avatar="🦅"):
+        with st.spinner("🦅 Falken-Daten werden durchsucht…"):
             t0 = time.time()
-            # Multi-Turn: wenn vorige Frage da war, als Kontext mitgeben
             effective_q = q
             if st.session_state.history:
                 last = st.session_state.history[-1]
@@ -214,18 +353,18 @@ if q:
                 result = {"answer": f"Fehler: {e}", "category": "error"}
                 t_sec = time.time() - t0
         st.markdown(result.get("answer", "(keine Antwort)"))
-        st.caption(f"Kategorie: `{result.get('category', '?')}` · Antwortzeit: {t_sec:.1f}s")
+        st.caption(f"📂 `{result.get('category', '?')}` · ⏱ {t_sec:.1f}s")
         sql = result.get("sql")
         if sql:
-            with st.expander("SQL"):
+            with st.expander("🔎 SQL"):
                 st.code(sql, language="sql")
         rows = result.get("rows")
         if rows:
-            with st.expander(f"DB-Resultat ({len(rows)} Zeilen)"):
+            with st.expander(f"📊 DB-Resultat ({len(rows)} Zeilen)"):
                 st.dataframe(rows, use_container_width=True)
         sources = result.get("sources")
         if sources:
-            with st.expander(f"Quellen ({len(sources)})"):
+            with st.expander(f"📰 Quellen ({len(sources)})"):
                 for s in sources:
                     st.write(f"- {s.get('title', '?')} ({s.get('source', '?')})")
     st.session_state.history.append({"q": q, "result": result, "t_sec": t_sec})
