@@ -82,7 +82,10 @@ def answer(question: str) -> dict[str, Any]:
     elif category == "fact":
         result = answer_fact(question, client)
         if _fact_returned_empty(result):
-            # Fallback-Kette: erst narrative (RAG-Articles), dann web (wenn Tavily-Key)
+            # Fallback NUR zu narrative (RAG-Articles), NIE auto zu web_research:
+            # web_research ist teuer (Tavily-Call + Multi-LLM) und liefert für
+            # rein DB-orientierte Fragen "Wie viele Saisons in DEL2?" nichts
+            # sinnvolles. Lieber ehrlich "keine Daten" als Web fehl-triggern.
             if _looks_narrative(question):
                 logger.info("Hybrid-Fallback: fact leer, retry mit narrative_rag")
                 narrative_result = answer_narrative(question, client)
@@ -90,13 +93,6 @@ def answer(question: str) -> dict[str, Any]:
                     narrative_result["fact_attempt"] = {"sql": result.get("sql"), "rows_count": len(result.get("rows", []))}
                     result = narrative_result
                     category = "narrative"
-            if _fact_returned_empty(result) and has_tavily:
-                logger.info("Hybrid-Fallback: fact+narrative leer, retry mit web_research")
-                web_result = answer_web_research(question, client)
-                if web_result.get("web_results"):
-                    web_result["fact_attempt"] = {"sql": result.get("sql"), "rows_count": len(result.get("rows", []))}
-                    result = web_result
-                    category = "web_research"
     elif category == "narrative":
         result = answer_narrative(question, client)
     elif category == "trend":
