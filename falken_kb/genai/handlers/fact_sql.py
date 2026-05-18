@@ -79,14 +79,18 @@ JOIN teams t ON t.id = ct.team_id
 JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date
 WHERE t.name = 'Heilbronner Falken' AND s.label = '2022/23' AND ct.role = 'Headcoach';
 
--- Spielergebnis an einem Datum (Team-Namen IMMER returnen!):
+-- Spielergebnis an einem Datum (Team-Namen IMMER returnen!).
+-- WICHTIG: User schreibt Teams oft KURZ ("Memmingen" statt "ECDC Memmingen Indians").
+-- Nutze deshalb ILIKE '%kurzname%' statt exact = OR IN — robust gegen Tippfehler & Abkürzungen.
 SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout
 FROM games g
 JOIN teams ht ON ht.id = g.home_team_id
 JOIN teams at ON at.id = g.away_team_id
 WHERE g.date::date = '2026-02-27'
-  AND ('Heilbronner Falken' IN (ht.name, at.name))
-  AND ('ECDC Memmingen Indians' IN (ht.name, at.name));
+  AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%')
+  AND (ht.name ILIKE '%Memmingen%' OR at.name ILIKE '%Memmingen%');
+-- ↑ ILIKE '%kurzname%' funktioniert für: "Memmingen" → "ECDC Memmingen Indians",
+-- "Bayreuth" → "Bayreuth Tigers", "Selb" → "VER Selber Wölfe", etc.
 
 -- Alle Saisons in einer Liga:
 SELECT DISTINCT season FROM season_standings WHERE team = 'Heilbronner Falken' AND league = 'Oberliga Süd' ORDER BY season;

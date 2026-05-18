@@ -1,0 +1,324 @@
+{
+  "summary": {
+    "pass": 20,
+    "fail": 0,
+    "total": 20
+  },
+  "results": [
+    {
+      "id": "db_simple_1",
+      "question": "Auf welchem Platz beendeten die Falken Saison 2022/23?",
+      "expected_keywords": [
+        "12"
+      ],
+      "time_sec": 30.2,
+      "answer": "Die Falken beendeten die Saison 2022/23 auf dem Platz 12.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "12"
+      ],
+      "pass": true
+    },
+    {
+      "id": "db_simple_2",
+      "question": "Wer war Topscorer der Falken in der Saison 2019/20?",
+      "expected_keywords": [
+        "Wruck"
+      ],
+      "time_sec": 36.7,
+      "answer": "Topscorer der Falken in der Saison 2019/20 war Dylan Wruck mit 24 goals und insgesamt 88 points.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Wruck"
+      ],
+      "pass": true
+    },
+    {
+      "id": "db_simple_3",
+      "question": "Wer war Trainer 2018/19?",
+      "expected_keywords": [
+        "Mellitzer"
+      ],
+      "time_sec": 60.7,
+      "answer": "Trainer in der Saison 2018/19 war Alexander Mellitzer (Headcoach) vom 2018-09-01 bis zum 2019-05-31.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Mellitzer"
+      ],
+      "pass": true
+    },
+    {
+      "id": "db_simple_4",
+      "question": "Wie viele Saisons spielten die Falken in der DEL2?",
+      "expected_keywords": [
+        "10"
+      ],
+      "time_sec": 28.1,
+      "answer": "Die Falken spielten 10 Saisons in der DEL2.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "10"
+      ],
+      "pass": true
+    },
+    {
+      "id": "db_simple_5",
+      "question": "Was ist die aktuelle Liga der Falken?",
+      "expected_keywords": [
+        "Oberliga"
+      ],
+      "time_sec": 22.5,
+      "answer": "Die aktuelle Liga der Falken ist die Oberliga Süd.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Oberliga"
+      ],
+      "pass": true
+    },
+    {
+      "id": "db_agg_1",
+      "question": "In welcher Saison hatten die Falken die meisten Punkte aller Zeiten?",
+      "expected_keywords": [
+        "131",
+        "132",
+        "23",
+        "24"
+      ],
+      "time_sec": 31.9,
+      "answer": "Die Falken hatten in der Saison 2024/25 mit 114 Punkten ihre höchste Punktzahl aller Zeiten.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "24"
+      ],
+      "pass": true
+    },
+    {
+      "id": "db_agg_2",
+      "question": "Welcher Spieler hat die meisten Karriere-Punkte für die Falken?",
+      "expected_keywords": [
+        "Kirsch",
+        "Wittmann"
+      ],
+      "time_sec": 40.8,
+      "answer": "Der Spieler mit den meisten Karriere-Punkten für die Falken ist Justin Kirsch mit 259 Punkten.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Kirsch"
+      ],
+      "pass": true
+    },
+    {
+      "id": "po_1",
+      "question": "Wer gewann die Halbfinale-Serie zwischen Falken und Hannover Scorpions 2024/25?",
+      "expected_keywords": [
+        "Hannover"
+      ],
+      "time_sec": 73.1,
+      "answer": "Die Hannover Scorpions gewannen die Halbfinale-Serie gegen die Heilbronner Falken mit 4:2 Siegen.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Hannover"
+      ],
+      "pass": true
+    },
+    {
+      "id": "po_2",
+      "question": "Wie weit kamen die Falken in den Oberliga-Süd Playoffs 2024/25?",
+      "expected_keywords": [
+        "Halbfinale",
+        "Hannover"
+      ],
+      "time_sec": 75.6,
+      "answer": "Die Heilbronner Falken kamen in den Oberliga-Süd Playoffs 2024/25 bis ins Halbfinale. Dort verloren sie die Serie gegen die Hannover Scorpions mit 2:4 Siegen.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Halbfinale",
+        "Hannover"
+      ],
+      "pass": true
+    },
+    {
+      "id": "game_1",
+      "question": "Welches Ergebnis hatte das Spiel ECDC Memmingen vs Falken am 27.02.2026?",
+      "expected_keywords": [
+        "7:2",
+        "Memmingen"
+      ],
+      "time_sec": 63.7,
+      "answer": "Das Spiel am 27.02.2026 endete ECDC Memmingen Indians 7:2 Heilbronner Falken.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "7:2",
+        "Memmingen"
+      ],
+      "pass": true
+    },
+    {
+      "id": "player_1",
+      "question": "Wie viele Saisons spielte Nolan Ritchie für die Falken?",
+      "expected_keywords": [
+        "2 Saison",
+        "zwei Saison",
+        "2024",
+        "2025"
+      ],
+      "time_sec": 26.8,
+      "answer": "Nolan Ritchie spielte 2 Saisons für die Falken.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "2 Saison"
+      ],
+      "pass": true
+    },
+    {
+      "id": "player_2",
+      "question": "Was war die beste Saison von Dylan Wruck?",
+      "expected_keywords": [
+        "2019",
+        "88"
+      ],
+      "time_sec": 35.8,
+      "answer": "Die beste Saison von Dylan Wruck war die Saison 2019/20, in der er 88 points, 24 goals und 64 assists erzielte.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "2019",
+        "88"
+      ],
+      "pass": true
+    },
+    {
+      "id": "news_1",
+      "question": "Wer ist Steffen Ziesche?",
+      "expected_keywords": [
+        "Trainer"
+      ],
+      "time_sec": 70.6,
+      "answer": "Steffen Ziesche ist der neue Cheftrainer der HEC Falken für die kommende Spielzeit [1]. Der 53-jährige gebürtige Berliner war zuvor als Co-Trainer bei den Krefeld Pinguinen tätig, mit denen er sich zum DEL2-Champion krönte [1]. Als Spieler war er unter anderem für seine Heimatvereine Dynamo Berlin und Eisbären Berlin sowie für weitere Vereine aktiv [1].",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Trainer"
+      ],
+      "pass": true
+    },
+    {
+      "id": "news_2",
+      "question": "Was ist die neueste News zu den Falken?",
+      "expected_keywords": [
+        "Falken"
+      ],
+      "time_sec": 49.0,
+      "answer": "Die neueste Nachricht betrifft ein Fantreffen der HEC Falken, das am 20.05. ab 19:00 Uhr in der Pistenbar im Stadion stattfindet [2]. Dort werden unter anderem Kai Sellers, Jan Hey, Michael Rumrich sowie Spieler der neuen HEC Falken für Gespräche und einen gemeinsamen Austausch zur Verfügung stehen [2]. Zuvor wurde bereits der offizielle Start in die neue Ära mit einem Kick-off-Abend im VIP-Bereich gemeinsam mit den Partnern eingeläutet [2].",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Falken"
+      ],
+      "pass": true
+    },
+    {
+      "id": "news_3",
+      "question": "Was ist über Franz Jokinen bei den Falken bekannt?",
+      "expected_keywords": [
+        "Jokinen"
+      ],
+      "time_sec": 51.7,
+      "answer": "Franz Jokinen ist ein 20-jähriger Torhüter und Linksfänger, der das Goalie-Duo der HEC Falken gemeinsam mit Florian Mnich bildet [1]. Der Deutsch-Finne wurde primär in Finnland ausgebildet und spielte vor seinem Wechsel nach Heilbronn für die DNL-Mannschaft der Düsseldorfer EG [1]. In seiner ersten Senioren-Saison 2025/2026 erreichte er bei den Falken in 22 Spielen eine Fangquote von 88,4 % [1].",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Jokinen"
+      ],
+      "pass": true
+    },
+    {
+      "id": "mh_1",
+      "question": "Wann hat der jetzige Besitzer der Tenno Sushi Bar bei den Falken gespielt?",
+      "expected_keywords": [
+        "Gödtel",
+        "2014"
+      ],
+      "time_sec": 59.0,
+      "answer": "Der Besitzer der Tenno Sushi Lounge, Thomas Gödtel, war als Verteidiger bei den Heilbronner Falken aktiv [4]. Laut Datenbank-Befunden spielte er in den Saisons 2014/15, 2015/16, 2016/17 sowie 2023/24 und 2024/25.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Gödtel",
+        "2014"
+      ],
+      "pass": true
+    },
+    {
+      "id": "oos_1",
+      "question": "Wer wurde 2025 Deutscher Eishockey-Meister?",
+      "expected_keywords": [],
+      "time_sec": 35.0,
+      "answer": "keine Daten",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [],
+      "pass": true
+    },
+    {
+      "id": "edge_1",
+      "question": "Hat Calder Anderson in 25/26 mehr Tore als Vorlagen?",
+      "expected_keywords": [
+        "Anderson"
+      ],
+      "time_sec": 38.1,
+      "answer": "Nein, Calder Anderson hat in 25/26 mit 30 Toren weniger Tore als Vorlagen (38 Assists) erzielt.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Anderson"
+      ],
+      "pass": true
+    },
+    {
+      "id": "edge_2",
+      "question": "Welche Falken-Spieler hatten mehr als 80 Punkte in einer Saison?",
+      "expected_keywords": [
+        "Wernerson",
+        "Ritchie",
+        "Wruck"
+      ],
+      "time_sec": 52.3,
+      "answer": "Folgende Falken-Spieler hatten mehr als 80 Punkte in einer Saison: Pontus Wernerson Libäck (90 Punkte in 2023/24), Linus Wernerson Libäck (89 Punkte in 2023/24), Dylan Wruck (88 Punkte in 2019/20), Nolan Ritchie (84 Punkte in 2024/25) und Calder Anderson (81 Punkte in 2024/25).",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Wernerson",
+        "Ritchie",
+        "Wruck"
+      ],
+      "pass": true
+    },
+    {
+      "id": "edge_3",
+      "question": "Wie viele unterschiedliche Trainer hatten die Falken in der DEL2-Zeit?",
+      "expected_keywords": [
+        "Trainer"
+      ],
+      "time_sec": 44.2,
+      "answer": "Die Falken hatten in der DEL2-Zeit 13 unterschiedliche Trainer.",
+      "iterations": 0,
+      "tool_chain": "",
+      "matched": [
+        "Trainer"
+      ],
+      "pass": true
+    }
+  ]
+}

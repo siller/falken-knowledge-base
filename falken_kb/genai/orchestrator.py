@@ -16,8 +16,33 @@ from .tool_agent import answer_with_tools
 
 
 def _use_tool_agent() -> bool:
-    """Default: Tool-Agent an. Per Env USE_TOOL_AGENT=false abschaltbar."""
-    return os.environ.get("USE_TOOL_AGENT", "true").lower() in ("true", "1", "yes")
+    """Tool-Agent default OFF.
+
+    DGX-Gemma kann ReAct-Loop ohne native tool-use-API nicht stabil. Die simple
+    1-step DB-Heuristik (direkt fact_sql) übernimmt _is_clearly_db_only.
+    Multi-Hop läuft über das bewährte hybrid_web (war 91.9% Pass-Rate).
+    Per Env USE_TOOL_AGENT=true wieder aktivierbar zum Experimentieren.
+    """
+    return os.environ.get("USE_TOOL_AGENT", "false").lower() in ("true", "1", "yes")
+
+
+def _is_simple_db_question(question: str) -> bool:
+    """Heuristik: klare DB-Frage (Saison/Stats/Spieler) ohne externe Entitäten."""
+    import re
+    q = question.lower()
+    external_terms = ("besitzer", "inhaber", "restaurant", "bar ", "sushi", "firma",
+                       "bürgermeister", "geschäftsführer", "ceo", "wer ist ",
+                       "neueste", "verpflichtet", "transfer", "wer arbeitet")
+    if any(t in q for t in external_terms):
+        return False
+    has_year = bool(re.search(r"\b(19|20)\d{2}\b", q)) or bool(re.search(r"\d{2}/\d{2}", q))
+    has_stats_word = any(w in q for w in (
+        "tabellenplatz", "platz beend", "punkte", "tore", "saison",
+        "topscorer", "trainer", "playoff", "spielergebnis", "ergebnis",
+        "liga", "del2", "oberliga", "spielten", "spielte",
+        "wie viele", "in welcher saison", "siege", "niederlagen",
+    ))
+    return has_year or has_stats_word
 
 logger = logging.getLogger(__name__)
 
@@ -72,14 +97,21 @@ def answer(question: str) -> dict[str, Any]:
     """
     client = DGXClient()
 
-    # ── Tool-Agent-Modus (Default): LLM entscheidet selbst welche Tools nötig ──
+    # SHORTCUT 1: simple DB-Frage → direkt fact_sql ohne Router (~30s, schnellster Pfad)
+    if _is_simple_db_question(question):
+        logger.info("Heuristik: simple DB-Frage → direkter fact_sql")
+        result = answer_fact(question, client)
+        result["classification"] = {"category": "fact", "confidence": 1.0, "reason": "direct DB heuristic"}
+        return result
+
+    # OPTIONAL: Tool-Agent (experimental, default off)
     if _use_tool_agent():
-        logger.info("Routing via Tool-Agent (ReAct mit DGX-Gemma)")
+        logger.info("Routing via Tool-Agent (experimental)")
         result = answer_with_tools(question, client)
         result["classification"] = {"category": "tool_agent", "confidence": 1.0, "reason": "tool-agent mode active"}
         return result
 
-    # ── Legacy-Routing (statisch via Klassifikator + Keyword-Hints) ──
+    # ── Standard-Routing: Klassifikator + Keyword-Hints + Hybrid-Fallback ──
     classification = classify(question, client)
     category = classification["category"]
 
