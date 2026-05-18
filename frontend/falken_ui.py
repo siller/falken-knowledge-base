@@ -463,6 +463,17 @@ for entry in st.session_state.history:
             with st.expander(f"🔗 DB-Cross-Lookups ({len(db_findings)})"):
                 for f in db_findings:
                     st.markdown(f"**{f.get('person','?')}**: {f.get('db_answer','')[:300]}")
+        tool_trace = result.get("tool_trace")
+        if tool_trace:
+            iter_count = result.get("iterations", len(tool_trace))
+            with st.expander(f"🧠 Tool-Use Trace ({iter_count} Schritte)"):
+                for step in tool_trace:
+                    st.markdown(f"**Schritt {step.get('iteration','?')}** — *{step.get('thought','')[:150]}*")
+                    if step.get("action") == "use_tool":
+                        st.code(f"{step.get('tool_name','?')}({step.get('tool_args',{})})", language="python")
+                        st.caption(f"→ {step.get('tool_result_summary','')}")
+                    elif step.get("action") == "final":
+                        st.caption(f"✓ final_answer (gekürzt): {step.get('final_answer','')[:120]}")
 
 # Neue Frage
 if q:
@@ -515,4 +526,15 @@ if q:
             with st.expander(f"🔗 DB-Cross-Lookups ({len(db_findings)})"):
                 for f in db_findings:
                     st.markdown(f"**{f.get('person','?')}**: {f.get('db_answer','')[:300]}")
+        tool_trace = result.get("tool_trace")
+        if tool_trace:
+            iter_count = result.get("iterations", len(tool_trace))
+            with st.expander(f"🧠 Tool-Use Trace ({iter_count} Schritte)"):
+                for step in tool_trace:
+                    st.markdown(f"**Schritt {step.get('iteration','?')}** — *{step.get('thought','')[:150]}*")
+                    if step.get("action") == "use_tool":
+                        st.code(f"{step.get('tool_name','?')}({step.get('tool_args',{})})", language="python")
+                        st.caption(f"→ {step.get('tool_result_summary','')}")
+                    elif step.get("action") == "final":
+                        st.caption(f"✓ final_answer (gekürzt): {step.get('final_answer','')[:120]}")
     st.session_state.history.append({"q": q, "result": result, "t_sec": t_sec})

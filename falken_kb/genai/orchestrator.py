@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+import os
 from ..config import settings
 from .dgx_client import DGXClient
 from .handlers.fact_sql import answer_fact
@@ -11,6 +12,12 @@ from .handlers.hybrid_web import answer_web_research
 from .handlers.narrative_rag import answer_narrative
 from .handlers.trend_chart import answer_trend
 from .router import classify
+from .tool_agent import answer_with_tools
+
+
+def _use_tool_agent() -> bool:
+    """Default: Tool-Agent an. Per Env USE_TOOL_AGENT=false abschaltbar."""
+    return os.environ.get("USE_TOOL_AGENT", "true").lower() in ("true", "1", "yes")
 
 logger = logging.getLogger(__name__)
 
@@ -64,6 +71,15 @@ def answer(question: str) -> dict[str, Any]:
     (News, "wer ist X", "bekannt über") → automatisch RAG-Fallback.
     """
     client = DGXClient()
+
+    # ── Tool-Agent-Modus (Default): LLM entscheidet selbst welche Tools nötig ──
+    if _use_tool_agent():
+        logger.info("Routing via Tool-Agent (ReAct mit DGX-Gemma)")
+        result = answer_with_tools(question, client)
+        result["classification"] = {"category": "tool_agent", "confidence": 1.0, "reason": "tool-agent mode active"}
+        return result
+
+    # ── Legacy-Routing (statisch via Klassifikator + Keyword-Hints) ──
     classification = classify(question, client)
     category = classification["category"]
 
