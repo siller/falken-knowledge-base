@@ -22,24 +22,42 @@ if str(ROOT) not in sys.path:
 
 import streamlit as st  # noqa: E402
 
+# IMMER zuerst — muss vor jedem anderen st.* call stehen.
+st.set_page_config(page_title="Falken-Wissensdatenbank", page_icon="🏒", layout="wide")
+
 # Streamlit-Cloud: secrets aus st.secrets in os.environ überführen, BEVOR
-# falken_kb.config geladen wird (pydantic-settings liest dann env-vars).
-if hasattr(st, "secrets"):
+# falken_kb.config geladen wird. Lokal (ohne secrets.toml): überspringen.
+_SECRETS_PATHS = [
+    Path.home() / ".streamlit" / "secrets.toml",
+    ROOT / ".streamlit" / "secrets.toml",
+]
+if any(p.exists() for p in _SECRETS_PATHS):
     try:
         secrets = st.secrets
-        # Streamlit secrets können flat oder under [default] sein
         if "default" in secrets:
             secrets = secrets["default"]
         for key in secrets:
             if isinstance(secrets[key], (str, int, float, bool)):
                 os.environ.setdefault(key, str(secrets[key]))
     except Exception:
-        pass  # local run ohne secrets.toml
+        pass  # silent fallback — env-vars / .env weiter genutzt
 
 from falken_kb.config import settings  # noqa: E402
 from falken_kb.genai.orchestrator import answer as kb_answer  # noqa: E402
 
-st.set_page_config(page_title="Falken-Wissensdatenbank", page_icon="🏒", layout="wide")
+
+def _get_app_password() -> str | None:
+    """APP_PASSWORD aus env ODER secrets, ohne Warning wenn nichts da ist."""
+    env_pw = os.environ.get("APP_PASSWORD")
+    if env_pw:
+        return env_pw
+    if any(p.exists() for p in _SECRETS_PATHS):
+        try:
+            return st.secrets.get("app_password")
+        except Exception:
+            return None
+    return None
+
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Auth-Wrapper: Shared-Password-Schutz (für Streamlit Cloud + Team-Zugriff)
@@ -47,9 +65,7 @@ st.set_page_config(page_title="Falken-Wissensdatenbank", page_icon="🏒", layou
 # Wenn kein Passwort gesetzt → öffentlich (local dev).
 # ──────────────────────────────────────────────────────────────────────────────
 def _password_protect() -> bool:
-    expected = os.environ.get("APP_PASSWORD") or (
-        st.secrets.get("app_password") if hasattr(st, "secrets") else None
-    )
+    expected = _get_app_password()
     if not expected:
         return True  # kein Passwort konfiguriert → frei
     if st.session_state.get("authenticated"):
@@ -76,9 +92,15 @@ with st.sidebar:
     st.caption("Heilbronner Falken — GenAI-Wissensdatenbank")
 
     st.subheader("Backend")
+    def _device_label(url: str) -> str:
+        u = (url or "").lower()
+        if "pgxapi.siller.io" in u: return "DGX (siller.io, self-hosted)"
+        if "openrouter" in u: return "OpenRouter (cloud)"
+        if "openai.com" in u: return "OpenAI"
+        return "Custom Endpoint"
     st.code(
-        f"LLM:        {settings.dgx_chat_model}\n"
-        f"Endpoint:   {settings.dgx_base_url}\n"
+        f"Gerät:      {_device_label(settings.dgx_base_url)}\n"
+        f"Chat:       {settings.dgx_chat_model}\n"
         f"Embeddings: {settings.dgx_embed_model} ({settings.dgx_embed_dim}d)",
         language="text",
     )
