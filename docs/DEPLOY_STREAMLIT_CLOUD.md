@@ -55,7 +55,7 @@ DGX_EMBED_DIM = 768
 
 # ODER (für DGX-Backend statt OpenRouter — RAG geht dann NICHT, weil andere Embeddings):
 # DGX_BASE_URL = "https://pgxapi.siller.io/v1"
-# DGX_API_KEY = "sk-AboUkuaAghVTt_vnPIDqoQ"
+# DGX_API_KEY = "<aus .env>"
 # DGX_CHAT_MODEL = "gemma"
 # DGX_CHAT_FALLBACKS = ""
 # DGX_EMBED_MODEL = "nomic-embed-text"

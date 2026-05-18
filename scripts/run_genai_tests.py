@@ -15,13 +15,17 @@ from falken_kb.genai.orchestrator import answer
 
 def wait_for_dgx(max_wait_min: int = 60) -> bool:
     """Polled DGX bis es wieder up ist (oder timeout)."""
+    import os as _os
+    base_url = _os.environ.get("DGX_BASE_URL", "https://openrouter.ai/api/v1")
+    api_key = _os.environ.get("DGX_API_KEY", "")
+    model = _os.environ.get("DGX_CHAT_MODEL", "deepseek/deepseek-v4-flash")
     end = time.time() + max_wait_min * 60
     while time.time() < end:
         try:
             r = httpx.post(
-                "https://pgxapi.siller.io/v1/chat/completions",
-                headers={"Authorization": "Bearer sk-AboUkuaAghVTt_vnPIDqoQ", "Content-Type": "application/json"},
-                json={"model": "gemma-4-31B", "max_tokens": 3, "messages": [{"role": "user", "content": "hi"}]},
+                f"{base_url.rstrip('/')}/chat/completions",
+                headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+                json={"model": model, "max_tokens": 3, "messages": [{"role": "user", "content": "hi"}]},
                 timeout=10,
             )
             if r.status_code == 200:

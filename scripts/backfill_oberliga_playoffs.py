@@ -29,8 +29,11 @@ from falken_kb.logging_setup import setup_logging
 setup_logging()
 logger = logging.getLogger(__name__)
 
-FALKEN_WEB_KEY = "d9a998820290e620924a06f93928ea29"
-FALKEN_WEB_REF = "heilbronner-falken.de"
+import os
+FALKEN_WEB_KEY = os.environ.get("HOCKEYDATA_FALKEN_KEY", "")
+FALKEN_WEB_REF = os.environ.get("HOCKEYDATA_FALKEN_REF", "heilbronner-falken.de")
+if not FALKEN_WEB_KEY:
+    raise RuntimeError("HOCKEYDATA_FALKEN_KEY env-var nicht gesetzt — Loader funktioniert nicht.")
 
 # (Saison-Label, Liga, PO-divisionId, hockeydata-seasonId)
 PLAYOFF_DIVS = [
