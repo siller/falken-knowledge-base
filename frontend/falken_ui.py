@@ -25,38 +25,54 @@ import streamlit as st  # noqa: E402
 # IMMER zuerst — muss vor jedem anderen st.* call stehen.
 st.set_page_config(page_title="Falken-Wissensdatenbank", page_icon="🏒", layout="wide")
 
-# Streamlit-Cloud: secrets aus st.secrets in os.environ überführen, BEVOR
-# falken_kb.config geladen wird. Lokal (ohne secrets.toml): überspringen.
-_SECRETS_PATHS = [
-    Path.home() / ".streamlit" / "secrets.toml",
-    ROOT / ".streamlit" / "secrets.toml",
-]
-if any(p.exists() for p in _SECRETS_PATHS):
+# Streamlit-Cloud + lokal: alle st.secrets in os.environ überführen, BEVOR
+# falken_kb.config geladen wird (pydantic-settings liest dann env-vars).
+# In Streamlit Cloud sind secrets via Settings injiziert (kein secrets.toml-File
+# notwendig). Lokal: existiert nur wenn .streamlit/secrets.toml angelegt.
+def _load_secrets_into_env() -> None:
     try:
         secrets = st.secrets
-        if "default" in secrets:
-            secrets = secrets["default"]
-        for key in secrets:
-            if isinstance(secrets[key], (str, int, float, bool)):
-                os.environ.setdefault(key, str(secrets[key]))
     except Exception:
-        pass  # silent fallback — env-vars / .env weiter genutzt
+        return  # keine secrets verfügbar
+    try:
+        keys = list(secrets.keys())
+    except Exception:
+        return
+    if not keys:
+        return
+    # Flat lesen
+    for k in keys:
+        try:
+            v = secrets[k]
+        except Exception:
+            continue
+        if isinstance(v, (str, int, float, bool)):
+            os.environ.setdefault(k, str(v))
+    # Sub-Section [default] zusätzlich (falls so strukturiert)
+    if "default" in keys:
+        try:
+            for k, v in dict(secrets["default"]).items():
+                if isinstance(v, (str, int, float, bool)):
+                    os.environ.setdefault(k, str(v))
+        except Exception:
+            pass
+
+
+_load_secrets_into_env()
 
 from falken_kb.config import settings  # noqa: E402
 from falken_kb.genai.orchestrator import answer as kb_answer  # noqa: E402
 
 
 def _get_app_password() -> str | None:
-    """APP_PASSWORD aus env ODER secrets, ohne Warning wenn nichts da ist."""
+    """APP_PASSWORD aus env ODER st.secrets."""
     env_pw = os.environ.get("APP_PASSWORD")
     if env_pw:
         return env_pw
-    if any(p.exists() for p in _SECRETS_PATHS):
-        try:
-            return st.secrets.get("app_password")
-        except Exception:
-            return None
-    return None
+    try:
+        return st.secrets.get("app_password")
+    except Exception:
+        return None
 
 
 # ──────────────────────────────────────────────────────────────────────────────
