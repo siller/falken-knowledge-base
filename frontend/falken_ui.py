@@ -324,7 +324,7 @@ def _password_protect() -> bool:
         <img src="{LOGO_URL}" alt="Falken">
         <div class="falken-header-text">
             <h1>HORST <span class="accent">·</span> Falken-KB</h1>
-            <p>Der Adlerhorst des Falken-Wissens · Bitte Passwort eingeben</p>
+            <p>Der Falkenhorst des Falken-Wissens · Bitte Passwort eingeben</p>
         </div>
         </div>""",
         unsafe_allow_html=True,
@@ -348,7 +348,7 @@ if not _password_protect():
 with st.sidebar:
     st.markdown(f'<div class="sidebar-logo"><img src="{LOGO_URL}" alt="Falken-Logo"></div>', unsafe_allow_html=True)
     st.markdown(f"<h2 style='text-align:center; margin-top:0; letter-spacing:0.1em;'>HORST</h2>", unsafe_allow_html=True)
-    st.markdown(f"<p style='text-align:center; color:rgba(255,255,255,0.7); margin-top:-0.5rem; font-size:0.85rem;'>Der Adlerhorst des Falken-Wissens</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='text-align:center; color:rgba(255,255,255,0.7); margin-top:-0.5rem; font-size:0.85rem;'>Der Falkenhorst des Falken-Wissens</p>", unsafe_allow_html=True)
 
     st.divider()
     st.subheader("⚙ Backend")
@@ -409,7 +409,7 @@ st.markdown(
     <img src="{LOGO_URL}" alt="Falken">
     <div class="falken-header-text">
         <h1>Frag <span class="accent">HORST</span></h1>
-        <p>Der Adlerhorst des Falken-Wissens · 45+ Jahre Vereinsgeschichte · Saisons · Spiele · Trainer · Spieler · Playoffs · News</p>
+        <p>Der Falkenhorst des Falken-Wissens · 45+ Jahre Vereinsgeschichte · Saisons · Spiele · Trainer · Spieler · Playoffs · News</p>
     </div>
     </div>""",
     unsafe_allow_html=True,
@@ -453,7 +453,7 @@ if q:
     with st.chat_message("user", avatar="👤"):
         st.markdown(q)
     with st.chat_message("assistant", avatar="🦅"):
-        with st.spinner("🦅 HORST durchsucht den Adlerhorst…"):
+        with st.spinner("🦅 HORST durchsucht den Falkenhorst…"):
             t0 = time.time()
             effective_q = q
             if st.session_state.history:
