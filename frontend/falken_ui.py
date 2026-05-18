@@ -63,118 +63,232 @@ from falken_kb.genai.orchestrator import answer as kb_answer  # noqa: E402
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# FALKEN-DESIGN: Custom CSS — schwarz / Falken-Gold / weiß
+# FALKEN-DESIGN — Farben aus Sponsoring-Konzept (hell, modern)
+# Rot/Navy/Blau auf hellem Hintergrund, Apple-System-Font
 # ──────────────────────────────────────────────────────────────────────────────
-FALKEN_GOLD = "#F5B81C"  # offizielles Falken-Gold
-FALKEN_BLACK = "#0A0A0A"
+FALKEN_RED = "#D30A10"
+FALKEN_RED_DARK = "#A50000"
+FALKEN_NAVY = "#001D3D"
+FALKEN_BLUE = "#003C79"
+FALKEN_BLUE_LIGHT = "#004A98"
+FALKEN_GOLD = "#C9A227"
+BG_LIGHT = "#F4F6F9"
+SURFACE = "#FFFFFF"
+TEXT = "#0E1A2B"
+TEXT_MUTED = "#4A5A70"
+BORDER = "#E2E7EF"
 LOGO_URL = "https://www.heilbronner-falken.de/wp-content/uploads/2023/02/HNECF_Logo-01-150x150.png"
 
 st.markdown(
     f"""
     <style>
-    /* Background dark */
+    /* Font + Base */
+    html, body, .stApp, [class*="css"] {{
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif !important;
+    }}
     .stApp {{
-        background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
-        color: #f0f0f0;
+        background: {BG_LIGHT};
+        color: {TEXT};
     }}
     /* Sidebar */
     section[data-testid="stSidebar"] {{
-        background: #000000;
-        border-right: 2px solid {FALKEN_GOLD};
+        background: linear-gradient(180deg, {FALKEN_NAVY} 0%, {FALKEN_BLUE} 100%);
+        border-right: none;
     }}
     section[data-testid="stSidebar"] * {{
-        color: #f0f0f0 !important;
+        color: rgba(255,255,255,0.92) !important;
     }}
-    /* Headlines */
-    h1, h2, h3 {{
-        color: {FALKEN_GOLD} !important;
-        font-weight: 700;
+    section[data-testid="stSidebar"] h1,
+    section[data-testid="stSidebar"] h2,
+    section[data-testid="stSidebar"] h3 {{
+        color: white !important;
+    }}
+    section[data-testid="stSidebar"] .stCaption,
+    section[data-testid="stSidebar"] small {{
+        color: rgba(255,255,255,0.65) !important;
+    }}
+    /* Main Headings */
+    .stApp h1, .stApp h2, .stApp h3 {{
+        color: {FALKEN_NAVY} !important;
+        font-weight: 800;
         letter-spacing: -0.02em;
     }}
-    /* Buttons (Beispielfragen etc.) */
-    .stButton > button {{
-        background: rgba(245, 184, 28, 0.08);
-        color: #f0f0f0 !important;
-        border: 1px solid rgba(245, 184, 28, 0.3);
-        border-radius: 8px;
-        transition: all 0.15s ease;
+    .stApp h1 .accent, .stApp h2 .accent {{
+        color: {FALKEN_RED};
+    }}
+    /* Buttons (Sidebar examples) */
+    section[data-testid="stSidebar"] .stButton > button {{
+        background: rgba(255,255,255,0.08);
+        color: white !important;
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 10px;
         text-align: left;
         font-size: 0.85rem;
+        transition: all 0.15s ease;
+        padding: 0.5rem 0.75rem;
     }}
-    .stButton > button:hover {{
-        background: {FALKEN_GOLD};
-        color: {FALKEN_BLACK} !important;
-        border-color: {FALKEN_GOLD};
+    section[data-testid="stSidebar"] .stButton > button:hover {{
+        background: {FALKEN_RED};
+        border-color: {FALKEN_RED};
         transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(211, 10, 16, 0.35);
     }}
-    /* Primary button (Anmelden, Submit) */
-    .stButton > button[kind="primary"] {{
-        background: {FALKEN_GOLD};
-        color: {FALKEN_BLACK} !important;
+    /* Primary buttons (Main area: Anmelden) */
+    .stApp .stButton > button[kind="primary"] {{
+        background: {FALKEN_RED};
+        color: white !important;
         border: none;
         font-weight: 700;
+        padding: 0.6rem 1.5rem;
+        border-radius: 8px;
+        transition: all 0.15s ease;
     }}
-    .stButton > button[kind="primary"]:hover {{
-        background: #ffcb3a;
+    .stApp .stButton > button[kind="primary"]:hover {{
+        background: {FALKEN_RED_DARK};
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(211, 10, 16, 0.4);
     }}
     /* Chat-Messages */
     [data-testid="stChatMessage"] {{
-        background: rgba(255,255,255,0.03);
-        border-left: 3px solid {FALKEN_GOLD};
-        border-radius: 8px;
-        padding: 0.5rem 1rem;
+        background: {SURFACE};
+        border: 1px solid {BORDER};
+        border-left: 4px solid {FALKEN_RED};
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 2px 8px rgba(14, 26, 43, 0.04);
+    }}
+    [data-testid="stChatMessage"][data-testid*="user"] {{
+        border-left-color: {FALKEN_BLUE};
+        background: rgba(0, 60, 121, 0.04);
     }}
     /* Code-Blocks */
-    .stCodeBlock, code {{
-        background: #0a0a0a !important;
-        border: 1px solid rgba(245, 184, 28, 0.2);
+    pre, .stCodeBlock {{
+        background: {FALKEN_NAVY} !important;
+        border-radius: 8px;
+        border: 1px solid {FALKEN_BLUE};
+    }}
+    pre code, .stCodeBlock code {{
+        color: #e8eef7 !important;
+    }}
+    /* Inline code */
+    .stApp code:not(pre code) {{
+        background: rgba(211, 10, 16, 0.08);
+        color: {FALKEN_RED_DARK};
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.85em;
     }}
     /* Input */
-    .stTextInput input, .stChatInput textarea {{
-        background: #1a1a1a !important;
-        color: #f0f0f0 !important;
-        border: 1px solid rgba(245, 184, 28, 0.4) !important;
+    .stTextInput input, .stChatInput textarea, [data-testid="stChatInput"] textarea {{
+        background: {SURFACE} !important;
+        color: {TEXT} !important;
+        border: 1.5px solid {BORDER} !important;
+        border-radius: 10px !important;
+    }}
+    .stTextInput input:focus, .stChatInput textarea:focus {{
+        border-color: {FALKEN_RED} !important;
+        box-shadow: 0 0 0 3px rgba(211, 10, 16, 0.1) !important;
     }}
     /* Expander */
-    .streamlit-expanderHeader {{
-        background: rgba(245, 184, 28, 0.05);
-        border-radius: 6px;
-        color: {FALKEN_GOLD} !important;
+    [data-testid="stExpander"] {{
+        background: {SURFACE};
+        border: 1px solid {BORDER};
+        border-radius: 8px;
+    }}
+    [data-testid="stExpander"] summary {{
+        color: {FALKEN_NAVY} !important;
+        font-weight: 600;
     }}
     /* Divider */
     hr {{
-        border-color: rgba(245, 184, 28, 0.2) !important;
+        border-color: {BORDER} !important;
+    }}
+    /* Caption */
+    .stCaption, small, [data-testid="stCaptionContainer"] {{
+        color: {TEXT_MUTED} !important;
+    }}
+    /* Spinner color */
+    .stSpinner > div {{
+        border-top-color: {FALKEN_RED} !important;
+    }}
+    /* Dataframe */
+    .stDataFrame {{
+        border-radius: 8px;
+        overflow: hidden;
     }}
     /* Falken Branding Header */
     .falken-header {{
         display: flex;
         align-items: center;
-        gap: 1rem;
-        padding: 1rem 0;
-        border-bottom: 2px solid {FALKEN_GOLD};
-        margin-bottom: 1.5rem;
+        gap: 1.25rem;
+        padding: 1.25rem 1.5rem;
+        background: linear-gradient(135deg, {FALKEN_NAVY} 0%, {FALKEN_BLUE_LIGHT} 100%);
+        border-radius: 14px;
+        margin-bottom: 1.75rem;
+        box-shadow: 0 8px 24px rgba(0, 29, 61, 0.15);
+        position: relative;
+        overflow: hidden;
+    }}
+    .falken-header::before {{
+        content: "";
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        background: radial-gradient(circle at 90% 30%, rgba(211, 10, 16, 0.35) 0%, transparent 55%);
+        pointer-events: none;
     }}
     .falken-header img {{
-        width: 64px;
-        height: 64px;
+        width: 72px;
+        height: 72px;
+        position: relative;
+        z-index: 1;
+        filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }}
+    .falken-header-text {{
+        position: relative;
+        z-index: 1;
     }}
     .falken-header-text h1 {{
-        margin: 0;
-        font-size: 1.8rem;
+        margin: 0 !important;
+        font-size: 1.85rem;
+        color: white !important;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }}
+    .falken-header-text h1 .accent {{
+        color: #ffb3b3 !important;
     }}
     .falken-header-text p {{
-        margin: 0;
-        color: #aaa;
-        font-size: 0.9rem;
+        margin: 0.35rem 0 0;
+        color: rgba(255,255,255,0.85);
+        font-size: 0.95rem;
     }}
-    /* Sidebar-Logo */
+    /* Sidebar-Logo Container */
     .sidebar-logo {{
         text-align: center;
-        padding: 1rem 0;
+        padding: 1rem 0 0.5rem;
     }}
     .sidebar-logo img {{
-        width: 96px;
-        filter: drop-shadow(0 2px 8px rgba(245, 184, 28, 0.4));
+        width: 88px;
+        filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }}
+    /* Reduce default top padding */
+    .block-container {{
+        padding-top: 2rem !important;
+    }}
+    /* Sidebar Code-Block (Backend-Info) */
+    section[data-testid="stSidebar"] pre,
+    section[data-testid="stSidebar"] .stCodeBlock {{
+        background: rgba(0,0,0,0.25) !important;
+        border-color: rgba(255,255,255,0.12) !important;
+    }}
+    section[data-testid="stSidebar"] pre code {{
+        color: rgba(255,255,255,0.9) !important;
+    }}
+    /* Error/Warning Boxes */
+    [data-testid="stAlert"] {{
+        border-radius: 10px;
+        border-left-width: 4px;
     }}
     </style>
     """,
