@@ -1,0 +1,10 @@
+# Streamlit-Konfiguration
+[theme]
+base = "light"
+primaryColor = "#0e639c"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+
+[server]
+headless = true
+runOnSave = false

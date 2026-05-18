@@ -1,0 +1,43 @@
+{
+  "summary": {
+    "total": 3,
+    "pass": 0,
+    "fail": 0,
+    "error": 3
+  },
+  "results": [
+    {
+      "id": "q_rank_2025_26",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2025/26?",
+      "expected_facts": [
+        "5"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2024_25",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2024/25?",
+      "expected_facts": [
+        "1"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2023_24",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2023/24?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    }
+  ]
+}

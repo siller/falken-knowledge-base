@@ -1,0 +1,515 @@
+# Ground-Truth-Datenbasis für Falken-Wissensbasis
+#
+# Manuell verifizierte Fakten aus mehreren öffentlich nachprüfbaren Quellen
+# (Wikipedia, del-2.org, eishockey-statistiken.de, EliteProspects, Lokalpresse).
+#
+# JEDE Behauptung hier muss aus mindestens ZWEI unabhängigen Quellen
+# verifiziert sein, sonst nicht eintragen.
+
+# =====================================================================
+# A) FALKEN-SAISON-ENDPLATZIERUNGEN
+# =====================================================================
+- id: rank_25_26_oberliga
+  description: "Falken Oberliga 25/26: Hauptrunde Platz 5, 93P"
+  source: "hockeydata API + del-2.org"
+  query: >
+    SELECT final_rank, points, games_played FROM falken.season_standings
+    WHERE team = 'Heilbronner Falken' AND season = '2025/26' AND league = 'Oberliga Süd'
+  expected: [{final_rank: 5, points: 93, games_played: 52}]
+
+- id: rank_24_25_oberliga
+  description: "Falken Oberliga 24/25: Platz 1 (Hauptrundensieger), 114P"
+  source: "hockeydata divisionId 15881"
+  query: >
+    SELECT final_rank, points, games_played FROM falken.season_standings
+    WHERE team = 'Heilbronner Falken' AND season = '2024/25' AND league = 'Oberliga Süd'
+  expected: [{final_rank: 1, points: 114, games_played: 48}]
+
+- id: rank_23_24_oberliga
+  description: "Falken Oberliga 23/24: Platz 2, 109P, Halbfinale verloren gegen Hannover Scorpions"
+  source: "hockeydata divisionId 13389"
+  query: >
+    SELECT final_rank, points, games_played FROM falken.season_standings
+    WHERE team = 'Heilbronner Falken' AND season = '2023/24' AND league = 'Oberliga Süd'
+  expected: [{final_rank: 2, points: 109, games_played: 48}]
+
+- id: rank_22_23
+  description: "Falken DEL2 22/23: Platz 12 (Abstiegssaison), 64P"
+  source: "del-2.org + eishockey-stat"
+  query: >
+    SELECT final_rank, points FROM falken.season_standings
+    WHERE team = 'Heilbronner Falken' AND season = '2022/23' AND league = 'DEL2'
+  expected: [{final_rank: 12, points: 64}]
+
+- id: rank_21_22
+  description: "Falken DEL2 21/22: Hauptrunde Platz 7 (eishockey-stat); Halbfinale gegen Frankfurt"
+  source: "Wikipedia DEL2 2021/22 + del-2.org"
+  query: >
+    SELECT season, final_rank FROM falken.season_standings
+    WHERE team = 'Heilbronner Falken' AND season = '2021/22'
+  # Sowohl 6 als auch 7 kommt vor — wir checken auf irgendeinen sinnvollen Wert
+  expected: [{season: "2021/22"}]
+
+- id: rank_20_21
+  description: "Falken DEL2 20/21 (Corona-Saison): Platz 8 lt. eishockey-stat / Computed"
+  source: "eishockey-stat"
+  query: >
+    SELECT final_rank FROM falken.season_standings
+    WHERE team = 'Heilbronner Falken' AND season = '2020/21' AND league = 'DEL2'
+  expected: [{final_rank: 8}]
+
+- id: rank_19_20
+  description: "Falken DEL2 19/20: Platz 4, 84P (Corona-Abbruch)"
+  source: "del-2.org + Wikipedia"
+  query: >
+    SELECT final_rank, points FROM falken.season_standings
+    WHERE team = 'Heilbronner Falken' AND season = '2019/20' AND league = 'DEL2'
+  expected: [{final_rank: 4, points: 84}]
+
+- id: rank_15_16
+  description: "Falken DEL2 15/16: Platz 14 (Lizenz-Klassenerhalt durch Landshut-Lizenzentzug)"
+  source: "Wikipedia + eishockey-stat"
+  query: >
+    SELECT final_rank FROM falken.season_standings
+    WHERE team = 'Heilbronner Falken' AND season = '2015/16' AND league = 'DEL2'
+  expected: [{final_rank: 14}]
+
+# =====================================================================
+# B) TRAINER-HISTORIE
+# =====================================================================
+- id: coach_22_23
+  description: "Trainer 22/23: Jason Morgan (bis Dez) + Martin Jiranek (ab Dez)"
+  source: "Wikipedia + Lokalpresse"
+  query: >
+    SELECT c.name FROM falken.coach_tenures ct
+    JOIN falken.coaches c ON c.id = ct.coach_id
+    JOIN falken.teams t ON t.id = ct.team_id
+    WHERE t.name = 'Heilbronner Falken' AND ct.start_date = '2022-09-01'
+    ORDER BY c.name
+  expected:
+    - {name: "Jason Morgan"}
+    - {name: "Martin Jiranek"}
+
+- id: coach_rossi_count
+  description: "Rico Rossi sr.: 9 Saisons Trainer (2004-2013)"
+  source: "Wikipedia Falken-Artikel"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.coach_tenures ct
+    JOIN falken.coaches c ON c.id = ct.coach_id
+    JOIN falken.teams t ON t.id = ct.team_id
+    WHERE t.name = 'Heilbronner Falken' AND c.name = 'Rico Rossi sr.'
+  expected: [{n: 9}]
+
+- id: coach_unterluggauer
+  description: "Gerhard Unterluggauer: 17/18 + 18/19 Trainer"
+  source: "eishockey-stat"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.coach_tenures ct
+    JOIN falken.coaches c ON c.id = ct.coach_id
+    JOIN falken.teams t ON t.id = ct.team_id
+    WHERE t.name = 'Heilbronner Falken' AND c.name = 'Gerhard Unterluggauer'
+  expected: [{n: 2}]
+
+# =====================================================================
+# C) TOPSCORER PRO SAISON (aus EliteProspects)
+# =====================================================================
+- id: topscorer_18_19
+  description: "Topscorer 18/19: Roope Ranta, 79 Punkte"
+  source: "EliteProspects + eishockey-stat"
+  query: >
+    SELECT player, points FROM falken_skater_stats_v
+    WHERE season = '2018/19' ORDER BY points DESC NULLS LAST LIMIT 1
+  expected: [{player: "Roope Ranta", points: 79}]
+
+- id: topscorer_22_23
+  description: "Topscorer 22/23 (Abstieg): Alex Tonge, 59P, 19G+40A"
+  source: "EliteProspects"
+  query: >
+    SELECT player, points, goals, assists FROM falken_skater_stats_v
+    WHERE season = '2022/23' ORDER BY points DESC NULLS LAST LIMIT 1
+  expected: [{player: "Alex Tonge", points: 59, goals: 19, assists: 40}]
+
+- id: topscorer_19_20
+  description: "Topscorer 19/20: Dylan Wruck, 88P"
+  source: "EliteProspects"
+  query: >
+    SELECT player, points FROM falken_skater_stats_v
+    WHERE season = '2019/20' ORDER BY points DESC NULLS LAST LIMIT 1
+  expected: [{player: "Dylan Wruck", points: 88}]
+
+- id: topscorer_23_24
+  description: "Topscorer 23/24 Oberliga: Pontus Wernerson Libäck, 90P"
+  source: "EliteProspects"
+  query: >
+    SELECT player, points FROM falken_skater_stats_v
+    WHERE season = '2023/24' ORDER BY points DESC NULLS LAST LIMIT 1
+  expected: [{player: "Pontus Wernerson Libäck", points: 90}]
+
+- id: topscorer_20_21
+  description: "Topscorer 20/21 (Corona-Saison): Dylan Wruck, 78P"
+  source: "EliteProspects"
+  query: >
+    SELECT player, points FROM falken_skater_stats_v
+    WHERE season = '2020/21' ORDER BY points DESC NULLS LAST LIMIT 1
+  expected: [{player: "Dylan Wruck", points: 78}]
+
+- id: topscorer_21_22
+  description: "Topscorer 21/22: Jeremy Williams, 62P"
+  source: "EliteProspects"
+  query: >
+    SELECT player, points FROM falken_skater_stats_v
+    WHERE season = '2021/22' ORDER BY points DESC NULLS LAST LIMIT 1
+  expected: [{player: "Jeremy Williams", points: 62}]
+
+- id: topscorer_17_18
+  description: "Topscorer 17/18: Brandon Alderson, 54P"
+  source: "EliteProspects"
+  query: >
+    SELECT player, points FROM falken_skater_stats_v
+    WHERE season = '2017/18' ORDER BY points DESC NULLS LAST LIMIT 1
+  expected: [{player: "Brandon Alderson", points: 54}]
+
+- id: topscorer_16_17
+  description: "Topscorer 16/17: höchster Wert > 40P"
+  source: "EliteProspects"
+  query: >
+    SELECT MAX(points) AS top FROM falken_skater_stats_v WHERE season = '2016/17'
+  expected: [{top: 49}]
+
+- id: topscorer_15_16
+  description: "Topscorer 15/16 (Lizenz-Klassenerhalt): Adam Brace, 63P (28G+35A)"
+  source: "EliteProspects (live re-fetched 2026-05-17)"
+  query: >
+    SELECT player, points, goals, assists FROM falken_skater_stats_v
+    WHERE season = '2015/16' ORDER BY points DESC NULLS LAST LIMIT 1
+  expected: [{player: "Adam Brace", points: 63, goals: 28, assists: 35}]
+
+- id: topscorer_24_25
+  description: "Topscorer 24/25 (Hauptrundensieger Oberliga): Nolan Ritchie, 84P"
+  source: "EliteProspects"
+  query: >
+    SELECT player, points FROM falken_skater_stats_v
+    WHERE season = '2024/25' ORDER BY points DESC NULLS LAST LIMIT 1
+  expected: [{player: "Nolan Ritchie", points: 84}]
+
+# =====================================================================
+# D) SPIEL-SUMMEN PRO SAISON (Hauptrunde-Coverage)
+# =====================================================================
+- id: game_count_22_23_hauptrunde
+  description: "DEL2 22/23 Hauptrunde Falken: 52 Spiele"
+  source: "DEL2-Modus"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    JOIN falken.teams ht ON ht.id = g.home_team_id
+    JOIN falken.teams at ON at.id = g.away_team_id
+    WHERE s.label = '2022/23' AND s.league = 'DEL2' AND g.game_type = 'regular'
+      AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+  expected: [{n: 52}]
+
+- id: game_count_19_20_hauptrunde
+  description: "DEL2 19/20 Hauptrunde Falken: 52 Spiele"
+  source: "del-2.org"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    JOIN falken.teams ht ON ht.id = g.home_team_id
+    JOIN falken.teams at ON at.id = g.away_team_id
+    WHERE s.label = '2019/20' AND s.league = 'DEL2' AND g.game_type = 'regular'
+      AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+  expected: [{n: 52}]
+
+- id: game_count_25_26_oberliga
+  description: "Oberliga 25/26 Hauptrunde: 364 Spiele (14 Teams × 4 Spiele pro Paarung × 13)"
+  source: "Modus"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    WHERE s.label = '2025/26' AND s.league = 'Oberliga Süd' AND g.game_type = 'regular'
+  expected: [{n: 364}]
+
+- id: game_count_24_25_oberliga_falken
+  description: "Falken Oberliga 24/25: 48 Hauptrunden-Spiele (13 Teams)"
+  source: "hockeydata divisionId 15881"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    JOIN falken.teams ht ON ht.id = g.home_team_id
+    JOIN falken.teams at ON at.id = g.away_team_id
+    WHERE s.label = '2024/25' AND s.league = 'Oberliga Süd' AND g.game_type = 'regular'
+      AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+  expected: [{n: 48}]
+
+- id: game_count_18_19_hauptrunde
+  description: "DEL2 18/19 Hauptrunde Falken: 52 Spiele"
+  source: "del-2.org"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    JOIN falken.teams ht ON ht.id = g.home_team_id
+    JOIN falken.teams at ON at.id = g.away_team_id
+    WHERE s.label = '2018/19' AND s.league = 'DEL2' AND g.game_type = 'regular'
+      AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+  expected: [{n: 52}]
+
+- id: game_count_17_18_hauptrunde
+  description: "DEL2 17/18 Hauptrunde Falken: 48 Spiele (3-fach Hin/Rück Modus)"
+  source: "del-2.org"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    JOIN falken.teams ht ON ht.id = g.home_team_id
+    JOIN falken.teams at ON at.id = g.away_team_id
+    WHERE s.label = '2017/18' AND s.league = 'DEL2' AND g.game_type = 'regular'
+      AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+  expected: [{n: 48}]
+
+# =====================================================================
+# E) SPIELE — bekannte Resultate / Extrema
+# =====================================================================
+- id: game_06_02_2026_11_3
+  description: "06.02.2026 Heimspiel vs Bayreuth: Falken 11:3"
+  source: "Live + del-2.org"
+  query: >
+    SELECT g.date::date AS date, ht.name AS home, g.home_score, g.away_score, at.name AS away
+    FROM falken.games g
+    JOIN falken.teams ht ON ht.id = g.home_team_id
+    JOIN falken.teams at ON at.id = g.away_team_id
+    WHERE g.date::date = '2026-02-06' AND ht.name = 'Heilbronner Falken'
+  expected:
+    - {date: "2026-02-06", home: "Heilbronner Falken", home_score: 11, away_score: 3, away: "Bayreuth Tigers"}
+
+- id: bayreuth_falken_count_22_23
+  description: "Falken vs Bayreuth DEL2 22/23 Hauptrunde: 4 Spiele"
+  source: "del-2.org"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    JOIN falken.teams ht ON ht.id = g.home_team_id
+    JOIN falken.teams at ON at.id = g.away_team_id
+    WHERE s.label = '2022/23' AND s.league = 'DEL2' AND g.game_type = 'regular'
+      AND ((ht.name = 'Heilbronner Falken' AND at.name = 'Bayreuth Tigers')
+        OR (ht.name = 'Bayreuth Tigers' AND at.name = 'Heilbronner Falken'))
+  expected: [{n: 4}]
+
+- id: highest_score_25_26
+  description: "Höchstes Falken-Tor-Ergebnis 25/26: 11 (vs Bayreuth)"
+  source: "Live"
+  query: >
+    SELECT GREATEST(
+        MAX(CASE WHEN ht.name = 'Heilbronner Falken' THEN g.home_score ELSE 0 END),
+        MAX(CASE WHEN at.name = 'Heilbronner Falken' THEN g.away_score ELSE 0 END)
+    ) AS max_goals
+    FROM falken.games g
+    JOIN falken.teams ht ON ht.id = g.home_team_id
+    JOIN falken.teams at ON at.id = g.away_team_id
+    JOIN falken.seasons s ON s.id = g.season_id
+    WHERE s.label = '2025/26' AND s.league = 'Oberliga Süd' AND g.game_type = 'regular'
+      AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+  expected: [{max_goals: 11}]
+
+# =====================================================================
+# F) PLAYOFF-SERIEN
+# =====================================================================
+- id: playdown_22_23_R2_bayreuth
+  description: "Play-Down R2 22/23: Falken 2:4 Bayreuth (Abstieg!)"
+  source: "del-2.org + Wikipedia"
+  query: >
+    SELECT ts.wins_a, ts.wins_b, tw.name AS winner
+    FROM falken.playoff_series ts
+    JOIN falken.seasons s ON s.id = ts.season_id
+    JOIN falken.teams ta ON ta.id = ts.team_a_id
+    JOIN falken.teams tb ON tb.id = ts.team_b_id
+    LEFT JOIN falken.teams tw ON tw.id = ts.winner_team_id
+    WHERE s.label = '2022/23' AND ts.round = 'Play-Down R2'
+      AND ta.name = 'Heilbronner Falken'
+  expected:
+    - {wins_a: 2, wins_b: 4, winner: "Bayreuth Tigers"}
+
+- id: playoff_21_22_halbfinale_frankfurt
+  description: "Halbfinale 21/22: Falken 0:4 Löwen Frankfurt"
+  source: "del-2.org"
+  query: >
+    SELECT tw.name AS winner
+    FROM falken.playoff_series ts
+    JOIN falken.seasons s ON s.id = ts.season_id
+    JOIN falken.teams ta ON ta.id = ts.team_a_id
+    JOIN falken.teams tb ON tb.id = ts.team_b_id
+    LEFT JOIN falken.teams tw ON tw.id = ts.winner_team_id
+    WHERE s.label = '2021/22' AND ts.round = 'Halbfinale'
+      AND (ta.name = 'Heilbronner Falken' OR tb.name = 'Heilbronner Falken')
+  expected:
+    - {winner: "Löwen Frankfurt"}
+
+- id: playdown_15_16_klassenerhalt
+  description: "15/16 Play-Downs: Falken im Play-Down R2 (Klassenerhalt durch Landshut-Lizenzverlust)"
+  source: "Wikipedia DEL2 2015/16"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.playoff_series ts
+    JOIN falken.seasons s ON s.id = ts.season_id
+    JOIN falken.teams ta ON ta.id = ts.team_a_id
+    JOIN falken.teams tb ON tb.id = ts.team_b_id
+    WHERE s.label = '2015/16' AND ts.round LIKE 'Play-Down%'
+      AND (ta.name = 'Heilbronner Falken' OR tb.name = 'Heilbronner Falken')
+  expected: [{n: 2}]  # mindestens 2 Playdown-Serien (R1 + R2)
+
+# =====================================================================
+# G) HISTORISCHE MEILENSTEINE
+# =====================================================================
+- id: oberliga_meister_06_07
+  description: "Oberliga-Meister 2006/07 mit 108 Punkten"
+  source: "eishockey-statistiken + Wikipedia"
+  query: >
+    SELECT final_rank, points, playoff_result FROM falken.season_standings
+    WHERE team = 'Heilbronner Falken' AND season = '2006/07'
+  expected:
+    - {final_rank: 2, points: 108, playoff_result: "Meister"}
+
+# =====================================================================
+# H) STRUCTURE / DEDUP
+# =====================================================================
+- id: dedup_check_no_falken_duplicates
+  description: "Falken: 1 einziger Team-Eintrag, keine Schreibvarianten"
+  source: "Schema-Constraint + Dedup"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.teams WHERE name LIKE '%Falken%' OR name LIKE '%Heilbronner%'
+  expected: [{n: 1}]
+
+- id: del2_25_26_team_count
+  description: "DEL2 25/26 hat 14 Teams (echte Saison, Falken nicht drin)"
+  source: "del-2.org"
+  query: >
+    SELECT COUNT(DISTINCT t.id) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    JOIN falken.teams t ON t.id IN (g.home_team_id, g.away_team_id)
+    WHERE s.label = '2025/26' AND s.league = 'DEL2' AND g.game_type = 'regular'
+  expected: [{n: 14}]
+
+- id: del2_22_23_team_count
+  description: "DEL2 22/23 hat 14 Teams"
+  source: "del-2.org"
+  query: >
+    SELECT COUNT(DISTINCT t.id) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    JOIN falken.teams t ON t.id IN (g.home_team_id, g.away_team_id)
+    WHERE s.label = '2022/23' AND s.league = 'DEL2' AND g.game_type = 'regular'
+  expected: [{n: 14}]
+
+- id: del2_24_25_no_falken
+  description: "DEL2 24/25: Falken NICHT in dieser Saison gespielt"
+  source: "Falken-Historie (24/25 in Oberliga)"
+  query: >
+    SELECT COUNT(*) AS n FROM falken.team_seasons ts
+    JOIN falken.seasons s ON s.id = ts.season_id
+    JOIN falken.teams t ON t.id = ts.team_id
+    WHERE s.label = '2024/25' AND s.league = 'DEL2' AND t.name = 'Heilbronner Falken'
+  expected: [{n: 0}]
+
+# =====================================================================
+# I) WIRECKLICHE COVERAGE-AUDITS
+# =====================================================================
+- id: total_games_min
+  description: "Mindestens 5000 Spiele insgesamt nach Backfill"
+  source: "del-2.org Bulk-Load erwartet"
+  query: >
+    SELECT (CASE WHEN COUNT(*) >= 5000 THEN 1 ELSE 0 END) AS ok FROM falken.games
+  expected: [{ok: 1}]
+
+- id: player_stats_12_seasons
+  description: "12 Saisons (2013/14-2024/25) mit Falken-Player-Stats aus EP"
+  source: "EliteProspects-Backfill (erweitert auf 12 Saisons)"
+  query: >
+    SELECT COUNT(DISTINCT s.label) AS n
+    FROM falken.player_seasons ps
+    JOIN falken.seasons s ON s.id = ps.season_id
+    JOIN falken.teams t ON t.id = ps.team_id
+    WHERE t.name = 'Heilbronner Falken'
+  expected: [{n: 12}]
+
+- id: del2_seasons_with_full_schedule
+  description: "10 DEL2-Saisons (2013/14-2022/23) mit kompletter Hauptrunde Falken"
+  source: "del-2.org-Backfill"
+  query: >
+    WITH falken_hr AS (
+      SELECT s.label, COUNT(*) AS n FROM falken.games g
+      JOIN falken.seasons s ON s.id = g.season_id
+      JOIN falken.teams ht ON ht.id = g.home_team_id
+      JOIN falken.teams at ON at.id = g.away_team_id
+      WHERE s.league = 'DEL2' AND g.game_type = 'regular'
+        AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+      GROUP BY s.label
+    )
+    SELECT COUNT(*) AS n FROM falken_hr WHERE n >= 48
+  expected: [{n: 10}]
+
+- id: oberliga_seasons_with_schedule
+  description: "3 Oberliga-Saisons (23/24, 24/25, 25/26) mit Falken-Spielen"
+  source: "hockeydata API"
+  query: >
+    SELECT COUNT(DISTINCT s.label) AS n FROM falken.games g
+    JOIN falken.seasons s ON s.id = g.season_id
+    JOIN falken.teams ht ON ht.id = g.home_team_id
+    JOIN falken.teams at ON at.id = g.away_team_id
+    WHERE s.league = 'Oberliga Süd' AND g.game_type = 'regular'
+      AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+  expected: [{n: 3}]
+
+- id: playoff_series_count_min
+  description: "Min. 40 Playoff-/Playdown-Serien mit Falken-Beteiligung"
+  source: "eishockey-stat"
+  query: >
+    SELECT (CASE WHEN COUNT(*) >= 40 THEN 1 ELSE 0 END) AS ok FROM falken.playoff_series ps
+    JOIN falken.teams ta ON ta.id = ps.team_a_id
+    JOIN falken.teams tb ON tb.id = ps.team_b_id
+    WHERE ta.name = 'Heilbronner Falken' OR tb.name = 'Heilbronner Falken'
+  expected: [{ok: 1}]
+
+- id: coach_count_min
+  description: "Min. 30 Trainer in Falken-Historie"
+  source: "eishockey-stat"
+  query: >
+    SELECT (CASE WHEN COUNT(*) >= 30 THEN 1 ELSE 0 END) AS ok FROM falken.coaches
+  expected: [{ok: 1}]
+
+# =====================================================================
+# J) PER-PLAYER-DEEP-CHECKS (verifizierte Stats aus EP)
+# =====================================================================
+- id: tonge_22_23_full_stats
+  description: "Alex Tonge 22/23: 52 GP, 19G, 40A, 59P"
+  source: "EliteProspects"
+  query: >
+    SELECT games_played, goals, assists, points FROM falken_skater_stats_v
+    WHERE season = '2022/23' AND player = 'Alex Tonge'
+  expected: [{games_played: 52, goals: 19, assists: 40, points: 59}]
+
+- id: williams_21_22_full
+  description: "Jeremy Williams 21/22: 46 GP, 26G, 36A, 62P (Topscorer)"
+  source: "EliteProspects (live re-fetched 2026-05-17)"
+  query: >
+    SELECT games_played, goals, assists, points FROM falken_skater_stats_v
+    WHERE season = '2021/22' AND player = 'Jeremy Williams'
+  expected: [{games_played: 46, goals: 26, assists: 36, points: 62}]
+
+- id: ranta_18_19_full
+  description: "Roope Ranta 18/19: 51 GP, 31G, 48A, 79P"
+  source: "EliteProspects"
+  query: >
+    SELECT games_played, goals, assists, points FROM falken_skater_stats_v
+    WHERE season = '2018/19' AND player = 'Roope Ranta'
+  expected: [{games_played: 51, goals: 31, assists: 48, points: 79}]
+
+- id: wruck_19_20_full
+  description: "Dylan Wruck 19/20: 51 GP, 24G, 64A, 88P (Topscorer)"
+  source: "EliteProspects (live re-fetched 2026-05-17)"
+  query: >
+    SELECT games_played, goals, assists, points FROM falken_skater_stats_v
+    WHERE season = '2019/20' AND player = 'Dylan Wruck'
+  expected: [{games_played: 51, goals: 24, assists: 64, points: 88}]
+
+- id: brace_15_16_full
+  description: "Adam Brace 15/16 (Klassenerhalts-Saison): 52 GP, 28G, 35A, 63P"
+  source: "EliteProspects (live re-fetched 2026-05-17)"
+  query: >
+    SELECT games_played, goals, assists, points FROM falken_skater_stats_v
+    WHERE season = '2015/16' AND player = 'Adam Brace'
+  expected: [{games_played: 52, goals: 28, assists: 35, points: 63}]

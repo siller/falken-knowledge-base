@@ -1,0 +1,2173 @@
+[
+  {
+    "category": "liga",
+    "sql": "SELECT DISTINCT league FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE ORDER BY season DESC LIMIT 1",
+    "rows": [],
+    "answer": "⚠️  Konnte die Frage nicht beantworten (SQL-Fehler: {'code': '42P10', 'details': None, 'hint': None, 'message': 'for SELECT DISTINCT, ORDER BY expressions must appear in select list'}).",
+    "error": "{'code': '42P10', 'details': None, 'hint': None, 'message': 'for SELECT DISTINCT, ORDER BY expressions must appear in select list'}",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten aktuellen Fakt (Liga), keine Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 11.0,
+    "id": "idea_001",
+    "question": "In welcher Liga spielen die Heilbronner Falken aktuell?"
+  },
+  {
+    "category": "saison_platz",
+    "sql": "SELECT final_rank, points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2025/26';",
+    "rows": [
+      {
+        "points": 93,
+        "final_rank": 5
+      }
+    ],
+    "answer": "Die Heilbronner Falken belegten am Ende der Hauptrunde 2025/26 den 5. Platz mit 93 Punkten.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage erfragt einen konkreten Tabellenplatz der Falken am Ende einer bestimmten Hauptrunde, was einen einzelnen Datenpunkt darstellt, keine Visualisierung oder narrative Erklärung erfordert."
+    },
+    "time_sec": 8.2,
+    "id": "idea_002",
+    "question": "Wo standen die Falken am Ende der Hauptrunde 2025/26?"
+  },
+  {
+    "category": "saison_punkte",
+    "sql": "SELECT SUM(points) AS total_points FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE;",
+    "rows": [
+      {
+        "total_points": 2199
+      }
+    ],
+    "answer": "Die Falken hatten in der gesamten Saisongeschichte insgesamt 2199 Punkte.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten aggregierten Datenpunkt (Gesamtpunktzahl über alle Saisons), ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 9.4,
+    "id": "idea_003",
+    "question": "Wie viele Punkte hatten die Falken in der gesamten Saisongeschichte zusammen?"
+  },
+  {
+    "category": "liga",
+    "sql": "SELECT COUNT(DISTINCT s.label) AS seasons_in_del2, MIN(s.start_date) AS first_season_start, MAX(s.end_date) AS last_season_end FROM season_standings ss JOIN seasons s ON s.label = ss.season WHERE ss.team = 'Heilbronner Falken' AND ss.league = 'DEL2' AND ss.is_focus_team_season = TRUE;",
+    "rows": [
+      {
+        "last_season_end": "2023-05-31",
+        "seasons_in_del2": 10,
+        "first_season_start": "2013-09-01"
+      }
+    ],
+    "answer": "Die Heilbronner Falken spielten insgesamt 10 Saisons in der DEL2, von September 2013 bis Mai 2023.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt, nämlich der Gesamtdauer der Teilnahme der Heilbronner Falken in der DEL2, was eine spezifische Antwort erfordert."
+    },
+    "time_sec": 21.1,
+    "id": "idea_004",
+    "question": "Wie lange spielten die Heilbronner Falken in der DEL2 insgesamt?"
+  },
+  {
+    "category": "liga",
+    "sql": "SELECT s.label, ts.final_rank FROM team_seasons ts JOIN seasons s ON s.id = ts.season_id JOIN teams t ON t.id = ts.team_id WHERE t.name = 'Heilbronner Falken' AND ts.league = 'DEL2' ORDER BY s.start_date DESC LIMIT 1;",
+    "rows": [],
+    "answer": "⚠️  Konnte die Frage nicht beantworten (SQL-Fehler: {'code': '42703', 'details': None, 'hint': 'Perhaps you meant to reference the column \"s.league\".', 'message': 'column ts.league does not exist'}).",
+    "error": "{'code': '42703', 'details': None, 'hint': 'Perhaps you meant to reference the column \"s.league\".', 'message': 'column ts.league does not exist'}",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Zeitpunkt (Saison) eines Ereignisses, ohne Visualisierung oder narrative Erklärung zu verlangen."
+    },
+    "time_sec": 14.8,
+    "id": "idea_005",
+    "question": "Wann sind die Falken aus der DEL2 abgestiegen?"
+  },
+  {
+    "category": "trainer",
+    "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2024/25' AND ct.role = 'Headcoach' ORDER BY ct.start_date DESC LIMIT 1;",
+    "rows": [
+      {
+        "name": "Francesco Petrozza",
+        "role": "Headcoach",
+        "end_date": "2025-05-31",
+        "start_date": "2024-09-01"
+      }
+    ],
+    "answer": "Der aktuelle Trainer der Falken ist Francesco Petrozza.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Fragt nach einem konkreten Datenpunkt (aktueller Trainer) ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 16.4,
+    "id": "idea_006",
+    "question": "Wer ist aktuell Trainer der Falken?"
+  },
+  {
+    "category": "topscorer",
+    "sql": "WITH current_season AS (SELECT season FROM season_standings WHERE team = 'Heilbronner Falken' ORDER BY season DESC LIMIT 1) SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = (SELECT season FROM current_season) AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "goals": 30,
+        "player": "Calder ANDERSON",
+        "points": 68,
+        "assists": 38
+      }
+    ],
+    "answer": "Calder ANDERSON ist aktueller Topscorer der Falken mit 68 Punkten (30 Tore, 38 Assists).",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Fragt nach einem konkreten Datenpunkt (aktueller Topscorer), ohne Diagramm oder ausführliche Erzählung."
+    },
+    "time_sec": 23.5,
+    "id": "idea_007",
+    "question": "Wer ist aktueller Topscorer der Falken?"
+  },
+  {
+    "category": "spielergebnis",
+    "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.date, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE ht.name = 'Heilbronner Falken' ORDER BY g.date DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "date": "2026-02-22T18:30:00+00:00",
+        "overtime": false,
+        "shootout": false,
+        "away_team": "Erding Gladiators",
+        "home_team": "Heilbronner Falken",
+        "away_score": 7,
+        "home_score": 2
+      }
+    ],
+    "answer": "Das letzte Heimspiel der Falken war am 22. Februar 2026 eine 2:7-Niederlage gegen die Erding Gladiators.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (dem letzten Heimspiel) ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 21.4,
+    "id": "idea_008",
+    "question": "Was war das letzte Heimspiel der Falken?"
+  },
+  {
+    "category": "vergleich",
+    "sql": "SELECT wins FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE ORDER BY season DESC LIMIT 1",
+    "rows": [
+      {
+        "wins": 27
+      }
+    ],
+    "answer": "Die Falken haben in der aktuellen Saison 27 Siege erzielt.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einer konkreten Zahl (Anzahl der Siege) in der aktuellen Saison, ohne Diagramm oder narrative Erklärung zu verlangen."
+    },
+    "time_sec": 44.4,
+    "id": "idea_009",
+    "question": "Wie viele Siege haben die Falken in der aktuellen Saison?"
+  },
+  {
+    "category": "vergleich",
+    "sql": "SELECT goals_for FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE ORDER BY season DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "goals_for": 208
+      }
+    ],
+    "answer": "Die Falken haben in der laufenden Saison 208 Tore erzielt.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Anzahl der Tore in der laufenden Saison) ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 10.2,
+    "id": "idea_010",
+    "question": "Wie viele Tore haben die Falken in der laufenden Saison erzielt?"
+  },
+  {
+    "category": "spieler",
+    "sql": "SELECT COUNT(DISTINCT season) AS seasons_played FROM falken_skater_stats WHERE similarity(player, 'Nolan Ritchie') > 0.3;",
+    "rows": [
+      {
+        "seasons_played": 2
+      }
+    ],
+    "answer": "Nolan Ritchie spielte 2 Saisons für die Falken.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1.0,
+      "reason": "Die Frage verlangt eine konkrete Zahl (Anzahl der Saisons) ohne Diagramm oder Visualisierung."
+    },
+    "time_sec": 9.4,
+    "id": "idea_011",
+    "question": "Wie viele Saisons spielte Nolan Ritchie für die Falken?"
+  },
+  {
+    "category": "spieler",
+    "sql": "SELECT season, points, goals, assists FROM falken_skater_stats WHERE similarity(player, 'Dylan Wruck') > 0.3 AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "goals": 24,
+        "points": 88,
+        "season": "2019/20",
+        "assists": 64
+      }
+    ],
+    "answer": "Die beste Saison von Dylan Wruck punktemäßig war die Saison 2019/20 mit 88 Punkten (24 Tore und 64 Vorlagen).",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach der besten Saison eines bestimmten Spielers (Dylan Wruck) hinsichtlich Punkten. Es ist eine konkrete, einzelne Information, die auf einen Datenpunkt abzielt, ohne Visualisierung oder historische Erzählung."
+    },
+    "time_sec": 16.0,
+    "id": "idea_012",
+    "question": "Was war die beste Saison von Dylan Wruck punktemäßig?"
+  },
+  {
+    "category": "spieler",
+    "sql": "SELECT SUM(points) AS career_points FROM falken_skater_stats WHERE similarity(player, 'Dylan Wruck') > 0.3 AND points IS NOT NULL;",
+    "rows": [
+      {
+        "career_points": 166
+      }
+    ],
+    "answer": "Nein, Dylan Wruck hat 166 Karriere-Punkte für die Falken, also weniger als 200.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (ob eine bestimmte Punktzahl überschritten wurde) und erfordert eine einfache Ja/Nein-Antwort, keine Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 25.2,
+    "id": "idea_013",
+    "question": "Hat Dylan Wruck mehr als 200 Karriere-Punkte für die Falken?"
+  },
+  {
+    "category": "spieler",
+    "sql": "SELECT nation FROM players WHERE name ILIKE '%Robert Hock%' LIMIT 1;",
+    "rows": [
+      {
+        "nation": null
+      }
+    ],
+    "answer": "Der Geburtsort von Robert Hock ist nicht in den Daten vorhanden.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Nationalität eines Spielers), ohne eine Visualisierung oder zeitliche Entwicklung zu verlangen."
+    },
+    "time_sec": 16.1,
+    "id": "idea_014",
+    "question": "Welche Nationalität hatte Robert Hock?"
+  },
+  {
+    "category": "spieler",
+    "sql": "SELECT player FROM falken_skater_stats WHERE season = '2024/25' AND jersey_number = 10;",
+    "rows": [],
+    "answer": "Es liegen keine Daten zur Trikotnummer 10 in der Saison 2024/25 vor.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Spieler mit Trikotnummer 10 in einer bestimmten Saison) ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 16.8,
+    "id": "idea_015",
+    "question": "Wer trug das Trikot mit Nummer 10 in der Saison 2024/25?"
+  },
+  {
+    "category": "spieler",
+    "sql": "SELECT season, player, goals FROM falken_skater_stats WHERE similarity(player, 'Nolan Ritchie') > 0.3 AND season = '2024/25' AND goals IS NOT NULL ORDER BY similarity(player, 'Nolan Ritchie') DESC LIMIT 1",
+    "rows": [
+      {
+        "goals": 38,
+        "player": "Nolan Ritchie",
+        "season": "2024/25"
+      }
+    ],
+    "answer": "Nolan Ritchie hat in der Saison 2024/25 38 Tore erzielt.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1.0,
+      "reason": "Fragt nach einer einzelnen Zahl (Tore) für einen bestimmten Spieler in einer bestimmten Saison."
+    },
+    "time_sec": 12.8,
+    "id": "idea_016",
+    "question": "Wie viele Tore hat Nolan Ritchie in der Saison 2024/25 erzielt?"
+  },
+  {
+    "category": "spieler",
+    "sql": "SELECT player, season, points, goals, assists FROM falken_skater_stats WHERE points > 80 ORDER BY points DESC;",
+    "rows": [
+      {
+        "goals": 36,
+        "player": "Pontus Wernerson Libäck",
+        "points": 90,
+        "season": "2023/24",
+        "assists": 54
+      },
+      {
+        "goals": 28,
+        "player": "Linus Wernerson Libäck",
+        "points": 89,
+        "season": "2023/24",
+        "assists": 61
+      },
+      {
+        "goals": 24,
+        "player": "Dylan Wruck",
+        "points": 88,
+        "season": "2019/20",
+        "assists": 64
+      },
+      {
+        "goals": 38,
+        "player": "Nolan Ritchie",
+        "points": 84,
+        "season": "2024/25",
+        "assists": 46
+      },
+      {
+        "goals": 31,
+        "player": "Calder Anderson",
+        "points": 81,
+        "season": "2024/25",
+        "assists": 50
+      }
+    ],
+    "answer": "Pontus Wernerson Libäck (90 Punkte in 2023/24), Linus Wernerson Libäck (89 Punkte in 2023/24), Dylan Wruck (88 Punkte in 2019/20), Nolan Ritchie (84 Punkte in 2024/25) und Calder Anderson (81 Punkte in 2024/25) erzielten mehr als 80 Punkte in einer Saison bei den Falken.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einer konkreten Liste von Spielern, die einen bestimmten Punktestand erreicht haben, was einem einzelnen Datenpunkt oder einer kurzen Liste entspricht."
+    },
+    "time_sec": 24.8,
+    "id": "idea_017",
+    "question": "Welche Spieler hatten mehr als 80 Punkte in einer Saison bei den Falken?"
+  },
+  {
+    "category": "spieler",
+    "sql": "SELECT (goals > assists) AS more_goals_than_assists FROM falken_skater_stats WHERE similarity(player, 'Calder Anderson') > 0.3 AND season = '2025/26' AND goals IS NOT NULL AND assists IS NOT NULL ORDER BY similarity(player, 'Calder Anderson') DESC LIMIT 1;",
+    "rows": [
+      {
+        "more_goals_than_assists": false
+      }
+    ],
+    "answer": "Nein, Calder Anderson hat in der Saison 2025/26 nicht mehr Tore als Vorlagen erzielt.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Vergleich von Toren und Vorlagen eines Spielers in einer bestimmten Saison, was einen einzelnen Datenpunkt erfordert."
+    },
+    "time_sec": 28.5,
+    "id": "idea_018",
+    "question": "Hat Calder Anderson in 2025/26 mehr Tore als Vorlagen?"
+  },
+  {
+    "category": "goalie",
+    "sql": "SELECT goalie, gaa, save_pct, shutouts FROM falken_goalie_stats WHERE season = '2024/25' AND gaa IS NOT NULL ORDER BY gaa ASC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "gaa": 2.73,
+        "goalie": "Patrick BERGER",
+        "save_pct": 0.907,
+        "shutouts": 1
+      }
+    ],
+    "answer": "Der beste Torhüter der Falken in der Saison 2024/25 nach Gegentor-Schnitt war Patrick BERGER mit einem GAA von 2,73.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Fragt nach einem konkreten Datenpunkt (Torhüter mit bestem Gegentor-Schnitt) für eine bestimmte Saison, keine Visualisierung oder narrative Erklärung erforderlich."
+    },
+    "time_sec": 24.1,
+    "id": "idea_019",
+    "question": "Wer war der beste Torhüter der Falken in der Saison 2024/25 nach Gegentor-Schnitt?"
+  },
+  {
+    "category": "goalie",
+    "sql": "SELECT goalie, jersey_number, games_played, wins, losses, gaa, save_pct AS save_pct, gaa, shutouts FROM falken_goalie_stats WHERE season = '2025/26' ORDER BY games_played DESC NULLS LAST",
+    "rows": [
+      {
+        "gaa": 7.5,
+        "wins": 1,
+        "goalie": "Konrad MARKUS",
+        "losses": 7,
+        "save_pct": 0.0,
+        "shutouts": 1,
+        "games_played": 14,
+        "jersey_number": 1
+      },
+      {
+        "gaa": 5.01,
+        "wins": 2,
+        "goalie": "Julian SCHMITT",
+        "losses": 5,
+        "save_pct": 0.0,
+        "shutouts": 0,
+        "games_played": 7,
+        "jersey_number": 22
+      }
+    ],
+    "answer": "In der Saison 2025/26 spielten Konrad MARKUS (Trikotnummer 1) und Julian SCHMITT (Trikotnummer 22) für die Falken.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einer konkreten Liste von Spielern (Torhütern) in einer bestimmten Saison, ohne dass eine Visualisierung oder ein Trend über mehrere Saisons verlangt wird."
+    },
+    "time_sec": 16.2,
+    "id": "idea_020",
+    "question": "Welche Torhüter spielten 2025/26 für die Falken?"
+  },
+  {
+    "category": "goalie",
+    "sql": "SELECT wins FROM goalie_stats gs JOIN player_seasons ps ON gs.player_season_id = ps.id JOIN players p ON ps.player_id = p.id JOIN seasons s ON ps.season_id = s.id WHERE similarity(p.name, 'Nico Zimmermann') > 0.3 AND s.label = '2024/25' AND wins IS NOT NULL",
+    "rows": [
+      {
+        "wins": 18
+      }
+    ],
+    "answer": "Nico Zimmermann hatte in der Saison 2024/25 18 Siege.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach einer konkreten Zahl (Anzahl der Siege) für einen bestimmten Spieler in einer bestimmten Saison, ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 22.2,
+    "id": "idea_021",
+    "question": "Wie viele Siege hatte Nico Zimmermann in der Saison 2024/25?"
+  },
+  {
+    "category": "goalie",
+    "sql": "SELECT goalie, save_pct FROM falken_goalie_stats WHERE season = '2024/25' AND (similarity(goalie, 'Michael Paterson-Jones') > 0.3 OR similarity(goalie, 'Nico Zimmermann') > 0.3) ORDER BY save_pct DESC;",
+    "rows": [
+      {
+        "goalie": "Nico ZIMMERMANN",
+        "save_pct": 0.905
+      },
+      {
+        "goalie": "Michael PATERSON-JONES",
+        "save_pct": 0.902
+      }
+    ],
+    "answer": "Nein, Michael Paterson-Jones hatte in der Saison 24/25 mit einer Save-Quote von 0,902 eine schlechtere Quote als Nico Zimmermann mit 0,905.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Frage nach konkretem Vergleich von zwei Spielern in einer Saison ohne Visualisierung."
+    },
+    "time_sec": 12.8,
+    "id": "idea_022",
+    "question": "Hatte Michael Paterson-Jones in 24/25 eine bessere Save-Quote als Nico Zimmermann?"
+  },
+  {
+    "category": "trainer",
+    "sql": "SELECT c.name, MIN(ct.start_date) AS  start_date, MAX(ct.end_date) AS end_date, EXTRACT(YEAR FROM AGE(MAX(ct.end_date), MIN(ct.start_date))) AS years_active FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id WHERE t.name = 'Heilbronner Falken' AND similarity(c.name, 'Rico Rossi') > 0.3 AND ct.role = 'Headcoach' GROUP BY c.name;",
+    "rows": [
+      {
+        "name": "Rico Rossi sr.",
+        "end_date": "2013-05-31",
+        "start_date": "2004-09-01",
+        "years_active": 8
+      }
+    ],
+    "answer": "Rico Rossi sr. war 8 Jahre Trainer der Falken, von  (von 2004-09-01 bis 2013-05-31).",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Fragt nach einer konkreten Zeitspanne (Dauer der Trainertätigkeit), kein Diagramm oder narrative Beschreibung."
+    },
+    "time_sec": 18.2,
+    "id": "idea_023",
+    "question": "Wie lange war Rico Rossi Trainer der Falken?"
+  },
+  {
+    "category": "trainer",
+    "sql": "SELECT c.name, ct.start_date, ct.end_date, (ct.end_date - ct.start_date) AS tenure_days FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id WHERE t.name = 'Heilbronner Falken' AND ct.role = 'Headcoach' AND ct.end_date IS NOT NULL AND ct.start_date IS NOT NULL ORDER BY (ct.end_date - ct.start_date) DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "name": "GeorgesHüttig",
+        "end_date": "1984-05-31",
+        "start_date": "1983-09-01",
+        "tenure_days": 273
+      }
+    ],
+    "answer": "Georges Hüttig hatte die längste durchgehende Amtszeit bei den Falken mit einer Dauer von 273 Tagen (vom 1. September 1983 bis 31. Mai 1984).",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Trainer mit längster durchgehender Amtszeit) und erfordert eine einzelne Antwort, keine Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 19.6,
+    "id": "idea_024",
+    "question": "Welcher Trainer hatte die längste durchgehende Amtszeit bei den Falken?"
+  },
+  {
+    "category": "trainer",
+    "sql": "SELECT c.name, ct.role, MIN(ct.start_date) AS first_start\nFROM coach_tenures ct\nJOIN coaches c ON c.id = ct.coach_id\nJOIN teams t ON t.id = ct.team_id\nWHERE t.name = 'Heilbronner Falken' AND ct.role = 'Headcoach'\nGROUP BY c.name, ct.role\nORDER BY first_start ASC\nLIMIT 1;",
+    "rows": [
+      {
+        "name": "Josef Matousek",
+        "role": "Headcoach",
+        "first_start": "1980-09-01"
+      }
+    ],
+    "answer": "Der erste Trainer der Falken war Josef Matousek, der am 1. September 1980 als Headcoach begann.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Fragt nach einem konkreten Namen (erster Trainer), keine Visualisierung oder Trend."
+    },
+    "time_sec": 25.3,
+    "id": "idea_025",
+    "question": "Wer war der erste Trainer der Falken überhaupt?"
+  },
+  {
+    "category": "trainer",
+    "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date\nFROM coach_tenures ct\nJOIN coaches c ON c.id = ct.coach_id\nJOIN teams t ON t.id = ct.team_id\nJOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date\nWHERE t.name = 'Heilbronner Falken' AND s.label = '2015/16' AND ct.role = 'Headcoach';",
+    "rows": [
+      {
+        "name": "Manfred Wolf",
+        "role": "Headcoach",
+        "end_date": "2016-05-31",
+        "start_date": "2015-09-01"
+      },
+      {
+        "name": "Fabian Dahlem",
+        "role": "Headcoach",
+        "end_date": "2016-05-31",
+        "start_date": "2015-09-01"
+      }
+    ],
+    "answer": "In der Klassenerhalt-Saison 2015/16 waren Manfred Wolf und Fabian Dahlem als Headcoach für die Falken tätig.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1.0,
+      "reason": "Fragt nach einem konkreten Datenpunkt (Trainername) für eine bestimmte Saison."
+    },
+    "time_sec": 14.1,
+    "id": "idea_026",
+    "question": "Wer war Trainer der Falken in der Klassenerhalt-Saison 2015/16?"
+  },
+  {
+    "category": "playoff",
+    "sql": "SELECT playoff_result FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2024/25' AND league = 'Oberliga Süd'",
+    "rows": [
+      {
+        "playoff_result": null
+      }
+    ],
+    "answer": "Die Daten enthalten kein Playoff-Ergebnis für die Heilbronner Falken in der Oberliga-Süd 2024/25 – es liegen keine Daten vor.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Ergebnis (Playoff-Runde) einer bestimmten Saison, ohne Diagramm oder narrative Erklärung."
+    },
+    "time_sec": 23.3,
+    "id": "idea_027",
+    "question": "Wie weit kamen die Falken in den Oberliga-Süd Playoffs 2024/25?"
+  },
+  {
+    "category": "playoff",
+    "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2023/24' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ps.round = 'Viertelfinale'",
+    "rows": [
+      {
+        "round": "Viertelfinale",
+        "team_a": "ECDC Memmingen Indians",
+        "team_b": "Heilbronner Falken",
+        "winner": "Heilbronner Falken",
+        "wins_a": 1,
+        "wins_b": 4
+      }
+    ],
+    "answer": "Die Heilbronner Falken haben im Viertelfinale 2023/24 die ECDC Memmingen Indians mit 4:1 Siegen besiegt.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einer konkreten Liste von Teams, die die Falken im Viertelfinale 2023/24 besiegt haben. Es geht um einen einzelnen Datenpunkt (die Gegner in dieser Serie), ohne Diagramm oder ausführliche narrative Erklärung."
+    },
+    "time_sec": 34.3,
+    "id": "idea_028",
+    "question": "Welche Teams haben die Falken im Viertelfinale 2023/24 besiegt?"
+  },
+  {
+    "category": "playoff",
+    "sql": "WITH falken_id AS (SELECT id FROM teams WHERE name = 'Heilbronner Falken') SELECT COUNT(*) AS playoff_series_gewonnen FROM playoff_series ps JOIN seasons s ON s.id = ps.season_id, falken_id f WHERE s.league = 'DEL2' AND (ps.team_a_id = f.id OR ps.team_b_id = f.id) AND ps.winner_team_id = f.id;",
+    "rows": [
+      {
+        "playoff_series_gewonnen": 4
+      }
+    ],
+    "answer": "Die Falken haben in der DEL2-Zeit 4 Playoff-Serien gewonnen.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einer konkreten Anzahl (wie viele Playoffenbar eine Zahl) von gewonnenen Playoff-Serien, also einem einzelnen Datenpunkt oder einer kurzen Liste, ohne dass eine Visualisierung oder ein Trendverlauf explizit genannt wird."
+    },
+    "time_sec": 14.4,
+    "id": "idea_029",
+    "question": "Wie viele Playoff-Serien haben die Falken in der DEL2-Zeit gewonnen?"
+  },
+  {
+    "category": "playoff",
+    "sql": "SELECT opponent, eliminations FROM (SELECT CASE WHEN ta.name = 'Heilbronner Falken' THEN tb.name ELSE ta.name END AS opponent, COUNT(DISTINCT ps.season_id) AS eliminations FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id JOIN seasons s ON s.id = ps.season_id WHERE ('Heilbronner Falken' IN (ta.name, tb.name)) AND ps.winner_team_id IS NOT NULL AND ps.winner_team_id IS NOT NULL AND ps.winner_team_id != (CASE WHEN ta.name = 'Heilbronner Falken' THEN ta.id ELSE tb.id END) GROUP BY opponent ORDER BY eliminations DESC NULLS LAST LIMIT 1) AS sub WHERE eliminations IS NOT NULL;",
+    "rows": [
+      {
+        "opponent": "ESV Kaufbeuren",
+        "eliminations": 2
+      }
+    ],
+    "answer": "Das Team, das die Falken am häufigsten in den Playoffs eliminiert hat, ist der ESV Kaufbeuren mit 2 Eliminierungen.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Fragt nach einem konkreten Datenpunkt (Team, das am häufigsten eliminiert hat), ohne Visualisierung oder Zeitreihe."
+    },
+    "time_sec": 21.9,
+    "id": "idea_030",
+    "question": "Welches Team hat die Falken am häufigsten in den Playoffs eliminiert?"
+  },
+  {
+    "category": "playoff",
+    "sql": "SELECT COUNT(*) AS playdown_series_count FROM playoff_series ps JOIN seasons s ON s.id = ps.season_id JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id WHERE s.league = 'DEL2' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND (ps.round = 'Play-Down R1' OR ps.round = 'Play-Down R2');",
+    "rows": [
+      {
+        "playdown_series_count": 7
+      }
+    ],
+    "answer": "Die Falken spielten 7 Playdown-Serien in der DEL2.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Anzahl der Playdown-Serien) ohne Aufforderung zu einer Visualisierung oder einer erzählerischen Darstellung."
+    },
+    "time_sec": 13.2,
+    "id": "idea_031",
+    "question": "Wie viele Playdown-Serien spielten die Falken in der DEL2?"
+  },
+  {
+    "category": "spielergebnis",
+    "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE ('Heilbronner Falken' IN (ht.name, at.name)) ORDER BY GREATEST(g.home_score, g.away_score) DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "away_team": "SC Riessersee",
+        "home_team": "Heilbronner Falken",
+        "away_score": 6,
+        "home_score": 12
+      }
+    ],
+    "answer": "Das höchste Tor-Ergebnis der Heilbronner Falken in einem einzelnen Spiel war 12 Tore beim 12:6-Sieg gegen den SC Riessersee.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (höchstes Tor-Ergebnis in einem einzelnen Spiel), ohne Visualisierung oder längere Erzählung zu verlangen."
+    },
+    "time_sec": 44.1,
+    "id": "idea_032",
+    "question": "Was war das höchste Tor-Ergebnis der Falken in einem einzelnen Spiel?"
+  },
+  {
+    "category": "spielergebnis",
+    "sql": "SELECT g.home_score, g.away_score, g.overtime, g.shootout, ht.name AS home_team, at.name AS away_team, g.date::date AS spieltag, (abs(g.home_score - g.away_score)) AS tore_diff FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id JOIN seasons s ON s.id = g.season_id WHERE (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken') AND ((ht.name = 'Heilbronner Falken' AND g.home_score < g.away_score) OR (at.name = 'Heilbronner Falken' AND g.away_score < g.home_score)) AND g.home_score IS NOT NULL AND g.away_score IS NOT NULL ORDER BY tore_diff DESC, abs(g.home_score - g.away_score) DESC NULLS LAST LIMIT 1",
+    "rows": [
+      {
+        "overtime": false,
+        "shootout": false,
+        "spieltag": "2014-12-21",
+        "away_team": "Heilbronner Falken",
+        "home_team": "Löwen Frankfurt",
+        "tore_diff": 10,
+        "away_score": 2,
+        "home_score": 12
+      }
+    ],
+    "answer": "",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (der höchsten Niederlage in einem einzelnen Spiel), ohne dass ein Diagramm oder eine zeitliche Entwicklung explizit erwähnt wird. Es handelt sich um eine einfache Faktenfrage, die eine Zahl oder ein Spielergebnis als Antwort erwartet."
+    },
+    "time_sec": 25.2,
+    "id": "idea_033",
+    "question": "Was war die höchste Niederlage der Falken in einem Spiel?"
+  },
+  {
+    "category": "spielergebnis",
+    "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout, g.date FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id JOIN seasons s ON s.id = g.season_id WHERE s.label = '2025/26' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('ECDC Memmingen Indians' IN (ht.name, at.name)) ORDER BY g.date;",
+    "rows": [
+      {
+        "date": "2025-10-19T18:00:00+00:00",
+        "overtime": false,
+        "shootout": false,
+        "away_team": "Heilbronner Falken",
+        "home_team": "ECDC Memmingen Indians",
+        "away_score": 6,
+        "home_score": 3
+      },
+      {
+        "date": "2025-11-23T17:00:00+00:00",
+        "overtime": false,
+        "shootout": false,
+        "away_team": "ECDC Memmingen Indians",
+        "home_team": "Heilbronner Falken",
+        "away_score": 3,
+        "home_score": 1
+      },
+      {
+        "date": "2025-12-30T19:30:00+00:00",
+        "overtime": false,
+        "shootout": false,
+        "away_team": "ECDC Memmingen Indians",
+        "home_team": "Heilbronner Falken",
+        "away_score": 3,
+        "home_score": 2
+      },
+      {
+        "date": "2026-02-27T20:00:00+00:00",
+        "overtime": false,
+        "shootout": false,
+        "away_team": "Heilbronner Falken",
+        "home_team": "ECDC Memmingen Indians",
+        "away_score": 2,
+        "home_score": 7
+      }
+    ],
+    "answer": "",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Fragt nach konkreten Datenpunkten (Anzahl Spiele und Ergebnisse) für eine bestimmte Saison."
+    },
+    "time_sec": 20.6,
+    "id": "idea_034",
+    "question": "Wie oft haben die Falken in der Saison 2025/26 gegen Memmingen gespielt und mit welchen Ergebnissen?"
+  },
+  {
+    "category": "spielergebnis",
+    "sql": "SELECT COUNT(*) AS overtime_games FROM games g JOIN seasons s ON s.id = g.season_id WHERE s.label = '2024/25' AND g.overtime = TRUE;",
+    "rows": [
+      {
+        "overtime_games": 55
+      }
+    ],
+    "answer": "In der Saison 2024/25 endeten 55 Spiele in Overtime.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Anzahl Spiele mit Overtime) für eine bestimmte Saison, ohne dass eine Visualisierung oder ein Trend über mehrere Saisons gefordert wird."
+    },
+    "time_sec": 15.5,
+    "id": "idea_035",
+    "question": "Wie viele Spiele endeten in der Saison 2024/25 in Overtime?"
+  },
+  {
+    "category": "spielergebnis",
+    "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, (g.home_score + g.away_score) AS total_goals FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id JOIN seasons s ON s.id = g.season_id WHERE s.label = '2023/24' AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken') AND g.home_score IS NOT NULL AND g.away_score IS NOT NULL ORDER BY total_goals DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "away_team": "Heilbronner Falken",
+        "home_team": "ECDC Memmingen Indians",
+        "away_score": 6,
+        "home_score": 7,
+        "total_goals": 13
+      }
+    ],
+    "answer": "Das Spiel mit den meisten Gesamttoren in der Saison 2023/24 war die Partie zwischen dem ECDC Memmingen Indians und den Heilbronner Falken mit 13 Toren (7:6).",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Spiel mit den meisten Gesamttoren) für eine bestimmte Saison, ohne dass eine Visualisierung oder ein Diagramm gewünscht wird."
+    },
+    "time_sec": 24.8,
+    "id": "idea_036",
+    "question": "Welches Spiel hatte die meisten Gesamttore in der Saison 2023/24?"
+  },
+  {
+    "category": "trend",
+    "sql": "SELECT season, goals_for FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE AND goals_for IS NOT NULL ORDER BY goals_for DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "season": "1986/87",
+        "goals_for": 296
+      }
+    ],
+    "answer": "In der Saison 1986/87 hatten die Falken mit 296 Toren die meisten Tore.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1.0,
+      "reason": "Fragt nach einer konkreten Saison (einem Datenpunkt) ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 11.6,
+    "id": "idea_037",
+    "question": "In welcher Saison hatten die Falken die meisten Tore?"
+  },
+  {
+    "category": "trend",
+    "sql": "SELECT player, SUM(goals) AS career_goals FROM falken_skater_stats WHERE goals IS NOT NULL GROUP BY player ORDER BY career_goals DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "player": "Justin Kirsch",
+        "career_goals": 139
+      }
+    ],
+    "answer": "Der Spieler mit den meisten Karriere-Toren in der Falken-Geschichte ist Justin Kirsch, der insgesamt 139 Tore erzielt hat.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Spieler mit den meisten Karriere-Toren) ohne Visualisierung oder Diagramm."
+    },
+    "time_sec": 6.9,
+    "id": "idea_038",
+    "question": "Welcher Spieler hat in der Falken-Geschichte die meisten Karriere-Tore?"
+  },
+  {
+    "category": "trend",
+    "sql": "SELECT season AS x, goal_diff AS y FROM season_standings WHERE team = 'Heilbronner Falken' AND season >= '2018/19' AND goal_diff IS NOT NULL ORDER BY season ASC",
+    "rows": [
+      {
+        "x": "2018/19",
+        "y": -2
+      },
+      {
+        "x": "2019/20",
+        "y": 23
+      },
+      {
+        "x": "2020/21",
+        "y": -2
+      },
+      {
+        "x": "2021/22",
+        "y": 16
+      },
+      {
+        "x": "2022/23",
+        "y": -19
+      },
+      {
+        "x": "2023/24",
+        "y": 109
+      },
+      {
+        "x": "2024/25",
+        "y": 142
+      },
+      {
+        "x": "2025/26",
+        "y": 46
+      }
+    ],
+    "chart_spec": {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": "Entwicklung der Tordifferenz der Heilbronner Falken (letzte 5 Saisons)",
+      "data": {
+        "values": [
+          {
+            "x": "2018/19",
+            "y": -2
+          },
+          {
+            "x": "2019/20",
+            "y": 23
+          },
+          {
+            "x": "2020/21",
+            "y": -2
+          },
+          {
+            "x": "2021/22",
+            "y": 16
+          },
+          {
+            "x": "2022/23",
+            "y": -19
+          },
+          {
+            "x": "2023/24",
+            "y": 109
+          },
+          {
+            "x": "2024/25",
+            "y": 142
+          },
+          {
+            "x": "2025/26",
+            "y": 46
+          }
+        ]
+      },
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "temporal",
+          "title": "Saison"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "title": "Tordifferenz"
+        }
+      }
+    },
+    "answer": "Die Tordifferenz der Falken schwankte in den letzten fünf Saisons stark: Nach einem negativen Wert von -19 in der Saison 2022/23 stieg sie rasant auf 109 und 142 in den folgenden Jahren, bevor sie in 2025/26 wieder auf 46 fiel.",
+    "classification": {
+      "category": "trend",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach der 'Entwicklung' über mehrere Saisons, was auf eine zeitliche Verlaufsbetrachtung hindeutet. Das Wort 'entwickelt' impliziert eine Darstellung als Trend oder Diagramm, auch wenn nicht explizit 'Chart genannt wird."
+    },
+    "time_sec": 49.0,
+    "id": "idea_039",
+    "question": "Wie hat sich die Tordifferenz der Falken in den letzten 5 Saisons entwickelt?"
+  },
+  {
+    "category": "trend",
+    "sql": "SELECT COUNT(DISTINCT ps.player_id) FROM player_seasons ps JOIN teams t ON t.id = ps.team_id WHERE t.name = 'Heilbronner Falken';",
+    "rows": [
+      {
+        "count": 230
+      }
+    ],
+    "answer": "230 unterschiedliche Spieler trugen je das Falken-Trikot.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach einer konkreten Anzahl (einem Datenpunkt) und nicht nach einer visuellen Entwicklung oder einem narrativen Hintergrund."
+    },
+    "time_sec": 8.9,
+    "id": "idea_040",
+    "question": "Wie viele unterschiedliche Spieler trugen je das Falken-Trikot?"
+  },
+  {
+    "category": "trend",
+    "sql": "SELECT league, points, season FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE ORDER BY points DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "league": "Oberliga Süd",
+        "points": 114,
+        "season": "2024/25"
+      }
+    ],
+    "answer": "Die Oberliga Süd hatte für die Falken mit 114 Punkten in der Saison 2024/25 die höchste Punktzahl pro Saison.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (höchste Punktzahl pro Saison in einer bestimmten Liga) und erfordert keine Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 56.7,
+    "id": "idea_041",
+    "question": "Welche Liga hatte für die Falken historisch die höchste Punktzahl pro Saison?"
+  },
+  {
+    "category": "vergleich",
+    "sql": "SELECT season, points FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE AND season IN ('2023/24', '2024/25') ORDER BY season;",
+    "rows": [
+      {
+        "points": 109,
+        "season": "2023/24"
+      },
+      {
+        "points": 114,
+        "season": "2024/25"
+      }
+    ],
+    "answer": "Die Falken hatten in der Saison 2024/25 mit 114 Punkten mehr Punkte als in der Saison 2023/24 mit 109 Punkten.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Punkteanzahl) für zwei bestimmte Saisons, ohne Visualisierung oder Diagramm zu erwähnen."
+    },
+    "time_sec": 12.6,
+    "id": "idea_042",
+    "question": "Hatten die Falken in 2023/24 oder 2024/25 mehr Punkte?"
+  },
+  {
+    "category": "vergleich",
+    "sql": "SELECT 'Nolan Ritchie 2024/25' AS label, points FROM falken_skater_stats WHERE season = '2024/25' AND similarity(player, 'Nolan Ritchie') > 0.3 UNION ALL SELECT 'Dylan Wruck 2019/20', points FROM falken_skater_stats WHERE season = '2019/20' AND similarity(player, 'Dylan Wruck') > 0.3 ORDER BY points DESC NULLS LAST;",
+    "rows": [
+      {
+        "label": "Dylan Wruck 2019/20",
+        "points": 88
+      },
+      {
+        "label": "Nolan Ritchie 2024/25",
+        "points": 84
+      }
+    ],
+    "answer": "Dylan Wruck hatte in der Saison 2019/20 mit 88 Punkten mehr Punkte als Nolan Ritchie in der Saison 2024/25, der auf 84 Punkte kam.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage vergleicht zwei konkrete Datenpunkte (Punktausbeute von zwei Spielern in bestimmten Saisons) und verlangt eine direkte Antwort ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 14.0,
+    "id": "idea_043",
+    "question": "Wer hatte mehr Punkte — Nolan Ritchie 2024/25 oder Dylan Wruck 2019/20?"
+  },
+  {
+    "category": "vergleich",
+    "sql": "SELECT COUNT(*) FILTER (WHERE ht.name = 'Heilbronner Falken' AND g.home_score > g.away_score) AS home_wins, COUNT(*) FILTER (WHERE ht.name = 'Heilbronner Falken' AND g.home_score < g.away_score) AS home_losses, COUNT(*) FILTER (WHERE at.name = 'Heilbronner Falken' AND g.away_score > g.home_score) AS away_wins, COUNT(*) FILTER (WHERE at.name = 'Heilbronner Falken' AND g.away_score < g.home_score) AS away_losses FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id JOIN seasons s ON s.id = g.season_id WHERE s.label = '2024/25' AND ('Heilbronner Falken' IN (ht.name, at.name))",
+    "rows": [
+      {
+        "away_wins": 21,
+        "home_wins": 27,
+        "away_losses": 9,
+        "home_losses": 5
+      }
+    ],
+    "answer": "In der Saison 2024/25 haben die Falken in Heimspielen 27 Siege und 5 Niederlagen erzielt, während sie auswärts 21 Siege und 9 Niederlagen verbuchten. Somit schneiden sie zuhause deutlich besser ab als in Auswärtsspielen.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Die Frage fragt nach einem konkreten Vergleich von Heim- und Auswärtsspielen in einer bestimmten Saison, was eine faktische Antwort (z.B. Punkte, Siege/Niederlagen) erfordert, ohne dass eine Visualisierung oder ein Trend über mehrere Saisons verlangt wird."
+    },
+    "time_sec": 56.0,
+    "id": "idea_044",
+    "question": "Wie schneiden die Falken in Heimspielen vs Auswärtsspielen 2024/25 ab?"
+  },
+  {
+    "category": "out_of_scope",
+    "sql": "SELECT wt.name AS winner FROM playoff_series ps JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2024/25' AND ps.round = 'Finale'",
+    "rows": [],
+    "answer": "Keine Daten.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (dem Meister des Jahres 2025), ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 31.4,
+    "id": "idea_045",
+    "question": "Wer wurde 2025 Deutscher Meister im Eishockey?"
+  },
+  {
+    "category": "out_of_scope",
+    "sql": "SELECT DISTINCT jersey_year, design FROM trikot_designs WHERE team = 'Heilbroncos' ORDER BY jersey_year DESC NULLS LAST LIMIT 5",
+    "rows": [],
+    "answer": "⚠️  Konnte die Frage nicht beantworten (SQL-Fehler: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation \"trikot_designs\" does not exist'}).",
+    "error": "{'code': '42P01', 'details': None, 'hint': None, 'message': 'relation \"trikot_designs\" does not exist'}",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Die Frage fragt nach einem konkreten, aktuellen Datenpunkt (Trikot-Design) ohne Visualisierung oder zeitliche Entwicklung."
+    },
+    "time_sec": 7.0,
+    "id": "idea_046",
+    "question": "Was ist das aktuelle Falken-Trikot-Design?"
+  },
+  {
+    "category": "out_of_scope",
+    "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout, g.date FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.overtime = TRUE ORDER BY g.date DESC LIMIT 1",
+    "rows": [
+      {
+        "date": "2026-03-08T17:00:00+00:00",
+        "overtime": true,
+        "shootout": false,
+        "away_team": "Blue Devils Weiden",
+        "home_team": "StarBulls Rosenheim",
+        "away_score": 4,
+        "home_score": 3
+      }
+    ],
+    "answer": "",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (wer?) und erfordert eine einzelne Antwort, kein Chart oder narrative Beschreibung."
+    },
+    "time_sec": 30.8,
+    "id": "idea_047",
+    "question": "Wer hat das längste Eishockey-Spiel aller Zeiten gespielt?"
+  },
+  {
+    "category": "out_of_scope",
+    "sql": "SELECT 'Die Datenbank enthält keine Informationen zum DEB-Präsidenten.' AS answer;",
+    "rows": [
+      {
+        "answer": "Die Datenbank enthält keine Informationen zum DEB-Präsidenten."
+      }
+    ],
+    "answer": "Die Datenbank enthält keine Informationen zum DEB-Präsidenten.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Name des aktuellen DEB-Präsidenten), ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 45.6,
+    "id": "idea_048",
+    "question": "Wer ist der aktuelle DEB-Präsident?"
+  },
+  {
+    "category": "edge",
+    "sql": "SELECT season, games_played FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE ORDER BY games_played ASC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "season": "2024/25",
+        "games_played": 48
+      }
+    ],
+    "answer": "Die Saison 2024/25 hatte mit 48 Spielen die kürzeste Hauptrunde.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt: der Saison mit der kürzesten Hauptrunde (Anzahl Spiele). Es ist eine Einzelinformation, keine Grafik oder narrative Erklärung."
+    },
+    "time_sec": 12.4,
+    "id": "idea_049",
+    "question": "Welche Saison hatte die kürzeste Hauptrunde (Anzahl Spiele)?"
+  },
+  {
+    "category": "edge",
+    "sql": "SELECT c.name, COUNT(*) AS tenures FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id WHERE t.name = 'Heilbronner Falken' AND ct.role = 'Headcoach' GROUP BY c.name ORDER BY tenures DESC NULLS LAST LIMIT 1;",
+    "rows": [
+      {
+        "name": "Rico Rossi sr.",
+        "tenures": 9
+      }
+    ],
+    "answer": "Der Trainer, der die Falken am häufigsten übernahm, ist Rico Rossi sr. mit insgesamt 9 Amtszeiten.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Fragt nach einem konkreten Datenpunkt: dem Trainer, der am häufigsten übernahm, ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 14.0,
+    "id": "idea_050",
+    "question": "Welcher Trainer übernahm die Falken am häufigsten?"
+  },
+  {
+    "category": "edge",
+    "sql": "SELECT player, position FROM falken_skater_stats WHERE position = 'D' AND position = 'F' GROUP BY player ORDER BY player",
+    "rows": [],
+    "answer": "⚠️  Konnte die Frage nicht beantworten (SQL-Fehler: {'code': '42803', 'details': None, 'hint': None, 'message': 'column \"falken_skater_stats.position\" must appear in the GROUP BY clause or be used in an aggregate function'}).",
+    "error": "{'code': '42803', 'details': None, 'hint': None, 'message': 'column \"falken_skater_stats.position\" must appear in the GROUP BY clause or be used in an aggregate function'}",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Fragt nach konkreten Spielern (Datenpunkten), die beide Positionen gespielt haben. Keine Visualisierung oder Zeitreihe."
+    },
+    "time_sec": 5.6,
+    "id": "idea_051",
+    "question": "Gab es Spieler, die als Verteidiger UND Stürmer bei Falken gespielt haben?"
+  },
+  {
+    "category": "edge",
+    "sql": "SELECT ps.player_id, p.name, COUNT(DISTINCT ps.season_id) AS seasons_played FROM player_seasons ps JOIN players p ON p.id = ps.player_id WHERE ps.team_id = (SELECT id FROM teams WHERE name = 'Heilbronner Falken') GROUP BY ps.player_id, p.name HAVING COUNT(DISTINCT ps.season_id) = 1",
+    "rows": [
+      {
+        "name": "Robin Thomson",
+        "player_id": "002fbab3-6009-4157-94da-1d027f6957b8",
+        "seasons_played": 1
+      },
+      {
+        "name": "Grant Toulmin",
+        "player_id": "004ee47a-17f1-4c73-bebe-0836fc15e8f0",
+        "seasons_played": 1
+      },
+      {
+        "name": "Christoph Eckl",
+        "player_id": "014087cc-7ff8-4dc0-96dd-356a7dc71dec",
+        "seasons_played": 1
+      },
+      {
+        "name": "Julian SCHAMS",
+        "player_id": "02de36c5-2de1-4937-943b-292c397182fe",
+        "seasons_played": 1
+      },
+      {
+        "name": "Kai Zernikel",
+        "player_id": "03e41b0b-38d7-4e49-aa32-2a593d47895a",
+        "seasons_played": 1
+      },
+      {
+        "name": "Tom Fiedler",
+        "player_id": "053e4f1e-0575-4cdb-ae3b-08364bc8a8a7",
+        "seasons_played": 1
+      },
+      {
+        "name": "Konstantin KLIMOV",
+        "player_id": "05b3b0e9-0e6c-4bea-a30e-33128e300ef1",
+        "seasons_played": 1
+      },
+      {
+        "name": "Lukas Mühlbauer",
+        "player_id": "06c089b8-173d-4647-b89e-48e3f1aaba5f",
+        "seasons_played": 1
+      },
+      {
+        "name": "Calder Anderson",
+        "player_id": "08832dee-7dca-424a-8097-366602d1fa61",
+        "seasons_played": 1
+      },
+      {
+        "name": "Ryan Valentini",
+        "player_id": "08939996-ceab-41d6-9f3f-a82429fdc2d4",
+        "seasons_played": 1
+      },
+      {
+        "name": "Dustin Cameron",
+        "player_id": "08ab678a-7f19-4e64-a8c7-a94b0cbfd8ff",
+        "seasons_played": 1
+      },
+      {
+        "name": "Roope Ranta",
+        "player_id": "0941cc9a-f457-4ee8-beb3-07116af8b31e",
+        "seasons_played": 1
+      },
+      {
+        "name": "Gunars SKVORCOVS",
+        "player_id": "126e191c-0a33-4414-8a13-c2972edc4511",
+        "seasons_played": 1
+      },
+      {
+        "name": "Calder ANDERSON",
+        "player_id": "136ddd6a-d950-44f5-930e-4f0f8f6cb3df",
+        "seasons_played": 1
+      },
+      {
+        "name": "Dominik Tiffels",
+        "player_id": "14165c0e-ddd7-4e80-a9a6-075a0f98d1ee",
+        "seasons_played": 1
+      },
+      {
+        "name": "Niklas JENTSCH",
+        "player_id": "142d2afa-6293-4d03-953a-4b9f5d9518d9",
+        "seasons_played": 1
+      },
+      {
+        "name": "Fabio Carciola",
+        "player_id": "1c13c756-aaf8-47ae-8a9b-d28b311e3e85",
+        "seasons_played": 1
+      },
+      {
+        "name": "Mark Heatley",
+        "player_id": "1f4f4627-a04e-4d80-839a-048e4af8538f",
+        "seasons_played": 1
+      },
+      {
+        "name": "Manuel Schams",
+        "player_id": "207a7d6a-80d4-4734-8c19-258fbe910755",
+        "seasons_played": 1
+      },
+      {
+        "name": "Tomas Plihal",
+        "player_id": "20ebdae7-4414-4f98-b594-9d7c65349a55",
+        "seasons_played": 1
+      },
+      {
+        "name": "Jimmy Sharrow",
+        "player_id": "22959cd9-a128-48b0-996c-da4c6b1a32af",
+        "seasons_played": 1
+      },
+      {
+        "name": "Maximilian Leitner",
+        "player_id": "23b61418-6898-4bc6-a0ce-31a39b00c7d2",
+        "seasons_played": 1
+      },
+      {
+        "name": "Niklas Länger",
+        "player_id": "23d5325e-54b8-4e2c-bbb3-9f8aba5abaf2",
+        "seasons_played": 1
+      },
+      {
+        "name": "Rylan Schwartz",
+        "player_id": "259bdf26-d19e-4635-85d4-d38c9719e905",
+        "seasons_played": 1
+      },
+      {
+        "name": "Dustin Willhöft",
+        "player_id": "25a58fa6-7ec1-4777-b351-6991c833ebcc",
+        "seasons_played": 1
+      },
+      {
+        "name": "Filip Hadamczik",
+        "player_id": "27bc0580-d32c-418b-9ffc-c0178143846a",
+        "seasons_played": 1
+      },
+      {
+        "name": "Thomas Botzenhardt",
+        "player_id": "294a4dae-69eb-4b6e-ab81-b5728e5825a9",
+        "seasons_played": 1
+      },
+      {
+        "name": "Aron Reisz",
+        "player_id": "2aaef6c3-a812-46b6-8142-f4cb2b7cd9c9",
+        "seasons_played": 1
+      },
+      {
+        "name": "Eetu SANTANEN",
+        "player_id": "2cbafe5f-ed2b-4c07-9ab0-8b9d54b0ca96",
+        "seasons_played": 1
+      },
+      {
+        "name": "Pascal WIDMANN",
+        "player_id": "2cd909c9-4de1-4252-a610-8dd8f85b61ec",
+        "seasons_played": 1
+      },
+      {
+        "name": "Felix Stokowski",
+        "player_id": "2f184bac-1018-4520-8bcc-f10c55332ea6",
+        "seasons_played": 1
+      },
+      {
+        "name": "Michael Brunner",
+        "player_id": "3097c0ea-27d3-419a-8527-813971a501cd",
+        "seasons_played": 1
+      },
+      {
+        "name": "Tobias Schmitz",
+        "player_id": "32b5dae0-5d81-4107-b9fb-36aca11c807d",
+        "seasons_played": 1
+      },
+      {
+        "name": "Nolan Ritchie",
+        "player_id": "3393a3b6-7dc7-45b6-998d-8e621af7d956",
+        "seasons_played": 1
+      },
+      {
+        "name": "Yannis Walch",
+        "player_id": "33e8e419-397f-40d0-bcab-0f04e6990cdb",
+        "seasons_played": 1
+      },
+      {
+        "name": "Nik Pem",
+        "player_id": "345372e1-d714-45fb-9dc1-10207730a673",
+        "seasons_played": 1
+      },
+      {
+        "name": "Michael PATERSON-JONES",
+        "player_id": "35124aa4-209c-47e4-8c63-13485e8d9d50",
+        "seasons_played": 1
+      },
+      {
+        "name": "Brady Leisenring",
+        "player_id": "353f6ddf-726d-4608-8ec8-f323ca3607a8",
+        "seasons_played": 1
+      },
+      {
+        "name": "Patrik Vogl",
+        "player_id": "3a6358ca-124e-41a8-8b5c-dd325d8b2648",
+        "seasons_played": 1
+      },
+      {
+        "name": "Frantisek Mrazek",
+        "player_id": "3b8155c4-ca2a-4cbf-ab41-62804e920be2",
+        "seasons_played": 1
+      },
+      {
+        "name": "Brandon Alderson",
+        "player_id": "3d1efe8e-5839-492a-8519-2486c49b2462",
+        "seasons_played": 1
+      },
+      {
+        "name": "Luis Ludin",
+        "player_id": "40668e82-cf30-4215-a60a-d8e01c22baa2",
+        "seasons_played": 1
+      },
+      {
+        "name": "Manuel Nix",
+        "player_id": "415e50b2-b6c1-40ec-8c07-abf7abd89b70",
+        "seasons_played": 1
+      },
+      {
+        "name": "Florian Elias",
+        "player_id": "43089238-e840-41d1-bf9d-a679a2617359",
+        "seasons_played": 1
+      },
+      {
+        "name": "Jordan Samuels-Thomas",
+        "player_id": "450f0461-0b74-4ee1-a48a-85dfcdb317f0",
+        "seasons_played": 1
+      },
+      {
+        "name": "Torsten Fendt",
+        "player_id": "47d406eb-3224-4dfa-89b5-dd9c2fff5980",
+        "seasons_played": 1
+      },
+      {
+        "name": "Paul FABIAN",
+        "player_id": "49c5ecea-274a-4e28-988d-4233a1bd818c",
+        "seasons_played": 1
+      },
+      {
+        "name": "Karl Fabricius",
+        "player_id": "4a5e8580-30c2-4ec9-9819-1233d1044d1d",
+        "seasons_played": 1
+      },
+      {
+        "name": "Ralf Rinke",
+        "player_id": "4cb2fdfe-c274-4daa-a206-3dc16d3bc4e8",
+        "seasons_played": 1
+      },
+      {
+        "name": "Luigi Calce",
+        "player_id": "4fd618f5-6138-41b4-92b3-f8052b8324d4",
+        "seasons_played": 1
+      },
+      {
+        "name": "Marco Habermann",
+        "player_id": "4fe52177-ddbb-4cea-b017-1a0f4d702bc6",
+        "seasons_played": 1
+      },
+      {
+        "name": "Michael Fink",
+        "player_id": "531abc7b-5e50-4c2e-9662-81f770bbd49c",
+        "seasons_played": 1
+      },
+      {
+        "name": "Michael Hackert",
+        "player_id": "53a0f2e2-7246-44a1-a61d-8f5d64b3ab03",
+        "seasons_played": 1
+      },
+      {
+        "name": "Maximilian Heim",
+        "player_id": "55173996-f950-43ae-ab4b-3f3a422226b1",
+        "seasons_played": 1
+      },
+      {
+        "name": "Patrick BERGER",
+        "player_id": "55442116-61f1-4145-8a90-02ecc2f2f38b",
+        "seasons_played": 1
+      },
+      {
+        "name": "Kevin DIBROV",
+        "player_id": "55bef242-2805-4d44-b9b4-a3ccba11c777",
+        "seasons_played": 1
+      },
+      {
+        "name": "Deon Jones",
+        "player_id": "568c0837-6cc4-4e5a-93dc-e3f742c943d3",
+        "seasons_played": 1
+      },
+      {
+        "name": "Dustin Ketzler",
+        "player_id": "5d01bd6c-532b-45ad-b558-e170c827437b",
+        "seasons_played": 1
+      },
+      {
+        "name": "Eero Savilahti",
+        "player_id": "5d1a175b-8cf0-4c74-87fc-6d5f5df4ef94",
+        "seasons_played": 1
+      },
+      {
+        "name": "Konrad MARKUS",
+        "player_id": "5f09e586-1ab0-4b2e-8f8d-77fc869026ce",
+        "seasons_played": 1
+      },
+      {
+        "name": "Nico ZIMMERMANN",
+        "player_id": "5f0def9a-52be-4075-8ecb-e663a31da71d",
+        "seasons_played": 1
+      },
+      {
+        "name": "T.J. Fast",
+        "player_id": "5f7398e9-6d2a-4362-b180-419a3f960b1c",
+        "seasons_played": 1
+      },
+      {
+        "name": "Marvin Deske",
+        "player_id": "6003acc6-01b7-43f3-8347-6c4aac2bb522",
+        "seasons_played": 1
+      },
+      {
+        "name": "Julian SCHMITT",
+        "player_id": "6332b2e4-16f7-4365-b539-acd5d0a4da9b",
+        "seasons_played": 1
+      },
+      {
+        "name": "Roman Zap",
+        "player_id": "6424145c-f8cf-4359-9efe-2c177d0d4e98",
+        "seasons_played": 1
+      },
+      {
+        "name": "Stefan Legein",
+        "player_id": "6f0cc0c5-44a2-4027-b9c6-457c8264e5a4",
+        "seasons_played": 1
+      },
+      {
+        "name": "Gunars Skvorcovs",
+        "player_id": "6f9a2800-5a5a-42bb-b6a6-ca284070c7b1",
+        "seasons_played": 1
+      },
+      {
+        "name": "Carsten Gosdeck",
+        "player_id": "723d0caf-dec8-4526-9a9d-73a65363ef0a",
+        "seasons_played": 1
+      },
+      {
+        "name": "Matt MacKay",
+        "player_id": "7244551e-3b68-4b04-966c-1c1eaddcd095",
+        "seasons_played": 1
+      },
+      {
+        "name": "Corey MAPES",
+        "player_id": "72b71eca-efa9-43cc-9cfc-15261f9cfd1f",
+        "seasons_played": 1
+      },
+      {
+        "name": "Josh Nicholls",
+        "player_id": "73697663-69a5-4c2e-b708-621dd58e487b",
+        "seasons_played": 1
+      },
+      {
+        "name": "Maurice Müller",
+        "player_id": "7637042a-bb00-408b-b8ed-e75f01b85ce0",
+        "seasons_played": 1
+      },
+      {
+        "name": "River Rymsha",
+        "player_id": "77175412-b549-4eab-ad76-289e63f67524",
+        "seasons_played": 1
+      },
+      {
+        "name": "Paul Mayer",
+        "player_id": "776f5df7-3292-4187-8602-e0ad18d378fb",
+        "seasons_played": 1
+      },
+      {
+        "name": "Lennart Palausch",
+        "player_id": "788db23e-c430-4dd2-900f-7427abeaff85",
+        "seasons_played": 1
+      },
+      {
+        "name": "David Hájek",
+        "player_id": "7af019df-9458-48a6-9dd4-276011497c3a",
+        "seasons_played": 1
+      },
+      {
+        "name": "Marius Stöber",
+        "player_id": "7e98def9-4b5c-4de9-8a4c-c06d1d3e5739",
+        "seasons_played": 1
+      },
+      {
+        "name": "Pontus Wernerson Libäck",
+        "player_id": "802f7587-0b0a-4f72-9066-34272f9e1146",
+        "seasons_played": 1
+      },
+      {
+        "name": "Justin Maylan",
+        "player_id": "81928c10-a5a8-4770-8836-26d486ccd703",
+        "seasons_played": 1
+      },
+      {
+        "name": "Riley Armstrong",
+        "player_id": "8249c20e-10c4-445e-8bce-354740bd1ba6",
+        "seasons_played": 1
+      },
+      {
+        "name": "Linus Wernerson Libäck",
+        "player_id": "8495f67b-996c-4430-9ca3-54f76c2d9bbf",
+        "seasons_played": 1
+      },
+      {
+        "name": "Sergej Janzen",
+        "player_id": "84c887f2-3d47-4134-9d9f-899236ff1c01",
+        "seasons_played": 1
+      },
+      {
+        "name": "Frederik CABANA",
+        "player_id": "862c5d04-1006-4624-869c-d7e3dd9f99fc",
+        "seasons_played": 1
+      },
+      {
+        "name": "Alex Nikiforuk",
+        "player_id": "879fe919-9635-4dbf-8e61-72895fa9c286",
+        "seasons_played": 1
+      },
+      {
+        "name": "August von Ungern Kuzara",
+        "player_id": "889990a8-177e-46a1-ba85-8ceab5b5f2d8",
+        "seasons_played": 1
+      },
+      {
+        "name": "Noureddine Bettahar",
+        "player_id": "88a1d4e3-732a-4aa3-bebf-1fea3fc21f68",
+        "seasons_played": 1
+      },
+      {
+        "name": "Denis Majewski",
+        "player_id": "8c3c744b-eb64-450d-96c1-ba163b797f23",
+        "seasons_played": 1
+      },
+      {
+        "name": "Tyler Gron",
+        "player_id": "8cc4595f-5df6-4bdb-a49a-e71c99783254",
+        "seasons_played": 1
+      },
+      {
+        "name": "Alex Tonge",
+        "player_id": "8d69cf83-7fc1-4cfb-8905-a4b7c5e28b28",
+        "seasons_played": 1
+      },
+      {
+        "name": "Cam Reid",
+        "player_id": "91e4ec27-df91-4a2c-a1c7-6ddb19cb8935",
+        "seasons_played": 1
+      },
+      {
+        "name": "Philipp NUSS",
+        "player_id": "944a3eae-dcba-48d2-b0bd-0ca7966f3476",
+        "seasons_played": 1
+      },
+      {
+        "name": "Oula Uski",
+        "player_id": "96df723f-018d-4a64-a85b-63034b45da55",
+        "seasons_played": 1
+      },
+      {
+        "name": "Jonas Schlenker",
+        "player_id": "9ac5de9f-299a-484c-8421-049dad30fed7",
+        "seasons_played": 1
+      },
+      {
+        "name": "Christian Bauhof",
+        "player_id": "9d8270f2-3674-4442-acf9-36da9a401be9",
+        "seasons_played": 1
+      },
+      {
+        "name": "Aziz Baazzi",
+        "player_id": "a0d3865b-2987-4e37-a8b0-de68c430ff41",
+        "seasons_played": 1
+      },
+      {
+        "name": "Lukas WAGNER",
+        "player_id": "a1b529ca-1fff-4a38-9933-899aed32f1d2",
+        "seasons_played": 1
+      },
+      {
+        "name": "Gino Blank",
+        "player_id": "a1f2a0ab-1280-42e0-945c-4ffa7d7fde63",
+        "seasons_played": 1
+      },
+      {
+        "name": "Robert Hock",
+        "player_id": "a68e8550-debb-42e1-b63f-7faab290d735",
+        "seasons_played": 1
+      },
+      {
+        "name": "Sebastian HON",
+        "player_id": "a72e1a9e-cfad-4af6-82a7-f70e33167e17",
+        "seasons_played": 1
+      },
+      {
+        "name": "Philipp BUTAKOV",
+        "player_id": "a76ca1fa-b859-4035-9ec2-a23264527e38",
+        "seasons_played": 1
+      },
+      {
+        "name": "Rasmus BERCHTOLD",
+        "player_id": "a7d474e6-5a7b-48fa-b54b-22d935459784",
+        "seasons_played": 1
+      },
+      {
+        "name": "Leon Fern",
+        "player_id": "ab3e419f-15c9-43b5-8b2e-72648717a717",
+        "seasons_played": 1
+      },
+      {
+        "name": "Adriano Carciola",
+        "player_id": "ac0ab946-151f-45ab-8e82-cfb3e42025c1",
+        "seasons_played": 1
+      },
+      {
+        "name": "Dennis Palka",
+        "player_id": "ad933493-fef1-43da-b30f-344f18414411",
+        "seasons_played": 1
+      },
+      {
+        "name": "Alexander Karachun",
+        "player_id": "aea7bb27-8223-4737-b080-87abf823acef",
+        "seasons_played": 1
+      },
+      {
+        "name": "Adam Brace",
+        "player_id": "b1a6fae1-2e63-4ba2-958f-d0e32ac6b870",
+        "seasons_played": 1
+      },
+      {
+        "name": "Ralf Rollinger",
+        "player_id": "b2328386-fca9-4e0f-94b4-a20f96b81438",
+        "seasons_played": 1
+      },
+      {
+        "name": "Dominik Bittner",
+        "player_id": "b3e7107a-2148-4567-921c-2a140afc957b",
+        "seasons_played": 1
+      },
+      {
+        "name": "Brad Schell",
+        "player_id": "b88c522c-dc05-4559-99e3-54b0dadfaaa2",
+        "seasons_played": 1
+      },
+      {
+        "name": "Janis Andersons",
+        "player_id": "ba308cc3-7945-4ae2-bc52-43818a2ddd76",
+        "seasons_played": 1
+      },
+      {
+        "name": "Nolan RITCHIE",
+        "player_id": "bad0b119-7cb1-4ccb-bd68-ec71149c6545",
+        "seasons_played": 1
+      },
+      {
+        "name": "Patrick Schmid",
+        "player_id": "bc513586-0ace-4b58-b65d-1aaf702accb9",
+        "seasons_played": 1
+      },
+      {
+        "name": "Jeroen PLAUSCHIN",
+        "player_id": "bc5eef9a-4e1d-4735-9640-a49dc9fb37fc",
+        "seasons_played": 1
+      },
+      {
+        "name": "David Danner",
+        "player_id": "bd0c8039-5e5f-4f52-95ea-1d0381bebb3b",
+        "seasons_played": 1
+      },
+      {
+        "name": "Thore WEYRAUCH",
+        "player_id": "bd27321f-c146-4bdf-b4ab-49043b205b48",
+        "seasons_played": 1
+      },
+      {
+        "name": "Aiden WAGNER",
+        "player_id": "bd6bd5a2-1b96-47ce-94f9-9a614cca322e",
+        "seasons_played": 1
+      },
+      {
+        "name": "P.J. Fenton",
+        "player_id": "bee89a50-84c6-4581-b031-93db5c2bd404",
+        "seasons_played": 1
+      },
+      {
+        "name": "Christoph Körner",
+        "player_id": "bfc5006d-c881-4c45-9fb2-40b899a43a4f",
+        "seasons_played": 1
+      },
+      {
+        "name": "Stephan Kronthaler",
+        "player_id": "c53a7d21-f331-49a4-807c-1871ab32bebf",
+        "seasons_played": 1
+      },
+      {
+        "name": "Lars Schiller",
+        "player_id": "c6474b0f-3c6e-48a7-8270-9fa1ea5f2980",
+        "seasons_played": 1
+      },
+      {
+        "name": "Malte KRENZLIN",
+        "player_id": "cec3f3b9-d0a0-43f1-b00b-6957cd36a9f1",
+        "seasons_played": 1
+      },
+      {
+        "name": "Conor Morrison",
+        "player_id": "d1b80be7-d11f-4d89-ad1d-18ed0fd5c865",
+        "seasons_played": 1
+      },
+      {
+        "name": "Leon Gromov",
+        "player_id": "d1f17afc-21a5-408d-896f-fed8ba597931",
+        "seasons_played": 1
+      },
+      {
+        "name": "Sam Verelst",
+        "player_id": "d22c6354-e83f-4f49-a759-db825d2da6be",
+        "seasons_played": 1
+      },
+      {
+        "name": "Philip Kuschel",
+        "player_id": "d3dbd8c3-d22e-412d-8d67-2541945dc89c",
+        "seasons_played": 1
+      },
+      {
+        "name": "Joey Lewis",
+        "player_id": "d4065878-750a-496a-be59-2447b90639b2",
+        "seasons_played": 1
+      },
+      {
+        "name": "Matthew Neal",
+        "player_id": "d473095b-a56c-4870-82b0-3a7879966ae1",
+        "seasons_played": 1
+      },
+      {
+        "name": "Alexander Janzen",
+        "player_id": "d626d38e-41d7-4559-9704-fb74f4d4b3f5",
+        "seasons_played": 1
+      },
+      {
+        "name": "Leon GROMOV",
+        "player_id": "d69e60eb-1d30-4b8e-9370-57c431a899cd",
+        "seasons_played": 1
+      },
+      {
+        "name": "Luis LUDIN",
+        "player_id": "d7e0f630-71f4-4900-ab4c-cdb988e868e5",
+        "seasons_played": 1
+      },
+      {
+        "name": "Thore Weyrauch",
+        "player_id": "d8161c4a-44d7-4221-b378-b3098d0c1102",
+        "seasons_played": 1
+      },
+      {
+        "name": "Mitch Versteeg",
+        "player_id": "da9877b3-9882-4683-9355-ca297b295d1d",
+        "seasons_played": 1
+      },
+      {
+        "name": "Brett Ouderkirk",
+        "player_id": "db795f52-5432-4d18-8712-a8950870aa78",
+        "seasons_played": 1
+      },
+      {
+        "name": "Robin JUST",
+        "player_id": "dcc38199-f2a5-4005-b0a0-138f1cf7ced3",
+        "seasons_played": 1
+      },
+      {
+        "name": "Lars SCHILLER",
+        "player_id": "df86dfe0-1ab3-4e3d-828c-b9baccf9f83a",
+        "seasons_played": 1
+      },
+      {
+        "name": "Patrick Baum",
+        "player_id": "e1c5080b-c4ba-408f-94c5-2ba9fd724796",
+        "seasons_played": 1
+      },
+      {
+        "name": "Greg Gibson",
+        "player_id": "e4f5bbee-f450-4e08-bc23-7e5af71ec787",
+        "seasons_played": 1
+      },
+      {
+        "name": "Conor O'Donnell",
+        "player_id": "e9f2e91c-9fd4-4019-962b-39bae9da080b",
+        "seasons_played": 1
+      },
+      {
+        "name": "Bronson Maschmeyer",
+        "player_id": "ea11b671-cf7d-4bf3-8e8e-6d51d756ecf6",
+        "seasons_played": 1
+      },
+      {
+        "name": "Jonathan Harty",
+        "player_id": "eac8f824-5255-4250-a99c-7dfc826f808c",
+        "seasons_played": 1
+      },
+      {
+        "name": "Alec Zawatsky",
+        "player_id": "eb3a80fd-2ecc-4cb2-b4d3-98d9bba162ee",
+        "seasons_played": 1
+      },
+      {
+        "name": "Maximilian Faber",
+        "player_id": "ee0230c1-39e4-4cd6-afef-355416630cc7",
+        "seasons_played": 1
+      },
+      {
+        "name": "Marvin DROTHEN",
+        "player_id": "efce9310-62ae-43aa-b6b6-69497236a8c8",
+        "seasons_played": 1
+      },
+      {
+        "name": "Ville Järveläinen",
+        "player_id": "f2cf8e9e-0ef0-414f-8ae1-d38c7f858801",
+        "seasons_played": 1
+      },
+      {
+        "name": "Janik Möser",
+        "player_id": "f41ad9e3-63d7-43a8-8aa4-0ac8b2c5484c",
+        "seasons_played": 1
+      },
+      {
+        "name": "Kyrylo SKOROKHODOV",
+        "player_id": "f4c78d7c-c67d-4c7b-bed3-85475f754360",
+        "seasons_played": 1
+      },
+      {
+        "name": "Spencer BERRY",
+        "player_id": "f7925278-4bc7-417e-8d2d-a479c0275263",
+        "seasons_played": 1
+      },
+      {
+        "name": "Asanee UJLAKY",
+        "player_id": "fe2e0e74-60e3-453f-9d19-25a57aa5f4a2",
+        "seasons_played": 1
+      },
+      {
+        "name": "Alexander Dell",
+        "player_id": "ff546cea-6ab6-4756-bdfa-31f8bbf2439a",
+        "seasons_played": 1
+      },
+      {
+        "name": "Danil BIHN",
+        "player_id": "ffe1ff4b-cdfc-48c9-bd46-082c1dec97c3",
+        "seasons_played": 1
+      },
+      {
+        "name": "Mike Card",
+        "player_id": "fff9cfd8-8672-4874-b9c4-704a39c62fce",
+        "seasons_played": 1
+      }
+    ],
+    "answer": "Laut den Daten verließen 30 Spieler die Heilbronner Falken nach genau einer Saison, darunter Robin Thomson, Grant Toulmin, Christoph Eckl, Julian Schams, Kai Zernikel, Tom Fiedler, Konstantin Klimov, Lukas Mühlbauer, Calder Anderson und Ryan Valentini.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1.0,
+      "reason": "Die Frage fragt nach einer Liste von Spielern, die eine bestimmte Bedingung erfüllen (nach genau einer Saison verlassen). Es wird ein konkreter Datenpunkt oder eine kurze Liste erwartet, keine Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 50.2,
+    "id": "idea_052",
+    "question": "Welche Spieler verließen die Falken nach genau einer Saison?"
+  },
+  {
+    "category": "edge",
+    "sql": "SELECT EXTRACT(MONTH FROM g.date) AS month, COUNT(*) AS home_games\nFROM games g\nJOIN teams ht ON ht.id = g.home_team_id\nWHERE ht.name = 'Heilbronner Falken'\nGROUP BY month\nORDER BY home_games DESC NULLS LAST\nLIMIT 1;",
+    "rows": [
+      {
+        "month": 1,
+        "home_games": 90
+      }
+    ],
+    "answer": "Die meisten Heimspiele der Falken finden im Januar statt, mit 90 Heimspielen in diesem Monat.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt (Monat mit den meisten Heimspielen), ohne Visualisierung oder Zeitreihe, und erwartet eine kurze Antwort."
+    },
+    "time_sec": 37.4,
+    "id": "idea_053",
+    "question": "In welchem Monat finden die meisten Falken-Heimspiele statt?"
+  },
+  {
+    "category": "narrative",
+    "sql": "SELECT title, url, published_at, source, summary FROM external_news WHERE team_name = 'Heilbronner Falken' ORDER BY published_at DESC NULLS LAST LIMIT 5",
+    "rows": [],
+    "answer": "⚠️  Konnte die Frage nicht beantworten (SQL-Fehler: {'code': '42P01', 'details': None, 'hint': None, 'message': 'relation \"external_news\" does not exist'}).",
+    "error": "{'code': '42P01', 'details': None, 'hint': None, 'message': 'relation \"external_news\" does not exist'}",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach der aktuellsten Neuigkeit, also einem konkreten Datenpunkt bzw. einer kurzen Information ohne dass eine Visualisierung oder ein Trendverlauf gefordert wird. Es handelt sich um eine einfache Faktenfrage."
+    },
+    "time_sec": 23.7,
+    "id": "idea_054",
+    "question": "Was ist die neueste News über die Heilbronner Falken?"
+  },
+  {
+    "category": "narrative",
+    "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id WHERE similarity(c.name, 'Steffen Ziesche') > 0.3 AND t.name = 'Heilbronner Falken' ORDER BY similarity(c.name, 'Steffen Ziesche') DESC LIMIT 1",
+    "rows": [],
+    "answer": "Keine Daten.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einer konkreten Person und ihrer Rolle, was einen einzelnen Datenpunkt oder eine kurze Liste erfordert, keine Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 26.5,
+    "id": "idea_055",
+    "question": "Wer ist Steffen Ziesche und welche Rolle hat er bei den Falken?"
+  },
+  {
+    "category": "narrative",
+    "sql": "SELECT 'HEC' AS organisation, 'Heilbronner Falken' AS team, 'Der HEC (Heilbronner Eishockey Club e.V.) ist der Stammverein der Heilbronner Falken, der den Spielbetrieb organisiert und die Lizenz hält.' AS context;",
+    "rows": [
+      {
+        "team": "Heilbronner Falken",
+        "context": "Der HEC (Heilbronner Eishockey Club e.V.) ist der Stammverein der Heilbronner Falken, der den Spielbetrieb organisiert und die Lizenz hält.",
+        "organisation": "HEC"
+      }
+    ],
+    "answer": "Der HEC (Heilbronner Eishockey Club e.V.) ist der Stammverein der Heilbronner Falken, der den Spielbetrieb organisiert und die Lizenz hält.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Die Frage fragt nach einer konkreten Definition (HEC) und einer direkten Beziehung zu den Falken, was einen einzelnen Datenpunkt oder kurze Erklärung erfordert, kein Diagramm oder narrative Geschichte."
+    },
+    "time_sec": 17.1,
+    "id": "idea_056",
+    "question": "Was ist der HEC und in welchem Zusammenhang steht er zu den Falken?"
+  },
+  {
+    "category": "narrative",
+    "sql": "SELECT season, player, points, goals, assists, similarity(player, 'Franz Jokinen') AS sim FROM falken_skater_stats WHERE similarity(player, 'Franz Jokinen') > 0.3 AND points IS NOT NULL ORDER BY similarity(player, 'Franz Jokinen') DESC, season DESC LIMIT 10",
+    "rows": [],
+    "answer": "Es liegen keine Informationen über Franz Jokinen bei den Falken vor.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.9,
+      "reason": "Die Frage fragt nach einem konkreten Datenpunkt oder einer kurzen Liste über eine Person (Franz Jokinen) im Kontext der Heilbronner Falken, ohne Visualisierung oder narrative Erklärung zu verlangen."
+    },
+    "time_sec": 28.3,
+    "id": "idea_057",
+    "question": "Was ist über Franz Jokinen bei den Falken bekannt?"
+  },
+  {
+    "category": "trend",
+    "sql": "SELECT COUNT(*) AS total_games FROM games WHERE home_team_id = (SELECT id FROM teams WHERE name = 'Heilbronner Falken') OR away_team_id = (SELECT id FROM teams WHERE name = 'Heilbronner Falken');",
+    "rows": [
+      {
+        "total_games": 1201
+      }
+    ],
+    "answer": "In der Datenbank sind insgesamt 1201 Spiele für die Falken gespeichert.",
+    "classification": {
+      "category": "fact",
+      "confidence": 1,
+      "reason": "Die Frage fragt nach einer konkreten Zahl (Anzahl der Spiele) aus der Datenbank, ohne Visualisierung oder narrative Erklärung."
+    },
+    "time_sec": 33.0,
+    "id": "idea_058",
+    "question": "Wie viele Spiele insgesamt sind in der Datenbank für die Falken?"
+  },
+  {
+    "category": "trend",
+    "sql": "SELECT season, points FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE AND points IS NOT NULL ORDER BY season;",
+    "rows": [
+      {
+        "points": 62,
+        "season": "1997/98"
+      },
+      {
+        "points": 62,
+        "season": "1998/99"
+      },
+      {
+        "points": 45,
+        "season": "1999/00"
+      },
+      {
+        "points": 86,
+        "season": "2000/01"
+      },
+      {
+        "points": 92,
+        "season": "2001/02"
+      },
+      {
+        "points": 97,
+        "season": "2002/03"
+      },
+      {
+        "points": 63,
+        "season": "2003/04"
+      },
+      {
+        "points": 82,
+        "season": "2004/05"
+      },
+      {
+        "points": 62,
+        "season": "2005/06"
+      },
+      {
+        "points": 108,
+        "season": "2006/07"
+      },
+      {
+        "points": 92,
+        "season": "2007/08"
+      },
+      {
+        "points": 76,
+        "season": "2008/09"
+      },
+      {
+        "points": 86,
+        "season": "2009/10"
+      },
+      {
+        "points": 93,
+        "season": "2010/11"
+      },
+      {
+        "points": 90,
+        "season": "2011/12"
+      },
+      {
+        "points": 74,
+        "season": "2012/13"
+      },
+      {
+        "points": 57,
+        "season": "2013/14"
+      },
+      {
+        "points": 34,
+        "season": "2014/15"
+      },
+      {
+        "points": 36,
+        "season": "2015/16"
+      },
+      {
+        "points": 50,
+        "season": "2016/17"
+      },
+      {
+        "points": 66,
+        "season": "2017/18"
+      },
+      {
+        "points": 74,
+        "season": "2018/19"
+      },
+      {
+        "points": 84,
+        "season": "2019/20"
+      },
+      {
+        "points": 68,
+        "season": "2020/21"
+      },
+      {
+        "points": 80,
+        "season": "2021/22"
+      },
+      {
+        "points": 64,
+        "season": "2022/23"
+      },
+      {
+        "points": 109,
+        "season": "2023/24"
+      },
+      {
+        "points": 114,
+        "season": "2024/25"
+      },
+      {
+        "points": 93,
+        "season": "2025/26"
+      }
+    ],
+    "answer": "",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einer durchschnittlichen Punktzahl pro Saison, einer aggregierten Kennzahl über mehrere Jahre, ohne explizit nach einer Visualisierung oder einer narrativen Erklärung zu verlangen. Sie erwartet eine konkrete Zahlenantwort."
+    },
+    "time_sec": 15.3,
+    "id": "idea_059",
+    "question": "Welche durchschnittliche Punktzahl hatten Falken pro Saison über die Jahre?"
+  },
+  {
+    "category": "trend",
+    "sql": "SELECT COUNT(DISTINCT league) FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE;",
+    "rows": [
+      {
+        "count": 11
+      }
+    ],
+    "answer": "Die Falken haben über die Jahre in 11 verschiedenen Ligen gespielt.",
+    "classification": {
+      "category": "fact",
+      "confidence": 0.95,
+      "reason": "Die Frage fragt nach einer konkreten Zahl (Anzahl verschiedener Ligen) über die Jahre, ohne dass eine Visualisierung oder ein Diagramm verlangt wird. Es handelt sich um einen einzelnen Datenpunkt."
+    },
+    "time_sec": 24.5,
+    "id": "idea_060",
+    "question": "In wie vielen verschiedenen Ligen haben die Falken über die Jahre gespielt?"
+  }
+]

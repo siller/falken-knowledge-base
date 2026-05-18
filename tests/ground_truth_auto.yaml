@@ -1,0 +1,1258 @@
+# AUTO-GENERATED Ground Truth — 139 checks
+- id: rank_2025_26
+  description: 'Falken 2025/26 Oberliga Süd: Platz 5, 93P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2025/26' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 5
+    points: 93
+- id: rank_2024_25
+  description: 'Falken 2024/25 Oberliga Süd: Platz 1, 114P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2024/25' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 1
+    points: 114
+- id: rank_2023_24
+  description: 'Falken 2023/24 Oberliga Süd: Platz 2, 109P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2023/24' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 2
+    points: 109
+- id: rank_2022_23
+  description: 'Falken 2022/23 DEL2: Platz 12, 64P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2022/23' AND league='DEL2'
+  expected:
+  - final_rank: 12
+    points: 64
+- id: rank_2021_22
+  description: 'Falken 2021/22 DEL2: Platz 6, 80P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2021/22' AND league='DEL2'
+  expected:
+  - final_rank: 6
+    points: 80
+- id: rank_2020_21
+  description: 'Falken 2020/21 DEL2: Platz 8, 68P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2020/21' AND league='DEL2'
+  expected:
+  - final_rank: 8
+    points: 68
+- id: rank_2019_20
+  description: 'Falken 2019/20 DEL2: Platz 4, 84P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2019/20' AND league='DEL2'
+  expected:
+  - final_rank: 4
+    points: 84
+- id: rank_2018_19
+  description: 'Falken 2018/19 DEL2: Platz 8, 74P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2018/19' AND league='DEL2'
+  expected:
+  - final_rank: 8
+    points: 74
+- id: rank_2017_18
+  description: 'Falken 2017/18 DEL2: Platz 9, 66P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2017/18' AND league='DEL2'
+  expected:
+  - final_rank: 9
+    points: 66
+- id: rank_2016_17
+  description: 'Falken 2016/17 DEL2: Platz 13, 50P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2016/17' AND league='DEL2'
+  expected:
+  - final_rank: 13
+    points: 50
+- id: rank_2015_16
+  description: 'Falken 2015/16 DEL2: Platz 14, 36P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2015/16' AND league='DEL2'
+  expected:
+  - final_rank: 14
+    points: 36
+- id: rank_2014_15
+  description: 'Falken 2014/15 DEL2: Platz 13, 34P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2014/15' AND league='DEL2'
+  expected:
+  - final_rank: 13
+    points: 34
+- id: rank_2013_14
+  description: 'Falken 2013/14 DEL2: Platz 12, 57P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2013/14' AND league='DEL2'
+  expected:
+  - final_rank: 12
+    points: 57
+- id: rank_2012_13
+  description: 'Falken 2012/13 2. Bundesliga: Platz 6, 74P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2012/13' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 6
+    points: 74
+- id: rank_2011_12
+  description: 'Falken 2011/12 2. Bundesliga: Platz 2, 90P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2011/12' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 2
+    points: 90
+- id: rank_2010_11
+  description: 'Falken 2010/11 2. Bundesliga: Platz 2, 93P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2010/11' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 2
+    points: 93
+- id: rank_2009_10
+  description: 'Falken 2009/10 2. Bundesliga: Platz 6, 86P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2009/10' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 6
+    points: 86
+- id: rank_2008_09
+  description: 'Falken 2008/09 2. Bundesliga: Platz 4, 76P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2008/09' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 4
+    points: 76
+- id: rank_2007_08
+  description: 'Falken 2007/08 2. Bundesliga: Platz 3, 92P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2007/08' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 3
+    points: 92
+- id: rank_2006_07
+  description: 'Falken 2006/07 Oberliga Süd: Platz 2, 108P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2006/07' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 2
+    points: 108
+- id: rank_2005_06
+  description: 'Falken 2005/06 Oberliga Süd: Platz 6, 62P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2005/06' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 6
+    points: 62
+- id: rank_2004_05
+  description: 'Falken 2004/05 Oberliga Süd: Platz 1, 82P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2004/05' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 1
+    points: 82
+- id: rank_2003_04
+  description: 'Falken 2003/04 2. Bundesliga: Platz 10, 63P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2003/04' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 10
+    points: 63
+- id: rank_2002_03
+  description: 'Falken 2002/03 2. Bundesliga: Platz 5, 97P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2002/03' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 5
+    points: 97
+- id: rank_2001_02
+  description: 'Falken 2001/02 2. Bundesliga: Platz 4, 92P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2001/02' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 4
+    points: 92
+- id: rank_2000_01
+  description: 'Falken 2000/01 2. Bundesliga: Platz 2, 86P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='2000/01' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 2
+    points: 86
+- id: rank_1999_00
+  description: 'Falken 1999/00 2. Bundesliga: Platz 5, 45P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1999/00' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 5
+    points: 45
+- id: rank_1998_99
+  description: 'Falken 1998/99 2. Bundesliga: Platz 10, 62P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1998/99' AND league='2. Bundesliga'
+  expected:
+  - final_rank: 10
+    points: 62
+- id: rank_1997_98
+  description: 'Falken 1997/98 Hockey Premier League: Platz 1, 62P'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1997/98' AND league='Hockey Premier League'
+  expected:
+  - final_rank: 1
+    points: 62
+- id: rank_1996_97
+  description: 'Falken 1996/97 Hockey Premier League: Platz 2'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1996/97' AND league='Hockey Premier League'
+  expected:
+  - final_rank: 2
+- id: rank_1995_96
+  description: 'Falken 1995/96 Hockey Premier League: Platz 3'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1995/96' AND league='Hockey Premier League'
+  expected:
+  - final_rank: 3
+- id: rank_1994_95
+  description: 'Falken 1994/95 1. Bundesliga Süd: Platz 2'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1994/95' AND league='1. Bundesliga Süd'
+  expected:
+  - final_rank: 2
+- id: rank_1993_94
+  description: 'Falken 1993/94 Oberliga Süd: Platz 1'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1993/94' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 1
+- id: rank_1992_93
+  description: 'Falken 1992/93 Oberliga Süd: Platz 6'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1992/93' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 6
+- id: rank_1991_92
+  description: 'Falken 1991/92 Oberliga Süd: Platz 2'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1991/92' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 2
+- id: rank_1990_91
+  description: 'Falken 1990/91 Oberliga Süd: Platz 9'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1990/91' AND league='Oberliga Süd'
+  expected:
+  - final_rank: 9
+- id: rank_1988_89
+  description: 'Falken 1988/89 2. Bundesliga Süd: Platz 4'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1988/89' AND league='2. Bundesliga Süd'
+  expected:
+  - final_rank: 4
+- id: rank_1987_88
+  description: 'Falken 1987/88 2. Bundesliga Süd: Platz 5'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1987/88' AND league='2. Bundesliga Süd'
+  expected:
+  - final_rank: 5
+- id: rank_1986_87
+  description: 'Falken 1986/87 Oberliga Nord: Platz 2'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1986/87' AND league='Oberliga Nord'
+  expected:
+  - final_rank: 2
+- id: rank_1985_86
+  description: 'Falken 1985/86 Oberliga Mitte: Platz 4'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1985/86' AND league='Oberliga Mitte'
+  expected:
+  - final_rank: 4
+- id: rank_1984_85
+  description: 'Falken 1984/85 Regionalliga Süd-West: Platz 3'
+  source: team_seasons (cross-validated)
+  query: SELECT final_rank, points FROM falken.season_standings WHERE team='Heilbronner
+    Falken' AND season='1984/85' AND league='Regionalliga Süd-West'
+  expected:
+  - final_rank: 3
+- id: topscorer_2024_25
+  description: 'Topscorer 2024/25: Nolan Ritchie, 84P (38G+46A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2024/25'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Nolan Ritchie
+    points: 84
+- id: topscorer_2023_24
+  description: 'Topscorer 2023/24: Pontus Wernerson Libäck, 90P (36G+54A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2023/24'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Pontus Wernerson Libäck
+    points: 90
+- id: topscorer_2022_23
+  description: 'Topscorer 2022/23: Alex Tonge, 59P (19G+40A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2022/23'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Alex Tonge
+    points: 59
+- id: topscorer_2021_22
+  description: 'Topscorer 2021/22: Jeremy Williams, 62P (26G+36A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2021/22'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Jeremy Williams
+    points: 62
+- id: topscorer_2020_21
+  description: 'Topscorer 2020/21: Dylan Wruck, 78P (23G+55A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2020/21'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Dylan Wruck
+    points: 78
+- id: topscorer_2019_20
+  description: 'Topscorer 2019/20: Dylan Wruck, 88P (24G+64A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2019/20'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Dylan Wruck
+    points: 88
+- id: topscorer_2018_19
+  description: 'Topscorer 2018/19: Roope Ranta, 79P (31G+48A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2018/19'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Roope Ranta
+    points: 79
+- id: topscorer_2017_18
+  description: 'Topscorer 2017/18: Brandon Alderson, 54P (25G+29A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2017/18'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Brandon Alderson
+    points: 54
+- id: topscorer_2016_17
+  description: 'Topscorer 2016/17: Rylan Schwartz, 49P (17G+32A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2016/17'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Rylan Schwartz
+    points: 49
+- id: topscorer_2015_16
+  description: 'Topscorer 2015/16: Adam Brace, 63P (28G+35A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2015/16'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Adam Brace
+    points: 63
+- id: topscorer_2014_15
+  description: 'Topscorer 2014/15: Dustin Cameron, 50P (19G+31A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2014/15'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Dustin Cameron
+    points: 50
+- id: topscorer_2013_14
+  description: 'Topscorer 2013/14: Robert Hock, 55P (11G+44A)'
+  source: EliteProspects
+  query: SELECT player, points FROM falken.falken_skater_stats WHERE season='2013/14'
+    ORDER BY points DESC NULLS LAST LIMIT 1
+  expected:
+  - player: Robert Hock
+    points: 55
+- id: games_count_2025_26_oberl
+  description: 'Oberliga Süd 2025/26 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2025/26' AND s.league='Oberliga Süd' AND g.game_type='regular'
+    AND (ht.name='Heilbronner Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: games_count_2024_25_oberl
+  description: 'Oberliga Süd 2024/25 Falken-Hauptrunde: 48 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2024/25' AND s.league='Oberliga Süd' AND g.game_type='regular'
+    AND (ht.name='Heilbronner Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 48
+- id: games_count_2023_24_oberl
+  description: 'Oberliga Süd 2023/24 Falken-Hauptrunde: 48 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2023/24' AND s.league='Oberliga Süd' AND g.game_type='regular'
+    AND (ht.name='Heilbronner Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 48
+- id: games_count_2022_23_del2
+  description: 'DEL2 2022/23 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2022/23' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: games_count_2021_22_del2
+  description: 'DEL2 2021/22 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2021/22' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: games_count_2020_21_del2
+  description: 'DEL2 2020/21 Falken-Hauptrunde: 49 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2020/21' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 49
+- id: games_count_2019_20_del2
+  description: 'DEL2 2019/20 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2019/20' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: games_count_2018_19_del2
+  description: 'DEL2 2018/19 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2018/19' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: games_count_2017_18_del2
+  description: 'DEL2 2017/18 Falken-Hauptrunde: 48 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2017/18' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 48
+- id: games_count_2016_17_del2
+  description: 'DEL2 2016/17 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2016/17' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: games_count_2015_16_del2
+  description: 'DEL2 2015/16 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2015/16' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: games_count_2014_15_del2
+  description: 'DEL2 2014/15 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2014/15' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: games_count_2013_14_del2
+  description: 'DEL2 2013/14 Falken-Hauptrunde: 54 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2013/14' AND s.league='DEL2' AND g.game_type='regular' AND (ht.name='Heilbronner
+    Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 54
+- id: games_count_2012_13_2.bu
+  description: '2. Bundesliga 2012/13 Falken-Hauptrunde: 48 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2012/13' AND s.league='2. Bundesliga' AND g.game_type='regular'
+    AND (ht.name='Heilbronner Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 48
+- id: games_count_2011_12_2.bu
+  description: '2. Bundesliga 2011/12 Falken-Hauptrunde: 48 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2011/12' AND s.league='2. Bundesliga' AND g.game_type='regular'
+    AND (ht.name='Heilbronner Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 48
+- id: games_count_2010_11_2.bu
+  description: '2. Bundesliga 2010/11 Falken-Hauptrunde: 48 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2010/11' AND s.league='2. Bundesliga' AND g.game_type='regular'
+    AND (ht.name='Heilbronner Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 48
+- id: games_count_2009_10_2.bu
+  description: '2. Bundesliga 2009/10 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2009/10' AND s.league='2. Bundesliga' AND g.game_type='regular'
+    AND (ht.name='Heilbronner Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: games_count_2008_09_2.bu
+  description: '2. Bundesliga 2008/09 Falken-Hauptrunde: 48 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2008/09' AND s.league='2. Bundesliga' AND g.game_type='regular'
+    AND (ht.name='Heilbronner Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 48
+- id: games_count_2007_08_2.bu
+  description: '2. Bundesliga 2007/08 Falken-Hauptrunde: 52 Spiele'
+  source: games table
+  query: SELECT COUNT(*) as n FROM falken.games g JOIN falken.seasons s ON s.id=g.season_id
+    JOIN falken.teams ht ON ht.id=g.home_team_id JOIN falken.teams at ON at.id=g.away_team_id
+    WHERE s.label='2007/08' AND s.league='2. Bundesliga' AND g.game_type='regular'
+    AND (ht.name='Heilbronner Falken' OR at.name='Heilbronner Falken')
+  expected:
+  - n: 52
+- id: po_2022_23_playdownr2
+  description: 'PO 2022/23 Play-Down R2: Heilbronner Falken 2:4 Bayreuth Tigers →
+    Bayreuth Tigers'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2022/23' AND ps.round='Play-Down R2' AND
+    ta.name='Heilbronner Falken' AND tb.name='Bayreuth Tigers'
+  expected:
+  - wins_a: 2
+    wins_b: 4
+- id: po_2022_23_playdownr1
+  description: 'PO 2022/23 Play-Down R1: Heilbronner Falken 2:4 Selber Wölfe → Selber
+    Wölfe'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2022/23' AND ps.round='Play-Down R1' AND
+    ta.name='Heilbronner Falken' AND tb.name='Selber Wölfe'
+  expected:
+  - wins_a: 2
+    wins_b: 4
+- id: po_2021_22_viertelfinale
+  description: 'PO 2021/22 Viertelfinale: Heilbronner Falken 4:0 Eispiraten Crimmitschau
+    → Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2021/22' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='Eispiraten Crimmitschau'
+  expected:
+  - wins_a: 4
+    wins_b: 0
+- id: po_2021_22_halbfinale
+  description: 'PO 2021/22 Halbfinale: Löwen Frankfurt 4:0 Heilbronner Falken → Löwen
+    Frankfurt'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2021/22' AND ps.round='Halbfinale' AND
+    ta.name='Löwen Frankfurt' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 4
+    wins_b: 0
+- id: po_2020_21_viertelfinale
+  description: 'PO 2020/21 Viertelfinale: Kassel Huskies 3:0 Heilbronner Falken →
+    Kassel Huskies'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2020/21' AND ps.round='Viertelfinale'
+    AND ta.name='Kassel Huskies' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 3
+    wins_b: 0
+- id: po_2019_20_viertelfinale
+  description: 'PO 2019/20 Viertelfinale: Heilbronner Falken 0:0 Tölzer Löwen'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2019/20' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='Tölzer Löwen'
+  expected:
+  - wins_a: 0
+    wins_b: 0
+- id: po_2018_19_preplayoff
+  description: 'PO 2018/19 Pre Play-Off: Heilbronner Falken 1:2 Dresdner Eislöwen
+    → Dresdner Eislöwen'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2018/19' AND ps.round='Pre Play-Off' AND
+    ta.name='Heilbronner Falken' AND tb.name='Dresdner Eislöwen'
+  expected:
+  - wins_a: 1
+    wins_b: 2
+- id: po_2017_18_viertelfinale
+  description: 'PO 2017/18 Viertelfinale: SC Bietigheim-Bissingen Steelers 4:1 Heilbronner
+    Falken → SC Bietigheim-Bissingen Steelers'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2017/18' AND ps.round='Viertelfinale'
+    AND ta.name='SC Bietigheim-Bissingen Steelers' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 4
+    wins_b: 1
+- id: po_2017_18_preplayoff
+  description: 'PO 2017/18 Pre Play-Off: Dresdner Eislöwen 0:2 Heilbronner Falken
+    → Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2017/18' AND ps.round='Pre Play-Off' AND
+    ta.name='Dresdner Eislöwen' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 0
+    wins_b: 2
+- id: po_2016_17_playdownr1
+  description: 'PO 2016/17 Play-Down R1: StarBulls Rosenheim 2:4 Heilbronner Falken
+    → Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2016/17' AND ps.round='Play-Down R1' AND
+    ta.name='StarBulls Rosenheim' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 2
+    wins_b: 4
+- id: po_2015_16_playdownr2
+  description: 'PO 2015/16 Play-Down R2: ESV Kaufbeuren 4:3 Heilbronner Falken → ESV
+    Kaufbeuren'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2015/16' AND ps.round='Play-Down R2' AND
+    ta.name='ESV Kaufbeuren' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 4
+    wins_b: 3
+- id: po_2015_16_playdownr1
+  description: 'PO 2015/16 Play-Down R1: Lausitzer Füchse 4:1 Heilbronner Falken →
+    Lausitzer Füchse'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2015/16' AND ps.round='Play-Down R1' AND
+    ta.name='Lausitzer Füchse' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 4
+    wins_b: 1
+- id: po_2014_15_playdownr1
+  description: 'PO 2014/15 Play-Down R1: Eispiraten Crimmitschau 4:1 Heilbronner Falken
+    → Eispiraten Crimmitschau'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2014/15' AND ps.round='Play-Down R1' AND
+    ta.name='Eispiraten Crimmitschau' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 4
+    wins_b: 1
+- id: po_2014_15_playdownr2
+  description: 'PO 2014/15 Play-Down R2: Heilbronner Falken 2:4 ESV Kaufbeuren → ESV
+    Kaufbeuren'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2014/15' AND ps.round='Play-Down R2' AND
+    ta.name='Heilbronner Falken' AND tb.name='ESV Kaufbeuren'
+  expected:
+  - wins_a: 2
+    wins_b: 4
+- id: po_2013_14_playdown
+  description: 'PO 2013/14 Play-Down: ESV Kaufbeuren 3:4 Heilbronner Falken → Heilbronner
+    Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2013/14' AND ps.round='Play-Down' AND
+    ta.name='ESV Kaufbeuren' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 3
+    wins_b: 4
+- id: po_2012_13_viertelfinale
+  description: 'PO 2012/13 Viertelfinale: Schwenninger Wild Wings 4:1 Heilbronner
+    Falken → Schwenninger Wild Wings'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2012/13' AND ps.round='Viertelfinale'
+    AND ta.name='Schwenninger Wild Wings' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 4
+    wins_b: 1
+- id: po_2011_12_viertelfinale
+  description: 'PO 2011/12 Viertelfinale: Heilbronner Falken 3:4 Ravensburg Towerstars
+    → Ravensburg Towerstars'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2011/12' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='Ravensburg Towerstars'
+  expected:
+  - wins_a: 3
+    wins_b: 4
+- id: po_2010_11_viertelfinale
+  description: 'PO 2010/11 Viertelfinale: Heilbronner Falken 0:4 StarBulls Rosenheim
+    → StarBulls Rosenheim'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2010/11' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='StarBulls Rosenheim'
+  expected:
+  - wins_a: 0
+    wins_b: 4
+- id: po_2009_10_viertelfinale
+  description: 'PO 2009/10 Viertelfinale: Ravensburg Towerstars 4:2 Heilbronner Falken
+    → Ravensburg Towerstars'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2009/10' AND ps.round='Viertelfinale'
+    AND ta.name='Ravensburg Towerstars' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 4
+    wins_b: 2
+- id: po_2008_09_viertelfinale
+  description: 'PO 2008/09 Viertelfinale: Heilbronner Falken 2:4 Lausitzer Füchse
+    → Lausitzer Füchse'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2008/09' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='Lausitzer Füchse'
+  expected:
+  - wins_a: 2
+    wins_b: 4
+- id: po_2007_08_halbfinale
+  description: 'PO 2007/08 Halbfinale: EV Landshut 3:0 Heilbronner Falken → EV Landshut'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2007/08' AND ps.round='Halbfinale' AND
+    ta.name='EV Landshut' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 3
+    wins_b: 0
+- id: po_2007_08_viertelfinale
+  description: 'PO 2007/08 Viertelfinale: Heilbronner Falken 4:2 Moskitos Essen →
+    Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2007/08' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='Moskitos Essen'
+  expected:
+  - wins_a: 4
+    wins_b: 2
+- id: po_2006_07_viertelfinale
+  description: 'PO 2006/07 Viertelfinale: Heilbronner Falken 4:0 EHC Freiburg → Heilbronner
+    Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2006/07' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='EHC Freiburg'
+  expected:
+  - wins_a: 4
+    wins_b: 0
+- id: po_2006_07_finale
+  description: 'PO 2006/07 Finale: Heilbronner Falken 2:0 EV Ravenburg → Heilbronner
+    Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2006/07' AND ps.round='Finale' AND ta.name='Heilbronner
+    Falken' AND tb.name='EV Ravenburg'
+  expected:
+  - wins_a: 2
+    wins_b: 0
+- id: po_2006_07_halbfinale
+  description: 'PO 2006/07 Halbfinale: Heilbronner Falken 4:1 Tölzer Löwen → Heilbronner
+    Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2006/07' AND ps.round='Halbfinale' AND
+    ta.name='Heilbronner Falken' AND tb.name='Tölzer Löwen'
+  expected:
+  - wins_a: 4
+    wins_b: 1
+- id: po_2005_06_viertelfinale
+  description: 'PO 2005/06 Viertelfinale: Hannover Indians 3:1 Heilbronner Falken
+    → Hannover Indians'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2005/06' AND ps.round='Viertelfinale'
+    AND ta.name='Hannover Indians' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 3
+    wins_b: 1
+- id: po_2002_03_viertelfinale
+  description: 'PO 2002/03 Viertelfinale: EV Landshut 3:1 Heilbronner Falken → EV
+    Landshut'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2002/03' AND ps.round='Viertelfinale'
+    AND ta.name='EV Landshut' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 3
+    wins_b: 1
+- id: po_2001_02_halbfinale
+  description: 'PO 2001/02 Halbfinale: ERC Ingolstadt 3:1 Heilbronner Falken → ERC
+    Ingolstadt'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2001/02' AND ps.round='Halbfinale' AND
+    ta.name='ERC Ingolstadt' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 3
+    wins_b: 1
+- id: po_2001_02_viertelfinale
+  description: 'PO 2001/02 Viertelfinale: Heilbronner Falken 3:0 Eispiraten Crimmitschau
+    → Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2001/02' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='Eispiraten Crimmitschau'
+  expected:
+  - wins_a: 3
+    wins_b: 0
+- id: po_2000_01_halbfinale
+  description: 'PO 2000/01 Halbfinale: Heilbronner Falken 2:3 Tölzer Löwen → Tölzer
+    Löwen'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2000/01' AND ps.round='Halbfinale' AND
+    ta.name='Heilbronner Falken' AND tb.name='Tölzer Löwen'
+  expected:
+  - wins_a: 2
+    wins_b: 3
+- id: po_2000_01_viertelfinale
+  description: 'PO 2000/01 Viertelfinale: Heilbronner Falken 3:2 EC Wilhelmshaven
+    → Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='2000/01' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='EC Wilhelmshaven'
+  expected:
+  - wins_a: 3
+    wins_b: 2
+- id: po_1996_97_viertelfinale
+  description: 'PO 1996/97 Viertelfinale: Heilbronner Falken 2:1 Moskitos Essen →
+    Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1996/97' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='Moskitos Essen'
+  expected:
+  - wins_a: 2
+    wins_b: 1
+- id: po_1996_97_halbfinale
+  description: 'PO 1996/97 Halbfinale: EHC Neuwied 2:0 Heilbronner Falken → EHC Neuwied'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1996/97' AND ps.round='Halbfinale' AND
+    ta.name='EHC Neuwied' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 2
+    wins_b: 0
+- id: po_1996_97_spielumpl.3
+  description: 'PO 1996/97 Spiel um Pl.3: Heilbronner Falken 0:2 EC Bad Nauheim →
+    EC Bad Nauheim'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1996/97' AND ps.round='Spiel um Pl.3'
+    AND ta.name='Heilbronner Falken' AND tb.name='EC Bad Nauheim'
+  expected:
+  - wins_a: 0
+    wins_b: 2
+- id: po_1996_97_achtefinale
+  description: 'PO 1996/97 Achtefinale: Heilbronner Falken 3:2 Iserlohner EC → Heilbronner
+    Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1996/97' AND ps.round='Achtefinale' AND
+    ta.name='Heilbronner Falken' AND tb.name='Iserlohner EC'
+  expected:
+  - wins_a: 3
+    wins_b: 2
+- id: po_1995_96_viertelfinale
+  description: 'PO 1995/96 Viertelfinale: Heilbronner Falken 2:0 EC Wilhelmshaven
+    → Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1995/96' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='EC Wilhelmshaven'
+  expected:
+  - wins_a: 2
+    wins_b: 0
+- id: po_1995_96_achtelfinale
+  description: 'PO 1995/96 Achtelfinale: Heilbronner Falken 2:0 Herner EV → Heilbronner
+    Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1995/96' AND ps.round='Achtelfinale' AND
+    ta.name='Heilbronner Falken' AND tb.name='Herner EV'
+  expected:
+  - wins_a: 2
+    wins_b: 0
+- id: po_1995_96_halbfinale
+  description: 'PO 1995/96 Halbfinale: Heilbronner Falken 1:2 Tölzer Löwen → Tölzer
+    Löwen'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1995/96' AND ps.round='Halbfinale' AND
+    ta.name='Heilbronner Falken' AND tb.name='Tölzer Löwen'
+  expected:
+  - wins_a: 1
+    wins_b: 2
+- id: po_1994_95_achtelfinale
+  description: 'PO 1994/95 Achtelfinale: Heilbronner Falken 2:1 ESC Wedemark → Heilbronner
+    Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1994/95' AND ps.round='Achtelfinale' AND
+    ta.name='Heilbronner Falken' AND tb.name='ESC Wedemark'
+  expected:
+  - wins_a: 2
+    wins_b: 1
+- id: po_1994_95_viertelfinale
+  description: 'PO 1994/95 Viertelfinale: ETC Timmendorfer Strand 2:1 Heilbronner
+    Falken → ETC Timmendorfer Strand'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1994/95' AND ps.round='Viertelfinale'
+    AND ta.name='ETC Timmendorfer Strand' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 2
+    wins_b: 1
+- id: po_1993_94_achtelfinale
+  description: 'PO 1993/94 Achtelfinale: Heilbronner Falken 3:0 ASV Hamm → Heilbronner
+    Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1993/94' AND ps.round='Achtelfinale' AND
+    ta.name='Heilbronner Falken' AND tb.name='ASV Hamm'
+  expected:
+  - wins_a: 3
+    wins_b: 0
+- id: po_1993_94_viertelfinale
+  description: 'PO 1993/94 Viertelfinale: Heilbronner Falken 2:0 EC Bad Nauheim →
+    Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1993/94' AND ps.round='Viertelfinale'
+    AND ta.name='Heilbronner Falken' AND tb.name='EC Bad Nauheim'
+  expected:
+  - wins_a: 2
+    wins_b: 0
+- id: po_1993_94_halbfinale
+  description: 'PO 1993/94 Halbfinale: Heilbronner Falken 1:2 ETC Timmendorfer Strand
+    → ETC Timmendorfer Strand'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1993/94' AND ps.round='Halbfinale' AND
+    ta.name='Heilbronner Falken' AND tb.name='ETC Timmendorfer Strand'
+  expected:
+  - wins_a: 1
+    wins_b: 2
+- id: po_1993_94_spielumpl.3
+  description: 'PO 1993/94 Spiel um Pl.3: ESC Wedemark 2:1 Heilbronner Falken → ESC
+    Wedemark'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1993/94' AND ps.round='Spiel um Pl.3'
+    AND ta.name='ESC Wedemark' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 2
+    wins_b: 1
+- id: po_1986_87_spielumpl.5
+  description: 'PO 1986/87 Spiel um Pl.5: ERC Sonthofen 1:1 Heilbronner Falken'
+  source: playoff_series + eishockey-statistiken
+  query: SELECT ps.wins_a, ps.wins_b FROM falken.playoff_series ps JOIN falken.seasons
+    s ON s.id=ps.season_id JOIN falken.teams ta ON ta.id=ps.team_a_id JOIN falken.teams
+    tb ON tb.id=ps.team_b_id WHERE s.label='1986/87' AND ps.round='Spiel um Pl.5'
+    AND ta.name='ERC Sonthofen' AND tb.name='Heilbronner Falken'
+  expected:
+  - wins_a: 1
+    wins_b: 1
+- id: coach_2023_francesco_petrozza
+  description: 'Trainer in Saison 2023/24: Francesco Petrozza'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Francesco Petrozza' AND EXTRACT(year FROM ct.start_date) =
+    2023
+  expected:
+  - n: 1
+- id: coach_2022_jason_morgan
+  description: 'Trainer in Saison 2022/23: Jason Morgan'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Jason Morgan' AND EXTRACT(year FROM ct.start_date) = 2022
+  expected:
+  - n: 1
+- id: coach_2022_martin_jiranek
+  description: 'Trainer in Saison 2022/23: Martin Jiranek'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Martin Jiranek' AND EXTRACT(year FROM ct.start_date) = 2022
+  expected:
+  - n: 1
+- id: coach_2021_jason_morgan
+  description: 'Trainer in Saison 2021/22: Jason Morgan'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Jason Morgan' AND EXTRACT(year FROM ct.start_date) = 2021
+  expected:
+  - n: 1
+- id: coach_2020_michel_zeiter
+  description: 'Trainer in Saison 2020/21: Michel Zeiter'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Michel Zeiter' AND EXTRACT(year FROM ct.start_date) = 2020
+  expected:
+  - n: 1
+- id: coach_2020_william-bill_stewart
+  description: 'Trainer in Saison 2020/21: William-Bill Stewart'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='William-Bill Stewart' AND EXTRACT(year FROM ct.start_date)
+    = 2020
+  expected:
+  - n: 1
+- id: coach_2019_alexander_mellitzer
+  description: 'Trainer in Saison 2019/20: Alexander Mellitzer'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Alexander Mellitzer' AND EXTRACT(year FROM ct.start_date)
+    = 2019
+  expected:
+  - n: 1
+- id: coach_2018_alexander_mellitzer
+  description: 'Trainer in Saison 2018/19: Alexander Mellitzer'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Alexander Mellitzer' AND EXTRACT(year FROM ct.start_date)
+    = 2018
+  expected:
+  - n: 1
+- id: coach_2017_gerhard_unterluggauer
+  description: 'Trainer in Saison 2017/18: Gerhard Unterluggauer'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Gerhard Unterluggauer' AND EXTRACT(year FROM ct.start_date)
+    = 2017
+  expected:
+  - n: 1
+- id: coach_2016_fabian_dahlem
+  description: 'Trainer in Saison 2016/17: Fabian Dahlem'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Fabian Dahlem' AND EXTRACT(year FROM ct.start_date) = 2016
+  expected:
+  - n: 1
+- id: coach_2016_gerhard_unterluggauer
+  description: 'Trainer in Saison 2016/17: Gerhard Unterluggauer'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Gerhard Unterluggauer' AND EXTRACT(year FROM ct.start_date)
+    = 2016
+  expected:
+  - n: 1
+- id: coach_2015_fabian_dahlem
+  description: 'Trainer in Saison 2015/16: Fabian Dahlem'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Fabian Dahlem' AND EXTRACT(year FROM ct.start_date) = 2015
+  expected:
+  - n: 1
+- id: coach_2015_manfred_wolf
+  description: 'Trainer in Saison 2015/16: Manfred Wolf'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Manfred Wolf' AND EXTRACT(year FROM ct.start_date) = 2015
+  expected:
+  - n: 1
+- id: coach_2014_gerd_wittmann
+  description: 'Trainer in Saison 2014/15: Gerd Wittmann'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Gerd Wittmann' AND EXTRACT(year FROM ct.start_date) = 2014
+  expected:
+  - n: 1
+- id: coach_2014_igors_pavlovs
+  description: 'Trainer in Saison 2014/15: Igors Pavlovs'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Igors Pavlovs' AND EXTRACT(year FROM ct.start_date) = 2014
+  expected:
+  - n: 1
+- id: coach_2014_luigi_calce_sr.
+  description: 'Trainer in Saison 2014/15: Luigi Calce sr.'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Luigi Calce sr.' AND EXTRACT(year FROM ct.start_date) = 2014
+  expected:
+  - n: 1
+- id: coach_2013_gerd_wittmann
+  description: 'Trainer in Saison 2013/14: Gerd Wittmann'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Gerd Wittmann' AND EXTRACT(year FROM ct.start_date) = 2013
+  expected:
+  - n: 1
+- id: coach_2013_igors_pavlovs
+  description: 'Trainer in Saison 2013/14: Igors Pavlovs'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Igors Pavlovs' AND EXTRACT(year FROM ct.start_date) = 2013
+  expected:
+  - n: 1
+- id: coach_2013_kenneth_latta
+  description: 'Trainer in Saison 2013/14: Kenneth Latta'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Kenneth Latta' AND EXTRACT(year FROM ct.start_date) = 2013
+  expected:
+  - n: 1
+- id: coach_2012_rico_rossi_sr.
+  description: 'Trainer in Saison 2012/13: Rico Rossi sr.'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Rico Rossi sr.' AND EXTRACT(year FROM ct.start_date) = 2012
+  expected:
+  - n: 1
+- id: coach_2011_rico_rossi_sr.
+  description: 'Trainer in Saison 2011/12: Rico Rossi sr.'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Rico Rossi sr.' AND EXTRACT(year FROM ct.start_date) = 2011
+  expected:
+  - n: 1
+- id: coach_2010_rico_rossi_sr.
+  description: 'Trainer in Saison 2010/11: Rico Rossi sr.'
+  source: coach_tenures + eishockey-statistiken
+  query: SELECT COUNT(*) AS n FROM falken.coach_tenures ct JOIN falken.coaches c ON
+    c.id=ct.coach_id JOIN falken.teams t ON t.id=ct.team_id WHERE t.name='Heilbronner
+    Falken' AND c.name='Rico Rossi sr.' AND EXTRACT(year FROM ct.start_date) = 2010
+  expected:
+  - n: 1
+

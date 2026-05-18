@@ -1,0 +1,1602 @@
+- id: q_rank_2025_26
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2025/26?
+  expected_facts:
+  - '5'
+  expected_category: fact
+- id: q_rank_2024_25
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2024/25?
+  expected_facts:
+  - '1'
+  expected_category: fact
+- id: q_rank_2023_24
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2023/24?
+  expected_facts:
+  - '2'
+  expected_category: fact
+- id: q_rank_2022_23
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2022/23?
+  expected_facts:
+  - '12'
+  expected_category: fact
+- id: q_rank_2021_22
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2021/22?
+  expected_facts:
+  - '6'
+  expected_category: fact
+- id: q_rank_2020_21
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2020/21?
+  expected_facts:
+  - '8'
+  expected_category: fact
+- id: q_rank_2019_20
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2019/20?
+  expected_facts:
+  - '4'
+  expected_category: fact
+- id: q_rank_2018_19
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2018/19?
+  expected_facts:
+  - '8'
+  expected_category: fact
+- id: q_rank_2017_18
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2017/18?
+  expected_facts:
+  - '9'
+  expected_category: fact
+- id: q_rank_2016_17
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2016/17?
+  expected_facts:
+  - '13'
+  expected_category: fact
+- id: q_rank_2015_16
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2015/16?
+  expected_facts:
+  - '14'
+  expected_category: fact
+- id: q_rank_2014_15
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2014/15?
+  expected_facts:
+  - '13'
+  expected_category: fact
+- id: q_rank_2013_14
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2013/14?
+  expected_facts:
+  - '12'
+  expected_category: fact
+- id: q_rank_2012_13
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2012/13?
+  expected_facts:
+  - '6'
+  expected_category: fact
+- id: q_rank_2011_12
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2011/12?
+  expected_facts:
+  - '2'
+  expected_category: fact
+- id: q_rank_2010_11
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2010/11?
+  expected_facts:
+  - '2'
+  expected_category: fact
+- id: q_rank_2009_10
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2009/10?
+  expected_facts:
+  - '6'
+  expected_category: fact
+- id: q_rank_2008_09
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2008/09?
+  expected_facts:
+  - '4'
+  expected_category: fact
+- id: q_rank_2007_08
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2007/08?
+  expected_facts:
+  - '3'
+  expected_category: fact
+- id: q_rank_2006_07
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2006/07?
+  expected_facts:
+  - '2'
+  expected_category: fact
+- id: q_rank_2005_06
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2005/06?
+  expected_facts:
+  - '6'
+  expected_category: fact
+- id: q_rank_2004_05
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2004/05?
+  expected_facts:
+  - '1'
+  expected_category: fact
+- id: q_rank_2003_04
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2003/04?
+  expected_facts:
+  - '10'
+  expected_category: fact
+- id: q_rank_2002_03
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2002/03?
+  expected_facts:
+  - '5'
+  expected_category: fact
+- id: q_rank_2001_02
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2001/02?
+  expected_facts:
+  - '4'
+  expected_category: fact
+- id: q_rank_2000_01
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    2000/01?
+  expected_facts:
+  - '2'
+  expected_category: fact
+- id: q_rank_1999_00
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1999/00?
+  expected_facts:
+  - '5'
+  expected_category: fact
+- id: q_rank_1998_99
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1998/99?
+  expected_facts:
+  - '10'
+  expected_category: fact
+- id: q_rank_1997_98
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1997/98?
+  expected_facts:
+  - '1'
+  expected_category: fact
+- id: q_rank_1996_97
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1996/97?
+  expected_facts:
+  - '2'
+  expected_category: fact
+- id: q_rank_1995_96
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1995/96?
+  expected_facts:
+  - '3'
+  expected_category: fact
+- id: q_rank_1994_95
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1994/95?
+  expected_facts:
+  - '2'
+  expected_category: fact
+- id: q_rank_1993_94
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1993/94?
+  expected_facts:
+  - '1'
+  expected_category: fact
+- id: q_rank_1992_93
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1992/93?
+  expected_facts:
+  - '6'
+  expected_category: fact
+- id: q_rank_1991_92
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1991/92?
+  expected_facts:
+  - '2'
+  expected_category: fact
+- id: q_rank_1990_91
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1990/91?
+  expected_facts:
+  - '9'
+  expected_category: fact
+- id: q_rank_1988_89
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1988/89?
+  expected_facts:
+  - '4'
+  expected_category: fact
+- id: q_rank_1987_88
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1987/88?
+  expected_facts:
+  - '5'
+  expected_category: fact
+- id: q_rank_1986_87
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1986/87?
+  expected_facts:
+  - '2'
+  expected_category: fact
+- id: q_rank_1985_86
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1985/86?
+  expected_facts:
+  - '4'
+  expected_category: fact
+- id: q_rank_1984_85
+  category: saison_platz
+  difficulty: easy
+  question: Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison
+    1984/85?
+  expected_facts:
+  - '3'
+  expected_category: fact
+- id: q_pts_2025_26
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2025/26?
+  expected_facts:
+  - '93'
+  expected_category: fact
+- id: q_pts_2024_25
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2024/25?
+  expected_facts:
+  - '114'
+  expected_category: fact
+- id: q_pts_2023_24
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2023/24?
+  expected_facts:
+  - '109'
+  expected_category: fact
+- id: q_pts_2022_23
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2022/23?
+  expected_facts:
+  - '64'
+  expected_category: fact
+- id: q_pts_2021_22
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2021/22?
+  expected_facts:
+  - '80'
+  expected_category: fact
+- id: q_pts_2020_21
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2020/21?
+  expected_facts:
+  - '68'
+  expected_category: fact
+- id: q_pts_2019_20
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2019/20?
+  expected_facts:
+  - '84'
+  expected_category: fact
+- id: q_pts_2018_19
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2018/19?
+  expected_facts:
+  - '74'
+  expected_category: fact
+- id: q_pts_2017_18
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2017/18?
+  expected_facts:
+  - '66'
+  expected_category: fact
+- id: q_pts_2016_17
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2016/17?
+  expected_facts:
+  - '50'
+  expected_category: fact
+- id: q_pts_2015_16
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2015/16?
+  expected_facts:
+  - '36'
+  expected_category: fact
+- id: q_pts_2014_15
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2014/15?
+  expected_facts:
+  - '34'
+  expected_category: fact
+- id: q_pts_2013_14
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2013/14?
+  expected_facts:
+  - '57'
+  expected_category: fact
+- id: q_pts_2012_13
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2012/13?
+  expected_facts:
+  - '74'
+  expected_category: fact
+- id: q_pts_2011_12
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2011/12?
+  expected_facts:
+  - '90'
+  expected_category: fact
+- id: q_pts_2010_11
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2010/11?
+  expected_facts:
+  - '93'
+  expected_category: fact
+- id: q_pts_2009_10
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2009/10?
+  expected_facts:
+  - '86'
+  expected_category: fact
+- id: q_pts_2008_09
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2008/09?
+  expected_facts:
+  - '76'
+  expected_category: fact
+- id: q_pts_2007_08
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2007/08?
+  expected_facts:
+  - '92'
+  expected_category: fact
+- id: q_pts_2006_07
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2006/07?
+  expected_facts:
+  - '108'
+  expected_category: fact
+- id: q_pts_2005_06
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2005/06?
+  expected_facts:
+  - '62'
+  expected_category: fact
+- id: q_pts_2004_05
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2004/05?
+  expected_facts:
+  - '82'
+  expected_category: fact
+- id: q_pts_2003_04
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2003/04?
+  expected_facts:
+  - '63'
+  expected_category: fact
+- id: q_pts_2002_03
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2002/03?
+  expected_facts:
+  - '97'
+  expected_category: fact
+- id: q_pts_2001_02
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2001/02?
+  expected_facts:
+  - '92'
+  expected_category: fact
+- id: q_pts_2000_01
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 2000/01?
+  expected_facts:
+  - '86'
+  expected_category: fact
+- id: q_pts_1999_00
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 1999/00?
+  expected_facts:
+  - '45'
+  expected_category: fact
+- id: q_pts_1998_99
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 1998/99?
+  expected_facts:
+  - '62'
+  expected_category: fact
+- id: q_pts_1997_98
+  category: saison_punkte
+  difficulty: easy
+  question: Wie viele Punkte holten die Falken in der Saison 1997/98?
+  expected_facts:
+  - '62'
+  expected_category: fact
+- id: q_top_2013_14
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2013/14?
+  expected_facts:
+  - Robert Hock
+  expected_category: fact
+- id: q_top_2014_15
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2014/15?
+  expected_facts:
+  - Dustin Cameron
+  expected_category: fact
+- id: q_top_2015_16
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2015/16?
+  expected_facts:
+  - Adam Brace
+  expected_category: fact
+- id: q_top_2016_17
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2016/17?
+  expected_facts:
+  - Rylan Schwartz
+  expected_category: fact
+- id: q_top_2017_18
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2017/18?
+  expected_facts:
+  - Brandon Alderson
+  expected_category: fact
+- id: q_top_2018_19
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2018/19?
+  expected_facts:
+  - Roope Ranta
+  expected_category: fact
+- id: q_top_2019_20
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2019/20?
+  expected_facts:
+  - Dylan Wruck
+  expected_category: fact
+- id: q_top_2020_21
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2020/21?
+  expected_facts:
+  - Dylan Wruck
+  expected_category: fact
+- id: q_top_2021_22
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2021/22?
+  expected_facts:
+  - Jeremy Williams
+  expected_category: fact
+- id: q_top_2022_23
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2022/23?
+  expected_facts:
+  - Alex Tonge
+  expected_category: fact
+- id: q_top_2023_24
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2023/24?
+  expected_facts:
+  - Pontus Wernerson Libäck
+  expected_category: fact
+- id: q_top_2024_25
+  category: topscorer
+  difficulty: easy
+  question: Wer war Topscorer der Falken in der Saison 2024/25?
+  expected_facts:
+  - Nolan Ritchie
+  expected_category: fact
+- id: q_coach_2023_24_Petrozza
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2023/24?
+  expected_facts:
+  - Francesco Petrozza
+  expected_category: fact
+- id: q_coach_2022_23_Morgan
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2022/23?
+  expected_facts:
+  - Jason Morgan
+  expected_category: fact
+- id: q_coach_2022_23_Jiranek
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2022/23?
+  expected_facts:
+  - Martin Jiranek
+  expected_category: fact
+- id: q_coach_2021_22_Morgan
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2021/22?
+  expected_facts:
+  - Jason Morgan
+  expected_category: fact
+- id: q_coach_2020_21_Zeiter
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2020/21?
+  expected_facts:
+  - Michel Zeiter
+  expected_category: fact
+- id: q_coach_2020_21_Stewart
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2020/21?
+  expected_facts:
+  - William-Bill Stewart
+  expected_category: fact
+- id: q_coach_2019_20_Mellitzer
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2019/20?
+  expected_facts:
+  - Alexander Mellitzer
+  expected_category: fact
+- id: q_coach_2018_19_Mellitzer
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2018/19?
+  expected_facts:
+  - Alexander Mellitzer
+  expected_category: fact
+- id: q_coach_2017_18_Unterluggauer
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2017/18?
+  expected_facts:
+  - Gerhard Unterluggauer
+  expected_category: fact
+- id: q_coach_2016_17_Dahlem
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2016/17?
+  expected_facts:
+  - Fabian Dahlem
+  expected_category: fact
+- id: q_coach_2016_17_Unterluggauer
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2016/17?
+  expected_facts:
+  - Gerhard Unterluggauer
+  expected_category: fact
+- id: q_coach_2015_16_Dahlem
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2015/16?
+  expected_facts:
+  - Fabian Dahlem
+  expected_category: fact
+- id: q_coach_2015_16_Wolf
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2015/16?
+  expected_facts:
+  - Manfred Wolf
+  expected_category: fact
+- id: q_coach_2014_15_Wittmann
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2014/15?
+  expected_facts:
+  - Gerd Wittmann
+  expected_category: fact
+- id: q_coach_2014_15_Pavlovs
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2014/15?
+  expected_facts:
+  - Igors Pavlovs
+  expected_category: fact
+- id: q_coach_2014_15_sr.
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2014/15?
+  expected_facts:
+  - Luigi Calce sr.
+  expected_category: fact
+- id: q_coach_2013_14_Wittmann
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2013/14?
+  expected_facts:
+  - Gerd Wittmann
+  expected_category: fact
+- id: q_coach_2013_14_Pavlovs
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2013/14?
+  expected_facts:
+  - Igors Pavlovs
+  expected_category: fact
+- id: q_coach_2013_14_Latta
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2013/14?
+  expected_facts:
+  - Kenneth Latta
+  expected_category: fact
+- id: q_coach_2012_13_sr.
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2012/13?
+  expected_facts:
+  - Rico Rossi sr.
+  expected_category: fact
+- id: q_coach_2011_12_sr.
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2011/12?
+  expected_facts:
+  - Rico Rossi sr.
+  expected_category: fact
+- id: q_coach_2010_11_sr.
+  category: trainer
+  difficulty: easy
+  question: Wer war Trainer der Heilbronner Falken in der Saison 2010/11?
+  expected_facts:
+  - Rico Rossi sr.
+  expected_category: fact
+- id: q_league_2025_26
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2025/26?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_2024_25
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2024/25?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_2023_24
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2023/24?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_2022_23
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2022/23?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2021_22
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2021/22?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2020_21
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2020/21?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2019_20
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2019/20?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2018_19
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2018/19?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2017_18
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2017/18?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2016_17
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2016/17?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2015_16
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2015/16?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2014_15
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2014/15?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2013_14
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2013/14?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_league_2012_13
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2012/13?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_2011_12
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2011/12?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_2010_11
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2010/11?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_2009_10
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2009/10?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_2008_09
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2008/09?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_2007_08
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2007/08?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_2006_07
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2006/07?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_2005_06
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2005/06?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_2004_05
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2004/05?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_2003_04
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2003/04?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_2002_03
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2002/03?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_2001_02
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2001/02?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_2000_01
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 2000/01?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_1999_00
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1999/00?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_1998_99
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1998/99?
+  expected_facts:
+  - 2. Bundesliga
+  expected_category: fact
+- id: q_league_1997_98
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1997/98?
+  expected_facts:
+  - Hockey Premier League
+  expected_category: fact
+- id: q_league_1996_97
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1996/97?
+  expected_facts:
+  - Hockey Premier League
+  expected_category: fact
+- id: q_league_1995_96
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1995/96?
+  expected_facts:
+  - Hockey Premier League
+  expected_category: fact
+- id: q_league_1994_95
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1994/95?
+  expected_facts:
+  - 1. Bundesliga Süd
+  expected_category: fact
+- id: q_league_1993_94
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1993/94?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_1992_93
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1992/93?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_1991_92
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1991/92?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_1990_91
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1990/91?
+  expected_facts:
+  - Oberliga Süd
+  expected_category: fact
+- id: q_league_1988_89
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1988/89?
+  expected_facts:
+  - 2. Bundesliga Süd
+  expected_category: fact
+- id: q_league_1987_88
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1987/88?
+  expected_facts:
+  - 2. Bundesliga Süd
+  expected_category: fact
+- id: q_league_1986_87
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1986/87?
+  expected_facts:
+  - Oberliga Nord
+  expected_category: fact
+- id: q_league_1985_86
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1985/86?
+  expected_facts:
+  - Oberliga Mitte
+  expected_category: fact
+- id: q_league_1984_85
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1984/85?
+  expected_facts:
+  - Regionalliga Süd-West
+  expected_category: fact
+- id: q_league_1983_84
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1983/84?
+  expected_facts:
+  - Baden-Württemberg-Liga
+  expected_category: fact
+- id: q_league_1982_83
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1982/83?
+  expected_facts:
+  - Baden-Württemberg-Liga
+  expected_category: fact
+- id: q_league_1981_82
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1981/82?
+  expected_facts:
+  - Landesliga BaWü
+  expected_category: fact
+- id: q_league_1980_81
+  category: liga
+  difficulty: easy
+  question: In welcher Liga spielten die Heilbronner Falken in der Saison 1980/81?
+  expected_facts:
+  - Landesliga BaWü
+  expected_category: fact
+- id: q_game_20260227
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen ECDC Memmingen Indians und Heilbronner
+    Falken am 2026-02-27?
+  expected_facts:
+  - '7:2'
+  - 7-2
+  - 7 zu 2
+  expected_category: fact
+- id: q_game_20260222
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Erding
+    Gladiators am 2026-02-22?
+  expected_facts:
+  - '2:7'
+  - 2-7
+  - 2 zu 7
+  expected_category: fact
+- id: q_game_20260220
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen EHF Passau Black Hawks und Heilbronner
+    Falken am 2026-02-20?
+  expected_facts:
+  - '8:3'
+  - 8-3
+  - 8 zu 3
+  expected_category: fact
+- id: q_game_20260206
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Bayreuth
+    Tigers am 2026-02-06?
+  expected_facts:
+  - '11:3'
+  - 11-3
+  - 11 zu 3
+  expected_category: fact
+- id: q_game_20260130
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Stuttgart
+    Rebels am 2026-01-30?
+  expected_facts:
+  - '2:7'
+  - 2-7
+  - 2 zu 7
+  expected_category: fact
+- id: q_game_20260120
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Deggendorfer SC und Heilbronner
+    Falken am 2026-01-20?
+  expected_facts:
+  - '8:2'
+  - 8-2
+  - 8 zu 2
+  expected_category: fact
+- id: q_game_20260116
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen SC Riessersee und Heilbronner
+    Falken am 2026-01-16?
+  expected_facts:
+  - 0:6
+  - 0-6
+  - 0 zu 6
+  expected_category: fact
+- id: q_game_20260102
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und EV Füssen
+    am 2026-01-02?
+  expected_facts:
+  - '6:2'
+  - 6-2
+  - 6 zu 2
+  expected_category: fact
+- id: q_game_20251228
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Stuttgart Rebels und Heilbronner
+    Falken am 2025-12-28?
+  expected_facts:
+  - '1:7'
+  - 1-7
+  - 1 zu 7
+  expected_category: fact
+- id: q_game_20251128
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Stuttgart
+    Rebels am 2025-11-28?
+  expected_facts:
+  - '8:2'
+  - 8-2
+  - 8 zu 2
+  expected_category: fact
+- id: q_game_20251121
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Selber Wölfe und Heilbronner
+    Falken am 2025-11-21?
+  expected_facts:
+  - '1:6'
+  - 1-6
+  - 1 zu 6
+  expected_category: fact
+- id: q_game_20251116
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen SC Riessersee und Heilbronner
+    Falken am 2025-11-16?
+  expected_facts:
+  - '1:6'
+  - 1-6
+  - 1 zu 6
+  expected_category: fact
+- id: q_game_20251114
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Erding
+    Gladiators am 2025-11-14?
+  expected_facts:
+  - '7:2'
+  - 7-2
+  - 7 zu 2
+  expected_category: fact
+- id: q_game_20251028
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Bayreuth
+    Tigers am 2025-10-28?
+  expected_facts:
+  - '10:1'
+  - 10-1
+  - 10 zu 1
+  expected_category: fact
+- id: q_game_20251017
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und EV Füssen
+    am 2025-10-17?
+  expected_facts:
+  - '7:1'
+  - 7-1
+  - 7 zu 1
+  expected_category: fact
+- id: q_game_20251010
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Stuttgart Rebels und Heilbronner
+    Falken am 2025-10-10?
+  expected_facts:
+  - '1:9'
+  - 1-9
+  - 1 zu 9
+  expected_category: fact
+- id: q_game_20250216
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen EV Füssen und Heilbronner Falken
+    am 2025-02-16?
+  expected_facts:
+  - '2:7'
+  - 2-7
+  - 2 zu 7
+  expected_category: fact
+- id: q_game_20250214
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und EC Peiting
+    am 2025-02-14?
+  expected_facts:
+  - '8:2'
+  - 8-2
+  - 8 zu 2
+  expected_category: fact
+- id: q_game_20250211
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Bayreuth
+    Tigers am 2025-02-11?
+  expected_facts:
+  - '9:4'
+  - 9-4
+  - 9 zu 4
+  expected_category: fact
+- id: q_game_20250126
+  category: spielergebnis
+  difficulty: medium
+  question: Welches Ergebnis hatte das Spiel zwischen Stuttgart Rebels und Heilbronner
+    Falken am 2025-01-26?
+  expected_facts:
+  - '1:6'
+  - 1-6
+  - 1 zu 6
+  expected_category: fact
+- id: q_po_2022_23_play-down
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Play-Down R1-Serie zwischen Falken und Selber Wölfe in
+    der Saison 2022/23?
+  expected_facts:
+  - Selber Wölfe
+  expected_category: fact
+- id: q_po_2022_23_play-down
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Play-Down R2-Serie zwischen Falken und Bayreuth Tigers
+    in der Saison 2022/23?
+  expected_facts:
+  - Bayreuth Tigers
+  expected_category: fact
+- id: q_po_2021_22_viertelfin
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Viertelfinale-Serie zwischen Falken und Eispiraten Crimmitschau
+    in der Saison 2021/22?
+  expected_facts:
+  - Heilbronner Falken
+  expected_category: fact
+- id: q_po_2021_22_halbfinale
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Halbfinale-Serie zwischen Falken und Löwen Frankfurt in
+    der Saison 2021/22?
+  expected_facts:
+  - Löwen Frankfurt
+  expected_category: fact
+- id: q_po_2020_21_viertelfin
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Viertelfinale-Serie zwischen Falken und Kassel Huskies
+    in der Saison 2020/21?
+  expected_facts:
+  - Kassel Huskies
+  expected_category: fact
+- id: q_po_2018_19_preplay-o
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Pre Play-Off-Serie zwischen Falken und Dresdner Eislöwen
+    in der Saison 2018/19?
+  expected_facts:
+  - Dresdner Eislöwen
+  expected_category: fact
+- id: q_po_2017_18_preplay-o
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Pre Play-Off-Serie zwischen Falken und Dresdner Eislöwen
+    in der Saison 2017/18?
+  expected_facts:
+  - Heilbronner Falken
+  expected_category: fact
+- id: q_po_2017_18_viertelfin
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Viertelfinale-Serie zwischen Falken und SC Bietigheim-Bissingen
+    Steelers in der Saison 2017/18?
+  expected_facts:
+  - SC Bietigheim-Bissingen Steelers
+  expected_category: fact
+- id: q_po_2016_17_play-down
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Play-Down R1-Serie zwischen Falken und StarBulls Rosenheim
+    in der Saison 2016/17?
+  expected_facts:
+  - Heilbronner Falken
+  expected_category: fact
+- id: q_po_2015_16_play-down
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Play-Down R2-Serie zwischen Falken und ESV Kaufbeuren in
+    der Saison 2015/16?
+  expected_facts:
+  - ESV Kaufbeuren
+  expected_category: fact
+- id: q_po_2015_16_play-down
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Play-Down R1-Serie zwischen Falken und Lausitzer Füchse
+    in der Saison 2015/16?
+  expected_facts:
+  - Lausitzer Füchse
+  expected_category: fact
+- id: q_po_2014_15_play-down
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Play-Down R2-Serie zwischen Falken und ESV Kaufbeuren in
+    der Saison 2014/15?
+  expected_facts:
+  - ESV Kaufbeuren
+  expected_category: fact
+- id: q_po_2014_15_play-down
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Play-Down R1-Serie zwischen Falken und Eispiraten Crimmitschau
+    in der Saison 2014/15?
+  expected_facts:
+  - Eispiraten Crimmitschau
+  expected_category: fact
+- id: q_po_2013_14_play-down
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Play-Down-Serie zwischen Falken und ESV Kaufbeuren in der
+    Saison 2013/14?
+  expected_facts:
+  - Heilbronner Falken
+  expected_category: fact
+- id: q_po_2012_13_viertelfin
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Viertelfinale-Serie zwischen Falken und Schwenninger Wild
+    Wings in der Saison 2012/13?
+  expected_facts:
+  - Schwenninger Wild Wings
+  expected_category: fact
+- id: q_po_2011_12_viertelfin
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Viertelfinale-Serie zwischen Falken und Ravensburg Towerstars
+    in der Saison 2011/12?
+  expected_facts:
+  - Ravensburg Towerstars
+  expected_category: fact
+- id: q_po_2010_11_viertelfin
+  category: playoff
+  difficulty: medium
+  question: Wer gewann die Viertelfinale-Serie zwischen Falken und StarBulls Rosenheim
+    in der Saison 2010/11?
+  expected_facts:
+  - StarBulls Rosenheim
+  expected_category: fact
+- id: q_trend_001
+  category: trend
+  difficulty: medium
+  question: Welches war die punkteschlechteste Falken-Saison der letzten 10 Jahre?
+  expected_facts:
+  - 2015/16
+  - '36'
+  expected_category: trend
+- id: q_trend_002
+  category: trend
+  difficulty: medium
+  question: In welcher Saison hatten die Falken die meisten Punkte?
+  expected_facts:
+  - 2006/07
+  - '108'
+  expected_category: trend
+- id: q_trend_003
+  category: trend
+  difficulty: medium
+  question: Wie viele DEL2-Saisons haben die Falken insgesamt gespielt?
+  expected_facts:
+  - '10'
+  expected_category: fact
+- id: q_trend_004
+  category: trend
+  difficulty: medium
+  question: Wann war der letzte Falken-Abstieg aus der DEL2?
+  expected_facts:
+  - 2022/23
+  expected_category: fact
+- id: q_trend_005
+  category: trend
+  difficulty: medium
+  question: Welcher Spieler hat die meisten Falken-Saisons als Topscorer?
+  expected_facts:
+  - Dylan Wruck
+  expected_category: fact
+- id: q_trend_006
+  category: trend
+  difficulty: medium
+  question: Wie viele Saisons spielten die Falken in der Oberliga in den letzten Jahren?
+  expected_facts:
+  - '3'
+  expected_category: fact
+- id: q_trend_007
+  category: trend
+  difficulty: medium
+  question: In welcher Saison war die Hauptrunde am kürzesten (wegen Corona)?
+  expected_facts:
+  - 2020/21
+  - '49'
+  expected_category: fact
+- id: q_trend_008
+  category: trend
+  difficulty: medium
+  question: Welcher Trainer hatte die längste Amtszeit bei den Falken?
+  expected_facts:
+  - Rico Rossi
+  expected_category: fact
+- id: q_trend_009
+  category: trend
+  difficulty: medium
+  question: Wie viele Trainer hatten die Falken in der DEL2-Zeit (2013-2023)?
+  expected_facts: []
+  expected_category: trend
+- id: q_trend_010
+  category: trend
+  difficulty: medium
+  question: Was war das höchste Falken-Tor-Ergebnis in der aktuellen Saison?
+  expected_facts:
+  - '11'
+  expected_category: fact
+- id: q_trend_011
+  category: trend
+  difficulty: medium
+  question: In welcher Saison wurden die Falken Oberliga-Meister?
+  expected_facts:
+  - 2006/07
+  expected_category: fact
+- id: q_trend_012
+  category: trend
+  difficulty: medium
+  question: Wann hatten die Falken zuletzt mehr als 100 Punkte?
+  expected_facts:
+  - 2006/07
+  - '108'
+  expected_category: fact
+- id: q_trend_013
+  category: trend
+  difficulty: medium
+  question: Wer war Topscorer in der letzten Oberliga-Süd-Saison?
+  expected_facts:
+  - Wernerson Libäck
+  - Ritchie
+  expected_category: fact
+- id: q_trend_014
+  category: trend
+  difficulty: medium
+  question: Wie viele unterschiedliche Trainer hatten die Falken seit 1980?
+  expected_facts: []
+  expected_category: trend
+- id: q_trend_015
+  category: trend
+  difficulty: medium
+  question: Welche Liga ist die zweite deutsche Eishockey-Liga heute?
+  expected_facts:
+  - DEL2
+  expected_category: fact
+- id: q_compare_001
+  category: vergleich
+  difficulty: medium
+  question: Wie oft haben die Falken in der Saison 2025/26 gegen Bayreuth gespielt?
+  expected_facts:
+  - '4'
+  expected_category: fact
+- id: q_compare_002
+  category: vergleich
+  difficulty: medium
+  question: Welches war das höchste Falken-Heim-Ergebnis gegen Bayreuth?
+  expected_facts:
+  - '11'
+  expected_category: fact
+- id: q_compare_003
+  category: vergleich
+  difficulty: medium
+  question: Wann haben die Falken zuletzt im Halbfinale gespielt?
+  expected_facts:
+  - 2021/22
+  - 2023/24
+  expected_category: fact
+- id: q_compare_004
+  category: vergleich
+  difficulty: medium
+  question: Gegen welches Team verloren die Falken 2022/23 in den Playdowns?
+  expected_facts:
+  - Bayreuth
+  expected_category: fact
+- id: q_compare_005
+  category: vergleich
+  difficulty: medium
+  question: Wer wurde Hauptrundensieger der Oberliga Süd 2024/25?
+  expected_facts:
+  - Heilbronner Falken
+  - Falken
+  expected_category: fact
+- id: q_compare_006
+  category: vergleich
+  difficulty: medium
+  question: Wie viele Spiele hat die DEL2 in einer normalen Saison?
+  expected_facts:
+  - '52'
+  expected_category: fact
+- id: q_compare_007
+  category: vergleich
+  difficulty: medium
+  question: Hat Stefan Della Rovere mehr als 30 Punkte in 2022/23?
+  expected_facts:
+  - '38'
+  expected_category: fact
+- id: q_compare_008
+  category: vergleich
+  difficulty: medium
+  question: Wie viele Punkte hatten die Falken in 2019/20?
+  expected_facts:
+  - '84'
+  expected_category: fact
+- id: q_compare_009
+  category: vergleich
+  difficulty: medium
+  question: Welche Saisons hatte Dylan Wruck mehr als 75 Punkte?
+  expected_facts:
+  - 2019/20
+  - 2020/21
+  expected_category: fact
+- id: q_compare_010
+  category: vergleich
+  difficulty: medium
+  question: Wer war Falken-Topscorer in der Klassenerhaltsaison 2015/16?
+  expected_facts:
+  - Adam Brace
+  expected_category: fact
+

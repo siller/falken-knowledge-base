@@ -1,0 +1,208 @@
+# 60 verschiedene Test-Ideen — sollen die Pipeline brechen.
+# 15 Kategorien, je 3-5 Fragen.
+
+# === Saison-Basics (5) ===
+- id: idea_001
+  category: liga
+  question: In welcher Liga spielen die Heilbronner Falken aktuell?
+- id: idea_002
+  category: saison_platz
+  question: Wo standen die Falken am Ende der Hauptrunde 2025/26?
+- id: idea_003
+  category: saison_punkte
+  question: Wie viele Punkte hatten die Falken in der gesamten Saisongeschichte zusammen?
+- id: idea_004
+  category: liga
+  question: Wie lange spielten die Heilbronner Falken in der DEL2 insgesamt?
+- id: idea_005
+  category: liga
+  question: Wann sind die Falken aus der DEL2 abgestiegen?
+
+# === Aktuelle Saison (5) ===
+- id: idea_006
+  category: trainer
+  question: Wer ist aktuell Trainer der Falken?
+- id: idea_007
+  category: topscorer
+  question: Wer ist aktueller Topscorer der Falken?
+- id: idea_008
+  category: spielergebnis
+  question: Was war das letzte Heimspiel der Falken?
+- id: idea_009
+  category: vergleich
+  question: Wie viele Siege haben die Falken in der aktuellen Saison?
+- id: idea_010
+  category: vergleich
+  question: Wie viele Tore haben die Falken in der laufenden Saison erzielt?
+
+# === Spieler-spezifisch (8) ===
+- id: idea_011
+  category: spieler
+  question: Wie viele Saisons spielte Nolan Ritchie für die Falken?
+- id: idea_012
+  category: spieler
+  question: Was war die beste Saison von Dylan Wruck punktemäßig?
+- id: idea_013
+  category: spieler
+  question: Hat Dylan Wruck mehr als 200 Karriere-Punkte für die Falken?
+- id: idea_014
+  category: spieler
+  question: Welche Nationalität hatte Robert Hock?
+- id: idea_015
+  category: spieler
+  question: Wer trug das Trikot mit Nummer 10 in der Saison 2024/25?
+- id: idea_016
+  category: spieler
+  question: Wie viele Tore hat Nolan Ritchie in der Saison 2024/25 erzielt?
+- id: idea_017
+  category: spieler
+  question: Welche Spieler hatten mehr als 80 Punkte in einer Saison bei den Falken?
+- id: idea_018
+  category: spieler
+  question: Hat Calder Anderson in 2025/26 mehr Tore als Vorlagen?
+
+# === Goalie-Fragen (4 — neu durch Backfill) ===
+- id: idea_019
+  category: goalie
+  question: Wer war der beste Torhüter der Falken in der Saison 2024/25 nach Gegentor-Schnitt?
+- id: idea_020
+  category: goalie
+  question: Welche Torhüter spielten 2025/26 für die Falken?
+- id: idea_021
+  category: goalie
+  question: Wie viele Siege hatte Nico Zimmermann in der Saison 2024/25?
+- id: idea_022
+  category: goalie
+  question: Hatte Michael Paterson-Jones in 24/25 eine bessere Save-Quote als Nico Zimmermann?
+
+# === Trainer-Karriere (4) ===
+- id: idea_023
+  category: trainer
+  question: Wie lange war Rico Rossi Trainer der Falken?
+- id: idea_024
+  category: trainer
+  question: Welcher Trainer hatte die längste durchgehende Amtszeit bei den Falken?
+- id: idea_025
+  category: trainer
+  question: Wer war der erste Trainer der Falken überhaupt?
+- id: idea_026
+  category: trainer
+  question: Wer war Trainer der Falken in der Klassenerhalt-Saison 2015/16?
+
+# === Playoff-Fragen (5 — viele neu durch Oberliga-Backfill) ===
+- id: idea_027
+  category: playoff
+  question: Wie weit kamen die Falken in den Oberliga-Süd Playoffs 2024/25?
+- id: idea_028
+  category: playoff
+  question: Welche Teams haben die Falken im Viertelfinale 2023/24 besiegt?
+- id: idea_029
+  category: playoff
+  question: Wie viele Playoff-Serien haben die Falken in der DEL2-Zeit gewonnen?
+- id: idea_030
+  category: playoff
+  question: Welches Team hat die Falken am häufigsten in den Playoffs eliminiert?
+- id: idea_031
+  category: playoff
+  question: Wie viele Playdown-Serien spielten die Falken in der DEL2?
+
+# === Spiel-spezifisch (5) ===
+- id: idea_032
+  category: spielergebnis
+  question: Was war das höchste Tor-Ergebnis der Falken in einem einzelnen Spiel?
+- id: idea_033
+  category: spielergebnis
+  question: Was war die höchste Niederlage der Falken in einem Spiel?
+- id: idea_034
+  category: spielergebnis
+  question: Wie oft haben die Falken in der Saison 2025/26 gegen Memmingen gespielt und mit welchen Ergebnissen?
+- id: idea_035
+  category: spielergebnis
+  question: Wie viele Spiele endeten in der Saison 2024/25 in Overtime?
+- id: idea_036
+  category: spielergebnis
+  question: Welches Spiel hatte die meisten Gesamttore in der Saison 2023/24?
+
+# === Trend / Aggregat (5) ===
+- id: idea_037
+  category: trend
+  question: In welcher Saison hatten die Falken die meisten Tore?
+- id: idea_038
+  category: trend
+  question: Welcher Spieler hat in der Falken-Geschichte die meisten Karriere-Tore?
+- id: idea_039
+  category: trend
+  question: Wie hat sich die Tordifferenz der Falken in den letzten 5 Saisons entwickelt?
+- id: idea_040
+  category: trend
+  question: Wie viele unterschiedliche Spieler trugen je das Falken-Trikot?
+- id: idea_041
+  category: trend
+  question: Welche Liga hatte für die Falken historisch die höchste Punktzahl pro Saison?
+
+# === Vergleich (3) ===
+- id: idea_042
+  category: vergleich
+  question: Hatten die Falken in 2023/24 oder 2024/25 mehr Punkte?
+- id: idea_043
+  category: vergleich
+  question: Wer hatte mehr Punkte — Nolan Ritchie 2024/25 oder Dylan Wruck 2019/20?
+- id: idea_044
+  category: vergleich
+  question: Wie schneiden die Falken in Heimspielen vs Auswärtsspielen 2024/25 ab?
+
+# === Negativ / Out-of-Scope (4) ===
+- id: idea_045
+  category: out_of_scope
+  question: Wer wurde 2025 Deutscher Meister im Eishockey?
+- id: idea_046
+  category: out_of_scope
+  question: Was ist das aktuelle Falken-Trikot-Design?
+- id: idea_047
+  category: out_of_scope
+  question: Wer hat das längste Eishockey-Spiel aller Zeiten gespielt?
+- id: idea_048
+  category: out_of_scope
+  question: Wer ist der aktuelle DEB-Präsident?
+
+# === Edge-Cases / harte SQL (5) ===
+- id: idea_049
+  category: edge
+  question: Welche Saison hatte die kürzeste Hauptrunde (Anzahl Spiele)?
+- id: idea_050
+  category: edge
+  question: Welcher Trainer übernahm die Falken am häufigsten?
+- id: idea_051
+  category: edge
+  question: Gab es Spieler, die als Verteidiger UND Stürmer bei Falken gespielt haben?
+- id: idea_052
+  category: edge
+  question: Welche Spieler verließen die Falken nach genau einer Saison?
+- id: idea_053
+  category: edge
+  question: In welchem Monat finden die meisten Falken-Heimspiele statt?
+
+# === News/Narrative (4) ===
+- id: idea_054
+  category: narrative
+  question: Was ist die neueste News über die Heilbronner Falken?
+- id: idea_055
+  category: narrative
+  question: Wer ist Steffen Ziesche und welche Rolle hat er bei den Falken?
+- id: idea_056
+  category: narrative
+  question: Was ist der HEC und in welchem Zusammenhang steht er zu den Falken?
+- id: idea_057
+  category: narrative
+  question: Was ist über Franz Jokinen bei den Falken bekannt?
+
+# === Numerische Spezial (3) ===
+- id: idea_058
+  category: trend
+  question: Wie viele Spiele insgesamt sind in der Datenbank für die Falken?
+- id: idea_059
+  category: trend
+  question: Welche durchschnittliche Punktzahl hatten Falken pro Saison über die Jahre?
+- id: idea_060
+  category: trend
+  question: In wie vielen verschiedenen Ligen haben die Falken über die Jahre gespielt?

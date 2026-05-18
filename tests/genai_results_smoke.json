@@ -1,0 +1,310 @@
+{
+  "summary": {
+    "total": 20,
+    "pass": 20,
+    "fail": 0,
+    "error": 0
+  },
+  "results": [
+    {
+      "id": "q_rank_2025_26",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2025/26?",
+      "expected_facts": [
+        "5"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2025/26 auf dem 5. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2025/26'",
+      "time_sec": 7.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2024_25",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2024/25?",
+      "expected_facts": [
+        "1"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2024/25 auf dem 1. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2024/25'",
+      "time_sec": 10.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2023_24",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2023/24?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2023/24 Saison auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2023/24';",
+      "time_sec": 9.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2022_23",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2022/23?",
+      "expected_facts": [
+        "12"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2022/23 auf dem 12. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2022/23';",
+      "time_sec": 10.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2021_22",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2021/22?",
+      "expected_facts": [
+        "6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2021/22 auf dem 6. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2021/22';",
+      "time_sec": 7.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2020_21",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2020/21?",
+      "expected_facts": [
+        "8"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2020/21 auf dem 8. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2020/21';",
+      "time_sec": 10.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2019_20",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2019/20?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2019/20 auf dem 4. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2019/20';",
+      "time_sec": 5.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2018_19",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2018/19?",
+      "expected_facts": [
+        "8"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2018/19 auf dem 8. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE season = '2018/19' AND team = 'Heilbronner Falken';",
+      "time_sec": 9.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2017_18",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2017/18?",
+      "expected_facts": [
+        "9"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2017/18 auf dem 9. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2017/18'",
+      "time_sec": 7.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2016_17",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2016/17?",
+      "expected_facts": [
+        "13"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2016/17 auf dem 13. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2016/17';",
+      "time_sec": 7.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2015_16",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2015/16?",
+      "expected_facts": [
+        "14"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2015/16 auf dem 14. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2015/16'",
+      "time_sec": 7.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2014_15",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2014/15?",
+      "expected_facts": [
+        "13"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2014/15 auf dem 13. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2014/15';",
+      "time_sec": 20.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2013_14",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2013/14?",
+      "expected_facts": [
+        "12"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2013/14 auf dem 12. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2013/14';",
+      "time_sec": 15.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2012_13",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2012/13?",
+      "expected_facts": [
+        "6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2012/13 auf dem 6. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2012/13';",
+      "time_sec": 16.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2011_12",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2011/12?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2011/12 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2011/12'",
+      "time_sec": 9.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2010_11",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2010/11?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2010/11 auf dem zweiten Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE season = '2010/11' AND team = 'Heilbronner Falken';",
+      "time_sec": 12.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2009_10",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2009/10?",
+      "expected_facts": [
+        "6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2009/10 auf dem 6. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2009/10';",
+      "time_sec": 10.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2008_09",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2008/09?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2008/09 auf dem 4. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2008/09';",
+      "time_sec": 7.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2007_08",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2007/08?",
+      "expected_facts": [
+        "3"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2007/08 auf dem 3. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2007/08'",
+      "time_sec": 8.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2006_07",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2006/07?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2006/07 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2006/07';",
+      "time_sec": 8.3,
+      "pass": true,
+      "missing_facts": []
+    }
+  ]
+}

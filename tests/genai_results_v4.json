@@ -1,0 +1,3314 @@
+{
+  "summary": {
+    "total": 211,
+    "pass": 194,
+    "fail": 17,
+    "error": 0
+  },
+  "results": [
+    {
+      "id": "q_rank_2025_26",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2025/26?",
+      "expected_facts": [
+        "5"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2025/26 auf dem 5. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2025/26';",
+      "time_sec": 25.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2024_25",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2024/25?",
+      "expected_facts": [
+        "1"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2024/25 auf dem 1. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2024/25';",
+      "time_sec": 18.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2023_24",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2023/24?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2023/24 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2023/24';",
+      "time_sec": 9.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2022_23",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2022/23?",
+      "expected_facts": [
+        "12"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2022/23 auf dem 12. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2022/23';",
+      "time_sec": 14.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2021_22",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2021/22?",
+      "expected_facts": [
+        "6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2021/22 auf dem 6. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2021/22';",
+      "time_sec": 10.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2020_21",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2020/21?",
+      "expected_facts": [
+        "8"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2020/21 auf dem 8. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2020/21';",
+      "time_sec": 23.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2019_20",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2019/20?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2019/20 auf dem 4. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2019/20';",
+      "time_sec": 18.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2018_19",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2018/19?",
+      "expected_facts": [
+        "8"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2018/19 auf dem 8. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2018/19';",
+      "time_sec": 9.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2017_18",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2017/18?",
+      "expected_facts": [
+        "9"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2017/18 auf dem 9. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2017/18';",
+      "time_sec": 9.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2016_17",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2016/17?",
+      "expected_facts": [
+        "13"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2016/17 auf Tabellenplatz 13.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2016/17';",
+      "time_sec": 8.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2015_16",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2015/16?",
+      "expected_facts": [
+        "14"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2015/16 auf Tabellenplatz 14.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2015/16';",
+      "time_sec": 7.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2014_15",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2014/15?",
+      "expected_facts": [
+        "13"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2014/15 auf dem 13. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2014/15';",
+      "time_sec": 10.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2013_14",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2013/14?",
+      "expected_facts": [
+        "12"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2013/14 auf dem 12. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2013/14';",
+      "time_sec": 13.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2012_13",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2012/13?",
+      "expected_facts": [
+        "6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2012/13 auf dem 6. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2012/13' AND is_focus_team_season = TRUE;",
+      "time_sec": 10.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2011_12",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2011/12?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2011/12 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2011/12';",
+      "time_sec": 10.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2010_11",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2010/11?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2010/11 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2010/11';",
+      "time_sec": 10.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2009_10",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2009/10?",
+      "expected_facts": [
+        "6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2009/10 auf dem 6. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2009/10';",
+      "time_sec": 14.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2008_09",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2008/09?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2008/09 auf dem 4. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT season, final_rank, points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2008/09';",
+      "time_sec": 10.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2007_08",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2007/08?",
+      "expected_facts": [
+        "3"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2007/08 auf dem 3. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2007/08' AND is_focus_team_season = TRUE;",
+      "time_sec": 18.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2006_07",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2006/07?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2006/07 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2006/07';",
+      "time_sec": 14.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2005_06",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2005/06?",
+      "expected_facts": [
+        "6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2005/06 auf dem 6. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2005/06';",
+      "time_sec": 14.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2004_05",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2004/05?",
+      "expected_facts": [
+        "1"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2004/05 auf dem 1. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2004/05' AND is_focus_team_season = TRUE;",
+      "time_sec": 55.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2003_04",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2003/04?",
+      "expected_facts": [
+        "10"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2003/04 auf dem 10. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2003/04';",
+      "time_sec": 23.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2002_03",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2002/03?",
+      "expected_facts": [
+        "5"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "⚠️  Konnte die Frage nicht beantworten (SQL-Fehler: {'code': '42601', 'details': None, 'hint': None, 'message': 'unterminated quoted string at or near \"\\') t\"'}).",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2002/03' AND is_focus_team_season = TRUE'",
+      "time_sec": 6.7,
+      "pass": false,
+      "missing_facts": [
+        "5"
+      ]
+    },
+    {
+      "id": "q_rank_2001_02",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2001/02?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2001/02 auf Tabellenplatz 4.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2001/02' LIMIT 1;",
+      "time_sec": 20.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_2000_01",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2000/01?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 2000/01 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2000/01';",
+      "time_sec": 6.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1999_00",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1999/00?",
+      "expected_facts": [
+        "5"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1999/00 auf Tabellenplatz 5.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1999/00' AND is_focus_team_season = TRUE;",
+      "time_sec": 10.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1998_99",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1998/99?",
+      "expected_facts": [
+        "10"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1998/99 auf dem 10. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1998/99';",
+      "time_sec": 7.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1997_98",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1997/98?",
+      "expected_facts": [
+        "1"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1997/98 auf dem 1. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1997/98';",
+      "time_sec": 14.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1996_97",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1996/97?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1996/97 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1996/97';",
+      "time_sec": 9.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1995_96",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1995/96?",
+      "expected_facts": [
+        "3"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1995/96 auf dem 3. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1995/96';",
+      "time_sec": 10.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1994_95",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1994/95?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1994/95 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1994/95';",
+      "time_sec": 9.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1993_94",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1993/94?",
+      "expected_facts": [
+        "1"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1993/94 auf dem 1. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1993/94';",
+      "time_sec": 14.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1992_93",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1992/93?",
+      "expected_facts": [
+        "6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1992/93 auf Tabellenplatz 6.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1992/93' AND is_focus_team_season = TRUE;",
+      "time_sec": 10.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1991_92",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1991/92?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1991/92 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1991/92' AND is_focus_team_season = TRUE",
+      "time_sec": 12.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1990_91",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1990/91?",
+      "expected_facts": [
+        "9"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1990/91 auf dem 9. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1990/91';",
+      "time_sec": 9.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1988_89",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1988/89?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1988/89 auf dem 4. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1988/89';",
+      "time_sec": 38.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1987_88",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1987/88?",
+      "expected_facts": [
+        "5"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1987/88 auf dem 5. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1987/88';",
+      "time_sec": 20.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1986_87",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1986/87?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1986/87 auf dem 2. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1986/87';",
+      "time_sec": 13.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1985_86",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1985/86?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1985/86 auf dem 4. Tabellenplatz.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1985/86';",
+      "time_sec": 19.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_rank_1984_85",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 1984/85?",
+      "expected_facts": [
+        "3"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken beendeten die Saison 1984/85 auf Tabellenplatz 3.",
+      "actual_category": "fact",
+      "sql": "SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1984/85';",
+      "time_sec": 11.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2025_26",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2025/26?",
+      "expected_facts": [
+        "93"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Keine Daten.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2025/26/27'",
+      "time_sec": 8.2,
+      "pass": false,
+      "missing_facts": [
+        "93"
+      ]
+    },
+    {
+      "id": "q_pts_2024_25",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2024/25?",
+      "expected_facts": [
+        "114"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2024/25 114 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2024/25' AND is_focus_team_season = TRUE;",
+      "time_sec": 12.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2023_24",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2023/24?",
+      "expected_facts": [
+        "109"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2023/24 insgesamt 109 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2023/24' AND is_focus_team_season = TRUE",
+      "time_sec": 8.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2022_23",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2022/23?",
+      "expected_facts": [
+        "64"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken holten in der Saison 2022/23 64 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2022/23';",
+      "time_sec": 9.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2021_22",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2021/22?",
+      "expected_facts": [
+        "80"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2021/22 80 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2021/22'",
+      "time_sec": 10.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2020_21",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2020/21?",
+      "expected_facts": [
+        "68"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2020/21 68 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2020/21' AND is_focus_team_season = TRUE;",
+      "time_sec": 10.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2019_20",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2019/20?",
+      "expected_facts": [
+        "84"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2019/20 84 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2019/20';",
+      "time_sec": 32.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2018_19",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2018/19?",
+      "expected_facts": [
+        "74"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2018/19 insgesamt 74 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2018/19' AND is_focus_team_season = TRUE;",
+      "time_sec": 12.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2017_18",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2017/18?",
+      "expected_facts": [
+        "66"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken holten in der Saison 2017/18 66 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2017/18';",
+      "time_sec": 19.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2016_17",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2016/17?",
+      "expected_facts": [
+        "50"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken holten in der Saison 2016/17 50 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2016/17' AND is_focus_team_season = TRUE;",
+      "time_sec": 18.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2015_16",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2015/16?",
+      "expected_facts": [
+        "36"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken holten in der Saison in der Saison 2015/16 36 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2015/16' AND is_focus_team_season = TRUE;",
+      "time_sec": 9.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2014_15",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2014/15?",
+      "expected_facts": [
+        "34"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2014/15 34 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2014/15' AND is_focus_team_season = TRUE;",
+      "time_sec": 16.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2013_14",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2013/14?",
+      "expected_facts": [
+        "57"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2013/14 57 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2013/14';",
+      "time_sec": 20.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2012_13",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2012/13?",
+      "expected_facts": [
+        "74"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken holten in der Saison 2012/13 74 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2012/13'",
+      "time_sec": 22.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2011_12",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2011/12?",
+      "expected_facts": [
+        "90"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2011/12 90 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2011/12' AND is_focus_team_season = TRUE",
+      "time_sec": 11.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2010_11",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2010/11?",
+      "expected_facts": [
+        "93"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken holten in der Saison 2010/11 93 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2010/11';",
+      "time_sec": 9.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2009_10",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2009/10?",
+      "expected_facts": [
+        "86"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2009/10 86 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2009/10' AND is_focus_team_season = TRUE",
+      "time_sec": 10.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2008_09",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2008/09?",
+      "expected_facts": [
+        "76"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2008/09 76 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2008/09';",
+      "time_sec": 16.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2007_08",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2007/08?",
+      "expected_facts": [
+        "92"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2007/08 92 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2007/08';",
+      "time_sec": 7.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2006_07",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2006/07?",
+      "expected_facts": [
+        "108"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2006/07 108 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2006/07'",
+      "time_sec": 15.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2005_06",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2005/06?",
+      "expected_facts": [
+        "62"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken holten in der Saison 2005/06 insgesamt 62 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2005/06' AND is_focus_team_season = TRUE;",
+      "time_sec": 9.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2004_05",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2004/05?",
+      "expected_facts": [
+        "82"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2004/05 82 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2004/05' AND is_focus_team_season = TRUE;",
+      "time_sec": 10.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2003_04",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2003/04?",
+      "expected_facts": [
+        "63"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2003/04 63 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2003/04' AND is_focus_team_season = TRUE;",
+      "time_sec": 10.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2002_03",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2002/03?",
+      "expected_facts": [
+        "97"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2002/03 97 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2002/03' AND is_focus_team_season = TRUE;",
+      "time_sec": 23.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2001_02",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2001/02?",
+      "expected_facts": [
+        "92"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken holten in der Saison 2001/02 92 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2001/02' AND is_focus_team_season = TRUE",
+      "time_sec": 15.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_2000_01",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 2000/01?",
+      "expected_facts": [
+        "86"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 2000/01 86 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings season_standings WHERE team = 'Heilbronner Falken' AND season = '2000/01' AND is_focus_team_season = TRUE;",
+      "time_sec": 17.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_1999_00",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 1999/00?",
+      "expected_facts": [
+        "45"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken holten in der Saison 1999/00 45 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1999/00';",
+      "time_sec": 19.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_1998_99",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 1998/99?",
+      "expected_facts": [
+        "62"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 1998/99 62 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1998/99' AND is_focus_team_season = TRUE;",
+      "time_sec": 11.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_pts_1997_98",
+      "category": "saison_punkte",
+      "question": "Wie viele Punkte holten die Falken in der Saison 1997/98?",
+      "expected_facts": [
+        "62"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken holten in der Saison 1997/98 62 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1997/98' AND is_focus_team_season = TRUE;",
+      "time_sec": 15.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2013_14",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2013/14?",
+      "expected_facts": [
+        "Robert Hock"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Topscorer der Heilbronner Falken in der Saison 2013/14 war Robert Hock mit 55 Punkten (11 Tore und 44 Assists).",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2013/14' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 22.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2014_15",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2014/15?",
+      "expected_facts": [
+        "Dustin Cameron"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2014/15 war Dustin Cameron mit 50 Punkten (19 Tore, 31 Assists).",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2014/15' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 10.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2015_16",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2015/16?",
+      "expected_facts": [
+        "Adam Brace"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Adam Brace war mit 63 Punkten (28 Tore, 35 Assists) der Topscorer der Heilbronner Falken in der Saison 2015/16.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2015/16' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 28.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2016_17",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2016/17?",
+      "expected_facts": [
+        "Rylan Schwartz"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Rylan Schwartz war mit 49 Punkten (17 Tore, 32 Assists) der Topscorer der Falken in der Saison 2016/17.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2016/17' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 25.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2017_18",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2017/18?",
+      "expected_facts": [
+        "Brandon Alderson"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Heilbronner Falken in der Saison 2017/18 war Brandon Alderson mit 54 Punkten (25 Tore, 29 Assists).",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2017/18' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 12.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2018_19",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2018/19?",
+      "expected_facts": [
+        "Roope Ranta"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Heilbronner Falken in der Saison 2018/19 war Roope Ranta mit 79 Punkten (31 Tore und 48 Assists).",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2018/19' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 9.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2019_20",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2019/20?",
+      "expected_facts": [
+        "Dylan Wruck"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Dylan Wruck war mit 88 Punkten (24 Tore, 64 Assists) der Topscorer der Falken in der Saison 2019/20.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2019/20' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 18.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2020_21",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2020/21?",
+      "expected_facts": [
+        "Dylan Wruck"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Heilbronner Falken in der Saison 2020/21 war Dylan Wruck mit 78 Punkten (23 Tore und 55 Assists).",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2020/21' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 14.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2021_22",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2021/22?",
+      "expected_facts": [
+        "Jeremy Williams"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Jeremy Williams war mit 62 Punkten (26 Tore, 36 Assists) Topscorer der Heilbronner Falken in der Saison 2021/22.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2021/22' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 7.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2022_23",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2022/23?",
+      "expected_facts": [
+        "Alex Tonge"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Alex Tonge war mit 59 Punkten (19 Tore, 40 Assists) der Topscorer der Falken in der Saison 2022/23.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2022/23' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 7.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2023_24",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2023/24?",
+      "expected_facts": [
+        "Pontus Wernerson Libäck"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Es liegen keine Daten vor.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2023/24/25' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 17.6,
+      "pass": false,
+      "missing_facts": [
+        "Pontus Wernerson Libäck"
+      ]
+    },
+    {
+      "id": "q_top_2024_25",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2024/25?",
+      "expected_facts": [
+        "Nolan Ritchie"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Nolan Ritchie war mit 84 Punkten (38 Tore, 46 Assists) Topscorer der Falken in der Saison 2024/25.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2024/25' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 5;",
+      "time_sec": 7.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2023_24_Petrozza",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2023/24?",
+      "expected_facts": [
+        "Francesco Petrozza"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Francesco Petrozza war in der Saison 2023/24 als Headcoach der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date\nFROM coach_tenures ct\nJOIN coaches c ON c.id = ct.coach_id\nJOIN teams t ON t.id = ct.team_id\nJOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date\nWHERE t.name = 'Heilbronner Falken' AND s.label = '2023/24' AND ct.role = 'Headcoach';",
+      "time_sec": 12.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2022_23_Morgan",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2022/23?",
+      "expected_facts": [
+        "Jason Morgan"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2022/23 waren Jason Morgan und Martin Jiranek als Headcoaches der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2022/23' AND ct.role = 'Headcoach';",
+      "time_sec": 10.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2022_23_Jiranek",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2022/23?",
+      "expected_facts": [
+        "Martin Jiranek"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2022/23 waren Jason Morgan und Martin Jiranek als Headcoaches der Heilbronner Falken tätig, beide vom 1. September 2022 bis zum 31. Mai 2023.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2022/23' AND ct.role = 'Headcoach';",
+      "time_sec": 19.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2021_22_Morgan",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2021/22?",
+      "expected_facts": [
+        "Jason Morgan"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Jason Morgan war in der Saison 2021/22 als Headcoach der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2021/22' AND ct.role = 'Headcoach';",
+      "time_sec": 13.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2020_21_Zeiter",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2020/21?",
+      "expected_facts": [
+        "Michel Zeiter"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Trainer der Heilbronner Falken in der Saison 2020/21 waren Michel Zeiter und William-Bill Stewart, beide als Headcoach vom 1. September 2020 bis zum 31. Mai 2021.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date\nFROM coach_tenures ct\nJOIN coaches c ON c.id = ct.coach_id\nJOIN teams t ON t.id = ct.team_id\nJOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date\nWHERE t.name = 'Heilbronner Falken' AND s.label = '2020/21' AND ct.role = 'Headcoach';",
+      "time_sec": 20.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2020_21_Stewart",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2020/21?",
+      "expected_facts": [
+        "William-Bill Stewart"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2020/21 waren Michel Zeiter und William-Bill Stewart als Headcoach der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2020/21' AND ct.role = 'Headcoach';",
+      "time_sec": 15.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2019_20_Mellitzer",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2019/20?",
+      "expected_facts": [
+        "Alexander Mellitzer"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Alexander Mellitzer war in der Saison 2019/20 als Headcoach der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2019/20' AND ct.role = 'Headcoach';",
+      "time_sec": 14.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2018_19_Mellitzer",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2018/19?",
+      "expected_facts": [
+        "Alexander Mellitzer"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Alexander Mellitzer war in der Saison 2018/19 als Headcoach der Heilbronner Falken tätig (vom 1. September 2018 bis 31. Mai 2019) tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date\nFROM coach_tenures ct\nJOIN coaches c ON c.id = ct.coach_id\nJOIN teams t ON t.id = ct.team_id\nJOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date\nWHERE t.name = 'Heilbronner Falken' AND s.label = '2018/19' AND ct.role = 'Headcoach';",
+      "time_sec": 10.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2017_18_Unterluggauer",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2017/18?",
+      "expected_facts": [
+        "Gerhard Unterluggauer"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Trainer der Heilbronner Falken in der Saison 2017/18 war Gerhard Unterluggauer.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2017/18' AND ct.role = 'Headcoach';",
+      "time_sec": 34.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2016_17_Dahlem",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2016/17?",
+      "expected_facts": [
+        "Fabian Dahlem"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Fabian Dahlem war in der Saison 2016/17 Headcoach der Heilbronner Falken (vom 1. September 2016 bis 31. Mai 2017).",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date\nFROM coach_tenures ct\nJOIN coaches c ON c.id = ct.coach_id\nJOIN teams t ON t.id = ct.team_id\nJOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date\nWHERE t.name = 'Heilbronner Falken' AND s.label = '2016/17' AND ct.role = 'Headcoach'\nORDER BY ct.start_date\nLIMIT 1;",
+      "time_sec": 24.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2016_17_Unterluggauer",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2016/17?",
+      "expected_facts": [
+        "Gerhard Unterluggauer"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Trainer der Heilbronner Falken in der Saison 2016/17 waren Fabian Dahlem und Gerhard Unterluggauer.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name AS coach_name FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2016/17' AND ct.role = 'Headcoach';",
+      "time_sec": 22.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2015_16_Dahlem",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2015/16?",
+      "expected_facts": [
+        "Fabian Dahlem"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2015/16 waren Manfred Wolf und Fabian Dahlem als Headcoaches der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2015/16' AND ct.role = 'Headcoach';",
+      "time_sec": 13.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2015_16_Wolf",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2015/16?",
+      "expected_facts": [
+        "Manfred Wolf"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2015/16 waren Manfred Wolf und Fabian Dahlem als Headcoaches der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2015/16' AND ct.role = 'Headcoach';",
+      "time_sec": 11.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2014_15_Wittmann",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2014/15?",
+      "expected_facts": [
+        "Gerd Wittmann"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2014/15 waren Igors Pavlovs, Gerd Wittmann und Luigi Calce sr. als Headcoach der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2014/15' AND ct.role = 'Headcoach';",
+      "time_sec": 24.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2014_15_Pavlovs",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2014/15?",
+      "expected_facts": [
+        "Igors Pavlovs"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2014/15 waren Igors Pavlovs, Gerd Wittmann und Luigi Calce sr. als Headcoaches der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2014/15' AND ct.role = 'Headcoach';",
+      "time_sec": 15.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2014_15_sr.",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2014/15?",
+      "expected_facts": [
+        "Luigi Calce sr."
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2014/15 waren Igors Pavlovs, Gerd Wittmann und Luigi Calce sr. als Headcoaches der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name AS coach_name, ct.role, ct.start_date, ct.end_date\nFROM coach_tenures ct\nJOIN coaches c ON c.id = ct.coach_id\nJOIN teams t ON t.id = ct.team_id\nJOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date\nWHERE t.name = 'Heilbronner Falken' AND s.label = '2014/15' AND ct.role = 'Headcoach';",
+      "time_sec": 24.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2013_14_Wittmann",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2013/14?",
+      "expected_facts": [
+        "Gerd Wittmann"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Trainer der Heilbronner Falken in der Saison 2013/14 waren Kenneth Latta, Gerd Wittmann und Igors Pavlovs.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2013/14' AND ct.role = 'Headcoach';",
+      "time_sec": 22.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2013_14_Pavlovs",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2013/14?",
+      "expected_facts": [
+        "Igors Pavlovs"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Trainer der Heilbronner Falken in der Saison 2013/14 waren Kenneth Latta, Gerd Wittmann und Igors Pavlovs als Headcoaches.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2013/14' AND ct.role = 'Headcoach';",
+      "time_sec": 11.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2013_14_Latta",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2013/14?",
+      "expected_facts": [
+        "Kenneth Latta"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2013/14 waren Kenneth Latta, Gerd Wittmann und Igors Pavlovs als Headcoaches der Heilbronner Falken tätig.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2013/14' AND ct.role = 'Headcoach';",
+      "time_sec": 11.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2012_13_sr.",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2012/13?",
+      "expected_facts": [
+        "Rico Rossi sr."
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Rico Rossi sr. war in der Saison 2012/13 Headcoach der Heilbronner Falken (vom 1. September 2012 bis 31. Mai 2013).",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2012/13' AND ct.role = 'Headcoach';",
+      "time_sec": 20.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2011_12_sr.",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2011/12?",
+      "expected_facts": [
+        "Rico Rossi sr."
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Trainer der Heilbronner Falken in der Saison 2011/12 war Rico Rossi sr.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2011/12' AND ct.role = 'Headcoach';",
+      "time_sec": 16.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_coach_2010_11_sr.",
+      "category": "trainer",
+      "question": "Wer war Trainer der Heilbronner Falken in der Saison 2010/11?",
+      "expected_facts": [
+        "Rico Rossi sr."
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Trainer der Heilbronner Falken in der Saison 2010/11 war Rico Rossi sr.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label = '2010/11' AND ct.role = 'Headcoach';",
+      "time_sec": 19.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2025_26",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2025/26?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2025/26 in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2025/26' LIMIT 1;",
+      "time_sec": 33.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2024_25",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2024/25?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2024/25 in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT DISTINCT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2024/25'",
+      "time_sec": 35.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2023_24",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2023/24?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2023/24 in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT DISTINCT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2023/24';",
+      "time_sec": 12.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2022_23",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2022/23?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2022/23 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2022/23' AND is_focus_team_season = TRUE;",
+      "time_sec": 11.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2021_22",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2021/22?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2021/22 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT DISTINCT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2021/22';",
+      "time_sec": 9.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2020_21",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2020/21?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2020/21 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2020/21' AND is_focus_team_season = TRUE;",
+      "time_sec": 8.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2019_20",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2019/20?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2019/20 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT DISTINCT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2019/20'",
+      "time_sec": 8.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2018_19",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2018/19?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2018/19 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2018/19'",
+      "time_sec": 20.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2017_18",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2017/18?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2017/18 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2017/18';",
+      "time_sec": 9.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2016_17",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2016/17?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2016/17 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2016/17' LIMIT 1;",
+      "time_sec": 8.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2015_16",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2015/16?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2015/16 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2015/16';",
+      "time_sec": 61.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2014_15",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2014/15?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2014/15 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2014/15';",
+      "time_sec": 12.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2013_14",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2013/14?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2013/14 in der DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2013/14' AND is_focus_team_season = TRUE",
+      "time_sec": 12.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2012_13",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2012/13?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2012/13 in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2012/13';",
+      "time_sec": 7.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2011_12",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2011/12?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2011/12 in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2011/12' AND is_focus_team_season = TRUE LIMIT 1;",
+      "time_sec": 10.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2010_11",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2010/11?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2010/11 in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2010/11' LIMIT 1;",
+      "time_sec": 32.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2009_10",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2009/10?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2009/10 in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2009/10' AND is_focus_team_season = TRUE;",
+      "time_sec": 14.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2008_09",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2008/09?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2008/09 in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2008/09' LIMIT 1;",
+      "time_sec": 33.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2007_08",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2007/08?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2007/08 spielten die Heilbronner Falken in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2007/08';",
+      "time_sec": 12.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2006_07",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2006/07?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2006/07 in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2006/07' LIMIT 1;",
+      "time_sec": 5.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2005_06",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2005/06?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2005/06 in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2005/06';",
+      "time_sec": 22.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2004_05",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2004/05?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2004/05 in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2004/05';",
+      "time_sec": 13.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2003_04",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2003/04?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2003/04 spielten die Heilbronner Falken in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2003/04';",
+      "time_sec": 15.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2002_03",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2002/03?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2002/03 in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2002/03' AND is_focus_team_season = TRUE LIMIT 1;",
+      "time_sec": 20.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2001_02",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2001/02?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 2001/02 in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2001/02' AND is_focus_team_season = TRUE;",
+      "time_sec": 18.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_2000_01",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 2000/01?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 2000/01 spielten die Heilbronner Falken in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2000/01' AND is_focus_team_season = TRUE",
+      "time_sec": 11.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1999_00",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1999/00?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1999/00 in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1999/00' AND is_focus_team_season = TRUE LIMIT 1;",
+      "time_sec": 10.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1998_99",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1998/99?",
+      "expected_facts": [
+        "2. Bundesliga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1998/99 in der 2. Bundesliga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1998/99';",
+      "time_sec": 13.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1997_98",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1997/98?",
+      "expected_facts": [
+        "Hockey Premier League"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1997/98 in der Hockey Premier League.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1997/98'",
+      "time_sec": 14.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1996_97",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1996/97?",
+      "expected_facts": [
+        "Hockey Premier League"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1996/97 in der Hockey Premier League.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1996/97' AND is_focus_team_season = TRUE LIMIT 1;",
+      "time_sec": 27.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1995_96",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1995/96?",
+      "expected_facts": [
+        "Hockey Premier League"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1995/96 in der Hockey Premier League.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1995/96'",
+      "time_sec": 11.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1994_95",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1994/95?",
+      "expected_facts": [
+        "1. Bundesliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1994/95 in der 1. Bundesliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1994/95' LIMIT 1;",
+      "time_sec": 9.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1993_94",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1993/94?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1993/94 in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1993/94' AND is_focus_team_season = TRUE;",
+      "time_sec": 13.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1992_93",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1992/93?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1992/93 in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1992/93' AND is_focus_team_season = TRUE",
+      "time_sec": 29.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1991_92",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1991/92?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 1991/92 spielten die Heilbronner Falken in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1991/92' LIMIT 1;",
+      "time_sec": 20.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1990_91",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1990/91?",
+      "expected_facts": [
+        "Oberliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1990/91 in der Oberliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1990/91';",
+      "time_sec": 10.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1988_89",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1988/89?",
+      "expected_facts": [
+        "2. Bundesliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1988/89 in der 2. Bundesliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1988/89';",
+      "time_sec": 10.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1987_88",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1987/88?",
+      "expected_facts": [
+        "2. Bundesliga Süd"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In der Saison 1987/88 spielten die Heilbronner Falken in der 2. Bundesliga Süd.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1987/88';",
+      "time_sec": 12.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1986_87",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1986/87?",
+      "expected_facts": [
+        "Oberliga Nord"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1986/87 in der Oberliga Nord.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1986/87' LIMIT 1;",
+      "time_sec": 8.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1985_86",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1985/86?",
+      "expected_facts": [
+        "Oberliga Mitte"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1985/86 in der Oberliga Mitte.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1985/86' AND is_focus_team_season = TRUE",
+      "time_sec": 9.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1984_85",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1984/85?",
+      "expected_facts": [
+        "Regionalliga Süd-West"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1984/85 in der Regionalliga Süd-West.",
+      "actual_category": "fact",
+      "sql": "SELECT DISTINCT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1984/85';",
+      "time_sec": 11.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1983_84",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1983/84?",
+      "expected_facts": [
+        "Baden-Württemberg-Liga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1983/84 in der Baden-Württemberg-Liga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1983/84';",
+      "time_sec": 30.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1982_83",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1982/83?",
+      "expected_facts": [
+        "Baden-Württemberg-Liga"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1982/83 in der Baden-Württemberg-Liga.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1982/83' AND is_focus_team_season = TRUE;",
+      "time_sec": 12.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1981_82",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1981/82?",
+      "expected_facts": [
+        "Landesliga BaWü"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1981/82 in der Landesliga BaWü.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1981/82' LIMIT 1;",
+      "time_sec": 33.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_league_1980_81",
+      "category": "liga",
+      "question": "In welcher Liga spielten die Heilbronner Falken in der Saison 1980/81?",
+      "expected_facts": [
+        "Landesliga BaWü"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in der Saison 1980/81 in der Landesliga BaWü.",
+      "actual_category": "fact",
+      "sql": "SELECT league FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '1980/81';",
+      "time_sec": 25.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_game_20260227",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen ECDC Memmingen Indians und Heilbronner Falken am 2026-02-27?",
+      "expected_facts": [
+        "7:2",
+        "7-2",
+        "7 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen ECDC Memmingen Indians und Heilbronner Falken am 2026-02-27 endete 7:2 für die Heimmannschaft.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-02-27' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('ECDC Memmingen Indians' IN (ht.name, at.name));",
+      "time_sec": 11.4,
+      "pass": true,
+      "missing_facts": [
+        "7-2",
+        "7 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20260222",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Erding Gladiators am 2026-02-22?",
+      "expected_facts": [
+        "2:7",
+        "2-7",
+        "2 zu 7"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Erding Gladiators am 2026-02-22 endete mit einem Ergebnis von Heilbronner Falken 2:7 Erding Gladiators.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-02-22' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Erding Gladiators' IN (ht.name, at.name));",
+      "time_sec": 10.5,
+      "pass": true,
+      "missing_facts": [
+        "2-7",
+        "2 zu 7"
+      ]
+    },
+    {
+      "id": "q_game_20260220",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen EHF Passau Black Hawks und Heilbronner Falken am 2026-02-20?",
+      "expected_facts": [
+        "8:3",
+        "8-3",
+        "8 zu 3"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen EHF Passau Black Hawks und Heilbronner Falken am 2026-02-20 endete mit 8:3 für die EHF Passau Black Hawks.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-02-20' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('EHF Passau Black Hawks' IN (ht.name, at.name));",
+      "time_sec": 97.7,
+      "pass": true,
+      "missing_facts": [
+        "8-3",
+        "8 zu 3"
+      ]
+    },
+    {
+      "id": "q_game_20260206",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Bayreuth Tigers am 2026-02-06?",
+      "expected_facts": [
+        "11:3",
+        "11-3",
+        "11 zu 3"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Bayreuth Tigers am 2026-02-06 endete 11:3 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-02-06' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Bayreuth Tigers' IN (ht.name, at.name));",
+      "time_sec": 9.7,
+      "pass": true,
+      "missing_facts": [
+        "11-3",
+        "11 zu 3"
+      ]
+    },
+    {
+      "id": "q_game_20260130",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Stuttgart Rebels am 2026-01-30?",
+      "expected_facts": [
+        "2:7",
+        "2-7",
+        "2 zu 7"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Stuttgart Rebels am 2026-01-30 endete mit einem Ergebnis von Heilbronner Falken 2:7 Stuttgart Rebels.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-01-30' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Stuttgart Rebels' IN (ht.name, at.name));",
+      "time_sec": 39.5,
+      "pass": true,
+      "missing_facts": [
+        "2-7",
+        "2 zu 7"
+      ]
+    },
+    {
+      "id": "q_game_20260120",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Deggendorfer SC und Heilbronner Falken am 2026-01-20?",
+      "expected_facts": [
+        "8:2",
+        "8-2",
+        "8 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Deggendorfer SC und Heilbronner Falken am 2026-01-20 endete mit Deggendorfer SC 8:2 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-01-20' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Deggendorfer SC' IN (ht.name, at.name));",
+      "time_sec": 15.1,
+      "pass": true,
+      "missing_facts": [
+        "8-2",
+        "8 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20260116",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen SC Riessersee und Heilbronner Falken am 2026-01-16?",
+      "expected_facts": [
+        "0:6",
+        "0-6",
+        "0 zu 6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen SC Riessersee und Heilbronner Falken am 2026-01-16 endete mit einem Ergebnis von SC Riessersee 0:6 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-01-16' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('SC Riessersee' IN (ht.name, at.name));",
+      "time_sec": 12.7,
+      "pass": true,
+      "missing_facts": [
+        "0-6",
+        "0 zu 6"
+      ]
+    },
+    {
+      "id": "q_game_20260102",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und EV Füssen am 2026-01-02?",
+      "expected_facts": [
+        "6:2",
+        "6-2",
+        "6 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel am 2026-01-02 endete mit 6:2 für die Heilbronner Falken gegen den EV Füssen.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout\nFROM games g\nJOIN teams ht ON ht.id = g.home_team_id\nJOIN teams at ON at.id = g.away_team_id\nWHERE g.date::date = '2026-01-02'\n  AND ('Heilbronner Falken' IN (ht.name, at.name))\n  AND ('EV Füssen' IN (ht.name, at.name));",
+      "time_sec": 23.2,
+      "pass": true,
+      "missing_facts": [
+        "6-2",
+        "6 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20251228",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Stuttgart Rebels und Heilbronner Falken am 2025-12-28?",
+      "expected_facts": [
+        "1:7",
+        "1-7",
+        "1 zu 7"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Stuttgart Rebels und den Heilbronner Falken am 2025-12-28 endete mit einem Ergebnis von Stuttgart Rebels 1:7 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-12-28' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Stuttgart Rebels' IN (ht.name, at.name));",
+      "time_sec": 33.2,
+      "pass": true,
+      "missing_facts": [
+        "1-7",
+        "1 zu 7"
+      ]
+    },
+    {
+      "id": "q_game_20251128",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Stuttgart Rebels am 2025-11-28?",
+      "expected_facts": [
+        "8:2",
+        "8-2",
+        "8 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Stuttgart Rebels am 2025-11-28 endete 8:2 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-11-28' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Stuttgart Rebels' IN (ht.name, at.name));",
+      "time_sec": 11.1,
+      "pass": true,
+      "missing_facts": [
+        "8-2",
+        "8 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20251121",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Selber Wölfe und Heilbronner Falken am 2025-11-21?",
+      "expected_facts": [
+        "1:6",
+        "1-6",
+        "1 zu 6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Selber Wölfe und Heilbronner Falken am 2025-11-21 endete mit dem Ergebnis Selber Wölfe 1:6 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-11-21' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Selber Wölfe' IN (ht.name, at.name));",
+      "time_sec": 14.3,
+      "pass": true,
+      "missing_facts": [
+        "1-6",
+        "1 zu 6"
+      ]
+    },
+    {
+      "id": "q_game_20251116",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen SC Riessersee und Heilbronner Falken am 2025-11-16?",
+      "expected_facts": [
+        "1:6",
+        "1-6",
+        "1 zu 6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen SC Riessersee und Heilbronner Falken am 2025-11-16 endete mit SC Riessersee 1:6 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-11-16' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('SC Riessersee' IN (ht.name, at.name));",
+      "time_sec": 27.5,
+      "pass": true,
+      "missing_facts": [
+        "1-6",
+        "1 zu 6"
+      ]
+    },
+    {
+      "id": "q_game_20251114",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Erding Gladiators am 2025-11-14?",
+      "expected_facts": [
+        "7:2",
+        "7-2",
+        "7 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Erding Gladiators am 14.11.2025 endete 7:2 für die Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-11-14' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Erding Gladiators' IN (ht.name, at.name));",
+      "time_sec": 10.1,
+      "pass": true,
+      "missing_facts": [
+        "7-2",
+        "7 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20251028",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Bayreuth Tigers am 2025-10-28?",
+      "expected_facts": [
+        "10:1",
+        "10-1",
+        "10 zu 1"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Bayreuth Tigers am 2025-10-28 endete 10:1 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-10-28' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Bayreuth Tigers' IN (ht.name, at.name));",
+      "time_sec": 11.2,
+      "pass": true,
+      "missing_facts": [
+        "10-1",
+        "10 zu 1"
+      ]
+    },
+    {
+      "id": "q_game_20251017",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und EV Füssen am 2025-10-17?",
+      "expected_facts": [
+        "7:1",
+        "7-1",
+        "7 zu 1"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und dem EV Füssen am 17. Oktober 2025 endete 7:1 (Heilbronner Falken 7:1 EV Füssen).",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-10-17' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('EV Füssen' IN (ht.name, at.name))",
+      "time_sec": 24.5,
+      "pass": true,
+      "missing_facts": [
+        "7-1",
+        "7 zu 1"
+      ]
+    },
+    {
+      "id": "q_game_20251010",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Stuttgart Rebels und Heilbronner Falken am 2025-10-10?",
+      "expected_facts": [
+        "1:9",
+        "1-9",
+        "1 zu 9"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Stuttgart Rebels und den Heilbronner Falken am 2025-10-10 endete 1:9 für die Gäste.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-10-10' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Stuttgart Rebels' IN (ht.name, at.name));",
+      "time_sec": 9.9,
+      "pass": true,
+      "missing_facts": [
+        "1-9",
+        "1 zu 9"
+      ]
+    },
+    {
+      "id": "q_game_20250216",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen EV Füssen und Heilbronner Falken am 2025-02-16?",
+      "expected_facts": [
+        "2:7",
+        "2-7",
+        "2 zu 7"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen EV Füssen und Heilbronner Falken am 2025-02-16 endete mit EV Füssen 2:7 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-02-16' AND ('EV Füssen' IN (ht.name, at.name)) AND ('Heilbronner Falken' IN (ht.name, at.name));",
+      "time_sec": 9.5,
+      "pass": true,
+      "missing_facts": [
+        "2-7",
+        "2 zu 7"
+      ]
+    },
+    {
+      "id": "q_game_20250214",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und EC Peiting am 2025-02-14?",
+      "expected_facts": [
+        "8:2",
+        "8-2",
+        "8 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel endete mit einem 8:2-Sieg der Heilbronner Falken gegen den EC Peiting.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-02-14' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('EC Peiting' IN (ht.name, at.name))",
+      "time_sec": 36.4,
+      "pass": true,
+      "missing_facts": [
+        "8-2",
+        "8 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20250211",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Bayreuth Tigers am 2025-02-11?",
+      "expected_facts": [
+        "9:4",
+        "9-4",
+        "9 zu 4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Bayreuth Tigers am 2025-02-11 endete mit einem Ergebnis von Heilbronner Falken 9:4 Bayreuth Tigers.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-02-11' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Bayreuth Tigers' IN (ht.name, at.name));",
+      "time_sec": 16.0,
+      "pass": true,
+      "missing_facts": [
+        "9-4",
+        "9 zu 4"
+      ]
+    },
+    {
+      "id": "q_game_20250126",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Stuttgart Rebels und Heilbronner Falken am 2025-01-26?",
+      "expected_facts": [
+        "1:6",
+        "1-6",
+        "1 zu 6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Stuttgart Rebels und den Heilbronner Falken am 2025-01-26 endete mit einem Ergebnis von Stuttgart Rebels 1:6 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT g.date, ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-01-26' AND ('Stuttgart Rebels' IN (ht.name, at.name)) AND ('Heilbronner Falken' IN (ht.name, at.name));",
+      "time_sec": 10.9,
+      "pass": true,
+      "missing_facts": [
+        "1-6",
+        "1 zu 6"
+      ]
+    },
+    {
+      "id": "q_po_2022_23_play-down",
+      "category": "playoff",
+      "question": "Wer gewann die Play-Down R1-Serie zwischen Falken und Selber Wölfe in der Saison 2022/23?",
+      "expected_facts": [
+        "Selber Wölfe"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Selber Wölfe gewannen die Play-Down R1-Serie gegen die Heilbronner Falken in der Saison 2022/23 mit 4:2.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2022/23' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('Selber Wölfe' IN (ta.name, tb.name)) AND ps.round = 'Play-Down R1';",
+      "time_sec": 22.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2022_23_play-down",
+      "category": "playoff",
+      "question": "Wer gewann die Play-Down R2-Serie zwischen Falken und Bayreuth Tigers in der Saison 2022/23?",
+      "expected_facts": [
+        "Bayreuth Tigers"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Bayreuth Tigers gewannen die Play-Down R2-Serie gegen die Heilbronner Falken in der Saison 2022/23 mit 4:2 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2022/23' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('Bayreuth Tigers' IN (ta.name, tb.name)) AND ps.round = 'Play-Down R2';",
+      "time_sec": 35.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2021_22_viertelfin",
+      "category": "playoff",
+      "question": "Wer gewann die Viertelfinale-Serie zwischen Falken und Eispiraten Crimmitschau in der Saison 2021/22?",
+      "expected_facts": [
+        "Heilbronner Falken"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken gewannen die Viertelfinale-Serie gegen die Eispiraten Crimmitschau in der Saison 2021/22 mit 4:0 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2021/22' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('Eispiraten Crimmitschau' IN (ta.name, tb.name)) AND ps.round = 'Viertelfinale';",
+      "time_sec": 10.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2021_22_halbfinale",
+      "category": "playoff",
+      "question": "Wer gewann die Halbfinale-Serie zwischen Falken und Löwen Frankfurt in der Saison 2021/22?",
+      "expected_facts": [
+        "Löwen Frankfurt"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Löwen Frankfurt gewann die Halbfinale-Serie mit 4:0 gegen die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2021/22' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('Löwen Frankfurt' IN (ta.name, tb.name)) AND ps.round = 'Halbfinale';",
+      "time_sec": 31.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2020_21_viertelfin",
+      "category": "playoff",
+      "question": "Wer gewann die Viertelfinale-Serie zwischen Falken und Kassel Huskies in der Saison 2020/21?",
+      "expected_facts": [
+        "Kassel Huskies"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Kassel Huskies gewannen die Viertelfinale-Serie gegen die Heilbronner Falken mit 3:0 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2020/21' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('Kassel Huskies' IN (ta.name, tb.name)) AND ps.round = 'Viertelfinale';",
+      "time_sec": 10.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2018_19_preplay-o",
+      "category": "playoff",
+      "question": "Wer gewann die Pre Play-Off-Serie zwischen Falken und Dresdner Eislöwen in der Saison 2018/19?",
+      "expected_facts": [
+        "Dresdner Eislöwen"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Dresdner Eislöwen gewannen die Pre Play-Off-Serie gegen die Heilbronner Falken mit 2:1 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2018/19' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('Dresdner Eislöwen' IN (ta.name, tb.name)) AND ps.round = 'Pre Play-Off';",
+      "time_sec": 21.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2017_18_preplay-o",
+      "category": "playoff",
+      "question": "Wer gewann die Pre Play-Off-Serie zwischen Falken und Dresdner Eislöwen in der Saison 2017/18?",
+      "expected_facts": [
+        "Heilbronner Falken"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken gewannen die Pre Play-Off-Serie gegen die Dresdner Eislöwen mit 2:0 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner\nFROM playoff_series ps\nJOIN teams ta ON ta.id = ps.team_a_id\nJOIN teams tb ON tb.id = ps.team_b_id\nLEFT JOIN teams wt ON wt.id = ps.winner_team_id\nJOIN seasons s ON s.id = ps.season_id\nWHERE s.label = '2017/18'\n  AND ('Heilbronner Falken' IN (ta.name, tb.name))\n  AND ('Dresdner Eislöwen' IN (ta.name, tb.name))\n  AND ps.round ILIKE '%Pre%';",
+      "time_sec": 56.3,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2017_18_viertelfin",
+      "category": "playoff",
+      "question": "Wer gewann die Viertelfinale-Serie zwischen Falken und SC Bietigheim-Bissingen Steelers in der Saison 2017/18?",
+      "expected_facts": [
+        "SC Bietigheim-Bissingen Steelers"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der SC Bietigheim-Bissingen Steelers gewann die Viertelfinale-Serie gegen die Heilbronner Falken mit 4:1 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2017/18' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('SC Bietigheim-Bissingen Steelers' IN (ta.name, tb.name)) AND ps.round = 'Viertelfinale';",
+      "time_sec": 18.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2016_17_play-down",
+      "category": "playoff",
+      "question": "Wer gewann die Play-Down R1-Serie zwischen Falken und StarBulls Rosenheim in der Saison 2016/17?",
+      "expected_facts": [
+        "Heilbronner Falken"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken gewannen die Play-Down R1-Serie gegen die StarBulls Rosenheim mit 4:2 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2016/17' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('StarBulls Rosenheim' IN (ta.name, tb.name)) AND ps.round = 'Play-Down R1';",
+      "time_sec": 22.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2015_16_play-down",
+      "category": "playoff",
+      "question": "Wer gewann die Play-Down R2-Serie zwischen Falken und ESV Kaufbeuren in der Saison 2015/16?",
+      "expected_facts": [
+        "ESV Kaufbeuren"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Play-Down R2-Serie zwischen den Heilbronner Falken und ESV Kaufbeuren in der Saison 2015/16 gewann ESV Kaufbeuren mit 4:3.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2015/16' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('ESV Kaufbeuren' IN (ta.name, tb.name)) AND ps.round = 'Play-Down R2';",
+      "time_sec": 20.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2015_16_play-down",
+      "category": "playoff",
+      "question": "Wer gewann die Play-Down R1-Serie zwischen Falken und Lausitzer Füchse in der Saison 2015/16?",
+      "expected_facts": [
+        "Lausitzer Füchse"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Lausitzer Füchse gewannen die Play-Down R1-Serie gegen die Heilbronner Falken in der Saison 2015/16 mit 4:1-Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2015/16' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('Lausitzer Füchse' IN (ta.name, tb.name)) AND ps.round = 'Play-Down R1';",
+      "time_sec": 17.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2014_15_play-down",
+      "category": "playoff",
+      "question": "Wer gewann die Play-Down R2-Serie zwischen Falken und ESV Kaufbeuren in der Saison 2014/15?",
+      "expected_facts": [
+        "ESV Kaufbeuren"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der ESV Kaufbeuren gewann die Play-Down R2-Serie gegen die Heilbronner Falken in der Saison 2014/15 mit 4:2 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2014/15' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('ESV Kaufbeuren' IN (ta.name, tb.name)) AND ps.round = 'Play-Down R2';",
+      "time_sec": 14.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2014_15_play-down",
+      "category": "playoff",
+      "question": "Wer gewann die Play-Down R1-Serie zwischen Falken und Eispiraten Crimmitschau in der Saison 2014/15?",
+      "expected_facts": [
+        "Eispiraten Crimmitschau"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Eispiraten Crimmitschau gewannen die Play-Down R1-Serie gegen die Falken in der Saison 2014/15 mit 4:1.",
+      "actual_category": "fact",
+      "sql": "SELECT wt.name AS winner, ps.wins_a, ps.wins_b FROM playoff_series ps JOIN seasons s ON s.id = ps.season_id JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id WHERE s.label = '2014/15' AND ps.round = 'Play-Down R1' AND ((ta.name = 'Heilbronner Falken' AND tb.name = 'Eispiraten Crimmitschau') OR (ta.name = 'Eispiraten Crimmitschau' AND tb.name = 'Heilbronner Falken'));",
+      "time_sec": 15.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2013_14_play-down",
+      "category": "playoff",
+      "question": "Wer gewann die Play-Down-Serie zwischen Falken und ESV Kaufbeuren in der Saison 2013/14?",
+      "expected_facts": [
+        "Heilbronner Falken"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken gewannen die Play-Down-Serie gegen den ESV Kaufbeuren in der Saison 2013/14.",
+      "actual_category": "fact",
+      "sql": "SELECT wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2013/14' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('ESV Kaufbeuren' IN (ta.name, tb.name)) AND (ps.round ILIKE 'play-down%')",
+      "time_sec": 9.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2012_13_viertelfin",
+      "category": "playoff",
+      "question": "Wer gewann die Viertelfinale-Serie zwischen Falken und Schwenninger Wild Wings in der Saison 2012/13?",
+      "expected_facts": [
+        "Schwenninger Wild Wings"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Schwenninger Wild Wings gewannen die Viertelfinale-Serie gegen die Heilbronner Falken mit 4:1 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2012/13' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('Schwenninger Wild Wings' IN (ta.name, tb.name)) AND ps.round = 'Viertelfinale';",
+      "time_sec": 11.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2011_12_viertelfin",
+      "category": "playoff",
+      "question": "Wer gewann die Viertelfinale-Serie zwischen Falken und Ravensburg Towerstars in der Saison 2011/12?",
+      "expected_facts": [
+        "Ravensburg Towerstars"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Viertelfinale-Serie zwischen den Heilbronner Falken und den Ravensburg Towerstars in der Saison 2011/12 gewannen die Ravensburg Towerstars mit 4:3 Siegen.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2011/12' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('Ravensburg Towerstars' IN (ta.name, tb.name)) AND ps.round = 'Viertelfinale'",
+      "time_sec": 26.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_po_2010_11_viertelfin",
+      "category": "playoff",
+      "question": "Wer gewann die Viertelfinale-Serie zwischen Falken und StarBulls Rosenheim in der Saison 2010/11?",
+      "expected_facts": [
+        "StarBulls Rosenheim"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die StarBulls Rosenheim gewannen die Viertelfinale-Serie gegen die Heilbronner Falken in der Saison 2010/11 mit 4:0.",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2010/11' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ('StarBulls Rosenheim' IN (ta.name, tb.name)) AND ps.round = 'Viertelfinale';",
+      "time_sec": 10.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_trend_001",
+      "category": "trend",
+      "question": "Welches war die punkteschlechteste Falken-Saison der letzten 10 Jahre?",
+      "expected_facts": [
+        "2015/16",
+        "36"
+      ],
+      "expected_category": "trend",
+      "actual_answer": "Die punkteschlechteste Saison der letzten 10 Jahre war die Saison 2015/16 mit 36 Punkten.",
+      "actual_category": "fact",
+      "sql": "SELECT season, points FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE AND season >= '2015/16' ORDER BY points ASC NULLS LAST LIMIT 1;",
+      "time_sec": 22.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_trend_002",
+      "category": "trend",
+      "question": "In welcher Saison hatten die Falken die meisten Punkte?",
+      "expected_facts": [
+        "2006/07",
+        "108"
+      ],
+      "expected_category": "trend",
+      "actual_answer": "Die Falken hatten in der Saison 2024/25 mit 114 Punkten die meisten Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT season, points FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 22.7,
+      "pass": false,
+      "missing_facts": [
+        "2006/07",
+        "108"
+      ]
+    },
+    {
+      "id": "q_trend_003",
+      "category": "trend",
+      "question": "Wie viele DEL2-Saisons haben die Falken insgesamt gespielt?",
+      "expected_facts": [
+        "10"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken haben insgesamt 10 DEL2-Saisons gespielt.",
+      "actual_category": "fact",
+      "sql": "SELECT COUNT(DISTINCT season) AS del2_seasons FROM season_standings WHERE team = 'Heilbronner Falken' AND league = 'DEL2' AND is_focus_team_season = TRUE;",
+      "time_sec": 17.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_trend_004",
+      "category": "trend",
+      "question": "Wann war der letzte Falken-Abstieg aus der DEL2?",
+      "expected_facts": [
+        "2022/23"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Es liegen keine Daten vor.",
+      "actual_category": "fact",
+      "sql": "SELECT season FROM season_standings WHERE team = 'Heilbronner Falken' AND league = 'DEL2' AND playoff_result = 'Abstieg' ORDER BY season DESC LIMIT 1",
+      "time_sec": 37.2,
+      "pass": false,
+      "missing_facts": [
+        "2022/23"
+      ]
+    },
+    {
+      "id": "q_trend_005",
+      "category": "trend",
+      "question": "Welcher Spieler hat die meisten Falken-Saisons als Topscorer?",
+      "expected_facts": [
+        "Dylan Wruck"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "",
+      "actual_category": "fact",
+      "sql": "SELECT player, COUNT(*) AS seasons_as_topscorer FROM (SELECT season, player, points, ROW_NUMBER() OVER (PARTITION BY season ORDER BY points DESC NULLS LAST) AS rn FROM falken_skater_stats WHERE points IS NOT NULL) sub WHERE rn = 1 GROUP BY player ORDER BY seasons_as_topscorer DESC NULLS LAST LIMIT 1;",
+      "time_sec": 15.2,
+      "pass": false,
+      "missing_facts": [
+        "Dylan Wruck"
+      ]
+    },
+    {
+      "id": "q_trend_006",
+      "category": "trend",
+      "question": "Wie viele Saisons spielten die Falken in der Oberliga in den letzten Jahren?",
+      "expected_facts": [
+        "3"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten in den letzten Jahren 10 Saisons in der Oberliga.",
+      "actual_category": "fact",
+      "sql": "SELECT COUNT(DISTINCT season) AS anzahl_saisons FROM season_standings WHERE team = 'Heilbronner Falken' AND league IN ('Oberliga', 'Oberliga Süd') AND is_focus_team_season = TRUE;",
+      "time_sec": 21.1,
+      "pass": false,
+      "missing_facts": [
+        "3"
+      ]
+    },
+    {
+      "id": "q_trend_007",
+      "category": "trend",
+      "question": "In welcher Saison war die Hauptrunde am kürzesten (wegen Corona)?",
+      "expected_facts": [
+        "2020/21",
+        "49"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "",
+      "actual_category": "fact",
+      "sql": "SELECT s.label AS season, MIN(s.end_date - s.start_date) AS days FROM seasons s JOIN team_seasons ts ON ts.season_id = s.id JOIN teams t ON t.id = ts.team_id WHERE t.name = 'Heilbronner Falken' AND s.league IN ('DEL2', 'Oberliga Süd', 'Oberliga') GROUP BY s.label ORDER BY days ASC NULLS LAST LIMIT 1;",
+      "time_sec": 28.2,
+      "pass": false,
+      "missing_facts": [
+        "2020/21",
+        "49"
+      ]
+    },
+    {
+      "id": "q_trend_008",
+      "category": "trend",
+      "question": "Welcher Trainer hatte die längste Amtszeit bei den Falken?",
+      "expected_facts": [
+        "Rico Rossi"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Georges Hüttig hatte mit 273 Tagen (vom 1. September 1983 bis zum 31. Mai 1984) die längste Amtszeit bei den Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT c.name, ct.role, ct.start_date, ct.end_date, (ct.end_date - ct.start_date) AS tenure_days FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id WHERE t.name = 'Heilbronner Falken' AND ct.role = 'Headcoach' AND ct.end_date IS NOT NULL AND ct.start_date IS NOT NULL ORDER BY tenure_days DESC NULLS LAST LIMIT 1;",
+      "time_sec": 17.4,
+      "pass": false,
+      "missing_facts": [
+        "Rico Rossi"
+      ]
+    },
+    {
+      "id": "q_trend_009",
+      "category": "trend",
+      "question": "Wie viele Trainer hatten die Falken in der DEL2-Zeit (2013-2023)?",
+      "expected_facts": [],
+      "expected_category": "trend",
+      "actual_answer": "In der DEL2-Zeit von 2013 bis 2023 hatten die Falken 12 Trainer.",
+      "actual_category": "fact",
+      "sql": "SELECT COUNT(DISTINCT c.name) AS num_coaches FROM coach_tenures ct JOIN coaches c ON c.id = ct.coach_id JOIN teams t ON t.id = ct.team_id JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date WHERE t.name = 'Heilbronner Falken' AND s.label >= '2013/14' AND s.label <= '2022/23' AND ct.role = 'Headcoach';",
+      "time_sec": 70.8,
+      "pass": false,
+      "missing_facts": []
+    },
+    {
+      "id": "q_trend_010",
+      "category": "trend",
+      "question": "Was war das höchste Falken-Tor-Ergebnis in der aktuellen Saison?",
+      "expected_facts": [
+        "11"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das höchste Falken-Tor-Ergebnis in der aktuellen Saison war 11:3 im Spiel Heilbronner Falken gegen Bayreuth Tigers.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id JOIN seasons s ON s.id = g.season_id WHERE ('Heilbronner Falken' IN (ht.name, at.name)) AND s.label = (SELECT label FROM seasons WHERE league = 'DEL2' ORDER BY start_date DESC LIMIT 1) ORDER BY GREATEST(g.home_score, g.away_score) DESC NULLS LAST LIMIT 1",
+      "time_sec": 145.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_trend_011",
+      "category": "trend",
+      "question": "In welcher Saison wurden die Falken Oberliga-Meister?",
+      "expected_facts": [
+        "2006/07"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken wurden in der Saison 2006/07 Oberliga-Meister.",
+      "actual_category": "fact",
+      "sql": "SELECT season FROM season_standings WHERE team = 'Heilbronner Falken' AND playoff_result = 'Meister' AND league LIKE 'Oberliga%' AND is_focus_team_season = TRUE ORDER BY season DESC LIMIT 1;",
+      "time_sec": 25.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_trend_012",
+      "category": "trend",
+      "question": "Wann hatten die Falken zuletzt mehr als 100 Punkte?",
+      "expected_facts": [
+        "2006/07",
+        "108"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken hatten zuletzt in der Saison 2024/25 mit 114 Punkten mehr als 100 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT season, points FROM season_standings WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE AND points > 100 ORDER BY season DESC NULLS LAST LIMIT 1;",
+      "time_sec": 16.2,
+      "pass": false,
+      "missing_facts": [
+        "2006/07",
+        "108"
+      ]
+    },
+    {
+      "id": "q_trend_013",
+      "category": "trend",
+      "question": "Wer war Topscorer in der letzten Oberliga-Süd-Saison?",
+      "expected_facts": [
+        "Wernerson Libäck",
+        "Ritchie"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Calder ANDERSON war mit 68 Punkten (30 Tore, 38 Assists) der Topscorer der letzten Oberliga-Süd-Saison.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = (SELECT season FROM season_standings WHERE team = 'Heilbronner Falken' AND league = 'Oberliga Süd' AND is_focus_team_season = TRUE ORDER BY season DESC LIMIT 1) AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 5;",
+      "time_sec": 31.3,
+      "pass": false,
+      "missing_facts": [
+        "Wernerson Libäck",
+        "Ritchie"
+      ]
+    },
+    {
+      "id": "q_trend_014",
+      "category": "trend",
+      "question": "Wie viele unterschiedliche Trainer hatten die Falken seit 1980?",
+      "expected_facts": [],
+      "expected_category": "trend",
+      "actual_answer": "Die Heilbronner Falken hatten seit 1980 insgesamt 34 unterschiedliche Trainer.",
+      "actual_category": "fact",
+      "sql": "SELECT COUNT(DISTINCT c.id) AS trainer_count\nFROM coach_tenures ct\nJOIN coaches c ON c.id = ct.coach_id\nJOIN teams t ON t.id = ct.team_id\nJOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date\nWHERE t.name = 'Heilbronner Falken' AND s.start_date >= '1980-01-01' AND ct.role = 'Headcoach';",
+      "time_sec": 12.5,
+      "pass": false,
+      "missing_facts": []
+    },
+    {
+      "id": "q_trend_015",
+      "category": "trend",
+      "question": "Welche Liga ist die zweite deutsche Eishockey-Liga heute?",
+      "expected_facts": [
+        "DEL2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die zweite deutsche Eishockey-Liga ist heute die DEL2.",
+      "actual_category": "fact",
+      "sql": "SELECT 'DEL2' AS second_division_league;",
+      "time_sec": 23.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_001",
+      "category": "vergleich",
+      "question": "Wie oft haben die Falken in der Saison 2025/26 gegen Bayreuth gespielt?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken haben in der Saison 2025/26 kein Spiel gegen Bayreuth bestritten (0 Spiele).",
+      "actual_category": "fact",
+      "sql": "SELECT COUNT(*) AS total_games FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id JOIN seasons s ON s.id = g.season_id WHERE s.label = '2025/26' AND ('Heilbronner Falken' IN (ht.name, at.name)) AND ('Bayreuth' IN (ht.name, at.name));",
+      "time_sec": 13.8,
+      "pass": false,
+      "missing_facts": [
+        "4"
+      ]
+    },
+    {
+      "id": "q_compare_002",
+      "category": "vergleich",
+      "question": "Welches war das höchste Falken-Heim-Ergebnis gegen Bayreuth?",
+      "expected_facts": [
+        "11"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das höchste Falken-Heim-Ergebnis gegen Bayreuth war ein 11:3-Sieg am 6. Februar 2026 (Saison 2025/26).",
+      "actual_category": "fact",
+      "sql": "SELECT g.home_score, g.away_score, g.date, s.label AS season\nFROM games g\nJOIN teams ht ON ht.id = g.home_team_id\nJOIN teams at ON at.id = g.away_team_id\nJOIN seasons s ON s.id = g.season_id\nWHERE ht.name = 'Heilbronner Falken'\n  AND at.name ILIKE '%Bayreuth%'\n  AND g.home_score IS NOT NULL\nORDER BY g.home_score DESC NULLS LAST\nLIMIT 1;",
+      "time_sec": 25.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_003",
+      "category": "vergleich",
+      "question": "Wann haben die Falken zuletzt im Halbfinale gespielt?",
+      "expected_facts": [
+        "2021/22",
+        "2023/24"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken haben zuletzt in der Saison 2024/25 im Halbfinale gespielt.",
+      "actual_category": "fact",
+      "sql": "SELECT s.label AS season\nFROM playoff_series ps\nJOIN seasons s ON s.id = ps.season_id\nJOIN teams ta ON ta.id = ps.team_a_id\nJOIN teams tb ON tb.id = ps.team_b_id\nWHERE ('Heilbronner Falken' IN (ta.name, tb.name))\n  AND ps.round = 'Halbfinale'\nORDER BY s.start_date DESC NULLS LAST\nLIMIT 1;",
+      "time_sec": 20.2,
+      "pass": false,
+      "missing_facts": [
+        "2021/22",
+        "2023/24"
+      ]
+    },
+    {
+      "id": "q_compare_004",
+      "category": "vergleich",
+      "question": "Gegen welches Team verloren die Falken 2022/23 in den Playdowns?",
+      "expected_facts": [
+        "Bayreuth"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner FROM playoff_series ps JOIN teams ta ON ta.id = ps.team_a_id JOIN teams tb ON tb.id = ps.team_b_id LEFT JOIN teams wt ON wt.id = ps.winner_team_id JOIN seasons s ON s.id = ps.season_id WHERE s.label = '2022/23' AND ('Heilbronner Falken' IN (ta.name, tb.name)) AND ps.round LIKE 'Play-Down%' AND wt.name != 'Heilbronner Falken'",
+      "time_sec": 55.2,
+      "pass": false,
+      "missing_facts": [
+        "Bayreuth"
+      ]
+    },
+    {
+      "id": "q_compare_005",
+      "category": "vergleich",
+      "question": "Wer wurde Hauptrundensieger der Oberliga Süd 2024/25?",
+      "expected_facts": [
+        "Heilbronner Falken",
+        "Falken"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Hauptrundensieger der Oberliga Süd 2024/25 sind die Heilbronner Falken mit 114 Punkten.",
+      "actual_category": "fact",
+      "sql": "SELECT team, final_rank, points FROM season_standings WHERE league = 'Oberliga Süd' AND season = '2024/25' ORDER BY final_rank ASC LIMIT 1;",
+      "time_sec": 10.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_006",
+      "category": "vergleich",
+      "question": "Wie viele Spiele hat die DEL2 in einer normalen Saison?",
+      "expected_facts": [
+        "52"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In einer normalen Saison hat die DEL2 364 Spiele.",
+      "actual_category": "fact",
+      "sql": "SELECT COUNT(DISTINCT g.id) AS total_games FROM games g JOIN seasons s ON s.id = g.season_id WHERE s.league = 'DEL2' AND g.game_type = 'regular' AND s.label = (SELECT label FROM seasons WHERE league = 'DEL2' ORDER BY start_date DESC NULLS LAST LIMIT 1);",
+      "time_sec": 21.5,
+      "pass": false,
+      "missing_facts": [
+        "52"
+      ]
+    },
+    {
+      "id": "q_compare_007",
+      "category": "vergleich",
+      "question": "Hat Stefan Della Rovere mehr als 30 Punkte in 2022/23?",
+      "expected_facts": [
+        "38"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Ja, Stefan Della Rovere erzielte in der Saison 2022/23 38 Punkte und damit mehr als 30.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points FROM falken_skater_stats WHERE similarity(player, 'Stefan Della Rovere') > 0.3 AND season = '2022/23' AND points IS NOT NULL ORDER BY similarity(player, 'Stefan Della Rovere') DESC LIMIT 1;",
+      "time_sec": 11.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_008",
+      "category": "vergleich",
+      "question": "Wie viele Punkte hatten die Falken in 2019/20?",
+      "expected_facts": [
+        "84"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken hatten in der Saison 2019/20 84 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2019/20' AND is_focus_team_season = TRUE;",
+      "time_sec": 12.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_009",
+      "category": "vergleich",
+      "question": "Welche Saisons hatte Dylan Wruck mehr als 75 Punkte?",
+      "expected_facts": [
+        "2019/20",
+        "2020/21"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Dylan Wruck hatte in den Saisons 2019/20 (88 Punkte) und 2020/21 (78 Punkte) mehr als 75 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT season, points, goals, assists FROM falken_skater_stats WHERE similarity(player, 'Dylan Wruck') > 0.3 AND points > 75 ORDER BY season DESC;",
+      "time_sec": 9.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_010",
+      "category": "vergleich",
+      "question": "Wer war Falken-Topscorer in der Klassenerhaltsaison 2015/16?",
+      "expected_facts": [
+        "Adam Brace"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Adam Brace war der Topscorer der Heilbronner Falken in der Klassenerhaltsaison 2015/16 mit 63 Punkten (28 Tore, 35 Assists).",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2015/16' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 11.2,
+      "pass": true,
+      "missing_facts": []
+    }
+  ]
+}

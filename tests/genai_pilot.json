@@ -1,0 +1,120 @@
+{
+  "summary": {
+    "total": 10,
+    "pass": 0,
+    "fail": 0,
+    "error": 10
+  },
+  "results": [
+    {
+      "id": "q_rank_2025_26",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2025/26?",
+      "expected_facts": [
+        "5"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2024_25",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2024/25?",
+      "expected_facts": [
+        "1"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2023_24",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2023/24?",
+      "expected_facts": [
+        "2"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2022_23",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2022/23?",
+      "expected_facts": [
+        "12"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2021_22",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2021/22?",
+      "expected_facts": [
+        "6"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2020_21",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2020/21?",
+      "expected_facts": [
+        "8"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2019_20",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2019/20?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2018_19",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2018/19?",
+      "expected_facts": [
+        "8"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2017_18",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2017/18?",
+      "expected_facts": [
+        "9"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    },
+    {
+      "id": "q_rank_2016_17",
+      "category": "saison_platz",
+      "question": "Auf welchem Tabellenplatz beendeten die Heilbronner Falken die Saison 2016/17?",
+      "expected_facts": [
+        "13"
+      ],
+      "expected_category": "fact",
+      "error": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height\" />\n\n    <!-- generated from dashboard/public/img/app_down.svg -->\n    <link rel=\"icon\" href=\"da",
+      "pass": false
+    }
+  ]
+}
