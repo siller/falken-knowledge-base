@@ -32,6 +32,9 @@ class Settings(BaseSettings):
     dgx_embed_model: str = "text-embedding-3-small"
     dgx_embed_dim: int = 768
 
+    # Web-Search (Tavily — für Multi-Hop-Fragen mit Web-Recherche)
+    tavily_api_key: str = ""
+
     # Scraping
     proxy_pool_url: str = ""
     proxy_pool_user: str = ""

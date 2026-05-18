@@ -4,8 +4,10 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from ..config import settings
 from .dgx_client import DGXClient
 from .handlers.fact_sql import answer_fact
+from .handlers.hybrid_web import answer_web_research
 from .handlers.narrative_rag import answer_narrative
 from .handlers.trend_chart import answer_trend
 from .router import classify
@@ -19,11 +21,28 @@ _NARRATIVE_HINTS = (
     "kader", "neuverpflichtung", "rolle",
 )
 
+# Indikatoren für Multi-Hop-Fragen die externe Web-Recherche brauchen:
+# Lokalität (Restaurant/Bar in Heilbronn etc.), Beruf, "wer besitzt/leitet X",
+# politische/öffentliche Personen die in Falken-DB nicht stehen.
+_WEB_RESEARCH_HINTS = (
+    "besitzer", "inhaber", "geschäftsführer", "ceo", "vorstand",
+    "restaurant", "bar ", "sushi", "pizzeria", "café", "kneipe",
+    "firma", "unternehmen", "betreibt", "leitet die",
+    "bürgermeister", "ob ", "oberbürgermeister",
+    "wer arbeitet ", "wer leitet ", "wo arbeitet ",
+)
+
 
 def _looks_narrative(question: str) -> bool:
-    """Heuristik: hat die Frage typische narrative-Trigger?"""
     q = question.lower()
     return any(h in q for h in _NARRATIVE_HINTS)
+
+
+def _looks_web_research(question: str) -> bool:
+    """Frage erwähnt eine externe Entität, die nicht in der Falken-DB sein kann
+    (Lokal, Firma, Person außerhalb der Eishockey-Welt) — Web-Search braucht."""
+    q = question.lower()
+    return any(h in q for h in _WEB_RESEARCH_HINTS)
 
 
 def _fact_returned_empty(result: dict[str, Any]) -> bool:
@@ -48,17 +67,36 @@ def answer(question: str) -> dict[str, Any]:
     classification = classify(question, client)
     category = classification["category"]
 
-    if category == "fact":
+    # Hybrid-Routing:
+    # 1) Wenn Frage klingt nach Web-Research (Lokal/Firma/externe Person):
+    #    direkt web_research_handler (wenn Tavily konfiguriert)
+    # 2) Sonst: normaler Handler nach category
+    # 3) Fallback bei leerem Result: narrative_rag (für News) ODER web_research (für externe Lookup)
+    has_tavily = bool(settings.tavily_api_key)
+    is_web_question = _looks_web_research(question)
+
+    if is_web_question and has_tavily:
+        logger.info("Routing zu web_research (Frage erwähnt externe Entität)")
+        result = answer_web_research(question, client)
+        category = "web_research"
+    elif category == "fact":
         result = answer_fact(question, client)
-        # Hybrid-Fallback: fact lieferte nichts UND Frage klingt narrativ → RAG retry
-        if _fact_returned_empty(result) and _looks_narrative(question):
-            logger.info("Hybrid-Fallback: fact lieferte nichts, retry mit narrative_rag")
-            narrative_result = answer_narrative(question, client)
-            # nur überschreiben wenn RAG echte Sources findet
-            if narrative_result.get("sources"):
-                narrative_result["fact_attempt"] = {"sql": result.get("sql"), "rows_count": len(result.get("rows", []))}
-                result = narrative_result
-                category = "narrative"
+        if _fact_returned_empty(result):
+            # Fallback-Kette: erst narrative (RAG-Articles), dann web (wenn Tavily-Key)
+            if _looks_narrative(question):
+                logger.info("Hybrid-Fallback: fact leer, retry mit narrative_rag")
+                narrative_result = answer_narrative(question, client)
+                if narrative_result.get("sources"):
+                    narrative_result["fact_attempt"] = {"sql": result.get("sql"), "rows_count": len(result.get("rows", []))}
+                    result = narrative_result
+                    category = "narrative"
+            if _fact_returned_empty(result) and has_tavily:
+                logger.info("Hybrid-Fallback: fact+narrative leer, retry mit web_research")
+                web_result = answer_web_research(question, client)
+                if web_result.get("web_results"):
+                    web_result["fact_attempt"] = {"sql": result.get("sql"), "rows_count": len(result.get("rows", []))}
+                    result = web_result
+                    category = "web_research"
     elif category == "narrative":
         result = answer_narrative(question, client)
     elif category == "trend":

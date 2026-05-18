@@ -447,6 +447,17 @@ for entry in st.session_state.history:
             with st.expander(f"📰 Quellen ({len(sources)})"):
                 for s in sources:
                     st.write(f"- {s.get('title', '?')} ({s.get('source', '?')})")
+        web_results = result.get("web_results")
+        if web_results:
+            with st.expander(f"🌐 Web-Quellen ({len(web_results)})"):
+                for w in web_results:
+                    st.markdown(f"- [{w.get('title','?')}]({w.get('url','#')})")
+                    st.caption(w.get("content","")[:200])
+        db_findings = result.get("db_findings")
+        if db_findings:
+            with st.expander(f"🔗 DB-Cross-Lookups ({len(db_findings)})"):
+                for f in db_findings:
+                    st.markdown(f"**{f.get('person','?')}**: {f.get('db_answer','')[:300]}")
 
 # Neue Frage
 if q:
@@ -488,4 +499,15 @@ if q:
             with st.expander(f"📰 Quellen ({len(sources)})"):
                 for s in sources:
                     st.write(f"- {s.get('title', '?')} ({s.get('source', '?')})")
+        web_results = result.get("web_results")
+        if web_results:
+            with st.expander(f"🌐 Web-Quellen ({len(web_results)})"):
+                for w in web_results:
+                    st.markdown(f"- [{w.get('title','?')}]({w.get('url','#')})")
+                    st.caption(w.get("content","")[:200])
+        db_findings = result.get("db_findings")
+        if db_findings:
+            with st.expander(f"🔗 DB-Cross-Lookups ({len(db_findings)})"):
+                for f in db_findings:
+                    st.markdown(f"**{f.get('person','?')}**: {f.get('db_answer','')[:300]}")
     st.session_state.history.append({"q": q, "result": result, "t_sec": t_sec})
