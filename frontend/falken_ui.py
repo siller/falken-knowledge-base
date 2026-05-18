@@ -345,41 +345,23 @@ if not _password_protect():
 # ──────────────────────────────────────────────────────────────────────────────
 # Sidebar
 # ──────────────────────────────────────────────────────────────────────────────
+def _device_label(url: str) -> str:
+    u = (url or "").lower()
+    if "pgxapi.siller.io" in u: return "DGX (siller.io, self-hosted)"
+    if "openrouter" in u: return "OpenRouter (cloud)"
+    if "openai.com" in u: return "OpenAI (cloud)"
+    return "Custom Endpoint"
+
+
 with st.sidebar:
+    # ── Brand-Header oben ────────────────────────────────────────────────
     st.markdown(f'<div class="sidebar-logo"><img src="{LOGO_URL}" alt="Falken-Logo"></div>', unsafe_allow_html=True)
     st.markdown(f"<h2 style='text-align:center; margin-top:0; letter-spacing:0.1em;'>HORST</h2>", unsafe_allow_html=True)
     st.markdown(f"<p style='text-align:center; color:rgba(255,255,255,0.7); margin-top:-0.5rem; font-size:0.85rem;'>Der Falkenhorst des Falken-Wissens</p>", unsafe_allow_html=True)
 
     st.divider()
-    st.subheader("⚙ Backend")
 
-    def _device_label(url: str) -> str:
-        u = (url or "").lower()
-        if "pgxapi.siller.io" in u: return "DGX (siller.io, self-hosted)"
-        if "openrouter" in u: return "OpenRouter (cloud)"
-        if "openai.com" in u: return "OpenAI (cloud)"
-        return "Custom Endpoint"
-
-    st.code(
-        f"Gerät:      {_device_label(settings.dgx_base_url)}\n"
-        f"Chat:       {settings.dgx_chat_model or '(leer)'}\n"
-        f"Embeddings: {settings.dgx_embed_model or '(leer)'} ({settings.dgx_embed_dim}d)",
-        language="text",
-    )
-
-    # Debug-Sektion: hilft wenn secrets nicht ankommen
-    with st.expander("🔧 Diagnose"):
-        st.markdown("**Aus st.secrets/env geladen:**")
-        if _SECRETS_LOADED:
-            for k, v in sorted(_SECRETS_LOADED.items()):
-                st.text(f"  {k} = {v}")
-        else:
-            st.warning("Keine Secrets geladen! Bitte in Streamlit Cloud → Settings → Secrets eintragen.")
-        st.markdown("**Aktive Config:**")
-        st.text(f"  DGX_API_KEY gesetzt: {'✓' if settings.dgx_api_key else '✗'}")
-        st.text(f"  SUPABASE_SERVICE_ROLE_KEY gesetzt: {'✓' if settings.supabase_service_role_key else '✗'}")
-
-    st.divider()
+    # ── Beispielfragen oben (Hauptzweck) ─────────────────────────────────
     st.subheader("💡 Beispielfragen")
     examples = [
         "Auf welchem Tabellenplatz beendeten die Falken die Saison 2022/23?",
@@ -389,6 +371,7 @@ with st.sidebar:
         "Welches Ergebnis hatte das Spiel ECDC Memmingen vs Falken am 27.02.2026?",
         "In welcher Saison hatten die Falken die meisten Punkte aller Zeiten?",
         "Wie viele Saisons spielten die Falken in der DEL2?",
+        "🌐 Wann hat der jetzige Besitzer der Tenno Sushi Bar bei den Falken gespielt?",
     ]
     for q in examples:
         if st.button(q, key=f"ex_{hash(q)}", use_container_width=True):
@@ -399,6 +382,28 @@ with st.sidebar:
     if st.button("🗑 Verlauf löschen", use_container_width=True):
         st.session_state.history = []
         st.rerun()
+
+    # ── Backend + Diagnose ganz unten ────────────────────────────────────
+    st.divider()
+    st.subheader("⚙ Backend")
+    st.code(
+        f"Gerät:      {_device_label(settings.dgx_base_url)}\n"
+        f"Chat:       {settings.dgx_chat_model or '(leer)'}\n"
+        f"Embeddings: {settings.dgx_embed_model or '(leer)'} ({settings.dgx_embed_dim}d)\n"
+        f"Web-Search: {'Tavily ✓' if settings.tavily_api_key else '— (kein Key)'}",
+        language="text",
+    )
+    with st.expander("🔧 Diagnose"):
+        st.markdown("**Aus st.secrets/env geladen:**")
+        if _SECRETS_LOADED:
+            for k, v in sorted(_SECRETS_LOADED.items()):
+                st.text(f"  {k} = {v}")
+        else:
+            st.warning("Keine Secrets geladen! Bitte in Streamlit Cloud → Settings → Secrets eintragen.")
+        st.markdown("**Aktive Config:**")
+        st.text(f"  DGX_API_KEY: {'✓' if settings.dgx_api_key else '✗'}")
+        st.text(f"  SUPABASE_SERVICE_ROLE_KEY: {'✓' if settings.supabase_service_role_key else '✗'}")
+        st.text(f"  TAVILY_API_KEY: {'✓' if settings.tavily_api_key else '✗'}")
 
 
 # ──────────────────────────────────────────────────────────────────────────────
