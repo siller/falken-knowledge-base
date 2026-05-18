@@ -17,7 +17,7 @@ if str(ROOT) not in sys.path:
 import streamlit as st  # noqa: E402
 
 st.set_page_config(
-    page_title="Falken-KB",
+    page_title="HORST — Falken-Wissensdatenbank",
     page_icon="🦅",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -322,7 +322,10 @@ def _password_protect() -> bool:
     st.markdown(
         f"""<div class="falken-header">
         <img src="{LOGO_URL}" alt="Falken">
-        <div class="falken-header-text"><h1>Falken-Wissensdatenbank</h1><p>Bitte Passwort eingeben</p></div>
+        <div class="falken-header-text">
+            <h1>HORST <span class="accent">·</span> Falken-KB</h1>
+            <p>Der Adlerhorst des Falken-Wissens · Bitte Passwort eingeben</p>
+        </div>
         </div>""",
         unsafe_allow_html=True,
     )
@@ -344,8 +347,8 @@ if not _password_protect():
 # ──────────────────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown(f'<div class="sidebar-logo"><img src="{LOGO_URL}" alt="Falken-Logo"></div>', unsafe_allow_html=True)
-    st.markdown(f"<h2 style='text-align:center; margin-top:0;'>Falken-KB</h2>", unsafe_allow_html=True)
-    st.caption("Heilbronner Falken — GenAI-Wissensdatenbank")
+    st.markdown(f"<h2 style='text-align:center; margin-top:0; letter-spacing:0.1em;'>HORST</h2>", unsafe_allow_html=True)
+    st.markdown(f"<p style='text-align:center; color:rgba(255,255,255,0.7); margin-top:-0.5rem; font-size:0.85rem;'>Der Adlerhorst des Falken-Wissens</p>", unsafe_allow_html=True)
 
     st.divider()
     st.subheader("⚙ Backend")
@@ -405,8 +408,8 @@ st.markdown(
     f"""<div class="falken-header">
     <img src="{LOGO_URL}" alt="Falken">
     <div class="falken-header-text">
-        <h1>Frag die Falken-Wissensdatenbank</h1>
-        <p>Eishockey-Wissen aus 45+ Jahren Vereinsgeschichte — Saisons · Spiele · Trainer · Spielerstatistiken · Playoffs · News</p>
+        <h1>Frag <span class="accent">HORST</span></h1>
+        <p>Der Adlerhorst des Falken-Wissens · 45+ Jahre Vereinsgeschichte · Saisons · Spiele · Trainer · Spieler · Playoffs · News</p>
     </div>
     </div>""",
     unsafe_allow_html=True,
@@ -417,7 +420,7 @@ if "history" not in st.session_state:
 
 prefilled = st.session_state.pop("pending_q", "")
 
-q = st.chat_input("Stell deine Falken-Frage…")
+q = st.chat_input("Frag HORST …")
 if not q and prefilled:
     q = prefilled
 
@@ -450,7 +453,7 @@ if q:
     with st.chat_message("user", avatar="👤"):
         st.markdown(q)
     with st.chat_message("assistant", avatar="🦅"):
-        with st.spinner("🦅 Falken-Daten werden durchsucht…"):
+        with st.spinner("🦅 HORST durchsucht den Adlerhorst…"):
             t0 = time.time()
             effective_q = q
             if st.session_state.history:
