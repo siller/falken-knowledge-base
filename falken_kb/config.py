@@ -49,3 +49,18 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+
+def reload_settings() -> Settings:
+    """Re-instantiate Settings from current os.environ + mutate the global
+    `settings` object so existing `from .config import settings` references
+    pick up new values without needing re-import.
+
+    Streamlit-Cloud-Bug: secrets werden NACH initialem module-import in env
+    geschoben — settings wäre sonst stale. Wird vom UI nach Secrets-Load
+    aufgerufen.
+    """
+    fresh = Settings()
+    for k, v in fresh.model_dump().items():
+        setattr(settings, k, v)
+    return settings

@@ -58,7 +58,11 @@ def _load_secrets_into_env() -> dict[str, str]:
 
 _SECRETS_LOADED = _load_secrets_into_env()
 
-from falken_kb.config import settings  # noqa: E402
+from falken_kb.config import settings, reload_settings  # noqa: E402
+# Fix für Streamlit-Cloud-Cache: settings ggf. mit aktuellen env-vars neu laden.
+# Falls config.py beim ersten Import noch keine Cloud-Secrets in env hatte,
+# wären settings.* stale. reload_settings() mutiert das Singleton in-place.
+reload_settings()
 from falken_kb.genai.orchestrator import answer as kb_answer  # noqa: E402
 
 
