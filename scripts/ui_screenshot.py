@@ -37,6 +37,11 @@ def main() -> int:
     ap.add_argument("--startzeit", type=int, default=20, help="Sekunden Vorlauf für den App-Start")
     args = ap.parse_args()
 
+    if not Path(CHROME).exists():
+        print(f"Chrome nicht gefunden unter {CHROME} — Pfad im Skript anpassen.",
+              file=sys.stderr)
+        return 1
+
     port = _freier_port()
     umgebung = dict(os.environ)
     umgebung.pop("APP_PASSWORD", None)

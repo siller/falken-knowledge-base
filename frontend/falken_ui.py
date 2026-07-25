@@ -27,6 +27,20 @@ st.set_page_config(
     initial_sidebar_state="auto",
 )
 
+# Beispielfragen — bewusst EINE Quelle: sie erscheinen unten in der Aktionszeile,
+# nicht mehr zusätzlich in der Sidebar. Zwei Listen laufen sonst auseinander.
+BEISPIELFRAGEN = [
+    "Wann spielen die Falken diese Saison gegen Stuttgart?",
+    "Auf welchem Tabellenplatz beendeten die Falken die Saison 2022/23?",
+    "Wer war Topscorer der Falken in der Saison 2024/25?",
+    "Wer war Trainer der Falken in der Saison 2018/19?",
+    "Wer gewann die Halbfinale-Serie zwischen Falken und Hannover Scorpions 2024/25?",
+    "Welches Ergebnis hatte das Spiel ECDC Memmingen vs Falken am 27.02.2026?",
+    "In welcher Saison hatten die Falken die meisten Punkte aller Zeiten?",
+    "Wie viele Saisons spielten die Falken in der DEL2?",
+    "🌐 Wann hat der jetzige Besitzer der Tenno Sushi Bar bei den Falken gespielt?",
+]
+
 # ──────────────────────────────────────────────────────────────────────────────
 # Secrets → env (Streamlit Cloud + lokal). MUSS vor falken_kb.config laufen.
 # ──────────────────────────────────────────────────────────────────────────────
@@ -389,28 +403,9 @@ with st.sidebar:
 
     st.divider()
 
-    # ── Beispielfragen oben (Hauptzweck) ─────────────────────────────────
-    st.subheader("💡 Beispielfragen")
-    examples = [
-        "Wann spielen die Falken diese Saison gegen Stuttgart?",
-        "Auf welchem Tabellenplatz beendeten die Falken die Saison 2022/23?",
-        "Wer war Topscorer der Falken in der Saison 2024/25?",
-        "Wer war Trainer der Falken in der Saison 2018/19?",
-        "Wer gewann die Halbfinale-Serie zwischen Falken und Hannover Scorpions 2024/25?",
-        "Welches Ergebnis hatte das Spiel ECDC Memmingen vs Falken am 27.02.2026?",
-        "In welcher Saison hatten die Falken die meisten Punkte aller Zeiten?",
-        "Wie viele Saisons spielten die Falken in der DEL2?",
-        "🌐 Wann hat der jetzige Besitzer der Tenno Sushi Bar bei den Falken gespielt?",
-    ]
-    for q in examples:
-        if st.button(q, key=f"ex_{hash(q)}", use_container_width=True):
-            st.session_state["pending_q"] = q
-            st.rerun()
-
-    st.divider()
-    if st.button("🗑 Verlauf löschen", use_container_width=True):
-        st.session_state.history = []
-        st.rerun()
+    # Beispielfragen und "Verlauf löschen" stehen jetzt unten in der
+    # Aktionszeile am Eingabefeld — auf dem Handy waren sie hier nur über das
+    # Hamburger-Menü erreichbar.
 
     # ── Backend + Diagnose ganz unten ────────────────────────────────────
     st.divider()
@@ -458,6 +453,27 @@ if "history" not in st.session_state:
 
 prefilled = st.session_state.pop("pending_q", "")
 
+def _aktionszeile() -> None:
+    """Beispielfragen + Verlauf direkt über dem Eingabefeld.
+
+    WHY: In der Sidebar waren die Beispiele auf dem Handy nur über das
+    Hamburger-Menü erreichbar — genau die Fragen, die neuen Nutzern zeigen,
+    was HORST kann.
+    """
+    links, rechts = st.columns([4, 1])
+    with links:
+        with st.popover("💡 Beispielfragen", use_container_width=True):
+            for frage in BEISPIELFRAGEN:
+                if st.button(frage, key=f"bsp_{hash(frage)}", use_container_width=True):
+                    st.session_state["pending_q"] = frage
+                    st.rerun()
+    with rechts:
+        if st.button("🗑", help="Verlauf löschen", use_container_width=True):
+            st.session_state.history = []
+            st.rerun()
+
+
+_aktionszeile()
 q = st.chat_input("Frag HORST …")
 if not q and prefilled:
     q = prefilled
