@@ -330,6 +330,13 @@ st.markdown(
         background: {FALKEN_RED} !important;
         color: #ffffff !important;
     }}
+    /* Panel darf den Schirm nicht sprengen. Headless lässt sich kein Klick
+       auslösen, also ist das eine Vorsichtsmaßnahme, keine geprüfte Optik. */
+    div[data-testid="stPopoverBody"] {{
+        max-width: 92vw;
+        max-height: 70vh;
+        overflow-y: auto;
+    }}
     /* Streamlit stapelt Spalten unter ~640px untereinander. Für DIESE eine
        Zeile ist das falsch: der Verlauf-Button gehört schmal neben die
        Beispiele, nicht als volle zweite Zeile darunter. Nur die Zeile mit dem
