@@ -27,6 +27,9 @@ def tavily_search(
     api_key = settings.tavily_api_key
     if not api_key:
         return {"error": "TAVILY_API_KEY nicht gesetzt", "results": [], "answer": ""}
+    if api_key.strip().upper().startswith("REPLACE_ME"):
+        return {"error": "TAVILY_API_KEY ist noch der Platzhalter aus der Vorlage",
+                "results": [], "answer": ""}
 
     try:
         with httpx.Client(timeout=20) as c:
@@ -42,6 +45,18 @@ def tavily_search(
             )
             r.raise_for_status()
             data = r.json()
+    except httpx.HTTPStatusError as e:
+        # Konkreter Grund statt "irgendwas ging schief" — sonst ist von außen
+        # nicht zu unterscheiden, ob der Key fehlt, abgelehnt wird oder das
+        # Monatskontingent aufgebraucht ist.
+        code = e.response.status_code
+        grund = {
+            401: "API-Key wird abgelehnt (401) — Key in den Secrets prüfen",
+            403: "Zugriff verweigert (403) — Key ungültig oder gesperrt",
+            429: "Kontingent erschöpft (429) — Tavily-Limit erreicht",
+        }.get(code, f"HTTP {code}")
+        logger.warning("Tavily-Fehler: %s", grund)
+        return {"error": grund, "results": [], "answer": ""}
     except httpx.HTTPError as e:
         logger.warning("Tavily-Fehler: %s", str(e)[:200])
         return {"error": str(e)[:200], "results": [], "answer": ""}

@@ -1,0 +1,742 @@
+{
+  "summary": {
+    "total": 42,
+    "pass": 42,
+    "fail": 0,
+    "error": 0
+  },
+  "results": [
+    {
+      "id": "q_top_2013_14",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2013/14?",
+      "expected_facts": [
+        "Robert Hock"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2013/14 war Robert Hock mit 55 Punkten. Er erzielte dabei 11 goals und 44 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2013/14' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 6.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2014_15",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2014/15?",
+      "expected_facts": [
+        "Dustin Cameron"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2014/15 war Dustin Cameron mit 50 Punkten. Er erzielte dabei 19 goals und 31 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2014/15' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 5.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2015_16",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2015/16?",
+      "expected_facts": [
+        "Adam Brace"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2015/16 war Adam Brace mit 63 points. Er erzielte dabei 28 goals und 35 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2015/16' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 4.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2016_17",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2016/17?",
+      "expected_facts": [
+        "Rylan Schwartz"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2016/17 war Rylan Schwartz mit 49 Punkten. Er erzielte dabei 17 goals und 32 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2016/17' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 4.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2017_18",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2017/18?",
+      "expected_facts": [
+        "Brandon Alderson"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2017/18 war Brandon Alderson mit 54 points. Er erzielte dabei 25 goals und 29 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2017/18' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 4.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2018_19",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2018/19?",
+      "expected_facts": [
+        "Roope Ranta"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2018/19 war Roope Ranta mit 79 points. Er erzielte dabei 31 goals und 48 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2018/19' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 4.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2019_20",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2019/20?",
+      "expected_facts": [
+        "Dylan Wruck"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2019/20 war Dylan Wruck mit 88 points.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2019/20' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 4.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2020_21",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2020/21?",
+      "expected_facts": [
+        "Dylan Wruck"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2020/21 war Dylan Wruck mit 78 points. Er erzielte dabei 23 goals und 55 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2020/21' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 5.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2021_22",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2021/22?",
+      "expected_facts": [
+        "Jeremy Williams"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2021/22 war Jeremy Williams mit 62 points. Er erzielte dabei 26 goals und 36 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2021/22' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 4.9,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2022_23",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2022/23?",
+      "expected_facts": [
+        "Alex Tonge"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2022/23 war Alex Tonge mit 59 points. Er erzielte dabei 19 goals und 40 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2022/23' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 4.8,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2023_24",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2023/24?",
+      "expected_facts": [
+        "Pontus Wernerson Libäck"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2023/24 war Pontus Wernerson Libäck mit 90 Punkten. Er erzielte dabei 36 goals und 54 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2023/24' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 5.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_top_2024_25",
+      "category": "topscorer",
+      "question": "Wer war Topscorer der Falken in der Saison 2024/25?",
+      "expected_facts": [
+        "Nolan Ritchie"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Topscorer der Falken in der Saison 2024/25 war Nolan Ritchie mit 84 Punkten. Er erzielte dabei 38 goals und 46 assists.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2024/25' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 5.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_game_20260227",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen ECDC Memmingen Indians und Heilbronner Falken am 2026-02-27?",
+      "expected_facts": [
+        "7:2",
+        "7-2",
+        "7 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen ECDC Memmingen Indians und Heilbronner Falken am 2026-02-27 endete 7:2 für die ECDC Memmingen Indians.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-02-27' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Memmingen%' OR at.name ILIKE '%Memmingen%');",
+      "time_sec": 7.5,
+      "pass": true,
+      "missing_facts": [
+        "7-2",
+        "7 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20260222",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Erding Gladiators am 2026-02-22?",
+      "expected_facts": [
+        "2:7",
+        "2-7",
+        "2 zu 7"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Heilbronner Falken und Erding Gladiators am 2026-02-22 endete Heilbronner Falken 2:7 Erding Gladiators.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-02-22' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Erding%' OR at.name ILIKE '%Erding%');",
+      "time_sec": 7.3,
+      "pass": true,
+      "missing_facts": [
+        "2-7",
+        "2 zu 7"
+      ]
+    },
+    {
+      "id": "q_game_20260220",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen EHF Passau Black Hawks und Heilbronner Falken am 2026-02-20?",
+      "expected_facts": [
+        "8:3",
+        "8-3",
+        "8 zu 3"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen EHF Passau Black Hawks und Heilbronner Falken am 2026-02-20 endete 8:3 für die EHF Passau Black Hawks.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-02-20' AND (ht.name ILIKE '%Passau%' OR at.name ILIKE '%Passau%') AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%');",
+      "time_sec": 7.2,
+      "pass": true,
+      "missing_facts": [
+        "8-3",
+        "8 zu 3"
+      ]
+    },
+    {
+      "id": "q_game_20260206",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Bayreuth Tigers am 2026-02-06?",
+      "expected_facts": [
+        "11:3",
+        "11-3",
+        "11 zu 3"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Bayreuth Tigers am 2026-02-06 endete 11:3 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-02-06' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Bayreuth%' OR at.name ILIKE '%Bayreuth%');",
+      "time_sec": 7.5,
+      "pass": true,
+      "missing_facts": [
+        "11-3",
+        "11 zu 3"
+      ]
+    },
+    {
+      "id": "q_game_20260130",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Stuttgart Rebels am 2026-01-30?",
+      "expected_facts": [
+        "2:7",
+        "2-7",
+        "2 zu 7"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Stuttgart Rebels am 2026-01-30 endete mit einem Ergebnis von Heilbronner Falken 2:7 Stuttgart Rebels.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-01-30' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Stuttgart%' OR at.name ILIKE '%Stuttgart%') AND g.home_score IS NOT NULL;",
+      "time_sec": 7.7,
+      "pass": true,
+      "missing_facts": [
+        "2-7",
+        "2 zu 7"
+      ]
+    },
+    {
+      "id": "q_game_20260120",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Deggendorfer SC und Heilbronner Falken am 2026-01-20?",
+      "expected_facts": [
+        "8:2",
+        "8-2",
+        "8 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Deggendorfer SC und Heilbronner Falken am 2026-01-20 endete 8:2 für den Deggendorfer SC.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-01-20' AND (ht.name ILIKE '%Deggendorfer%' OR at.name ILIKE '%Deggendorfer%') AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%');",
+      "time_sec": 7.1,
+      "pass": true,
+      "missing_facts": [
+        "8-2",
+        "8 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20260116",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen SC Riessersee und Heilbronner Falken am 2026-01-16?",
+      "expected_facts": [
+        "0:6",
+        "0-6",
+        "0 zu 6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen SC Riessersee und Heilbronner Falken am 2026-01-16 endete mit einem Ergebnis von SC Riessersee 0:6 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-01-16' AND (ht.name ILIKE '%Riessersee%' OR at.name ILIKE '%Riessersee%') AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND g.home_score IS NOT NULL;",
+      "time_sec": 7.7,
+      "pass": true,
+      "missing_facts": [
+        "0-6",
+        "0 zu 6"
+      ]
+    },
+    {
+      "id": "q_game_20260102",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und EV Füssen am 2026-01-02?",
+      "expected_facts": [
+        "6:2",
+        "6-2",
+        "6 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und dem EV Füssen am 2026-01-02 endete 6:2 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2026-01-02' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Füssen%' OR at.name ILIKE '%Füssen%');",
+      "time_sec": 7.1,
+      "pass": true,
+      "missing_facts": [
+        "6-2",
+        "6 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20251228",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Stuttgart Rebels und Heilbronner Falken am 2025-12-28?",
+      "expected_facts": [
+        "1:7",
+        "1-7",
+        "1 zu 7"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Stuttgart Rebels und Heilbronner Falken am 2025-12-28 endete 1:7 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-12-28' AND (ht.name ILIKE '%Stuttgart Rebels%' OR at.name ILIKE '%Stuttgart Rebels%') AND (ht.name ILIKE '%Heilbronner Falken%' OR at.name ILIKE '%Heilbronner Falken%');",
+      "time_sec": 7.0,
+      "pass": true,
+      "missing_facts": [
+        "1-7",
+        "1 zu 7"
+      ]
+    },
+    {
+      "id": "q_game_20251128",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Stuttgart Rebels am 2025-11-28?",
+      "expected_facts": [
+        "8:2",
+        "8-2",
+        "8 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Stuttgart Rebels am 2025-11-28 endete 8:2 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-11-28' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Stuttgart%' OR at.name ILIKE '%Stuttgart%') AND g.home_score IS NOT NULL;",
+      "time_sec": 7.4,
+      "pass": true,
+      "missing_facts": [
+        "8-2",
+        "8 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20251121",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Selber Wölfe und Heilbronner Falken am 2025-11-21?",
+      "expected_facts": [
+        "1:6",
+        "1-6",
+        "1 zu 6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Selber Wölfe und Heilbronner Falken am 2025-11-21 endete mit einem Ergebnis von Selber Wölfe 1:6 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-11-21' AND ((ht.name ILIKE '%Selber Wölfe%' OR at.name ILIKE '%Selber Wölfe%') AND (ht.name ILIKE '%Heilbronner Falken%' OR at.name ILIKE '%Heilbronner Falken%'));",
+      "time_sec": 7.6,
+      "pass": true,
+      "missing_facts": [
+        "1-6",
+        "1 zu 6"
+      ]
+    },
+    {
+      "id": "q_game_20251116",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen SC Riessersee und Heilbronner Falken am 2025-11-16?",
+      "expected_facts": [
+        "1:6",
+        "1-6",
+        "1 zu 6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen SC Riessersee und Heilbronner Falken am 2025-11-16 endete 1:6 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-11-16' AND (ht.name ILIKE '%Riessersee%' OR at.name ILIKE '%Riessersee%') AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%');",
+      "time_sec": 7.2,
+      "pass": true,
+      "missing_facts": [
+        "1-6",
+        "1 zu 6"
+      ]
+    },
+    {
+      "id": "q_game_20251114",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Erding Gladiators am 2025-11-14?",
+      "expected_facts": [
+        "7:2",
+        "7-2",
+        "7 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Erding Gladiators am 2025-11-14 endete 7:2 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-11-14' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Erding%' OR at.name ILIKE '%Erding%');",
+      "time_sec": 7.0,
+      "pass": true,
+      "missing_facts": [
+        "7-2",
+        "7 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20251028",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Bayreuth Tigers am 2025-10-28?",
+      "expected_facts": [
+        "10:1",
+        "10-1",
+        "10 zu 1"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Heilbronner Falken und Bayreuth Tigers am 2025-10-28 endete 10:1 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-10-28' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Bayreuth%' OR at.name ILIKE '%Bayreuth%');",
+      "time_sec": 7.2,
+      "pass": true,
+      "missing_facts": [
+        "10-1",
+        "10 zu 1"
+      ]
+    },
+    {
+      "id": "q_game_20251017",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und EV Füssen am 2025-10-17?",
+      "expected_facts": [
+        "7:1",
+        "7-1",
+        "7 zu 1"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und dem EV Füssen am 2025-10-17 endete 7:1 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-10-17' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Füssen%' OR at.name ILIKE '%Füssen%');",
+      "time_sec": 7.0,
+      "pass": true,
+      "missing_facts": [
+        "7-1",
+        "7 zu 1"
+      ]
+    },
+    {
+      "id": "q_game_20251010",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Stuttgart Rebels und Heilbronner Falken am 2025-10-10?",
+      "expected_facts": [
+        "1:9",
+        "1-9",
+        "1 zu 9"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Stuttgart Rebels und Heilbronner Falken am 2025-10-10 endete mit einem Ergebnis von Stuttgart Rebels 1:9 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-10-10' AND (ht.name ILIKE '%Stuttgart Rebels%' OR at.name ILIKE '%Stuttgart Rebels%') AND (ht.name ILIKE '%Heilbronner Falken%' OR at.name ILIKE '%Heilbronner Falken%');",
+      "time_sec": 7.0,
+      "pass": true,
+      "missing_facts": [
+        "1-9",
+        "1 zu 9"
+      ]
+    },
+    {
+      "id": "q_game_20250216",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen EV Füssen und Heilbronner Falken am 2025-02-16?",
+      "expected_facts": [
+        "2:7",
+        "2-7",
+        "2 zu 7"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen EV Füssen und Heilbronner Falken am 2025-02-16 endete mit dem Ergebnis EV Füssen 2:7 Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-02-16' AND (ht.name ILIKE '%Füssen%' OR at.name ILIKE '%Füssen%') AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%');",
+      "time_sec": 7.4,
+      "pass": true,
+      "missing_facts": [
+        "2-7",
+        "2 zu 7"
+      ]
+    },
+    {
+      "id": "q_game_20250214",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und EC Peiting am 2025-02-14?",
+      "expected_facts": [
+        "8:2",
+        "8-2",
+        "8 zu 2"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Heilbronner Falken und EC Peiting am 2025-02-14 endete 8:2 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-02-14' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Peiting%' OR at.name ILIKE '%Peiting%');",
+      "time_sec": 7.4,
+      "pass": true,
+      "missing_facts": [
+        "8-2",
+        "8 zu 2"
+      ]
+    },
+    {
+      "id": "q_game_20250211",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Heilbronner Falken und Bayreuth Tigers am 2025-02-11?",
+      "expected_facts": [
+        "9:4",
+        "9-4",
+        "9 zu 4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen den Heilbronner Falken und den Bayreuth Tigers am 2025-02-11 endete 9:4 für die Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-02-11' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Bayreuth%' OR at.name ILIKE '%Bayreuth%');",
+      "time_sec": 7.2,
+      "pass": true,
+      "missing_facts": [
+        "9-4",
+        "9 zu 4"
+      ]
+    },
+    {
+      "id": "q_game_20250126",
+      "category": "spielergebnis",
+      "question": "Welches Ergebnis hatte das Spiel zwischen Stuttgart Rebels und Heilbronner Falken am 2025-01-26?",
+      "expected_facts": [
+        "1:6",
+        "1-6",
+        "1 zu 6"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das Spiel zwischen Stuttgart Rebels und Heilbronner Falken am 2025-01-26 endete 1:6.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score, g.overtime, g.shootout FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id WHERE g.date::date = '2025-01-26' AND (ht.name ILIKE '%Stuttgart%' OR at.name ILIKE '%Stuttgart%') AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%');",
+      "time_sec": 6.8,
+      "pass": true,
+      "missing_facts": [
+        "1-6",
+        "1 zu 6"
+      ]
+    },
+    {
+      "id": "q_compare_001",
+      "category": "vergleich",
+      "question": "Wie oft haben die Falken in der Saison 2025/26 gegen Bayreuth gespielt?",
+      "expected_facts": [
+        "4"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken haben in der Saison 2025/26 4 Mal gegen Bayreuth gespielt.",
+      "actual_category": "fact",
+      "sql": "SELECT COUNT(*) AS spiele_anzahl FROM games g JOIN teams ht ON ht.id = g.home_team_id JOIN teams at ON at.id = g.away_team_id JOIN seasons s ON s.id = g.season_id WHERE s.label = '2025/26' AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%') AND (ht.name ILIKE '%Bayreuth%' OR at.name ILIKE '%Bayreuth%');",
+      "time_sec": 6.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_002",
+      "category": "vergleich",
+      "question": "Welches war das höchste Falken-Heim-Ergebnis gegen Bayreuth?",
+      "expected_facts": [
+        "11"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Das höchste Heim-Ergebnis der Heilbronner Falken gegen die Bayreuth Tigers war Heilbronner Falken 11:3 Bayreuth Tigers.",
+      "actual_category": "fact",
+      "sql": "SELECT ht.name AS home_team, at.name AS away_team, g.home_score, g.away_score\nFROM games g\nJOIN teams ht ON ht.id = g.home_team_id\nJOIN teams at ON at.id = g.away_team_id\nWHERE ht.name = 'Heilbronner Falken'\n  AND at.name ILIKE '%Bayreuth%'\n  AND g.home_score IS NOT NULL\nORDER BY g.home_score DESC NULLS LAST\nLIMIT 1;",
+      "time_sec": 6.6,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_003",
+      "category": "vergleich",
+      "question": "Wann haben die Falken zuletzt im Halbfinale gespielt?",
+      "expected_facts": [
+        "2024/25"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken spielten zuletzt in der Saison 2024/25 im Halbfinale gegen die Hannover Scorpions.",
+      "actual_category": "fact",
+      "sql": "SELECT s.label AS season, ps.round, ta.name AS team_a, tb.name AS team_b, wt.name AS winner\nFROM playoff_series ps\nJOIN seasons s ON s.id = ps.season_id\nJOIN teams ta ON ta.id = ps.team_a_id\nJOIN teams tb ON tb.id = ps.team_b_id\nLEFT JOIN teams wt ON wt.id = ps.winner_team_id\nWHERE ps.round = 'Halbfinale'\n  AND ('Heilbronner Falken' IN (ta.name, tb.name))\nORDER BY s.label DESC LIMIT 1;",
+      "time_sec": 8.5,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_004",
+      "category": "vergleich",
+      "question": "Gegen welches Team verloren die Falken 2022/23 in den Playdowns?",
+      "expected_facts": [
+        "Bayreuth"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Heilbronner Falken verloren in den Playdowns 2022/23 gegen die folgenden Teams:\n* In der Play-Down R1 gegen die Selber Wölfe (wins_a: 2, wins_b: 4).\n* In der Play-Down R2 gegen die Bayreuth Tigers (wins_a: 2, wins_b: 4).",
+      "actual_category": "fact",
+      "sql": "SELECT ta.name AS team_a, tb.name AS team_b, ps.round, ps.wins_a, ps.wins_b, wt.name AS winner\nFROM playoff_series ps\nJOIN teams ta ON ta.id = ps.team_a_id\nJOIN teams tb ON tb.id = ps.team_b_id\nLEFT JOIN teams wt ON wt.id = ps.winner_team_id\nJOIN seasons s ON s.id = ps.season_id\nWHERE s.label = '2022/23'\n  AND ps.round LIKE 'Play-Down%'\n  AND ('Heilbronner Falken' IN (ta.name, tb.name))\n  AND wt.name <> 'Heilbronner Falken';",
+      "time_sec": 10.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_005",
+      "category": "vergleich",
+      "question": "Wer wurde Hauptrundensieger der Oberliga Süd 2024/25?",
+      "expected_facts": [
+        "Heilbronner Falken",
+        "Falken"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Hauptrundensieger der Oberliga Süd 2024/25 war Heilbronner Falken.",
+      "actual_category": "fact",
+      "sql": "SELECT team FROM season_standings WHERE league = 'Oberliga Süd' AND season = '2024/25' AND games_played > 0 ORDER BY final_rank ASC LIMIT 1;",
+      "time_sec": 4.4,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_006",
+      "category": "vergleich",
+      "question": "Wie viele Spiele hat die DEL2 in einer normalen Saison?",
+      "expected_facts": [
+        "52"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "In einer normalen Saison der DEL2 werden 52 Spiele gespielt (Saison 2025/26).",
+      "actual_category": "fact",
+      "sql": "SELECT DISTINCT season, games_played FROM season_standings WHERE league = 'DEL2' AND games_played > 0 ORDER BY season DESC LIMIT 1;",
+      "time_sec": 4.2,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_007",
+      "category": "vergleich",
+      "question": "Hat Stefan Della Rovere mehr als 30 Punkte in 2022/23?",
+      "expected_facts": [
+        "38"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Ja, Stefan Della Rovere hat in 2022/23 mehr als 30 Punkte erzielt, da er 38 Punkte hat.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM falken_skater_stats WHERE similarity(player, 'Stefan Della Rovere') > 0.3 AND season = '2022/23' AND points IS NOT NULL ORDER BY similarity(player, 'Stefan Della Rovere') DESC LIMIT 1;",
+      "time_sec": 6.7,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_008",
+      "category": "vergleich",
+      "question": "Wie viele Punkte hatten die Falken in 2019/20?",
+      "expected_facts": [
+        "84"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Die Falken hatten in 2019/20 genau 84 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT points FROM season_standings WHERE team = 'Heilbronner Falken' AND season = '2019/20';",
+      "time_sec": 4.0,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_009",
+      "category": "vergleich",
+      "question": "Welche Saisons hatte Dylan Wruck mehr als 75 Punkte?",
+      "expected_facts": [
+        "2019/20",
+        "2020/21"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Dylan Wruck hatte in den Saisons 2020/21 (78 Punkte) und 2019/20 (88 Punkte) mehr als 75 Punkte.",
+      "actual_category": "fact",
+      "sql": "SELECT season, points FROM falken_skater_stats WHERE similarity(player, 'Dylan Wruck') > 0.3 AND points > 75 ORDER BY season DESC;",
+      "time_sec": 5.1,
+      "pass": true,
+      "missing_facts": []
+    },
+    {
+      "id": "q_compare_010",
+      "category": "vergleich",
+      "question": "Wer war Falken-Topscorer in der Klassenerhaltsaison 2015/16?",
+      "expected_facts": [
+        "Adam Brace"
+      ],
+      "expected_category": "fact",
+      "actual_answer": "Der Falken-Topscorer in der Saison 2015/16 war Adam Brace mit 28 goals.",
+      "actual_category": "fact",
+      "sql": "SELECT player, points, goals, assists FROM falken_skater_stats WHERE season = '2015/16' AND points IS NOT NULL ORDER BY points DESC NULLS LAST LIMIT 1;",
+      "time_sec": 4.7,
+      "pass": true,
+      "missing_facts": []
+    }
+  ]
+}

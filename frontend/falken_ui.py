@@ -416,7 +416,10 @@ with st.sidebar:
         f"Gerät:      {_device_label(settings.dgx_base_url)}\n"
         f"Chat:       {settings.dgx_chat_model or '(leer)'}\n"
         f"Embeddings: {settings.dgx_embed_model or '(leer)'} ({settings.dgx_embed_dim}d)\n"
-        f"Web-Search: {'Tavily ✓' if settings.tavily_api_key else '— (kein Key)'}\n"
+        # Bewusst "Key gesetzt" statt "✓": ob der Key auch akzeptiert wird,
+        # zeigt sich erst beim Suchen — ein Häkchen wäre hier ein Versprechen,
+        # das die Anzeige nicht halten kann.
+        f"Web-Search: {'Tavily (Key gesetzt)' if settings.tavily_api_key else '— (kein Key)'}\n"
         f"Code-Stand: {_code_version()}",
         language="text",
     )

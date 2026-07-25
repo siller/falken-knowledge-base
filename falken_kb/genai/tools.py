@@ -75,6 +75,12 @@ def tool_lookup_player(name: str) -> dict[str, Any]:
                 f"WHERE similarity(goalie, '{safe}') > 0.3 "
                 f"ORDER BY sim DESC, season DESC LIMIT 15"
             )
+        # Wie in hybrid_web: nur die Saisons des bestpassenden Spielers, sonst
+        # mischen sich Namensvettern unter "seasons" und werden der gesuchten
+        # Person zugerechnet.
+        if rows:
+            bester = rows[0]["player"]
+            rows = [r for r in rows if r["player"] == bester]
         return {
             "found": bool(rows),
             "player_name": rows[0].get("player") if rows else None,

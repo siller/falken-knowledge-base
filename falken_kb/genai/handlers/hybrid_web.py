@@ -46,6 +46,14 @@ def _direct_player_lookup(name: str) -> dict[str, Any]:
                 f"WHERE similarity(goalie, '{safe_name}') > 0.3 "
                 f"ORDER BY sim DESC, season DESC LIMIT 10"
             )
+        # NUR die Zeilen des bestpassenden Spielers behalten. Der Fuzzy-Match
+        # (sim > 0.3) trifft auch Namensvettern — bei "Thomas Gödtel" etwa
+        # "Thomas Gauch" und "Thomas Supis". Deren Saisons landeten sonst im
+        # Kontext der Synthese und wurden der gesuchten Person zugeschrieben:
+        # Gödtel bekam so Einsätze in 2023/24 und 2024/25 angedichtet.
+        if rows:
+            bester = rows[0]["player"]  # bereits nach sim DESC sortiert
+            rows = [r for r in rows if r["player"] == bester]
         return {"person": name, "rows": rows, "found": bool(rows)}
     except Exception as e:
         logger.warning("Direct-lookup für %s failed: %s", name, str(e)[:120])
@@ -60,9 +68,11 @@ def answer_web_research(question: str, client: DGXClient | None = None) -> dict[
     if web.get("error") and not web.get("results"):
         # NICHT crashen — leeres Result returnen damit Fallback bei Bedarf
         # noch zu fact gehen kann
+        # Grund mit ausgeben: "nicht verfügbar" allein ist von außen nicht von
+        # einem fehlenden Key zu unterscheiden und kostet unnötige Suche.
         return {
             "category": "web_research",
-            "answer": "Web-Recherche aktuell nicht verfügbar — bitte versuche es später nochmal.",
+            "answer": f"Web-Recherche nicht verfügbar — {web['error']}.",
             "error": web["error"],
             "web_results": [],
             "db_findings": [],
