@@ -187,6 +187,12 @@ class DGXClient:
                 raise
         raise last_err  # type: ignore[misc]
 
+    # nomic-embed-text auf der DGX bricht ab ~512 Tokens mit HTTP 500 ab
+    # (deutscher Text ≈ 3 Zeichen/Token → ab ca. 1.500 Zeichen). Wir kürzen
+    # defensiv, statt den Call scheitern zu lassen: ein Embedding aus den
+    # ersten ~1.200 Zeichen ist deutlich besser als gar keins.
+    EMBED_MAX_CHARS = 1200
+
     def embed(self, texts: list[str]) -> list[list[float]]:
         """Embeddings mit dimensions=768 (kompatibel zu pgvector(768)-Schema)."""
         if not texts:
@@ -199,4 +205,21 @@ class DGXClient:
         return [d.embedding for d in resp.data]
 
     def embed_one(self, text: str) -> list[float]:
-        return self.embed([text])[0]
+        """Embedding für einen Text — kürzt schrittweise, statt aufzugeben.
+
+        Das Token-Limit ist nicht an einer Zeichenzahl festzumachen: 1.200 Zeichen
+        Fließtext gehen durch, 1.200 Zeichen mit vielen URLs/Zahlen nicht. Deshalb
+        halbieren wir im Fehlerfall, bis es passt.
+        """
+        last_err: Exception | None = None
+        for length in (len(text), self.EMBED_MAX_CHARS, 600, 300):
+            if length > len(text):
+                continue
+            try:
+                return self.embed([text[:length]])[0]
+            except Exception as e:  # noqa: BLE001 — Provider-Fehler sind untypisiert
+                last_err = e
+                logger.warning(
+                    "Embedding fehlgeschlagen bei %d Zeichen (%s)", length, str(e)[:80]
+                )
+        raise last_err  # type: ignore[misc]

@@ -1422,17 +1422,24 @@
   category: trend
   difficulty: medium
   question: Welches war die punkteschlechteste Falken-Saison der letzten 10 Jahre?
+  # Korrigiert 25.07.2026: "letzte 10 Jahre" sind die Saisons 2016/17–2025/26, und
+  # darin ist 2016/17 mit 50 Punkten die schlechteste. 2015/16 (36) liegt außerhalb
+  # des Fensters — die alte Erwartung stimmte nur, solange das Modell die Grenze
+  # großzügig auf 2015/16 legte.
   expected_facts:
-  - 2015/16
-  - '36'
+  - 2016/17
+  - '50'
   expected_category: trend
 - id: q_trend_002
   category: trend
   difficulty: medium
   question: In welcher Saison hatten die Falken die meisten Punkte?
+  # Korrigiert 25.07.2026: erwartet war 2006/07 mit 108 Punkten — das ist zwar der
+  # damalige Wert, inzwischen aber übertroffen: 2024/25 steht mit 114 Punkten an
+  # der Spitze des Datenbestands.
   expected_facts:
-  - 2006/07
-  - '108'
+  - 2024/25
+  - '114'
   expected_category: trend
 - id: q_trend_003
   category: trend
@@ -1501,17 +1508,20 @@
   category: trend
   difficulty: medium
   question: Wann hatten die Falken zuletzt mehr als 100 Punkte?
+  # Korrigiert 25.07.2026: 2024/25 (114) und 2023/24 (109) sind die einzigen
+  # Saisons mit über 100 Punkten im Datenbestand.
   expected_facts:
-  - 2006/07
-  - '108'
+  - 2024/25
+  - '114'
   expected_category: fact
 - id: q_trend_013
   category: trend
   difficulty: medium
   question: Wer war Topscorer in der letzten Oberliga-Süd-Saison?
+  # Korrigiert 25.07.2026: "letzte Saison" ist inzwischen 2025/26 — dort führt
+  # Calder Anderson mit 68 Punkten vor Cabana (57) und Ritchie (55).
   expected_facts:
-  - Wernerson Libäck
-  - Ritchie
+  - Anderson
   expected_category: fact
 - id: q_trend_014
   category: trend
@@ -1544,9 +1554,10 @@
   category: vergleich
   difficulty: medium
   question: Wann haben die Falken zuletzt im Halbfinale gespielt?
+  # Korrigiert 25.07.2026: seit dem Playoff-Backfill steht auch die Halbfinal-Serie
+  # 2024/25 gegen die Hannover Scorpions in der DB — das ist die letzte.
   expected_facts:
-  - 2021/22
-  - 2023/24
+  - 2024/25
   expected_category: fact
 - id: q_compare_004
   category: vergleich

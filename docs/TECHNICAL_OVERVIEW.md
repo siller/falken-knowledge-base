@@ -83,23 +83,40 @@
 - `tool_search_falken_news(query)` — narrative_rag-Wrapper
 - `tool_search_web(query)` — Tavily-Wrapper
 
-## Daten-Modell (Kern-Tabellen, Schema `falken`)
+## Daten-Modell (Kern-Tabellen, Schema `falken`, Stand 25.07.2026)
 
 ```
-seasons (48 rows)             — Saisons mit league, league_tier, is_focus_team_season
-teams (130)                   — Alle Liga-Teams mit alt_names
-players (194)                 — Falken-Spieler
-coaches (34)                  — Falken-Trainer
-games (8290)                  — Alle Spiele mit Score, OT/SO, game_type
-team_seasons (330)            — Standings pro Team×Saison
-player_seasons (320)          — Jersey-Number + Role pro Spieler×Saison
-player_stats (320)            — Goals/Assists/Points (points = generated)
-goalie_stats (8)              — GAA, Save%, etc. (8 Einträge, ausbaufähig)
-coach_tenures (58)            — Trainer-Amtszeiten via Date-Range
-playoff_series (45)           — Round + Wins-Verhältnis + Winner
-articles (22)                 — News-Artikel mit pgvector(768)-Embedding
+seasons (49 rows)             — Saisons mit league, league_tier, is_focus_team_season
+teams (135)                   — Alle Liga-Teams mit alt_names
+players (244)                 — Falken-Spieler
+coaches (36)                  — Falken-Trainer
+games (8867)                  — Alle Spiele mit Score, OT/SO, game_type
+                                (Score NULL = angesetzt, noch nicht gespielt)
+team_seasons (344)            — Standings pro Team×Saison
+player_seasons (379)          — Jersey-Number + Role pro Spieler×Saison
+player_stats (349)            — Goals/Assists/Points (points = generated)
+goalie_stats (6)              — GAA, Save%, Shutouts; hockeydata liefert das nur
+                                für die Oberliga-Jahre ab 2023/24
+coach_tenures (61)            — Trainer-Amtszeiten via Date-Range
+playoff_series (68)           — Round + Wins-Verhältnis + Winner
+articles (131)                — News aus 10 Quellen, pgvector(768)-Embedding
 sync_log                      — Phase-2-Trigger für Neo4j-Replikation
 ```
+
+### Fallstricke der hockeydata-Rohdaten
+
+Drei Muster, die stillschweigend falsche Daten erzeugen — alle im Loader abgefangen,
+Reparatur-Skript: `scripts/fix_phantom_results.py`:
+
+| Symptom | Ursache | Behandlung |
+|---|---|---|
+| Ganze Spielpläne als 0:0-Ergebnisse | `homeTeamScore=0` statt `null` bei angesetzten Spielen | nur übernehmen, wenn `gameStatus != 0` |
+| Halbe Liga auf "Platz 1" | Tabelle vor dem 1. Spieltag: jedes Team Rang 1, 0 Spiele | `final_rank` erst ab `gamesPlayed > 0` |
+| Fremde Spieler in der Falken-Historie | Team-Filter über Kürzel — "HEC" ist *Höchstadt*, die Falken sind "HNF_" | Filter über `teamId` (47011, ab 26/27 70543) |
+
+Dazu: der Klub tritt ab 2026/27 als "Heilbronner EC Falken" mit neuer teamId an.
+`scripts/merge_known_duplicates.py` führt die Schreibweisen zusammen, sonst zerfällt
+die Vereinshistorie in zwei Teams; der tägliche Sync ruft das automatisch auf.
 
 ## Code-Layout
 
@@ -179,3 +196,18 @@ falken-knowledge-base/
 - **Git**: `siller/falken-knowledge-base` (public)
 - **Auto-Deploy**: Streamlit Cloud triggert bei jedem `git push` automatisch
 - **Re-Deploy-Zeit**: 1-2 Min
+
+## Datenaktualität
+
+Bis Juli 2026 lief jeder Load von Hand — mit dem Ergebnis, dass die DB ab März
+unbemerkt einfror, während die App weiter selbstbewusst antwortete. Seitdem:
+
+| Baustein | Zweck |
+|---|---|
+| `.github/workflows/sync.yml` | täglich 05:00 UTC, ruft den Sync auf und pingt die App |
+| `scripts/sync_daily.py` | News-RSS + Web-Harvest + Spiele/Tabelle + Aktualitäts-Report |
+| `scripts/load_season.py --discover 2027/28` | einmal pro Saison: neue divisionId ermitteln |
+| `falken_kb/ingestion/scrapers/web_news.py` | Lokalpresse über Tavily, weil deren RSS-Feeds tot sind |
+
+**Einmal pro Saison von Hand**: `--discover` laufen lassen und die gefundene
+divisionId in `scripts/sync_daily.py` (`CURRENT_SEASON_DIVISION_ID`) eintragen.

@@ -13,6 +13,10 @@ from falken_kb.ingestion.dedup import merge_teams
 
 MERGES: list[tuple[str, list[str]]] = [
     ("Heilbronner Falken", ["Heibronner EC Falken"]),  # Typo
+    # Ab 2026/27 tritt der Klub nach der Insolvenz unter dem Stammverein an;
+    # hockeydata führt ihn mit neuem Namen UND neuer teamId (70543 statt 47011).
+    # Ohne Merge zerfiele die Vereinshistorie in zwei Teams.
+    ("Heilbronner Falken", ["Heilbronner EC Falken"]),
     ("Bayreuth Tigers", ["EHC Bayreuth Tigers", "onesto Tigers Bayreuth"]),
     ("Tölzer Löwen", ["EC Bad Tölzer Löwen"]),
     ("ECDC Memmingen Indians", ["ECDC Indians Memmingen"]),

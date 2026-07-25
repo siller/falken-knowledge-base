@@ -86,11 +86,17 @@ Erzeugt:
 ### 4. Aktuelle Saison laden
 
 ```bash
-python3 scripts/bootstrap_current_season.py
+# täglicher Sync: News + Spiele + Tabelle (läuft auch als GitHub Action)
+python3 scripts/sync_daily.py
+
+# einmal pro Saison: neue divisionId ermitteln und in sync_daily.py eintragen
+python3 scripts/load_season.py --discover 2027/28
+python3 scripts/load_season.py --season 2027/28 --league "Oberliga Süd" --division <ID>
 ```
 
-Lädt DEL2 + Oberliga Süd der aktuellen Saison über hockeydata-API → Supabase
-(REST + RPCs). Geht über die Keys aus `.env`, kein DB-Passwort nötig.
+Lädt über die hockeydata-API → Supabase (REST + RPCs), mit den Keys aus `.env`,
+kein DB-Passwort nötig. `scripts/bootstrap_current_season.py` ist der alte,
+fest auf 2025/26 verdrahtete Vorgänger.
 
 ### 5. Streamlit starten
 

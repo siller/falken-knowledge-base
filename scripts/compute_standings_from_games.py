@@ -83,7 +83,7 @@ def compute_for_season(season_id: str, season_label: str, league: str) -> int:
     return n
 
 
-def main():
+def main(force_labels: set[str] | None = None):
     # Saisons mit Games aber ohne (oder unvollständigen) team_seasons
     candidates = exec_sql("""
         SELECT s.id, s.label, s.league,
@@ -97,12 +97,24 @@ def main():
     for c in candidates:
         if c["n_games"] < 50:
             continue  # zu wenig Spiele für sinnvolle Standings
-        if c["n_ts"] >= 10:
+        forced = force_labels is not None and c["label"] in force_labels
+        if c["n_ts"] >= 10 and not forced:
             print(f"  ⊘ {c['label']:<8} {c['league']:<15}: hat schon {c['n_ts']} team_seasons (skip)")
             continue
         n = compute_for_season(c["id"], c["label"], c["league"])
-        print(f"  ✓ {c['label']:<8} {c['league']:<15}: {n} team_seasons aus {c['n_games']} games berechnet")
+        marker = "↻" if forced else "✓"
+        print(f"  {marker} {c['label']:<8} {c['league']:<15}: {n} team_seasons aus {c['n_games']} games berechnet")
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    p = argparse.ArgumentParser()
+    # --force ist der Reparaturweg, wenn eine Tabelle aus einer schwächeren
+    # Quelle überschrieben wurde: aus den Spielergebnissen nachgerechnet ist die
+    # Tabelle überprüfbar, eine fremde Übersichtsseite nicht.
+    p.add_argument("--force", default=None,
+                   help="Komma-Liste von Saison-Labels, die neu berechnet werden, "
+                        "auch wenn schon team_seasons existieren (z.B. '2013/14,2017/18')")
+    args = p.parse_args()
+    main({s.strip() for s in args.force.split(",")} if args.force else None)

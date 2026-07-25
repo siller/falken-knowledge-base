@@ -36,9 +36,15 @@ if not FALKEN_WEB_KEY:
     raise RuntimeError("HOCKEYDATA_FALKEN_KEY env-var nicht gesetzt — Loader funktioniert nicht.")
 
 # (Saison-Label, Liga, PO-divisionId, hockeydata-seasonId)
+# 25/26 (div 18445, 69 Spiele 01.03.-01.05.2026) via Division-Probe gefunden:
+# seasonId 18443 + 2 — dasselbe +2-Muster wie 23/24 und 24/25.
+# Die Falken sind dort NICHT vertreten: nach der Insolvenz im Januar 2026 haben
+# sie trotz Platz 5 auf die Playoff-Teilnahme verzichtet. Die Spiele werden
+# trotzdem geladen (Liga-Kontext: "Wer wurde 2025/26 Meister?").
 PLAYOFF_DIVS = [
     ("2023/24", "Oberliga Süd", 13020, 13018),
     ("2024/25", "Oberliga Süd", 15806, 15804),
+    ("2025/26", "Oberliga Süd", 18445, 18443),
 ]
 
 
@@ -60,6 +66,21 @@ def round_from_gamename(game_name: str) -> str:
     if not game_name:
         return "Playoff"
     parts = game_name.upper()
+
+    # Ab 2025/26 nutzt hockeydata das Schema OL_PO_<RUNDE>_<TEAM>_<TEAM>_<serie-spiel>
+    # bzw. OL_OLS_PPO_... für die Pre-Play-offs. Das ist eindeutig und geht vor.
+    explicit = {
+        "OL_PO_AF_": "Achtelfinale",
+        "OL_PO_VF_": "Viertelfinale",
+        "OL_PO_HF_": "Halbfinale",
+        "OL_PO_F_": "Finale",
+        "OL_OLS_PPO_": "Pre Play-Off",
+        "OL_OLN_PPO_": "Pre Play-Off",
+    }
+    for prefix, label in explicit.items():
+        if parts.startswith(prefix):
+            return label
+
     if "_F" in parts and ("FIN" in parts or "_F1" in parts or "_F2" in parts):
         return "Finale"
     if "HF" in parts or "SF" in parts:
@@ -159,11 +180,17 @@ async def backfill_one(season_label: str, league: str, po_div: int,
     for fg in falken_games:
         print(f"    {fg['date']} {fg['home']} {fg['score']} {fg['away']} [{fg['round']}] ({fg['game_name']})")
 
-    # Construct playoff_series: only Falken-related pairs
+    # Construct playoff_series: normalerweise nur Falken-Serien.
+    # Sind die Falken in dieser Playoff-Runde gar nicht dabei (25/26: Verzicht nach
+    # Insolvenz), speichern wir stattdessen die Liga-Serien — sonst wüsste die KB
+    # nicht, wer in dieser Saison Meister wurde.
     falken_uuid = exec_sql("SELECT id FROM teams WHERE name='Heilbronner Falken'")[0]["id"]
+    falken_in_playoffs = any(falken_uuid in pair for pair in by_pair)
+    if not falken_in_playoffs:
+        print("  ⓘ Keine Falken-Playoff-Spiele — speichere stattdessen alle Liga-Serien")
     series_count = 0
     for pair, games_list in by_pair.items():
-        if falken_uuid not in pair:
+        if falken_in_playoffs and falken_uuid not in pair:
             continue
         # Round = most common round of games (heuristic)
         rounds = [g["round"] for g in games_list]

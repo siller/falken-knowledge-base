@@ -1,0 +1,46 @@
+name: Daten-Sync
+
+# Hält die Wissensbasis aktuell, ohne dass jemand dran denken muss — und hält
+# nebenbei die Streamlit-App wach (Community Cloud schläfert nach 7 Tagen
+# Inaktivität ein und löscht länger inaktive Apps).
+on:
+  schedule:
+    - cron: "0 5 * * *"   # täglich 05:00 UTC (07:00 MESZ)
+  workflow_dispatch:
+    inputs:
+      news_days:
+        description: "Zeitfenster für die Web-News-Suche (Tage)"
+        default: "30"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Sync ausführen
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          DGX_BASE_URL: ${{ secrets.DGX_BASE_URL }}
+          DGX_API_KEY: ${{ secrets.DGX_API_KEY }}
+          DGX_CHAT_MODEL: ${{ secrets.DGX_CHAT_MODEL }}
+          DGX_EMBED_MODEL: ${{ secrets.DGX_EMBED_MODEL }}
+          DGX_EMBED_DIM: "768"
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          HOCKEYDATA_API_KEY: ${{ secrets.HOCKEYDATA_API_KEY }}
+          HOCKEYDATA_REFERER: deb-online.live
+        run: python3 scripts/sync_daily.py --news-days ${{ github.event.inputs.news_days || 30 }}
+
+      - name: Streamlit-App wachhalten
+        continue-on-error: true
+        run: |
+          curl -sS -m 60 -o /dev/null -w 'app HTTP %{http_code}\n' https://falken-knowledge-base.streamlit.app/

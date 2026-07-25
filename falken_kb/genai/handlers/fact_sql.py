@@ -30,9 +30,14 @@ goalie_stats (player_season_id fk PRIMARY KEY, wins, losses, gaa, save_pct, shut
 coach_tenures (id uuid, coach_id fk, team_id fk, role text z.B. 'Headcoach', start_date date, end_date date)
     ↑ KEIN season_id! Verknüpfung mit seasons über überlappenden Zeitraum:
     JOIN seasons s ON ct.start_date <= s.end_date AND ct.end_date >= s.start_date
-playoff_series (id uuid, season_id fk, round text z.B. 'Achtelfinale'|'Viertelfinale'|'Halbfinale'|'Finale'|'Play-Down R1'|'Play-Down R2',
-                team_a_id fk, team_b_id fk, wins_a smallint, wins_b smallint, winner_team_id fk)
+playoff_series (id uuid, season_id fk, round text, team_a_id fk, team_b_id fk,
+                wins_a smallint, wins_b smallint, winner_team_id fk)
     ↑ Bei Playoff-Fragen IMMER diese Tabelle nutzen (NICHT games zählen!) — winner_team_id ist die zuverlässigste Quelle.
+    ↑ `round` enthält GENAU diese Schreibweisen: 'Pre Play-Off', 'Achtelfinale',
+      'Viertelfinale', 'Halbfinale', 'Finale', 'Play-Down R1', 'Play-Down R2',
+      'Spiel um Pl.3'. Varianten wie 'Pre-Playoff' oder 'Playoffs' matchen NICHT.
+    ↑ Sind Saison UND beide Teams bekannt, den Runden-Filter WEGLASSEN — die Serie
+      ist damit schon eindeutig, und ein falsch geratener Runden-Name liefert 0 Zeilen.
 
 Convenience Views (BEREITS auf Heilbronner Falken gefiltert — KEIN WHERE team= nötig!):
 falken_skater_stats (season text, league text, player text, position, nation, jersey_number, games_played, goals, assists, points, pim, plus_minus)
@@ -60,6 +65,21 @@ REGELN:
   Fallback: `player ILIKE '%nachname%'` für exakte Substring-Matches.
   NIE `player = 'X'` (exact match) — schlägt bei jedem Tippfehler fehl.
   Dasselbe für coaches.name (`similarity(c.name, 'X') > 0.3`).
+- Liga-Namen NIE exakt vergleichen: die Oberliga steht als 'Oberliga Süd' bzw.
+  'Oberliga Nord' in der DB. Also `league LIKE 'Oberliga%'`, nicht `= 'Oberliga'`.
+- "aktuelle Saison" = die letzte Saison MIT Ergebnissen, nicht die kalendarisch
+  letzte: der Spielplan der kommenden Saison steht bereits in `games`, dort ist
+  `home_score IS NULL`. Also immer `WHERE g.home_score IS NOT NULL` ergänzen bzw.
+  `(SELECT max(season) FROM season_standings WHERE games_played > 0)`.
+- "zuletzt"/"wann war der letzte …" heißt CHRONOLOGISCH sortieren
+  (`ORDER BY season DESC`), nicht nach dem gefragten Wert.
+- `season` ist TEXT im Format 'YYYY/YY' — NIE `season::int` (kippt mit
+  "invalid input syntax for type integer"). Für Jahresvergleiche
+  `LEFT(season, 4)::int` benutzen oder direkt Strings vergleichen
+  (`season >= '2016/17'` funktioniert, weil das Format sortierbar ist).
+- Bei `SELECT DISTINCT` darf ORDER BY nur Spalten aus der SELECT-Liste nutzen.
+- "Wie viele Spiele hat eine Saison?" meint Spiele PRO TEAM →
+  `games_played` aus season_standings, nicht COUNT(*) über games.
 
 BEISPIELE (genau diesem Muster folgen):
 
@@ -108,11 +128,16 @@ WHERE s.label = '2021/22'
   AND ('Löwen Frankfurt' IN (ta.name, tb.name))
   AND ps.round = 'Halbfinale';
 
--- Trend-Aggregat: punkteschlechteste Falken-Saison letzte 10 Jahre:
-SELECT season, points FROM season_standings
-WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE
-  AND season >= '2015/16'
-ORDER BY points ASC LIMIT 1;
+-- Trend-Aggregat: punkteschlechteste Falken-Saison der letzten 10 Jahre.
+-- "letzte N Jahre" = die letzten N Saisons MIT Daten (kein festes Jahr raten,
+-- sonst fällt je nach Grenze die gesuchte Saison aus dem Fenster):
+WITH letzte AS (
+  SELECT season, points FROM season_standings
+  WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE
+    AND points IS NOT NULL
+  ORDER BY season DESC LIMIT 10
+)
+SELECT season, points FROM letzte ORDER BY points ASC LIMIT 1;
 
 -- Trend-Aggregat: höchste Punktzahl aller Zeiten:
 SELECT season, points FROM season_standings
@@ -132,6 +157,107 @@ SELECT player, SUM(points) AS career_points,
 FROM falken_skater_stats
 WHERE points IS NOT NULL AND season >= '2015/16'
 GROUP BY player ORDER BY career_points DESC NULLS LAST LIMIT 5;
+
+-- Längste Trainer-Amtszeit AM STÜCK (coach_tenures hat eine Zeile PRO SAISON,
+-- deshalb erst zusammenhängende Amtszeiten verschmelzen — sonst gewinnt jeder,
+-- der eine einzelne lange Saison hatte):
+WITH t AS (
+  SELECT c.name, ct.start_date, ct.end_date,
+         LAG(ct.end_date) OVER (PARTITION BY ct.coach_id ORDER BY ct.start_date) AS prev_end
+  FROM coach_tenures ct
+  JOIN coaches c ON c.id = ct.coach_id
+  JOIN teams tm ON tm.id = ct.team_id
+  WHERE tm.name = 'Heilbronner Falken'
+), marked AS (
+  SELECT *, CASE WHEN prev_end IS NULL OR start_date - prev_end > 180 THEN 1 ELSE 0 END AS new_spell
+  FROM t
+), spells AS (
+  SELECT *, SUM(new_spell) OVER (PARTITION BY name ORDER BY start_date
+                                 ROWS UNBOUNDED PRECEDING) AS spell_no
+  FROM marked
+)
+SELECT name, MIN(start_date) AS von, MAX(end_date) AS bis,
+       COUNT(*) AS saisons, MAX(end_date) - MIN(start_date) AS tage
+FROM spells GROUP BY name, spell_no
+ORDER BY tage DESC NULLS LAST LIMIT 5;
+
+-- Heim- vs. Auswärtsbilanz (eine Zeile pro Falken-Spiel, aus Falken-Sicht):
+WITH fg AS (
+  SELECT s.label AS season,
+         CASE WHEN ht.name = 'Heilbronner Falken' THEN 'Heim' ELSE 'Auswärts' END AS ort,
+         CASE WHEN ht.name = 'Heilbronner Falken' THEN g.home_score ELSE g.away_score END AS tore,
+         CASE WHEN ht.name = 'Heilbronner Falken' THEN g.away_score ELSE g.home_score END AS gegentore
+  FROM games g
+  JOIN teams ht ON ht.id = g.home_team_id
+  JOIN teams at ON at.id = g.away_team_id
+  JOIN seasons s ON s.id = g.season_id
+  WHERE (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+    AND g.home_score IS NOT NULL AND g.game_type = 'regular'
+)
+SELECT ort, COUNT(*) AS spiele,
+       COUNT(*) FILTER (WHERE tore > gegentore) AS siege,
+       COUNT(*) FILTER (WHERE tore < gegentore) AS niederlagen,
+       SUM(tore) AS tore, SUM(gegentore) AS gegentore
+FROM fg WHERE season = '2025/26' GROUP BY ort;
+
+-- "Wer war am häufigsten Topscorer?" (pro Saison den Besten bestimmen, dann zählen):
+WITH ranked AS (
+  SELECT season, player, points,
+         ROW_NUMBER() OVER (PARTITION BY season ORDER BY points DESC NULLS LAST) AS rn
+  FROM falken_skater_stats WHERE points IS NOT NULL
+)
+SELECT player, COUNT(*) AS topscorer_saisons
+FROM ranked WHERE rn = 1
+GROUP BY player ORDER BY topscorer_saisons DESC LIMIT 5;
+
+-- "Wie viele Spiele hat eine Saison?" = Spiele PRO TEAM (nicht alle Partien
+-- der Liga zusammenzählen — das wären bei 14 Teams das 7-fache):
+SELECT season, games_played
+FROM season_standings
+WHERE league = 'DEL2' AND games_played > 0
+ORDER BY season DESC LIMIT 3;
+
+-- Auf-/Abstieg = Ligawechsel zwischen zwei aufeinanderfolgenden Saisons
+-- (es gibt KEINE Spalte "Abstieg" — league_tier: 2 = DEL2, 3 = Oberliga):
+WITH l AS (
+  SELECT season, league, league_tier,
+         LAG(league_tier) OVER (ORDER BY season) AS prev_tier,
+         LAG(league) OVER (ORDER BY season) AS prev_league
+  FROM season_standings
+  WHERE team = 'Heilbronner Falken' AND is_focus_team_season = TRUE AND games_played > 0
+)
+SELECT season, prev_league AS von_liga, league AS nach_liga,
+       CASE WHEN league_tier > prev_tier THEN 'Abstieg' ELSE 'Aufstieg' END AS wechsel
+FROM l WHERE prev_tier IS NOT NULL AND league_tier <> prev_tier
+ORDER BY season DESC;
+
+-- Torhüter-Bestwerte (goalie_stats: GAA klein = gut, save_pct groß = gut):
+SELECT season, goalie, games_played, gaa, save_pct, shutouts
+FROM falken_goalie_stats
+WHERE gaa IS NOT NULL AND games_played >= 10
+ORDER BY gaa ASC LIMIT 5;
+
+-- "In der aktuellen Saison …" — IMMER auf die letzte Saison MIT Ergebnissen
+-- beziehen (der Spielplan der kommenden Saison steht schon in der DB):
+SELECT s.label AS season, MAX(g.home_score + g.away_score) AS meiste_tore
+FROM games g
+JOIN teams ht ON ht.id = g.home_team_id
+JOIN teams at ON at.id = g.away_team_id
+JOIN seasons s ON s.id = g.season_id
+WHERE (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+  AND g.home_score IS NOT NULL
+  AND s.label = (SELECT max(season) FROM season_standings
+                 WHERE team = 'Heilbronner Falken' AND games_played > 0)
+GROUP BY s.label;
+
+-- Nächstes Spiel / Spielplan der kommenden Saison (noch ohne Ergebnis):
+SELECT g.date, ht.name AS home_team, at.name AS away_team
+FROM games g
+JOIN teams ht ON ht.id = g.home_team_id
+JOIN teams at ON at.id = g.away_team_id
+WHERE g.home_score IS NULL AND g.date > now()
+  AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
+ORDER BY g.date ASC LIMIT 5;
 
 -- Spieler-Stats-Lookup (FUZZY-MATCH gegen Tippfehler via pg_trgm):
 SELECT season, player, points, goals, assists,

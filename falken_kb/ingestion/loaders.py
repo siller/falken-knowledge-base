@@ -53,10 +53,17 @@ def upsert_team_seasons_from_standings(season_id: str, standings_rows: list[dict
             short_name=_pick(row, "teamShortname", "teamShortName"),
             hockeydata_team_id=row.get("id"),
         )
+        # Vor dem ersten Spieltag liefert hockeydata für jedes Team Rang 1 bei
+        # 0 Spielen. Als final_rank gespeichert stünde damit die halbe Liga auf
+        # Platz 1 — also Rang erst übernehmen, wenn gespielt wurde.
+        rank = row.get("tableRank")
+        if not row.get("gamesPlayed"):
+            rank = None
+
         rpc("upsert_team_season", {
             "p_team_id": team_uuid,
             "p_season_id": season_id,
-            "p_rank": row.get("tableRank"),
+            "p_rank": rank,
             "p_gp": row.get("gamesPlayed"),
             "p_wins": row.get("gamesWon"),
             "p_losses": row.get("gamesLost"),
@@ -101,14 +108,23 @@ def upsert_games_from_schedule(season_id: str, schedule_rows: list[dict[str, Any
         if not sched_iso:
             skipped += 1
             continue
+        # ACHTUNG: hockeydata liefert für noch nicht gespielte Partien
+        # homeTeamScore=0/awayTeamScore=0 statt null — erkennbar nur an
+        # gameStatus (0 = angesetzt, 4 = beendet). Ungeprüft übernommen
+        # landen ganze Spielpläne als 0:0-Ergebnisse in der DB.
+        home_score = m.get("homeTeamScore")
+        away_score = m.get("awayTeamScore")
+        if m.get("gameStatus") == 0:
+            home_score = away_score = None
+
         rpc("upsert_game", {
             "p_season_id": season_id,
             "p_date": sched_iso,
             "p_game_type": game_type,
             "p_home_team_id": home_uuid,
             "p_away_team_id": away_uuid,
-            "p_home_score": m.get("homeTeamScore"),
-            "p_away_score": m.get("awayTeamScore"),
+            "p_home_score": home_score,
+            "p_away_score": away_score,
             "p_overtime": bool(m.get("scoreInfo") in ("OT", "OTW", "OTL")),
             "p_shootout": bool(m.get("scoreInfo") in ("SO", "SOW", "SOL")),
             "p_hd_id": str(m.get("id")) if m.get("id") else None,

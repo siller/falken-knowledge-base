@@ -68,8 +68,10 @@ def load_feed(source_label: str, url: str, dgx: DGXClient, max_items: int = 50) 
             skipped += 1
             continue
 
-        # Body kann lang sein → chunken (gleicher Pattern wie wikipedia)
-        chunks = chunk_text(body, max_chars=1500)
+        # Body kann lang sein → chunken (gleicher Pattern wie wikipedia).
+        # 1200 statt 1500 Zeichen: nomic-embed-text kippt ab ~512 Tokens in
+        # einen HTTP 500, was bei 1500 Zeichen deutschem Text regelmäßig passiert.
+        chunks = chunk_text(body, max_chars=1200)
         for i, chunk in enumerate(chunks):
             chunk_url = url_e if i == 0 else f"{url_e}#chunk-{i}"
             try:

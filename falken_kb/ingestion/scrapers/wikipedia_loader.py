@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import re
 from typing import Any
 
 from ...db import supabase
@@ -9,6 +10,34 @@ from ...genai.dgx_client import DGXClient
 from .wikipedia import fetch_season_context
 
 logger = logging.getLogger(__name__)
+
+
+def _split_long(paragraph: str, max_chars: int) -> list[str]:
+    """Zerlege einen übergroßen Absatz an Satz-, sonst an Wortgrenzen.
+
+    WHY: Text aus Web-Scrapes kommt oft ohne Absatzumbrüche (ein einziger
+    20k-Zeichen-"Absatz"). Ohne Hard-Split ginge der als ein Chunk ans
+    Embedding-Modell — nomic-embed-text antwortet darauf mit HTTP 500.
+    """
+    if len(paragraph) <= max_chars:
+        return [paragraph]
+    pieces: list[str] = []
+    current = ""
+    for sentence in re.split(r"(?<=[.!?])\s+", paragraph):
+        while len(sentence) > max_chars:  # ein einzelner Satz sprengt das Limit
+            cut = sentence.rfind(" ", 0, max_chars)
+            cut = cut if cut > max_chars // 2 else max_chars
+            pieces.append(sentence[:cut].strip())
+            sentence = sentence[cut:].lstrip()
+        if len(current) + len(sentence) + 1 > max_chars:
+            if current.strip():
+                pieces.append(current.strip())
+            current = sentence
+        else:
+            current = f"{current} {sentence}" if current else sentence
+    if current.strip():
+        pieces.append(current.strip())
+    return pieces
 
 
 def chunk_text(text: str, max_chars: int = 1500) -> list[str]:
@@ -21,7 +50,14 @@ def chunk_text(text: str, max_chars: int = 1500) -> list[str]:
         if len(current) + len(paragraph) > max_chars:
             if current.strip():
                 chunks.append(current.strip())
-            current = paragraph
+            current = ""
+            for piece in _split_long(paragraph, max_chars):
+                if len(current) + len(piece) > max_chars:
+                    if current.strip():
+                        chunks.append(current.strip())
+                    current = piece
+                else:
+                    current = f"{current}\n\n{piece}" if current else piece
         else:
             current = (current + "\n\n" + paragraph) if current else paragraph
     if current.strip():

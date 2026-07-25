@@ -108,7 +108,12 @@ def check_pass(answer_text: str, expected_facts: list[str]) -> tuple[bool, list[
     - Numerische Fakten: matchen gegen extract_numbers (handles "ersten" → 1)
     - Text-Fakten: simple substring-match (case-insensitive)
     - Pass wenn min. 1 erwarteter Fakt enthalten ist.
+    - Ohne erwartete Fakten gilt jede nicht-leere Antwort als Pass: zwei Fragen
+      im Set haben `expected_facts: []` und konnten deshalb nie bestehen — das
+      hat die Pass-Rate gedrückt, ohne etwas über die Pipeline auszusagen.
     """
+    if not expected_facts:
+        return (bool((answer_text or "").strip()), [])
     a = (answer_text or "").lower()
     a_nums = extract_numbers(a) if answer_text else set()
     found = []
@@ -129,8 +134,13 @@ def check_pass(answer_text: str, expected_facts: list[str]) -> tuple[bool, list[
     return (len(found) > 0, missing)
 
 
-def run(questions_file: str, output_file: str, limit: int | None = None) -> None:
+def run(questions_file: str, output_file: str, limit: int | None = None,
+        categories: list[str] | None = None) -> None:
     questions = yaml.safe_load(Path(questions_file).read_text())
+    if categories:
+        # Gezielt einzelne Kategorien messen (z.B. nur 'trend,vergleich'), statt
+        # für jede Prompt-Änderung 211 Fragen à ~10 s laufen zu lassen.
+        questions = [q for q in questions if q.get("category") in categories]
     if limit:
         questions = questions[:limit]
     print(f"Lade {len(questions)} Test-Fragen...")
@@ -199,5 +209,8 @@ if __name__ == "__main__":
     p.add_argument("--limit", type=int, default=None, help="nur erste N Fragen testen")
     p.add_argument("--input", default="tests/genai_questions.yaml")
     p.add_argument("--output", default="tests/genai_results.json")
+    p.add_argument("--categories", default=None,
+                   help="Komma-Liste, z.B. 'trend,vergleich' — nur diese Kategorien testen")
     args = p.parse_args()
-    run(args.input, args.output, args.limit)
+    cats = [c.strip() for c in args.categories.split(",")] if args.categories else None
+    run(args.input, args.output, args.limit, cats)

@@ -27,6 +27,10 @@ LEAGUE_NORMALIZE: dict[str, tuple[str, int]] = {
     "OLS": ("Oberliga Süd", 3),
     "Oberliga Süd": ("Oberliga Süd", 3),
     "Oberliga": ("Oberliga", 3),
+    # 2005/06 + 2006/07 stehen in der Quelle nur als "OL" — ohne Eintrag hier
+    # landeten sie als eigene "Liga" OL mit league_tier 99 in der DB. Gespielt
+    # haben die Falken in beiden Jahren in der Oberliga Süd.
+    "OL": ("Oberliga Süd", 3),
     "2.BLS": ("2. Bundesliga Süd", 2),
     "2.BL": ("2. Bundesliga", 2),
     "1.BLS": ("1. Bundesliga Süd", 1),
@@ -95,21 +99,34 @@ async def backfill_falken_history() -> dict[str, Any]:
         n_seasons += 1
 
         gf, ga = parse_goals(s.get("tore"))
-        try:
-            rpc("upsert_team_season_full", {
-                "p_team_id": falken_uuid,
-                "p_season_id": season_uuid,
-                "p_rank": s.get("final_rank"),
-                "p_gp": None, "p_wins": None, "p_losses": None,
-                "p_ot_wins": None, "p_ot_losses": None,
-                "p_points": s.get("points"),
-                "p_gf": gf, "p_ga": ga,
-                "p_playoff_result": s.get("playoff_result"),
-                "p_source": "eishockey_statistiken",
-            })
-            n_team_seasons += 1
-        except Exception as e:
-            logger.warning("team_season failed für %s: %s", season_lbl, e)
+
+        # Nur füllen, nicht überschreiben: für alle Saisons ab 2013/14 haben wir
+        # die Tabelle aus hockeydata bzw. aus den Spielergebnissen berechnet, und
+        # die weicht von dieser Quelle ab (die Übersicht auf eishockey-statistiken
+        # zählt teils andere Runden mit). Ein Re-Run dieses Loaders hat damit
+        # einmal korrekte Werte kaputtgemacht — deshalb dieser Riegel.
+        existing = exec_sql(
+            f"SELECT final_rank, points FROM team_seasons "
+            f"WHERE team_id = '{falken_uuid}' AND season_id = '{season_uuid}'"
+        )
+        if existing and (existing[0]["final_rank"] is not None or existing[0]["points"] is not None):
+            logger.debug("%s: Tabellenwerte vorhanden, nicht überschrieben", season_lbl)
+        else:
+            try:
+                rpc("upsert_team_season_full", {
+                    "p_team_id": falken_uuid,
+                    "p_season_id": season_uuid,
+                    "p_rank": s.get("final_rank"),
+                    "p_gp": None, "p_wins": None, "p_losses": None,
+                    "p_ot_wins": None, "p_ot_losses": None,
+                    "p_points": s.get("points"),
+                    "p_gf": gf, "p_ga": ga,
+                    "p_playoff_result": s.get("playoff_result"),
+                    "p_source": "eishockey_statistiken",
+                })
+                n_team_seasons += 1
+            except Exception as e:
+                logger.warning("team_season failed für %s: %s", season_lbl, e)
 
         # Coaches
         for coach_name in _split_coaches(s.get("coach")):

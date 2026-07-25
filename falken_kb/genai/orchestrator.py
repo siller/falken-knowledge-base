@@ -28,21 +28,24 @@ def _use_tool_agent() -> bool:
 
 def _is_simple_db_question(question: str) -> bool:
     """Heuristik: klare DB-Frage (Saison/Stats/Spieler) ohne externe Entitäten."""
-    import re
     q = question.lower()
     external_terms = ("besitzer", "inhaber", "restaurant", "bar ", "sushi", "firma",
                        "bürgermeister", "geschäftsführer", "ceo", "wer ist ",
                        "neueste", "verpflichtet", "transfer", "wer arbeitet")
     if any(t in q for t in external_terms):
         return False
-    has_year = bool(re.search(r"\b(19|20)\d{2}\b", q)) or bool(re.search(r"\d{2}/\d{2}", q))
-    has_stats_word = any(w in q for w in (
+    # Eine Jahreszahl allein reichte früher für den Shortcut — damit landete
+    # "Was ist 2026 mit der Insolvenz passiert?" im SQL-Handler, obwohl die
+    # Antwort in den News-Artikeln steht. Jetzt braucht es ein Statistik-Wort,
+    # und erzählende Fragen sind ausgenommen.
+    if _looks_narrative(q):
+        return False
+    return any(w in q for w in (
         "tabellenplatz", "platz beend", "punkte", "tore", "saison",
         "topscorer", "trainer", "playoff", "spielergebnis", "ergebnis",
         "liga", "del2", "oberliga", "spielten", "spielte",
         "wie viele", "in welcher saison", "siege", "niederlagen",
     ))
-    return has_year or has_stats_word
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +54,11 @@ _NARRATIVE_HINTS = (
     "news", "neueste", "aktuelle nachricht", "bekannt", "wer ist ",
     "verpflichtet", "transfer", "saison plan", "fan", "newsletter",
     "kader", "neuverpflichtung", "rolle",
+    # Vereinsgeschehen abseits der Statistik — dazu steht alles in den
+    # News-Artikeln, nichts in den Spiel-/Stats-Tabellen:
+    "insolvenz", "insolvent", "lizenz", "warum", "wieso", "weshalb",
+    "passiert", "hintergrund", "zukunft", "vertrag", "verletz",
+    "stimmung", "geschäftsstelle", "sponsor", "dauerkarte", "halle",
 )
 
 # Indikatoren für Multi-Hop-Fragen die externe Web-Recherche brauchen:
@@ -130,17 +138,21 @@ def answer(question: str) -> dict[str, Any]:
     elif category == "fact":
         result = answer_fact(question, client)
         if _fact_returned_empty(result):
-            # Fallback NUR zu narrative (RAG-Articles), NIE auto zu web_research:
+            # Fallback zu narrative (RAG-Articles), NIE auto zu web_research:
             # web_research ist teuer (Tavily-Call + Multi-LLM) und liefert für
             # rein DB-orientierte Fragen "Wie viele Saisons in DEL2?" nichts
             # sinnvolles. Lieber ehrlich "keine Daten" als Web fehl-triggern.
-            if _looks_narrative(question):
-                logger.info("Hybrid-Fallback: fact leer, retry mit narrative_rag")
-                narrative_result = answer_narrative(question, client)
-                if narrative_result.get("sources"):
-                    narrative_result["fact_attempt"] = {"sql": result.get("sql"), "rows_count": len(result.get("rows", []))}
-                    result = narrative_result
-                    category = "narrative"
+            #
+            # Der RAG-Versuch läuft jetzt immer (ein Embedding + Vektor-Suche,
+            # ~1 s) und nicht mehr nur bei narrativ klingenden Fragen: die
+            # Stichwortliste traf zu oft daneben, und das Ergebnis wird ohnehin
+            # nur übernommen, wenn die Suche Quellen liefert.
+            logger.info("Hybrid-Fallback: fact leer, retry mit narrative_rag")
+            narrative_result = answer_narrative(question, client)
+            if narrative_result.get("sources"):
+                narrative_result["fact_attempt"] = {"sql": result.get("sql"), "rows_count": len(result.get("rows", []))}
+                result = narrative_result
+                category = "narrative"
     elif category == "narrative":
         result = answer_narrative(question, client)
     elif category == "trend":

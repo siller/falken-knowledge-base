@@ -71,8 +71,14 @@ def _upsert_player_stats(player_season_id: str, p: dict[str, Any]) -> None:
         logger.warning("player_stats upsert failed for %s: %s", player_season_id, e)
 
 
-async def load_falken_season_from_ep(season_label: str) -> dict[str, int]:
-    """Lädt eine Falken-Saison komplett von EliteProspects in die DB."""
+async def load_falken_season_from_ep(season_label: str, with_stats: bool = True) -> dict[str, int]:
+    """Lädt eine Falken-Saison von EliteProspects in die DB.
+
+    `with_stats=False` lädt nur den Kader (player_seasons), keine Statistiken.
+    Das ist der Modus für eine noch nicht gestartete Saison: EliteProspects führt
+    den Kader dann bereits, liefert aber überall 0 — als Stats gespeichert würde
+    daraus ein "Topscorer mit 0 Punkten".
+    """
     league, tier = _league_for_season(season_label)
     print(f"\n=== EliteProspects: Falken {season_label} ({league}) ===")
 
@@ -81,7 +87,14 @@ async def load_falken_season_from_ep(season_label: str) -> dict[str, int]:
         print(f"  ⚠️  Keine Player-Daten für {season_label}")
         return {"players": 0, "goalies": 0}
 
-    season_uuid = upsert_season(season_label, league, tier, hockeydata_season_id=0)
+    # Saison nur anlegen, wenn sie noch nicht existiert — sonst würde die
+    # hockeydata-ID in source_ids mit "0" überschrieben.
+    existing = supabase().table("falken_seasons").select("id").eq(
+        "label", season_label).eq("league", league).limit(1).execute()
+    if existing.data:
+        season_uuid = existing.data[0]["id"]
+    else:
+        season_uuid = upsert_season(season_label, league, tier, hockeydata_season_id=0)
     team_uuid = upsert_team("Heilbronner Falken", "HEI", hockeydata_team_id=None)
 
     n_players = 0
@@ -90,10 +103,12 @@ async def load_falken_season_from_ep(season_label: str) -> dict[str, int]:
             continue
         player_uuid = _upsert_player(p["name"], p.get("position"), p.get("ep_url", ""))
         ps_uuid = _upsert_player_season(player_uuid, team_uuid, season_uuid)
-        _upsert_player_stats(ps_uuid, p)
+        if with_stats:
+            _upsert_player_stats(ps_uuid, p)
         n_players += 1
 
-    print(f"  ✓ {n_players} Players geladen")
+    suffix = "" if with_stats else " (nur Kader, ohne Stats)"
+    print(f"  ✓ {n_players} Players geladen{suffix}")
     return {"players": n_players, "goalies": 0}
 
 
