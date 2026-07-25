@@ -2,17 +2,14 @@
 
 Ziel: `falken-kb.streamlit.app` (oder ähnlich), passwortgeschützt für dein Team.
 
-## ⚠ Status 24.07.2026: App ist offline — Re-Deploy nötig
+## Status 25.07.2026: läuft unter neuer Adresse
 
-`falken-knowledge-base.streamlit.app` liefert Streamlits `not_found`-Seite (HTTP 404),
-d.h. die App existiert auf Streamlit Cloud nicht mehr (Community-Cloud entfernt Apps
-nach längerer Inaktivität; letzter Push war 19.05.2026).
+**Live: https://falkenapp.streamlit.app** (HTTP 200 verifiziert am 25.07.2026).
 
-**Gegenprobe**: eine bekannte öffentliche App (`30days.streamlit.app`) antwortet über
-denselben Weg mit HTTP 200 — es liegt also an der App, nicht am Netz.
-
-**Code ist deploy-ready** (lokal verifiziert 24.07.2026: `streamlit run frontend/falken_ui.py`
-→ HTTP 200). Es reicht: neu deployen + Secrets aus `.streamlit/secrets.toml.example` befüllen.
+Vorgeschichte: die alte Adresse `falken-knowledge-base.streamlit.app` lieferte
+Streamlits `not_found`-Seite — Community Cloud entfernt Apps nach längerer
+Inaktivität, der letzte Push war vom 19.05.2026. Die App wurde deshalb unter
+`falkenapp` neu deployt; die alte URL ist tot und funktioniert nicht mehr.
 
 ### Re-Deploy-Checkliste (5 Min, im Browser)
 
@@ -20,7 +17,7 @@ denselben Weg mit HTTP 200 — es liegt also an der App, nicht am Netz.
 2. **"New app"** → **"Deploy a public app from GitHub"**
 3. Repository `siller/falken-knowledge-base` · Branch `main` · Main file `frontend/falken_ui.py`
 4. **Advanced settings** → Python **3.12**
-5. App-URL wieder auf `falken-knowledge-base` setzen (dann bleiben alte Links gültig)
+5. App-URL setzen — aktuell vergeben ist `falkenapp`
 6. Deploy → danach **Settings → Secrets** → Inhalt aus `.streamlit/secrets.toml.example`
    mit echten Werten aus der lokalen `.env` einfügen (**DGX-Block, nicht OpenRouter** —
    die Artikel-Embeddings in der DB sind `nomic-embed-text`)

@@ -43,4 +43,4 @@ jobs:
       - name: Streamlit-App wachhalten
         continue-on-error: true
         run: |
-          curl -sS -m 60 -o /dev/null -w 'app HTTP %{http_code}\n' https://falken-knowledge-base.streamlit.app/
+          curl -sS -m 60 -o /dev/null -w 'app HTTP %{http_code}\n' https://falkenapp.streamlit.app/

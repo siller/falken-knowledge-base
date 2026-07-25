@@ -1,6 +1,6 @@
 # HORST — Management Summary
 
-**HORST** (Heilbronner ORakel SporT-AI) ist die GenAI-Wissensdatenbank für die Heilbronner Falken. Live unter [falken-knowledge-base.streamlit.app](https://falken-knowledge-base.streamlit.app), passwortgeschützt für das Team.
+**HORST** (Heilbronner ORakel SporT-AI) ist die GenAI-Wissensdatenbank für die Heilbronner Falken. Live unter [falkenapp.streamlit.app](https://falkenapp.streamlit.app), passwortgeschützt für das Team.
 
 ## Was kann HORST?
 
