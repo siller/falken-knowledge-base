@@ -66,11 +66,24 @@ def main() -> int:
         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=umgebung,
         cwd=arbeitsdir, preexec_fn=os.setsid,
     )
+    # Chrome legt im Headless-Modus IMMER mit mindestens 500px Breite aus und
+    # beschneidet den Screenshot nur — bei --window-size=390 meldet die Seite
+    # window.innerWidth=500. Ein Screenshot sähe dann rechts abgeschnitten aus,
+    # obwohl das Layout in Ordnung ist. Deshalb rendern wir die App in einem
+    # iframe exakter Breite; darin stimmt die Viewport-Breite.
+    rahmen = Path(arbeitsdir) / "rahmen.html"
+    rahmen.write_text(
+        "<html><body style='margin:0;background:#9aa0a6'>"
+        f"<iframe src='http://localhost:{port}/' "
+        f"style='width:{args.width}px;height:{args.height}px;border:0;display:block'>"
+        "</iframe></body></html>"
+    )
+
     def chrome(ziel_datei: str, budget: int) -> None:
         subprocess.run(
             [CHROME, "--headless", "--disable-gpu", f"--screenshot={ziel_datei}",
-             f"--window-size={args.width},{args.height}",
-             f"--virtual-time-budget={budget}", f"http://localhost:{port}/"],
+             f"--window-size={args.width + 20},{args.height + 20}",
+             f"--virtual-time-budget={budget}", f"file://{rahmen}"],
             capture_output=True, timeout=180,
         )
 
@@ -80,7 +93,16 @@ def main() -> int:
         # ersten Websocket-Kontakt aus (Secrets, Settings, DB-Client). Ohne das
         # zeigt der Screenshot nur Streamlits "RUNNING…"-Skelett.
         chrome(str(Path(arbeitsdir) / "warmup.png"), 15000)
-        chrome(args.out, args.wartezeit)
+        # Ein Skelett-Bild ist fast leer und damit an der Dateigröße erkennbar.
+        # Lieber zweimal schießen als eine Prüfung auf ein leeres Bild stützen.
+        for versuch in range(1, 4):
+            chrome(args.out, args.wartezeit)
+            groesse = Path(args.out).stat().st_size if Path(args.out).exists() else 0
+            if groesse >= 10_000:
+                break
+            print(f"  Versuch {versuch}: nur {groesse} Bytes (Skelett?) — nochmal",
+                  file=sys.stderr)
+            time.sleep(5)
     finally:
         os.killpg(os.getpgid(app.pid), signal.SIGTERM)
         shutil.rmtree(arbeitsdir, ignore_errors=True)

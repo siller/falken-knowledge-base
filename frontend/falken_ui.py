@@ -312,6 +312,67 @@ st.markdown(
         border-radius: 10px;
         border-left-width: 4px;
     }}
+
+    /* ── Aktionszeile über dem Eingabefeld ───────────────────────────── */
+    /* Trigger im Falken-Rot, Höhe für den Daumen (Apple/Google: 44px).
+       Der Knopf trägt in Streamlit 1.37 das Testid "stPopoverButton" — mit
+       einem geratenen Selektor greift die Regel stillschweigend nicht. */
+    /* Der Trigger trägt in Streamlit 1.37 KEIN eigenes Testid — im Bundle
+       existiert zwar "stPopoverButton", gesetzt wird es dort aber nicht
+       (per Farbtest nachgewiesen). Deshalb über den Wrapper ansprechen. */
+    div[data-testid="stPopover"] button {{
+        min-height: 44px !important;
+        font-weight: 600;
+        border: 1px solid {FALKEN_RED} !important;
+        color: {FALKEN_RED} !important;
+    }}
+    div[data-testid="stPopover"] button:hover {{
+        background: {FALKEN_RED} !important;
+        color: #ffffff !important;
+    }}
+    /* Streamlit stapelt Spalten unter ~640px untereinander. Für DIESE eine
+       Zeile ist das falsch: der Verlauf-Button gehört schmal neben die
+       Beispiele, nicht als volle zweite Zeile darunter. Nur die Zeile mit dem
+       Popover wird ausgenommen, alle anderen Spalten bleiben unberührt. */
+    @media (max-width: 640px) {{
+        div[data-testid="stHorizontalBlock"]:has([data-testid="stPopover"]) {{
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 0.5rem;
+        }}
+        /* Spalten heißen in Streamlit 1.37 "column", nicht "stColumn" */
+        div[data-testid="stHorizontalBlock"]:has([data-testid="stPopover"])
+            > div[data-testid="column"]:first-child {{ flex: 1 1 auto; min-width: 0; }}
+        div[data-testid="stHorizontalBlock"]:has([data-testid="stPopover"])
+            > div[data-testid="column"]:last-child {{ flex: 0 0 3.5rem; min-width: 0; }}
+    }}
+
+    /* ── Handy: jede Zeile Höhe zählt ────────────────────────────────── */
+    @media (max-width: 640px) {{
+        /* Nichts darf breiter sein als der Schirm — im Test lief der
+           Kopfbereich bei 390px rechts aus dem Bild. */
+        [data-testid="stAppViewContainer"] {{ overflow-x: hidden; }}
+        .block-container {{
+            padding-top: 1rem !important;
+            padding-bottom: 0.5rem;
+            padding-left: 0.75rem !important;
+            padding-right: 0.75rem !important;
+            max-width: 100vw;
+        }}
+        /* Der Kopfbereich lief bei 390px rechts aus dem Bild */
+        .falken-header {{
+            padding: 0.9rem 1rem;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            max-width: 100%;
+        }}
+        .falken-header img {{ width: 44px; height: 44px; }}
+        .falken-header-text h1 {{ font-size: 1.25rem; }}
+        /* Die Aufzählung „45+ Jahre · Saisons · Spiele …" kostet drei Zeilen,
+           ohne auf dem Handy etwas beizutragen */
+        .falken-header-text p {{ display: none; }}
+        [data-testid="stChatMessage"] {{ padding: 0.6rem 0.75rem; }}
+    }}
     </style>
     """,
     unsafe_allow_html=True,
@@ -401,13 +462,11 @@ with st.sidebar:
     st.markdown(f"<h2 style='text-align:center; margin-top:0; letter-spacing:0.1em;'>HORST</h2>", unsafe_allow_html=True)
     st.markdown(f"<p style='text-align:center; color:rgba(255,255,255,0.7); margin-top:-0.5rem; font-size:0.85rem;'>Der Falkenhorst des Falken-Wissens</p>", unsafe_allow_html=True)
 
-    st.divider()
-
     # Beispielfragen und "Verlauf löschen" stehen jetzt unten in der
     # Aktionszeile am Eingabefeld — auf dem Handy waren sie hier nur über das
     # Hamburger-Menü erreichbar.
 
-    # ── Backend + Diagnose ganz unten ────────────────────────────────────
+    # ── Backend + Diagnose ────────────────────────────────────────────────
     st.divider()
     st.subheader("⚙ Backend")
     st.code(
