@@ -32,7 +32,14 @@ class Settings(BaseSettings):
     dgx_embed_model: str = "text-embedding-3-small"
     dgx_embed_dim: int = 768
 
-    # Web-Search (Tavily — für Multi-Hop-Fragen mit Web-Recherche)
+    # Web-Search für Multi-Hop-Fragen und den News-Harvest.
+    # Gemessen am 25.07.2026 über unsere sechs Standard-Queries (Treffer auf
+    # vertrauenswürdigen Domains): Exa 40/48, Tavily allgemein 22/48,
+    # Tavily mit topic=news 3/48. Exa ist zudem gut doppelt so schnell,
+    # kostet aber ~$0,007 pro Suche — Tavily bleibt als Gratis-Fallback.
+    # provider: "auto" (Exa wenn Key da, sonst Tavily) | "exa" | "tavily"
+    web_search_provider: str = "auto"
+    exa_api_key: str = ""
     tavily_api_key: str = ""
 
     # Scraping

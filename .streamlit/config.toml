@@ -8,3 +8,7 @@ secondaryBackgroundColor = "#f0f2f6"
 [server]
 headless = true
 runOnSave = false
+# Erlaubt das Ausliefern von frontend/static/ unter /app/static/*.
+# Wird für version.txt gebraucht: der Deploy-Stand muss von außen prüfbar
+# sein, ohne sich durch den Passwortschutz zu klicken.
+enableStaticServing = true

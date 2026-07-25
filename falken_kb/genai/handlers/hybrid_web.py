@@ -17,7 +17,7 @@ from typing import Any
 
 from ...db import exec_sql
 from ..dgx_client import DGXClient
-from ..web_search import tavily_search
+from ..web_search import web_search
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +64,7 @@ def answer_web_research(question: str, client: DGXClient | None = None) -> dict[
     c = client or DGXClient()
 
     # Schritt 1: Web-Search
-    web = tavily_search(question, max_results=5)
+    web = web_search(question, max_results=5)
     if web.get("error") and not web.get("results"):
         # NICHT crashen — leeres Result returnen damit Fallback bei Bedarf
         # noch zu fact gehen kann

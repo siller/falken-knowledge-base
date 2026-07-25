@@ -35,7 +35,9 @@ jobs:
           DGX_CHAT_MODEL: ${{ secrets.DGX_CHAT_MODEL }}
           DGX_EMBED_MODEL: ${{ secrets.DGX_EMBED_MODEL }}
           DGX_EMBED_DIM: "768"
+          EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          WEB_SEARCH_PROVIDER: auto
           HOCKEYDATA_API_KEY: ${{ secrets.HOCKEYDATA_API_KEY }}
           HOCKEYDATA_REFERER: deb-online.live
         run: python3 scripts/sync_daily.py --news-days ${{ github.event.inputs.news_days || 30 }}

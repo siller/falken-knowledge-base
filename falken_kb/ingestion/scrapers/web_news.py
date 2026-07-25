@@ -1,13 +1,14 @@
-"""News-Harvester über Tavily — Ersatz für die toten RSS-Feeds der Lokalpresse.
+"""News-Harvester über Web-Suche — Ersatz für die toten RSS-Feeds der Lokalpresse.
 
 WHY: `heilbronner-falken.de/feed/` liefert nur die letzten 10 Artikel, und die
 RSS-Feeds von stimme.de / hockeyweb.de sind kaputt (kein valides XML mehr, Stand
 Juli 2026). Damit fehlten der KB genau die Geschichten, die eine Saison ausmachen —
 z.B. die Insolvenz im Januar 2026.
 
-Statt pro Portal einen brüchigen HTML-Scraper zu bauen, suchen wir über Tavily
-(haben wir eh im Stack) nach Falken-Themen, holen den Artikeltext mit und
-embedden ihn in dieselbe `articles`-Tabelle wie die RSS-Artikel.
+Statt pro Portal einen brüchigen HTML-Scraper zu bauen, suchen wir nach
+Falken-Themen (Exa, sonst Tavily — siehe `genai/web_search.py`), holen den
+Artikeltext mit und embedden ihn in dieselbe `articles`-Tabelle wie die
+RSS-Artikel.
 
 Aufruf:
     python3 -m falken_kb.ingestion.scrapers.web_news              # Standard-Queries
@@ -26,12 +27,13 @@ import httpx
 from ...config import settings
 from ...db import supabase
 from ...genai.dgx_client import DGXClient
+from ...genai.web_search import web_search
 from .wikipedia_loader import chunk_text
 
 logger = logging.getLogger(__name__)
 
-# Themen, die eine Falken-Saison erzählen. Bewusst breit: Tavily dedupliziert
-# über die URL, doppelte Treffer kosten also nur einen Upsert.
+# Themen, die eine Falken-Saison erzählen. Bewusst breit: doppelte Treffer
+# werden über die URL erkannt und kosten nur einen Upsert.
 DEFAULT_QUERIES = [
     "Heilbronner Falken Insolvenz Spielbetrieb",
     "Heilbronner Falken Lizenz Oberliga",
@@ -41,9 +43,8 @@ DEFAULT_QUERIES = [
     "Heilbronner Falken Spielbericht Oberliga Süd",
 ]
 
-# Quellen, denen wir vertrauen. Dient doppelt: als `include_domains` in der
-# Tavily-Anfrage (sonst kommen zu "Falken"/"Hawks" massenhaft US-Sport-Treffer
-# von foxsports/yahoo/nhl.com) und als Filter auf dem Ergebnis.
+# Quellen, denen wir vertrauen. Alles andere wird verworfen — zu "Falken"
+# liefern Suchmaschinen sonst auch US-Sport (foxsports, yahoo, nhl.com).
 ALLOWED_DOMAINS = (
     "heilbronner-falken.de",
     "stimme.de",
@@ -68,7 +69,7 @@ MIN_BODY_CHARS = 200
 def _strip_html(text: str) -> str:
     """HTML/Markdown-Rohtext → Fließtext.
 
-    WHY: Tavily liefert `raw_content` als Markdown, gespickt mit Navigations-Links
+    WHY: Die Anbieter liefern Seitentext als Markdown, gespickt mit Navigations-Links
     (`[Politik](https://…)`). Solche URLs zerlegt der Tokenizer in sehr viele
     Tokens — 1.200 Zeichen Link-Suppe sprengen das 512-Token-Limit von
     nomic-embed-text und der Embedding-Call endet in HTTP 500. Also raus damit,
@@ -92,35 +93,32 @@ def _is_relevant(title: str, body: str) -> bool:
     return "falken" in blob or "heilbronner ec" in blob
 
 
-def tavily_news(query: str, max_results: int = 8, days: int = 400) -> list[dict[str, Any]]:
-    """Tavily-News-Suche mit Volltext. Eigener Call statt `web_search.tavily_search`,
-    weil wir raw_content + published_date brauchen (der Wrapper kürzt auf 500 Zeichen)."""
-    if not settings.tavily_api_key:
-        logger.error("TAVILY_API_KEY nicht gesetzt")
+def suche_artikel(query: str, max_results: int = 8, days: int = 400) -> list[dict[str, Any]]:
+    """Artikel-Kandidaten über den konfigurierten Such-Anbieter (Exa, sonst Tavily).
+
+    Der frühere Weg — Tavily mit `topic: "news"` — war messbar die schlechteste
+    Variante: von 48 Treffern lagen nur 3 auf einer vertrauenswürdigen Domain
+    (Tavily allgemein 22, Exa 40). Deshalb läuft die Suche jetzt über
+    `web_search`, das Exa bevorzugt und bei Bedarf auf Tavily zurückfällt.
+
+    `days` bleibt in der Signatur, wird von Exa aber nicht als Filter benutzt —
+    die Relevanzsortierung liefert dort ohnehin die passenden Artikel zuerst.
+    """
+    res = web_search(query, max_results=max_results, max_chars=4000)
+    if res.get("error") and not res.get("results"):
+        logger.warning("Suche fehlgeschlagen für '%s': %s", query, res["error"])
         return []
-    try:
-        with httpx.Client(timeout=45) as c:
-            r = c.post(
-                "https://api.tavily.com/search",
-                json={
-                    "api_key": settings.tavily_api_key,
-                    "query": query,
-                    "topic": "news",
-                    "days": days,
-                    "search_depth": "advanced",
-                    "include_answer": False,
-                    "include_raw_content": True,
-                    # KEIN include_domains: damit liefert Tavily zwar die Domain,
-                    # ignoriert dafür aber die Query (getestet 25.07.2026: lauter
-                    # beliebige merkur.de-Artikel). Wir filtern lieber hinterher.
-                    "max_results": max_results,
-                },
-            )
-            r.raise_for_status()
-            return r.json().get("results") or []
-    except httpx.HTTPError as e:
-        logger.warning("Tavily-Fehler für '%s': %s", query, str(e)[:200])
-        return []
+    # Auf das Format bringen, das ingest_result erwartet
+    return [
+        {
+            "url": x.get("url", ""),
+            "title": x.get("title", ""),
+            "raw_content": x.get("content", ""),
+            "content": x.get("content", ""),
+            "published_date": x.get("published"),
+        }
+        for x in (res.get("results") or [])
+    ]
 
 
 def ingest_result(res: dict[str, Any], dgx: DGXClient) -> str:
@@ -163,7 +161,7 @@ def harvest(queries: list[str], max_results: int = 8, days: int = 400) -> dict[s
     stats: dict[str, int] = {}
     loaded_urls: list[str] = []
     for q in queries:
-        results = tavily_news(q, max_results=max_results, days=days)
+        results = suche_artikel(q, max_results=max_results, days=days)
         logger.info("'%s' → %d Treffer", q, len(results))
         for res in results:
             try:

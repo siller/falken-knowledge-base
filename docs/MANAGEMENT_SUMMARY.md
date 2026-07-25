@@ -52,11 +52,15 @@ die Saison endete am 27.02.2026. Oberliga-Meister wurden die ECDC Memmingen Indi
 |---|---|
 | DGX-LLM | inklusive (eigener Server) |
 | Supabase self-hosted | inklusive (eigener Server) |
-| **Tavily Web-Search** | **0 €** (1.000 Calls/Monat Free-Tier) |
 | **Streamlit Cloud Hosting** | **0 €** (Public-Tier) |
-| Tavily over Limit | $0,008/Call (= $8 pro 1.000) |
+| **Exa Web-Search** (Primär) | ~**1,50 €** — $0,007 pro Suche, 6 Suchen/Tag im Sync plus Nutzerfragen |
+| Tavily Web-Search (Fallback) | 0 € (1.000 Calls/Monat Free-Tier) |
 
-**Realistisch**: 0 € pro Monat. Tavily Free-Tier reicht bei normalem Team-Use.
+**Realistisch**: rund 1–2 € pro Monat. Exa ersetzt seit 25.07.2026 Tavily als
+Primär-Anbieter, weil es für unsere Themen deutlich besser trifft: von 48
+Suchtreffern lagen 40 auf einer vertrauenswürdigen Quelle, bei Tavily 22
+(mit dessen News-Modus sogar nur 3). Wer die Kosten auf null drücken will,
+setzt `WEB_SEARCH_PROVIDER = "tavily"` — zulasten der Trefferqualität.
 
 ## Betrieb
 

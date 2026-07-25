@@ -11,7 +11,7 @@ from typing import Any
 from ..db import exec_sql, supabase
 from .handlers.fact_sql import answer_fact
 from .handlers.narrative_rag import answer_narrative
-from .web_search import tavily_search
+from .web_search import web_search
 
 logger = logging.getLogger(__name__)
 
@@ -130,7 +130,7 @@ def tool_search_web(query: str) -> dict[str, Any]:
         {found, summary, snippets: [{title, url, content}]}
     """
     try:
-        r = tavily_search(query, max_results=5)
+        r = web_search(query, max_results=5)
         return {
             "found": bool(r.get("results")),
             "summary": r.get("answer", "")[:500],

@@ -4,8 +4,8 @@
 
 ```
 ┌────────────── PRESENTATION ──────────────┐
-│ Streamlit UI (falken-knowledge-base.    │
-│ streamlit.app), passwort-geschützt,     │
+│ Streamlit UI (falkenapp.streamlit.app), │
+│ passwort-geschützt,                     │
 │ Multi-Turn-Chat, Falken-Design          │
 └──────────────────┬───────────────────────┘
                    │
@@ -23,7 +23,7 @@
    │         │             │
    ▼         ▼             ▼
 ┌────────┬────────────┬───────────────┐
-│ DGX    │ Supabase   │ Tavily        │
+│ DGX    │ Supabase   │ Exa/Tavily    │
 │ Gemma  │ Postgres + │ Web-Search    │
 │ + Embed│ pgvector   │ + Hockeydata  │
 └────────┴────────────┴───────────────┘
@@ -41,7 +41,7 @@
 | **LLM (Embeddings)** | nomic-embed-text via DGX, 768d |
 | **DB** | self-hosted Supabase `https://supabase.siller.io` |
 | **DB-Erweiterungen** | pgvector (RAG), pg_trgm (Fuzzy-Match), Sync-Log-Trigger |
-| **Web-Search** | Tavily API (1k Calls/Monat free) |
+| **Web-Search** | Exa (primär, ~$0,007/Suche) mit Tavily als Gratis-Fallback |
 | **Daten-Quellen** | hockeydata.net API + RSS heilbronner-falken.de |
 
 ## Pipeline-Komponenten
@@ -73,7 +73,7 @@
 - Synthesis-Prompt mit Quellen-Zitaten
 
 ### Handler `hybrid_web`
-- Tavily-Web-Search (5 Snippets)
+- Web-Search über Exa bzw. Tavily (5 Snippets)
 - LLM extrahiert Personen → parallele `lookup_player`-Calls (ThreadPool)
 - Synthesis kombiniert Web + DB-Cross-Lookups
 
@@ -81,7 +81,7 @@
 - `tool_query_falken_db(question)` — fact_sql-Wrapper
 - `tool_lookup_player(name)` — direkter pg_trgm-Lookup
 - `tool_search_falken_news(query)` — narrative_rag-Wrapper
-- `tool_search_web(query)` — Tavily-Wrapper
+- `tool_search_web(query)` — Web-Search-Wrapper
 
 ## Daten-Modell (Kern-Tabellen, Schema `falken`, Stand 25.07.2026)
 
@@ -129,7 +129,7 @@ falken-knowledge-base/
 │   │   ├── orchestrator.py   — Smart Routing
 │   │   ├── router.py         — LLM-Klassifikation
 │   │   ├── dgx_client.py     — OpenAI-API-Wrapper für DGX
-│   │   ├── web_search.py     — Tavily-Wrapper
+│   │   ├── web_search.py     — Exa + Tavily, mit Anbieterwahl
 │   │   ├── tools.py          — Tool-Registry (für Tool-Agent)
 │   │   ├── tool_agent.py     — ReAct-Loop (experimental)
 │   │   └── handlers/
@@ -171,7 +171,7 @@ falken-knowledge-base/
 | Multi-Hop Web+DB | 60-75 s |
 | LLM-Latenz pro Call (DGX) | 3-5 s |
 | Embedding-Call (nomic-768d) | <1 s |
-| Tavily-Call | 2-5 s |
+| Web-Such-Call | Exa ~1 s, Tavily 2-5 s |
 | Supabase-SQL-Roundtrip | 0.2-0.5 s |
 | **Bottleneck** | DGX bei parallelen Requests (Queue-Stau) |
 
@@ -207,7 +207,7 @@ unbemerkt einfror, während die App weiter selbstbewusst antwortete. Seitdem:
 | `.github/workflows/sync.yml` | täglich 05:00 UTC, ruft den Sync auf und pingt die App |
 | `scripts/sync_daily.py` | News-RSS + Web-Harvest + Spiele/Tabelle + Aktualitäts-Report |
 | `scripts/load_season.py --discover 2027/28` | einmal pro Saison: neue divisionId ermitteln |
-| `falken_kb/ingestion/scrapers/web_news.py` | Lokalpresse über Tavily, weil deren RSS-Feeds tot sind |
+| `falken_kb/ingestion/scrapers/web_news.py` | Lokalpresse über Web-Suche, weil deren RSS-Feeds tot sind |
 | `falken_kb/ingestion/scrapers/falken_preseason.py` | Testspiele von der Vereinsseite — hockeydata führt nur den Ligabetrieb |
 
 **Einmal pro Saison von Hand**: `--discover` laufen lassen und die gefundene
