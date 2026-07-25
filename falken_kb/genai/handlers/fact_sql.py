@@ -7,6 +7,7 @@ Zweistufig:
 from __future__ import annotations
 
 import logging
+import re
 from typing import Any
 
 from ...db import exec_sql
@@ -338,6 +339,31 @@ def _generate_and_run_sql(question: str, c: DGXClient, attempt_label: str,
         return (sql, None, str(e))
 
 
+# Saison-Filter, der auf die letzte Saison MIT Ergebnissen auflöst.
+# Fängt die üblichen Formulierungen ab, mit und ohne Tabellen-Alias.
+_SEASON_WITH_RESULTS_FILTER = re.compile(
+    r"\s+AND\s+\w*\.?(?:label|season)\s*=\s*\(\s*SELECT\s+max\(\s*season\s*\)"
+    r".*?games_played\s*>\s*0\s*\)",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+def _drop_conflicting_season_filter(sql: str) -> str | None:
+    """Entfernt den 'letzte Saison mit Ergebnissen'-Filter aus Termin-Queries.
+
+    WHY: Beide Bedingungen einzeln sind richtig, zusammen ergeben sie immer eine
+    leere Menge — offene Termine (`home_score IS NULL`) liegen naturgemäß NICHT
+    in der letzten Saison mit Ergebnissen. Das Modell kombinierte sie trotz
+    gegenteiliger Anweisung im Prompt reproduzierbar, deshalb hier im Code.
+
+    Returnt das bereinigte SQL oder None, wenn nichts zu tun war.
+    """
+    if not re.search(r"home_score\s+IS\s+NULL", sql, re.IGNORECASE):
+        return None
+    cleaned = _SEASON_WITH_RESULTS_FILTER.sub("", sql)
+    return cleaned if cleaned != sql else None
+
+
 def answer_fact(question: str, client: DGXClient | None = None) -> dict[str, Any]:
     c = client or DGXClient()
     # Stotter-Bug-Schutz: LLMs verdoppeln manchmal Tokens ("ODER BY" oder
@@ -351,6 +377,20 @@ def answer_fact(question: str, client: DGXClient | None = None) -> dict[str, Any
                 "keine deutschen Keywords (NICHT 'ODER BY'), "
                 "keine verschachtelten Quotes.")
         sql, rows, err = _generate_and_run_sql(question, c, "try2", extra_hint=hint, temperature=0.2)
+
+    # Terminfrage ohne Treffer? Dann prüfen, ob sich die Query selbst blockiert
+    # (offene Spiele UND Saison-mit-Ergebnissen gefiltert) und einmal ohne den
+    # widersprüchlichen Filter ausführen.
+    if sql and not err and not rows:
+        repaired = _drop_conflicting_season_filter(sql)
+        if repaired:
+            logger.info("Terminfrage ohne Treffer — Saison-Filter widerspricht "
+                        "'home_score IS NULL', führe ohne ihn erneut aus")
+            try:
+                rows = exec_sql(repaired)
+                sql = repaired
+            except Exception as e:  # noqa: BLE001 — Provider-/DB-Fehler untypisiert
+                logger.warning("Reparierte Query schlug fehl: %s", str(e)[:120])
 
     if not sql:
         return {

@@ -8,6 +8,7 @@ from __future__ import annotations
 import os
 import sys
 import time
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -345,6 +346,30 @@ if not _password_protect():
 # ──────────────────────────────────────────────────────────────────────────────
 # Sidebar
 # ──────────────────────────────────────────────────────────────────────────────
+def _code_version() -> str:
+    """Welcher Commit läuft gerade? Ohne diese Anzeige ist von außen nicht
+    unterscheidbar, ob ein Fehler noch besteht oder die Cloud nur nicht neu
+    gebaut hat — das hat schon zwei Debug-Runden gekostet."""
+    import subprocess
+
+    root = Path(__file__).resolve().parent.parent
+    try:
+        sha = subprocess.run(
+            ["git", "-C", str(root), "log", "-1", "--format=%h %cd", "--date=format:%d.%m. %H:%M"],
+            capture_output=True, text=True, timeout=5,
+        )
+        if sha.returncode == 0 and sha.stdout.strip():
+            return sha.stdout.strip()
+    except Exception:  # noqa: BLE001 — Diagnose darf die App nie umbringen
+        pass
+    # Kein Git im Deployment: auf die Änderungszeit dieser Datei zurückfallen
+    try:
+        ts = datetime.fromtimestamp(Path(__file__).stat().st_mtime)
+        return f"Datei-Stand {ts:%d.%m. %H:%M}"
+    except Exception:  # noqa: BLE001
+        return "unbekannt"
+
+
 def _device_label(url: str) -> str:
     u = (url or "").lower()
     if "pgxapi.siller.io" in u: return "DGX (siller.io, self-hosted)"
@@ -391,7 +416,8 @@ with st.sidebar:
         f"Gerät:      {_device_label(settings.dgx_base_url)}\n"
         f"Chat:       {settings.dgx_chat_model or '(leer)'}\n"
         f"Embeddings: {settings.dgx_embed_model or '(leer)'} ({settings.dgx_embed_dim}d)\n"
-        f"Web-Search: {'Tavily ✓' if settings.tavily_api_key else '— (kein Key)'}",
+        f"Web-Search: {'Tavily ✓' if settings.tavily_api_key else '— (kein Key)'}\n"
+        f"Code-Stand: {_code_version()}",
         language="text",
     )
     with st.expander("🔧 Diagnose"):
