@@ -26,6 +26,7 @@ import httpx
 
 from ...config import settings
 from ...db import exec_sql, rpc
+from ...genai.web_search import web_search
 from ..loaders import upsert_season, upsert_team
 
 logger = logging.getLogger(__name__)
@@ -43,6 +44,7 @@ SEED_URLS = [
 SEARCH_QUERIES = [
     "Heilbronner Falken Vorbereitungsprogramm Testspiele Termine",
     "HEC Falken Vorbereitungsspiele Termine",
+    "Heilbronner Falken Pre-Season Derby Testspiel Termin",
 ]
 
 # "23.08.2026 | Füchse Duisburg – HEC Falken | 15:00 Uhr"
@@ -75,24 +77,15 @@ def _season_label(dt: datetime) -> str:
 
 def _candidate_urls() -> list[str]:
     urls = list(SEED_URLS)
-    if not settings.tavily_api_key:
-        return urls
+    # Über die gemeinsame Web-Suche (Exa, sonst Tavily): der Verein kündigt
+    # Nachmeldungen in eigenen Beiträgen an — das Pre-Season-Derby gegen
+    # Bietigheim etwa stand nicht im Sammel-Artikel.
     for query in SEARCH_QUERIES:
-        try:
-            with httpx.Client(timeout=30) as c:
-                r = c.post("https://api.tavily.com/search", json={
-                    "api_key": settings.tavily_api_key,
-                    "query": query,
-                    "max_results": 8,
-                    "search_depth": "basic",
-                })
-                r.raise_for_status()
-                for item in r.json().get("results") or []:
-                    u = item.get("url") or ""
-                    if CLUB_DOMAIN in u and u not in urls:
-                        urls.append(u)
-        except httpx.HTTPError as e:
-            logger.warning("Tavily-Suche fehlgeschlagen: %s", str(e)[:120])
+        res = web_search(query, max_results=8, max_chars=200)
+        for item in res.get("results") or []:
+            u = item.get("url") or ""
+            if CLUB_DOMAIN in u and u not in urls:
+                urls.append(u)
     return urls
 
 
@@ -114,6 +107,55 @@ def parse_fixtures(text: str) -> list[dict[str, Any]]:
     return out
 
 
+MONATE = {
+    "januar": 1, "februar": 2, "märz": 3, "maerz": 3, "april": 4, "mai": 5, "juni": 6,
+    "juli": 7, "august": 8, "september": 9, "oktober": 10, "november": 11, "dezember": 12,
+}
+# "Am Samstag, den 05. September, kommt es … gegen die Bietigheim Steelers.
+#  Spielbeginn ist um 16:00 Uhr"
+PROSA_DATUM_RE = re.compile(r"den\s+(\d{1,2})\.\s*([A-Za-zäöüÄÖÜ]+)", re.IGNORECASE)
+PROSA_ZEIT_RE = re.compile(r"(?:Spielbeginn|Beginn|Anpfiff|Puckdrop)[^.]{0,40}?(\d{1,2})[:.](\d{2})\s*Uhr",
+                           re.IGNORECASE)
+PROSA_GEGNER_RE = re.compile(r"gegen\s+(?:die|den|das)?\s*([A-ZÄÖÜ][\w\-äöüß]*(?:\s+[A-ZÄÖÜ][\w\-äöüß]*){0,3})")
+
+
+def parse_prose_fixture(text: str, jahr_hinweis: int) -> dict[str, Any] | None:
+    """Einzeltermin aus einem Fließtext-Beitrag.
+
+    WHY: Nachmeldungen kommen nicht in der Tabellenform, sondern als Meldung —
+    das Derby gegen Bietigheim etwa stand nur so auf der Seite und fehlte
+    deshalb im Spielplan. Bewusst streng: fehlt Datum, Uhrzeit, Gegner oder
+    ein eindeutiges Heim-/Auswärts-Signal, wird nichts geraten.
+    """
+    d = PROSA_DATUM_RE.search(text)
+    z = PROSA_ZEIT_RE.search(text)
+    g = PROSA_GEGNER_RE.search(text)
+    if not (d and z and g):
+        return None
+    monat = MONATE.get(d.group(2).lower())
+    if not monat:
+        return None
+    gegner = g.group(1).strip()
+    if CANONICAL.lower() in gegner.lower() or "falken" in gegner.lower():
+        return None
+
+    tief = text.lower()
+    heim = "in heilbronn" in tief or "heilbronner eishalle" in tief
+    auswaerts = "zu gast bei" in tief or "reisen nach" in tief or "gastiert" in tief
+    if heim == auswaerts:  # kein eindeutiges Signal
+        return None
+
+    # Saison-Logik: Sommer-Termine gehören zum Jahr der Ankündigung
+    jahr = jahr_hinweis if monat >= 7 else jahr_hinweis + 1
+    try:
+        dt = datetime(jahr, monat, int(d.group(1)), int(z.group(1)), int(z.group(2)))
+    except ValueError:
+        return None
+    return {"date": dt,
+            "home": CANONICAL if heim else gegner,
+            "away": gegner if heim else CANONICAL}
+
+
 def harvest(dry_run: bool = False) -> dict[str, Any]:
     seen: dict[tuple[str, str, str], dict[str, Any]] = {}
     for url in _candidate_urls():
@@ -125,7 +167,15 @@ def harvest(dry_run: bool = False) -> dict[str, Any]:
         except httpx.HTTPError as e:
             logger.warning("%s: %s", url, str(e)[:100])
             continue
-        for f in parse_fixtures(_plain_text(r.text)):
+        text = _plain_text(r.text)
+        gefunden = parse_fixtures(text)
+        if not gefunden:
+            # Kein Tabellen-Format? Dann als Einzelmeldung versuchen.
+            jahr = int(m.group(1)) if (m := re.search(r'"datePublished":"(\d{4})', r.text)) else datetime.now().year
+            einzel = parse_prose_fixture(text, jahr)
+            if einzel:
+                gefunden = [einzel]
+        for f in gefunden:
             key = (f["date"].isoformat(), f["home"], f["away"])
             seen.setdefault(key, f)
 

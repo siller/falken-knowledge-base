@@ -512,19 +512,19 @@ if q:
     with st.chat_message("assistant", avatar="🦅"):
         with st.spinner("🦅 HORST durchsucht den Falkenhorst…"):
             t0 = time.time()
-            effective_q = q
+            # Kontext getrennt übergeben, NICHT in die Frage einbauen: sonst
+            # entscheidet der Router anhand der vorherigen Frage mit. Nach der
+            # Frage nach der "Tenno Sushi Bar" landete so jede Folgefrage in
+            # der Web-Recherche — auch reine Statistik-Fragen.
+            kontext = None
             if st.session_state.history:
                 last = st.session_state.history[-1]
-                last_q = last["q"]
-                last_a = last["result"].get("answer", "")[:300]
-                effective_q = (
-                    f"VORHERIGE FRAGE: {last_q}\n"
-                    f"VORHERIGE ANTWORT: {last_a}\n\n"
-                    f"FOLGEFRAGE (bezieht sich auf den obigen Kontext, "
-                    f"resolve Pronomen + 'besser/schlechter/auch' anhand des Kontexts): {q}"
+                kontext = (
+                    f"VORHERIGE FRAGE: {last['q']}\n"
+                    f"VORHERIGE ANTWORT: {last['result'].get('answer', '')[:300]}"
                 )
             try:
-                result = kb_answer(effective_q)
+                result = kb_answer(q, context=kontext)
                 t_sec = time.time() - t0
             except Exception as e:
                 st.error(f"Fehler: {e}")
