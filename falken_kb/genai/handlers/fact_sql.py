@@ -250,14 +250,30 @@ WHERE (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
                  WHERE team = 'Heilbronner Falken' AND games_played > 0)
 GROUP BY s.label;
 
--- Nächstes Spiel / Spielplan der kommenden Saison (noch ohne Ergebnis):
-SELECT g.date, ht.name AS home_team, at.name AS away_team
+-- Nächstes Spiel / Spielplan der kommenden Saison (noch ohne Ergebnis).
+-- Datum IMMER mit to_char formatieren — roh kommt ein ISO-Zeitstempel wie
+-- '2026-10-23T19:30:00+00:00' in der Antwort an, was niemand lesen will:
+SELECT to_char(g.date, 'DD.MM.YYYY HH24:MI') AS termin,
+       ht.name AS home_team, at.name AS away_team
 FROM games g
 JOIN teams ht ON ht.id = g.home_team_id
 JOIN teams at ON at.id = g.away_team_id
 WHERE g.home_score IS NULL AND g.date > now()
   AND (ht.name = 'Heilbronner Falken' OR at.name = 'Heilbronner Falken')
 ORDER BY g.date ASC LIMIT 5;
+
+-- Alle Termine gegen einen bestimmten Gegner in der laufenden Spielzeit.
+-- "diese Saison" heißt bei Terminfragen die Saison MIT offenen Spielen
+-- (`home_score IS NULL`) — nicht die letzte abgeschlossene:
+SELECT to_char(g.date, 'DD.MM.YYYY HH24:MI') AS termin,
+       ht.name AS home_team, at.name AS away_team
+FROM games g
+JOIN teams ht ON ht.id = g.home_team_id
+JOIN teams at ON at.id = g.away_team_id
+WHERE g.home_score IS NULL
+  AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%')
+  AND (ht.name ILIKE '%Stuttgart%' OR at.name ILIKE '%Stuttgart%')
+ORDER BY g.date ASC;
 
 -- Spieler-Stats-Lookup (FUZZY-MATCH gegen Tippfehler via pg_trgm):
 SELECT season, player, points, goals, assists,

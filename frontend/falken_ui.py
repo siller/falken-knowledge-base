@@ -364,6 +364,7 @@ with st.sidebar:
     # ── Beispielfragen oben (Hauptzweck) ─────────────────────────────────
     st.subheader("💡 Beispielfragen")
     examples = [
+        "Wann spielen die Falken diese Saison gegen Stuttgart?",
         "Auf welchem Tabellenplatz beendeten die Falken die Saison 2022/23?",
         "Wer war Topscorer der Falken in der Saison 2024/25?",
         "Wer war Trainer der Falken in der Saison 2018/19?",
