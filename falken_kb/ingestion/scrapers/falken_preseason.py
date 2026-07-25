@@ -136,7 +136,14 @@ def harvest(dry_run: bool = False) -> dict[str, Any]:
         print(f"  {f['date']:%d.%m.%Y %H:%M}  {f['home']} – {f['away']}  [{label}]")
         if dry_run:
             continue
-        rows = exec_sql(f"SELECT id, league FROM seasons WHERE label = '{label}' ORDER BY league LIMIT 1")
+        # Zu einem Label gibt es mehrere Saison-Zeilen (2025/26 existiert als
+        # DEL2 UND als Oberliga Süd). Für ein Falken-Testspiel zählt die Liga,
+        # in der die Falken gespielt haben — dafür ist is_focus_team_season da.
+        # Ohne diese Sortierung landete das Spiel alphabetisch bei "DEL2".
+        rows = exec_sql(
+            f"SELECT id, league FROM seasons WHERE label = '{label}' "
+            "ORDER BY is_focus_team_season DESC NULLS LAST, league LIMIT 1"
+        )
         if not rows:
             logger.warning("Saison %s nicht in der DB — Testspiel übersprungen", label)
             continue
