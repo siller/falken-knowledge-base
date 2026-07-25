@@ -348,6 +348,27 @@ _SEASON_WITH_RESULTS_FILTER = re.compile(
 )
 
 
+# Runden-Filter auf playoff_series, z.B. "AND ps.round = 'Play-Down'"
+_ROUND_FILTER = re.compile(
+    r"\s+AND\s+\w*\.?round\s*(?:=|ILIKE|LIKE)\s*'[^']*'", re.IGNORECASE
+)
+
+
+def _drop_round_filter(sql: str) -> str | None:
+    """Entfernt den Runden-Filter aus einer ergebnislosen Playoff-Abfrage.
+
+    WHY: Die Rundennamen sind uneinheitlich gewachsen ('Play-Down' vs.
+    'Play-Down R1'/'R2', 'Pre Play-Off', dazu ein altes 'Achtefinale'). Rät das
+    Modell die Schreibweise falsch, kommen 0 Zeilen zurück, obwohl die Serie in
+    der DB steht. Saison + beide Teams identifizieren die Serie ohnehin
+    eindeutig, der Runden-Filter ist dann entbehrlich.
+    """
+    if "playoff_series" not in sql.lower():
+        return None
+    cleaned = _ROUND_FILTER.sub("", sql)
+    return cleaned if cleaned != sql else None
+
+
 def _drop_conflicting_season_filter(sql: str) -> str | None:
     """Entfernt den 'letzte Saison mit Ergebnissen'-Filter aus Termin-Queries.
 
@@ -382,15 +403,24 @@ def answer_fact(question: str, client: DGXClient | None = None) -> dict[str, Any
     # (offene Spiele UND Saison-mit-Ergebnissen gefiltert) und einmal ohne den
     # widersprüchlichen Filter ausführen.
     if sql and not err and not rows:
-        repaired = _drop_conflicting_season_filter(sql)
-        if repaired:
-            logger.info("Terminfrage ohne Treffer — Saison-Filter widerspricht "
-                        "'home_score IS NULL', führe ohne ihn erneut aus")
+        for reparatur, grund in (
+            (_drop_conflicting_season_filter,
+             "Saison-Filter widerspricht 'home_score IS NULL'"),
+            (_drop_round_filter,
+             "Runden-Name trifft die Schreibweise in der DB nicht"),
+        ):
+            repaired = reparatur(sql)
+            if not repaired:
+                continue
+            logger.info("Query ohne Treffer (%s) — Retry ohne den Filter", grund)
             try:
-                rows = exec_sql(repaired)
-                sql = repaired
+                neue_rows = exec_sql(repaired)
             except Exception as e:  # noqa: BLE001 — Provider-/DB-Fehler untypisiert
                 logger.warning("Reparierte Query schlug fehl: %s", str(e)[:120])
+                continue
+            if neue_rows:
+                rows, sql = neue_rows, repaired
+                break
 
     if not sql:
         return {
