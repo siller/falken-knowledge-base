@@ -29,7 +29,12 @@ import httpx
 ROOT = Path(__file__).resolve().parent.parent
 VERSION_FILE = ROOT / "frontend" / "static" / "version.txt"
 APP_URL = "https://falkenapp.streamlit.app"
-VERSION_URL = f"{APP_URL}/app/static/version.txt"
+# Community Cloud liefert statische Dateien NUR unter dem Präfix "/~/+" aus
+# (streamlit/streamlit#12821). Ohne das Präfix bekommt man 200 plus die
+# App-Shell zurück — was wie ein veralteter Deploy aussieht und mich einmal
+# zu der falschen Diagnose "die App zieht den Code nicht" verleitet hat.
+# Lokal gilt der Pfad ohne Präfix, deshalb werden beide probiert.
+VERSION_PFADE = ("/~/+/app/static/version.txt", "/app/static/version.txt")
 
 
 def _git(*args: str) -> str:
@@ -53,10 +58,11 @@ def live_version() -> str | None:
         with httpx.Client(timeout=25, follow_redirects=True,
                           headers={"User-Agent": "falken-kb-deploycheck/1.0"}) as c:
             c.get(APP_URL)          # Handshake: setzt die Session-Cookies
-            r = c.get(VERSION_URL)
-            text = (r.text or "").strip()
-            if r.status_code == 200 and STAMP_RE.match(text):
-                return text
+            for pfad in VERSION_PFADE:
+                r = c.get(APP_URL + pfad)
+                text = (r.text or "").strip()
+                if r.status_code == 200 and STAMP_RE.match(text):
+                    return text
     except httpx.HTTPError:
         pass
     return None
