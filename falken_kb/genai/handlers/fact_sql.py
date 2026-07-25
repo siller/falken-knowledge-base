@@ -67,10 +67,18 @@ REGELN:
   Dasselbe für coaches.name (`similarity(c.name, 'X') > 0.3`).
 - Liga-Namen NIE exakt vergleichen: die Oberliga steht als 'Oberliga Süd' bzw.
   'Oberliga Nord' in der DB. Also `league LIKE 'Oberliga%'`, nicht `= 'Oberliga'`.
-- "aktuelle Saison" = die letzte Saison MIT Ergebnissen, nicht die kalendarisch
-  letzte: der Spielplan der kommenden Saison steht bereits in `games`, dort ist
-  `home_score IS NULL`. Also immer `WHERE g.home_score IS NOT NULL` ergänzen bzw.
-  `(SELECT max(season) FROM season_standings WHERE games_played > 0)`.
+- Die DB enthält BEIDES: gespielte Partien (mit Score) und den Spielplan der
+  kommenden Saison (Score NULL). Welche Hälfte gemeint ist, entscheidet die Frage
+  — und die beiden folgenden Regeln schließen einander AUS. NIE beide zugleich
+  anwenden, das ergibt garantiert 0 Zeilen:
+  (a) Frage nach ERGEBNISSEN/Statistik ("wie endete", "wie viele Tore",
+      "in der aktuellen Saison"): `WHERE g.home_score IS NOT NULL`, und
+      "aktuelle Saison" ist
+      `(SELECT max(season) FROM season_standings WHERE games_played > 0)`.
+  (b) Frage nach TERMINEN ("wann spielen", "wann ist das nächste Spiel",
+      "Spielplan", "diese Saison gegen X"): `WHERE g.home_score IS NULL`
+      — und dann KEIN zusätzlicher Saison-Filter über max(season), denn die
+      offenen Spiele liegen per Definition in der noch nicht gespielten Saison.
 - "zuletzt"/"wann war der letzte …" heißt CHRONOLOGISCH sortieren
   (`ORDER BY season DESC`), nicht nach dem gefragten Wert.
 - `season` ist TEXT im Format 'YYYY/YY' — NIE `season::int` (kippt mit
@@ -377,6 +385,10 @@ def answer_fact(question: str, client: DGXClient | None = None) -> dict[str, Any
                     "in den Resultaten steht — die SQL-Query wurde genau für diese Frage formuliert. "
                     "Bei Top-N-Listen ist der ERSTE Eintrag die direkte Antwort, weitere geben Kontext. "
                     "Nur wenn die Liste WIRKLICH LEER ist (0 Zeilen), sage 'keine Daten'. "
+                    "Bei Terminlisten (Spielplan, 'wann spielen') JEDEN gelieferten Termin nennen — "
+                    "eine Auswahl daraus wäre für Fans irreführend. Testspiele dabei als solche "
+                    "kennzeichnen, sonst hält man sie für Punktspiele. "
+                    "Bei mehr als 3 Sätzen Inhalt darfst du die Termine als Aufzählung schreiben. "
                     "WICHTIG bei Spielergebnissen: Format IMMER "
                     "'<Heimteam> <home_score>:<away_score> <Auswärtsteam>' "
                     "(Heim-Score zuerst, NICHT Sieger-Score zuerst). "
