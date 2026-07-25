@@ -38,11 +38,25 @@ def _git(*args: str) -> str:
     ).stdout.strip()
 
 
+STAMP_RE = __import__("re").compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z \w+$")
+
+
 def live_version() -> str | None:
+    """Liest den Stempel der laufenden App.
+
+    WICHTIG: Die Streamlit-Edge schickt JEDEN Pfad ohne Session-Cookie auf die
+    Auth-Weiterleitung — auch statische Dateien. Ohne Cookie-Handshake bekommt
+    man deshalb die Login-Seite statt version.txt und hält einen erfolgreichen
+    Deploy für gescheitert.
+    """
     try:
-        r = httpx.get(VERSION_URL, timeout=20, follow_redirects=True)
-        if r.status_code == 200 and len(r.text) < 300:
-            return r.text.strip()
+        with httpx.Client(timeout=25, follow_redirects=True,
+                          headers={"User-Agent": "falken-kb-deploycheck/1.0"}) as c:
+            c.get(APP_URL)          # Handshake: setzt die Session-Cookies
+            r = c.get(VERSION_URL)
+            text = (r.text or "").strip()
+            if r.status_code == 200 and STAMP_RE.match(text):
+                return text
     except httpx.HTTPError:
         pass
     return None
