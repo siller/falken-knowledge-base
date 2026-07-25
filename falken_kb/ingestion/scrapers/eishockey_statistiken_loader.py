@@ -11,7 +11,7 @@ import logging
 import re
 from typing import Any
 
-from ...db import rpc
+from ...db import exec_sql, rpc
 from ..loaders import upsert_season, upsert_team
 from .eishockey_statistiken import fetch_falken_history
 
