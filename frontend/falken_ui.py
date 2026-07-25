@@ -21,7 +21,10 @@ st.set_page_config(
     page_title="HORST — Falken-Wissensdatenbank",
     page_icon="🦅",
     layout="wide",
-    initial_sidebar_state="expanded",
+    # "auto" statt "expanded": blendet die Sidebar auf kleinen Geräten aus und
+    # zeigt sie auf Desktop — Streamlits Doku rät von "expanded" ausdrücklich ab,
+    # weil die App auf dem Handy sonst schlecht aussieht.
+    initial_sidebar_state="auto",
 )
 
 # ──────────────────────────────────────────────────────────────────────────────
