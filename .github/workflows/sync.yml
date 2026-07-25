@@ -42,5 +42,10 @@ jobs:
 
       - name: Streamlit-App wachhalten
         continue-on-error: true
+        # Ohne Cookie-Jar endet der Aufruf bei HTTP 303 auf der Auth-Weiterleitung
+        # der Streamlit-Edge — die App selbst wird dabei nie angefasst. Erst der
+        # Handshake mit Cookies lädt die Seite wirklich (HTTP 200).
         run: |
-          curl -sS -m 60 -o /dev/null -w 'app HTTP %{http_code}\n' https://falkenapp.streamlit.app/
+          curl -sSL --max-redirs 12 -m 90 -c /tmp/cj.txt -b /tmp/cj.txt \
+               -A 'Mozilla/5.0 (compatible; falken-kb-keepalive/1.0)' \
+               -o /dev/null -w 'app HTTP %{http_code}\n' https://falkenapp.streamlit.app/
