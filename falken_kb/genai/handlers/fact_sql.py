@@ -254,6 +254,9 @@ GROUP BY s.label;
 -- Datum IMMER mit to_char formatieren — roh kommt ein ISO-Zeitstempel wie
 -- '2026-10-23T19:30:00+00:00' in der Antwort an, was niemand lesen will:
 SELECT to_char(g.date, 'DD.MM.YYYY HH24:MI') AS termin,
+       CASE g.game_type WHEN 'friendly' THEN 'Testspiel'
+                        WHEN 'playoff'  THEN 'Playoff'
+                        ELSE 'Hauptrunde' END AS spieltyp,
        ht.name AS home_team, at.name AS away_team
 FROM games g
 JOIN teams ht ON ht.id = g.home_team_id
@@ -264,8 +267,13 @@ ORDER BY g.date ASC LIMIT 5;
 
 -- Alle Termine gegen einen bestimmten Gegner in der laufenden Spielzeit.
 -- "diese Saison" heißt bei Terminfragen die Saison MIT offenen Spielen
--- (`home_score IS NULL`) — nicht die letzte abgeschlossene:
+-- (`home_score IS NULL`) — nicht die letzte abgeschlossene.
+-- IMMER den Spieltyp mitliefern: im August/September stehen Testspiele im
+-- Plan, und die als Punktspiele auszugeben wäre irreführend.
 SELECT to_char(g.date, 'DD.MM.YYYY HH24:MI') AS termin,
+       CASE g.game_type WHEN 'friendly' THEN 'Testspiel'
+                        WHEN 'playoff'  THEN 'Playoff'
+                        ELSE 'Hauptrunde' END AS spieltyp,
        ht.name AS home_team, at.name AS away_team
 FROM games g
 JOIN teams ht ON ht.id = g.home_team_id

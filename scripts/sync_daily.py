@@ -50,6 +50,16 @@ def sync_news_web(days: int) -> dict:
     return harvest(DEFAULT_QUERIES, max_results=10, days=days)
 
 
+def sync_preseason() -> dict:
+    """Testspiele von der Vereinsseite — hockeydata kennt nur den Ligabetrieb.
+
+    Der Verein meldet die Termine in Wellen nach, deshalb läuft das täglich mit.
+    """
+    from falken_kb.ingestion.scrapers.falken_preseason import harvest
+
+    return harvest()
+
+
 async def sync_games() -> dict:
     from falken_kb.ingestion.hockeydata_client import HockeydataClient
     from falken_kb.ingestion.loaders import (
@@ -135,6 +145,13 @@ def main() -> int:
             print("  ", asyncio.run(sync_games()))
         except Exception:
             failures.append("games")
+            traceback.print_exc()
+
+        print("\n## Testspiele (Vereinsseite)")
+        try:
+            print("  ", sync_preseason())
+        except Exception:
+            failures.append("preseason")
             traceback.print_exc()
 
     print("\n## Aktualität")

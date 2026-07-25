@@ -208,6 +208,7 @@ unbemerkt einfror, während die App weiter selbstbewusst antwortete. Seitdem:
 | `scripts/sync_daily.py` | News-RSS + Web-Harvest + Spiele/Tabelle + Aktualitäts-Report |
 | `scripts/load_season.py --discover 2027/28` | einmal pro Saison: neue divisionId ermitteln |
 | `falken_kb/ingestion/scrapers/web_news.py` | Lokalpresse über Tavily, weil deren RSS-Feeds tot sind |
+| `falken_kb/ingestion/scrapers/falken_preseason.py` | Testspiele von der Vereinsseite — hockeydata führt nur den Ligabetrieb |
 
 **Einmal pro Saison von Hand**: `--discover` laufen lassen und die gefundene
 divisionId in `scripts/sync_daily.py` (`CURRENT_SEASON_DIVISION_ID`) eintragen.
