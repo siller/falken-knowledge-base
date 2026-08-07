@@ -9,3 +9,7 @@ feedparser>=6.0
 PyYAML>=6.0
 tenacity>=8.2
 rapidfuzz>=3.6
+
+# Frage-Schnittstelle (falken_kb/api)
+fastapi>=0.115
+uvicorn[standard]>=0.30

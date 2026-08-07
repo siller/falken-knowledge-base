@@ -12,6 +12,7 @@ from .handlers.hybrid_web import answer_web_research
 from .handlers.narrative_rag import answer_narrative
 from .handlers.trend_chart import answer_trend
 from .router import classify
+from .web_search import suche_aktiv
 from .tool_agent import answer_with_tools
 
 
@@ -160,10 +161,13 @@ def answer(question: str, context: str | None = None) -> dict[str, Any]:
     #    direkt web_research_handler (wenn Tavily konfiguriert)
     # 2) Sonst: normaler Handler nach category
     # 3) Fallback bei leerem Result: narrative_rag (für News) ODER web_research (für externe Lookup)
-    has_tavily = bool(settings.exa_api_key or settings.tavily_api_key)
+    # suche_aktiv() kennt auch den Aus-Zustand, den der Frage-Dienst setzt —
+    # sonst liefe die Frage in den Web-Handler und käme mit 'nicht verfügbar'
+    # zurück, statt aus Datenbank und News beantwortet zu werden.
+    hat_websuche = suche_aktiv()
     is_web_question = _looks_web_research(routing_frage)
 
-    if is_web_question and has_tavily:
+    if is_web_question and hat_websuche:
         logger.info("Routing zu web_research (Frage erwähnt externe Entität)")
         result = answer_web_research(question, client)
         category = "web_research"

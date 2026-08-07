@@ -79,6 +79,19 @@ def exa_search(
     )
 
 
+# Werte, mit denen die Websuche gezielt stillgelegt wird. Gebraucht wird das
+# vom Frage-Dienst: bei Last oder erschöpftem Budget schaltet der Aufrufer die
+# Suche ab, und die Antwort kommt allein aus Datenbank und News.
+_AUS = ("aus", "off", "none", "deaktiviert")
+
+
+def suche_aktiv() -> bool:
+    """Ist die Websuche gerade zugelassen?"""
+    if (settings.web_search_provider or "auto").lower() in _AUS:
+        return False
+    return bool(settings.exa_api_key or settings.tavily_api_key)
+
+
 def web_search(query: str, max_results: int = 5, max_chars: int = 800) -> dict[str, Any]:
     """Sucht beim konfigurierten Anbieter, mit automatischem Rückfall.
 
@@ -87,6 +100,9 @@ def web_search(query: str, max_results: int = 5, max_chars: int = 800) -> dict[s
     Websuche soll nicht daran scheitern, dass ein Anbieter zickt.
     """
     provider = (settings.web_search_provider or "auto").lower()
+    if provider in _AUS:
+        return {"error": "Websuche ist abgeschaltet", "results": [], "answer": "",
+                "provider": "aus"}
     use_exa = provider == "exa" or (provider == "auto" and bool(settings.exa_api_key))
 
     if use_exa:

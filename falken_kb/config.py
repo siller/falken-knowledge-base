@@ -38,9 +38,14 @@ class Settings(BaseSettings):
     # Tavily mit topic=news 3/48. Exa ist zudem gut doppelt so schnell,
     # kostet aber ~$0,007 pro Suche — Tavily bleibt als Gratis-Fallback.
     # provider: "auto" (Exa wenn Key da, sonst Tavily) | "exa" | "tavily"
+    # provider zusätzlich "aus": schaltet die Websuche still, ohne Schlüssel zu entfernen
     web_search_provider: str = "auto"
     exa_api_key: str = ""
     tavily_api_key: str = ""
+
+    # Gemeinsames Geheimnis der Frage-Schnittstelle. Sie ist nur für den
+    # Convex-Dienst gedacht; ohne gesetzten Wert nimmt sie keine Fragen an.
+    api_token: str = ""
 
     # Scraping
     proxy_pool_url: str = ""
