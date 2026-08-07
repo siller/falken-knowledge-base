@@ -14,7 +14,9 @@ Beide Anbieter liefern dasselbe normalisierte Format zurück.
 from __future__ import annotations
 
 import logging
-from typing import Any
+from contextlib import contextmanager
+from contextvars import ContextVar
+from typing import Any, Iterator
 
 import httpx
 
@@ -79,14 +81,30 @@ def exa_search(
     )
 
 
-# Werte, mit denen die Websuche gezielt stillgelegt wird. Gebraucht wird das
-# vom Frage-Dienst: bei Last oder erschöpftem Budget schaltet der Aufrufer die
-# Suche ab, und die Antwort kommt allein aus Datenbank und News.
+# Werte, mit denen die Websuche dauerhaft stillgelegt wird (Konfiguration).
 _AUS = ("aus", "off", "none", "deaktiviert")
+
+# Abschaltung für EINEN Aufruf. Bewusst ein ContextVar und keine Änderung an
+# `settings`: der Frage-Dienst bedient mehrere Anfragen gleichzeitig, und eine
+# globale Umschaltung würde einer parallel laufenden Anfrage die Websuche
+# wegnehmen — ausgerechnet unter Last, wo der Rückfall überhaupt erst greift.
+_unterdrueckt: ContextVar[bool] = ContextVar("websuche_unterdrueckt", default=False)
+
+
+@contextmanager
+def websuche_aus() -> Iterator[None]:
+    """Schaltet die Websuche nur für den laufenden Aufruf ab."""
+    marke = _unterdrueckt.set(True)
+    try:
+        yield
+    finally:
+        _unterdrueckt.reset(marke)
 
 
 def suche_aktiv() -> bool:
-    """Ist die Websuche gerade zugelassen?"""
+    """Ist die Websuche für den laufenden Aufruf zugelassen?"""
+    if _unterdrueckt.get():
+        return False
     if (settings.web_search_provider or "auto").lower() in _AUS:
         return False
     return bool(settings.exa_api_key or settings.tavily_api_key)
@@ -100,7 +118,7 @@ def web_search(query: str, max_results: int = 5, max_chars: int = 800) -> dict[s
     Websuche soll nicht daran scheitern, dass ein Anbieter zickt.
     """
     provider = (settings.web_search_provider or "auto").lower()
-    if provider in _AUS:
+    if _unterdrueckt.get() or provider in _AUS:
         return {"error": "Websuche ist abgeschaltet", "results": [], "answer": "",
                 "provider": "aus"}
     use_exa = provider == "exa" or (provider == "auto" and bool(settings.exa_api_key))

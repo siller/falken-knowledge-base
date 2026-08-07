@@ -6,10 +6,14 @@ allen Tests ersetzt: geprüft wird die Schnittstelle, nicht die Antwortqualität
 """
 from __future__ import annotations
 
+import threading
+from concurrent.futures import ThreadPoolExecutor
+
 import pytest
 from fastapi.testclient import TestClient
 
 from falken_kb.api import app as api_modul
+from falken_kb.genai.web_search import suche_aktiv
 
 TOKEN = "test-geheimnis"
 
@@ -47,7 +51,9 @@ def test_frage_liefert_antwort_und_quellen(client, monkeypatch):
     daten = r.json()
     assert "Ritchie" in daten["antwort"]
     assert daten["websuche_genutzt"] is True
-    assert daten["quellen"] == [{"titel": "Falken-Bericht", "url": "https://stimme.de/x"}]
+    assert daten["quellen"] == [
+        {"titel": "Falken-Bericht", "url": "https://stimme.de/x", "herkunft": None}
+    ]
     assert daten["kategorie"] == "web_research"
 
 
@@ -56,7 +62,7 @@ def test_ohne_websuche_bleibt_die_antwort_bei_der_datenbank(client, monkeypatch)
     gesehen: dict[str, object] = {}
 
     def gefangen(frage, context=None):
-        gesehen["provider"] = api_modul.settings.web_search_provider
+        gesehen["aktiv"] = suche_aktiv()
         return _antwort()
 
     monkeypatch.setattr(api_modul, "answer", gefangen)
@@ -64,10 +70,36 @@ def test_ohne_websuche_bleibt_die_antwort_bei_der_datenbank(client, monkeypatch)
                     headers={"X-Falken-Token": TOKEN})
     assert r.status_code == 200
     assert r.json()["websuche_genutzt"] is False
-    # Während des Aufrufs war die Websuche wirklich abgeschaltet …
-    assert gesehen["provider"] == "aus"
-    # … und danach steht die Einstellung wieder wie vorher.
-    assert api_modul.settings.web_search_provider != "aus"
+    assert gesehen["aktiv"] is False      # während des Aufrufs abgeschaltet …
+    assert suche_aktiv() is True          # … danach wieder frei
+
+
+def test_abschaltung_trifft_nur_die_eigene_anfrage(client, monkeypatch):
+    """Der Rückfall greift unter Last — dann laufen Anfragen gleichzeitig.
+
+    Eine Anfrage ohne Websuche darf einer parallel laufenden Anfrage die Suche
+    nicht wegnehmen. Genau das passierte, solange der Schalter global war.
+    """
+    beobachtet: list[tuple[str, bool]] = []
+    barriere = threading.Barrier(2, timeout=10)
+
+    def gefangen(frage, context=None):
+        barriere.wait()               # beide Anfragen sind jetzt gleichzeitig drin
+        beobachtet.append((frage, suche_aktiv()))
+        return _antwort()
+
+    monkeypatch.setattr(api_modul, "answer", gefangen)
+
+    def stellen(frage: str, websuche: bool):
+        client.post("/frage", json={"frage": frage, "websuche": websuche},
+                    headers={"X-Falken-Token": TOKEN})
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        list(pool.map(lambda a: stellen(*a), [("ohne", False), ("mit", True)]))
+
+    zustand = dict(beobachtet)
+    assert zustand["ohne"] is False
+    assert zustand["mit"] is True
 
 
 def test_fehlanzeige_bleibt_status_200(client, monkeypatch):

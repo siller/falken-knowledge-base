@@ -13,7 +13,6 @@ from __future__ import annotations
 
 import logging
 import time
-from contextlib import contextmanager
 from typing import Any
 
 from fastapi import FastAPI, Header, HTTPException
@@ -21,6 +20,7 @@ from fastapi.responses import JSONResponse
 
 from ..config import settings
 from ..genai.orchestrator import answer
+from ..genai.web_search import websuche_aus
 from ..logging_setup import setup_logging
 from .modelle import FrageAnfrage, FrageAntwort, Quelle
 
@@ -52,17 +52,6 @@ _FEHLANZEIGE = (
 )
 
 
-@contextmanager
-def _websuche_aus():
-    """Schaltet die Websuche für die Dauer eines Aufrufs ab und stellt sie zurück."""
-    vorher = settings.web_search_provider
-    settings.web_search_provider = "aus"
-    try:
-        yield
-    finally:
-        settings.web_search_provider = vorher
-
-
 def _quellen(ergebnis: dict[str, Any]) -> list[Quelle]:
     """Quellen aus den unterschiedlichen Handler-Formen einsammeln."""
     quellen: list[Quelle] = []
@@ -72,8 +61,11 @@ def _quellen(ergebnis: dict[str, Any]) -> list[Quelle]:
                                   url=treffer["url"]))
     for artikel in ergebnis.get("sources") or []:
         # RAG-Quellen tragen Titel und Herkunft, aber nicht immer eine URL.
+        # `url` bleibt dann leer statt die Domain vorzutäuschen — die App darf
+        # nichts anzubieten haben, das beim Antippen ins Leere führt.
         quellen.append(Quelle(titel=artikel.get("title") or "Artikel",
-                              url=artikel.get("url") or artikel.get("source") or ""))
+                              herkunft=artikel.get("source") or None,
+                              url=artikel.get("url") or None))
     return quellen
 
 
@@ -104,7 +96,7 @@ def frage_stellen(
         if anfrage.websuche:
             ergebnis = answer(anfrage.frage, context=anfrage.kontext)
         else:
-            with _websuche_aus():
+            with websuche_aus():
                 ergebnis = answer(anfrage.frage, context=anfrage.kontext)
     except Exception as e:  # noqa: BLE001 — jeder Ausfall wird zu 503, nie zu einem Absturz
         logger.exception("Frage fehlgeschlagen: %s", anfrage.frage[:80])

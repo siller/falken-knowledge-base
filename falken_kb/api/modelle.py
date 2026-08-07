@@ -32,7 +32,10 @@ class FrageAnfrage(BaseModel):
 
 class Quelle(BaseModel):
     titel: str
-    url: str
+    # Leer, wenn die Quelle aus dem eigenen Artikelbestand kommt und keine
+    # verlinkbare Adresse trägt. Die App zeigt dann Titel und Herkunft ohne Link.
+    url: str | None = None
+    herkunft: str | None = None
 
 
 class FrageAntwort(BaseModel):
