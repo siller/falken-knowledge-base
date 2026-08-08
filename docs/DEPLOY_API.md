@@ -1,103 +1,96 @@
-# Frage-Schnittstelle auf siller.io ausrollen
+# Frage-Schnittstelle ausrollen (Cloudron auf siller.io)
 
 Die Schnittstelle (`falken_kb/api/`) beantwortet Fragen der Falken-App. Sie wird
-**nicht** von Streamlit mitgestartet und braucht einen eigenen Dienst neben der DGX.
+**nicht** von Streamlit mitgestartet und läuft als eigene Cloudron-App.
 
-Aufgerufen wird sie ausschließlich vom Convex-Dienst hinter `falkentipp.siller.io` —
-nicht von der App und nicht aus dem offenen Netz.
+## Warum eine eigene App und kein Host-Dienst
 
-## Was der Dienst können muss
+Gemessen am 08.08.2026 auf `94.130.182.51`:
 
-| Anforderung | Wert |
+| Weg | Ergebnis |
 |---|---|
-| Python | 3.11 oder neuer |
-| Erreichbar für | den Convex-Dienst, sonst niemanden |
-| Antwortzeit | 4–12 s je Frage, harte Grenze bei 40 s |
-| Last | eine Frage kostet 2 Modellaufrufe, mit Websuche 3 |
+| Convex-Container → Host (`172.17.0.1`) | Timeout, Exit 28 |
+| Convex-Container → anderer Container | Timeout, Exit 28 |
+| Host → Host | erreichbar |
 
-## Schritt 1: Code und Umgebung
+Cloudron kapselt jede App gegeneinander und gegen den Host. Ein Dienst neben
+Cloudron wäre für den Convex-Container also unerreichbar. Die Schnittstelle
+braucht eine eigene Adresse; TLS und Zertifikat kommen dann von Cloudron.
+
+Erreichbar ist sie damit öffentlich — geschützt allein durch das Geheimnis im
+Kopf jeder Anfrage. Ohne gesetztes `API_TOKEN` antwortet sie auf **alles** mit
+401; ein Fehlstart stellt sie also nicht offen ins Netz.
+
+## Was bereits erledigt ist
+
+- `Dockerfile`, `CloudronManifest.json` und `deploy/start-cloudron.sh` liegen im Repo.
+- Das Image wurde auf dem Server gebaut und geprüft: Zustandsprüfung antwortet,
+  eine echte Frage lief in **4,7 s** durch, ohne Geheimnis kam **401**.
+
+## Schritt 1: Image in eine Registry (braucht deinen Token)
+
+Cloudron installiert Apps aus einer Registry, nicht aus einem lokal gebauten
+Image. Der GitHub-Token auf dem Mac hat nur `repo`-Rechte — zum Hochladen fehlt
+`write:packages`.
+
+Erzeuge unter https://github.com/settings/tokens einen Token mit **`write:packages`**
+und **`read:packages`**, dann auf dem Server:
 
 ```bash
-sudo useradd --system --home /opt/horst --shell /usr/sbin/nologin horst
-sudo mkdir -p /opt/horst && sudo chown horst:horst /opt/horst
+ssh root@94.130.182.51
+export CR_PAT=<der-neue-token>
+echo "$CR_PAT" | docker login ghcr.io -u siller --password-stdin
 
-sudo -u horst git clone https://github.com/siller/falken-knowledge-base.git \
-    /opt/horst/falken-knowledge-base
-cd /opt/horst/falken-knowledge-base
-sudo -u horst python3 -m venv .venv
-sudo -u horst .venv/bin/pip install -r requirements.txt
+cd /tmp && rm -rf horst-build
+git clone --depth 1 https://github.com/siller/falken-knowledge-base.git horst-build
+cd horst-build
+docker build -t ghcr.io/siller/horst-api:1.0.0 .
+docker push ghcr.io/siller/horst-api:1.0.0
 ```
 
-## Schritt 2: Geheimnisse
+Danach das Paket unter https://github.com/users/siller/packages auf **öffentlich**
+stellen — dann braucht Cloudron keine Zugangsdaten zum Herunterladen.
 
-Das gemeinsame Geheimnis erzeugen — es muss auf beiden Seiten identisch sein,
-hier und in der Convex-Umgebung:
+## Schritt 2: Geheimnis erzeugen
 
 ```bash
 openssl rand -hex 32
 ```
 
-Dann `/etc/horst/api.env` anlegen (Rechte streng, die Datei enthält Vollzugriff
-auf die Datenbank):
+Diesen Wert brauchst du zweimal: hier als `API_TOKEN` und später in der
+Convex-Umgebung. Beide Seiten müssen exakt übereinstimmen.
 
-```bash
-sudo mkdir -p /etc/horst
-sudo tee /etc/horst/api.env >/dev/null <<'ENV'
-API_TOKEN=<die-eben-erzeugte-zeichenkette>
+## Schritt 3: App in Cloudron installieren
 
+In der Cloudron-Oberfläche: **App Store → Custom App → Install from Docker image**
+
+| Feld | Wert |
+|---|---|
+| Image | `ghcr.io/siller/horst-api:1.0.0` |
+| Domain | `horst-api.siller.io` (oder eine andere freie Subdomain) |
+| Memory | 1 GB |
+
+Danach unter **Environment Variables** eintragen (Werte aus der lokalen `.env`):
+
+```
+API_TOKEN=<das eben erzeugte Geheimnis>
 SUPABASE_URL=https://supabase.siller.io
 SUPABASE_SERVICE_ROLE_KEY=<aus der .env>
-
 DGX_BASE_URL=https://pgxapi.siller.io/v1
 DGX_API_KEY=<aus der .env>
 DGX_CHAT_MODEL=gemma
 DGX_EMBED_MODEL=nomic-embed-text
 DGX_EMBED_DIM=768
-
 WEB_SEARCH_PROVIDER=auto
 EXA_API_KEY=<aus der .env>
 TAVILY_API_KEY=<aus der .env>
-ENV
-sudo chmod 600 /etc/horst/api.env
-sudo chown root:root /etc/horst/api.env
 ```
 
-**Ohne gesetztes `API_TOKEN` nimmt die Schnittstelle gar keine Fragen an** — sie
-antwortet auf alles mit 401. Das ist Absicht: ein Fehlstart soll sie nicht offen
-ins Netz stellen.
-
-## Schritt 3: Dienst einrichten
-
-```bash
-sudo cp /opt/horst/falken-knowledge-base/deploy/horst-api.service \
-        /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now horst-api
-systemctl status horst-api --no-pager
-```
-
-Prüfen, ob er lebt:
-
-```bash
-curl -s http://127.0.0.1:8080/gesundheit
-# {"status":"ok","modell":"gemma"}
-```
-
-## Schritt 4: Nach außen freigeben
-
-Der Dienst lauscht bewusst nur auf `127.0.0.1`. Nach außen kommt er über den
-vorhandenen Reverse-Proxy, zum Beispiel als `horst-api.siller.io`. Wichtig dabei:
-
-- **TLS erzwingen** — das Geheimnis läuft im Kopf jeder Anfrage mit.
-- **Zeitgrenze des Proxys auf mindestens 60 Sekunden** setzen. Die Schnittstelle
-  gibt nach 40 Sekunden selbst auf; ein Proxy, der früher abbricht, macht aus
-  einer geordneten Absage einen Verbindungsabbruch.
-- Wenn möglich auf die Adressen des Convex-Dienstes beschränken.
-
-## Schritt 5: Gegenprobe von außen
+## Schritt 4: Gegenprobe
 
 ```bash
 curl -s https://horst-api.siller.io/gesundheit
+# {"status":"ok","modell":"gemma"}
 
 curl -s -X POST https://horst-api.siller.io/frage \
   -H 'Content-Type: application/json' \
@@ -106,35 +99,33 @@ curl -s -X POST https://horst-api.siller.io/frage \
 ```
 
 Erwartet: eine Antwort mit `"beantwortet": true` in vier bis sechs Sekunden.
-Ohne den Kopfzeilen-Eintrag muss `401` kommen — wenn nicht, steht das Geheimnis
-nicht.
+Ohne den Kopfzeilen-Eintrag muss **401** kommen.
 
-## Betrieb
+**Zeitgrenze prüfen:** Cloudrons nginx bricht standardmäßig nach 60 Sekunden ab.
+Die Schnittstelle gibt nach 40 Sekunden selbst auf, das passt. Wird die Grenze
+in Cloudron je gesenkt, macht sie aus einer geordneten Absage einen
+Verbindungsabbruch.
 
-```bash
-journalctl -u horst-api -f              # mitlesen
-sudo systemctl restart horst-api        # nach Konfigurationsänderung
-```
-
-Aktualisieren:
+## Aktualisieren
 
 ```bash
-cd /opt/horst/falken-knowledge-base
-sudo -u horst git pull
-sudo -u horst .venv/bin/pip install -r requirements.txt
-sudo systemctl restart horst-api
+cd /tmp/horst-build && git pull
+docker build -t ghcr.io/siller/horst-api:1.0.1 .
+docker push ghcr.io/siller/horst-api:1.0.1
 ```
+
+Dann in Cloudron unter der App das Image auf die neue Marke ändern und neu starten.
 
 ## Stellschrauben
 
-Alle über `/etc/horst/api.env` setzbar, Vorgaben in `falken_kb/config.py`:
+Alle als Umgebungsvariablen in Cloudron setzbar, Vorgaben in `falken_kb/config.py`:
 
 | Wert | Vorgabe | Bedeutung |
 |---|---|---|
 | `API_ZEITGRENZE_SEC` | 40 | Harte Grenze je Anfrage. Bewusst unter den 45 s, die die App wartet. |
 | `DGX_TIMEOUT_SEC` | 30 | Grenze je Modellaufruf. Ohne diesen Wert wartet die Bibliothek 600 s. |
 | `API_SAMMEL_MAX` | 10 | Höchstzahl Fragen je Sammelaufruf. |
-| `API_SAMMEL_PARALLEL` | 1 | Gleichzeitigkeit im Sammelaufruf. Nacheinander ist gemessen schneller — siehe Kommentar in der Config. |
+| `API_SAMMEL_PARALLEL` | 1 | Gleichzeitigkeit im Sammelaufruf. Nacheinander ist gemessen schneller. |
 | `API_SAMMEL_GESAMT_SEC` | 180 | Gesamtgrenze des Sammelaufrufs. Danach kommt zurück, was fertig ist. |
 | `WEB_SEARCH_PROVIDER` | auto | `aus` legt die Websuche still, ohne Schlüssel zu entfernen. |
 
@@ -142,19 +133,22 @@ Alle über `/etc/horst/api.env` setzbar, Vorgaben in `falken_kb/config.py`:
 
 | Symptom | Ursache | Abhilfe |
 |---|---|---|
-| Alles antwortet mit 401 | `API_TOKEN` nicht gesetzt oder abweichend | `/etc/horst/api.env` prüfen, Dienst neu starten |
+| Alles antwortet mit 401 | `API_TOKEN` nicht gesetzt oder abweichend | Umgebungsvariablen in Cloudron prüfen, App neu starten |
 | 503 mit DGX-Meldung | Modell-Endpunkt nicht erreichbar | `curl https://pgxapi.siller.io/v1/models` mit Schlüssel |
-| 504 nach 40 Sekunden | DGX im Stau | `journalctl -u horst-api` ansehen; hält es an, ist die GPU ausgelastet |
-| Antworten ohne Websuche | Exa- oder Tavily-Schlüssel fehlt | Kasten „Web-Search" in der Umgebungsdatei |
-| Dienst startet nicht | Abhängigkeiten fehlen | `.venv/bin/pip install -r requirements.txt` erneut |
-| Sammelaufruf liefert `"Gesamtzeit … überschritten"` | zu viele oder zu schwere Fragen | Vorrat auf drei bis fünf Fragen begrenzen oder `API_SAMMEL_GESAMT_SEC` anheben |
+| 504 nach 40 Sekunden | DGX im Stau | Logs der App in Cloudron ansehen; hält es an, ist die GPU ausgelastet |
+| Antworten ohne Websuche | Exa- oder Tavily-Schlüssel fehlt | Umgebungsvariablen prüfen |
+| Cloudron meldet die App als ungesund | Gesundheitspfad nicht erreichbar | `healthCheckPath` ist `/gesundheit`, Port 8000 — im Manifest nachsehen |
 
 ## Eine Eigenheit, die man kennen sollte
 
 Läuft eine Anfrage in die 40-Sekunden-Grenze, bekommt der Aufrufer sofort sein
-504 — der Arbeits-Thread im Dienst läuft aber weiter, bis die DGX antwortet oder
-deren eigene Grenze greift. Python kann einen Thread nicht abbrechen. Gedeckelt
-ist das durch `DGX_TIMEOUT_SEC` (30 s) und die Wiederholungen im Modell-Client;
-im schlechtesten Fall hängt ein Faden also gut anderthalb Minuten nach. Bei
-anhaltendem Stau sieht man das an steigendem Speicherverbrauch — dann ist die
-GPU das Problem, nicht der Dienst.
+504 — der Arbeits-Thread läuft aber weiter, bis die DGX antwortet oder deren
+eigene Grenze greift. Python kann einen Thread nicht abbrechen. Gedeckelt ist
+das durch `DGX_TIMEOUT_SEC` (30 s) und die Wiederholungen im Modell-Client; im
+schlechtesten Fall hängt ein Faden gut anderthalb Minuten nach.
+
+## Für Server ohne Cloudron
+
+`deploy/horst-api.service` enthält eine systemd-Unit für den Fall, dass die
+Schnittstelle einmal auf einem Host ohne Cloudron laufen soll. Auf siller.io
+ist sie nicht der richtige Weg.
