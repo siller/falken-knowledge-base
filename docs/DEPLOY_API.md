@@ -24,7 +24,7 @@ Kopf jeder Anfrage. Ohne gesetztes `API_TOKEN` antwortet sie auf **alles** mit
 ## Stand: ausgerollt und geprüft (08.08.2026)
 
 Die Schnittstelle läuft unter **https://horst-api.siller.io** als Cloudron-App
-(Kennung `9a61a141-6110-4aa7-a714-a50f43707f69`).
+(Kennung `aad6fab5-593b-4ba8-b5b5-888b7e27a158`, Image `localhost:5555/horst-api:1.0.1`).
 
 | Prüfung | Ergebnis |
 |---|---|
@@ -93,6 +93,14 @@ docker push localhost:5555/horst-api:1.0.1
 
 Dann in Cloudron unter der App das Image auf die neue Marke ändern und neu starten.
 Die alte Marke bleibt in der Registry liegen — ein Rücksprung ist damit möglich.
+
+**Achtung beim Update über die API:** `POST /apps/:id/update` stürzt in Cloudron 9.2
+ab (`Cannot convert undefined or null to object`, apptask.js:693), wenn das
+Manifest der **installierten** App kein `addons`-Feld hat. Das Feld steht seit
+Version 1.0.1 im Manifest; Apps, die noch mit dem alten Manifest installiert
+wurden, lassen sich nur durch Deinstallieren und Neuinstallieren aktualisieren.
+Das ist unkritisch: die App hält keine Daten, alles liegt in Supabase. Die
+Umgebungswerte müssen dabei erneut gesetzt werden (`deploy/cloudron-env.txt`).
 
 ## Stellschrauben
 

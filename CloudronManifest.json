@@ -4,13 +4,18 @@
   "author": "Mark Siller <mark@siller.ai>",
   "description": "Beantwortet Fragen zu den Heilbronner Falken aus Vereinsdatenbank, News und Websuche. Wird vom Convex-Dienst der Falken-App aufgerufen, nicht von Endnutzern.",
   "tagline": "Fragen zu den Heilbronner Falken",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "healthCheckPath": "/gesundheit",
   "httpPort": 8000,
   "manifestVersion": 2,
   "website": "https://github.com/siller/falken-knowledge-base",
   "contactEmail": "mark@siller.ai",
   "memoryLimit": 1073741824,
-  "tags": ["api", "falken", "genai"],
-  "mediaLinks": []
+  "tags": [
+    "api",
+    "falken",
+    "genai"
+  ],
+  "mediaLinks": [],
+  "addons": {}
 }
