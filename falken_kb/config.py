@@ -61,6 +61,10 @@ class Settings(BaseSettings):
     # Die DGX ist der Engpass; Gleichzeitigkeit verschiebt nur die Warteschlange
     # und würde einer parallel laufenden Fan-Frage die Antwortzeit verderben.
     api_sammel_parallel: int = 1
+    # Gesamtgrenze des Sammelaufrufs. Zehn Fragen à 40 s wären über sechs
+    # Minuten — der nächtliche Vorrat verträgt das, ein versehentlich großer
+    # Aufruf aus Convex nicht. Was bis dahin fertig ist, wird geliefert.
+    api_sammel_gesamt_sec: float = 180.0
 
     # Scraping
     proxy_pool_url: str = ""

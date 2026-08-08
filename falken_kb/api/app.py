@@ -180,8 +180,28 @@ async def fragen_stellen(
         async with bremse:
             return await eine(frage)
 
-    ergebnisse = await asyncio.gather(*(gebremst(f) for f in anfrage.fragen))
-    return SammelAntwort(ergebnisse=list(ergebnisse),
+    aufgaben = [asyncio.create_task(gebremst(f)) for f in anfrage.fragen]
+    try:
+        await asyncio.wait_for(
+            asyncio.gather(*aufgaben), timeout=settings.api_sammel_gesamt_sec
+        )
+    except asyncio.TimeoutError:
+        # Teilergebnis ist besser als nichts: der Vorrat ist dann eben unvollständig,
+        # statt dass der ganze nächtliche Lauf leer ausgeht.
+        logger.warning("Sammelaufruf überschritt %.0fs — liefere Teilergebnis",
+                       settings.api_sammel_gesamt_sec)
+        for aufgabe in aufgaben:
+            aufgabe.cancel()
+
+    ergebnisse: list[SammelErgebnis] = []
+    for frage, aufgabe in zip(anfrage.fragen, aufgaben):
+        if aufgabe.done() and not aufgabe.cancelled():
+            ergebnisse.append(aufgabe.result())
+        else:
+            ergebnisse.append(SammelErgebnis(
+                frage=frage, fehler="Gesamtzeit des Sammelaufrufs überschritten"))
+
+    return SammelAntwort(ergebnisse=ergebnisse,
                          dauer_ms=int((time.time() - start) * 1000))
 
 

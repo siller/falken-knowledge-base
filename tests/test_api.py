@@ -253,3 +253,24 @@ def test_sammelaufruf_begrenzt_die_menge(client):
 def test_sammelaufruf_braucht_das_geheimnis(client):
     r = client.post("/fragen", json={"fragen": ["Egal"]})
     assert r.status_code == 401
+
+
+def test_sammelaufruf_liefert_teilergebnis_bei_gesamtgrenze(client, monkeypatch):
+    """Reißt die Gesamtzeit, kommt zurück was fertig ist — nicht gar nichts."""
+    monkeypatch.setattr(api_modul.settings, "api_sammel_gesamt_sec", 0.6)
+    monkeypatch.setattr(api_modul.settings, "api_zeitgrenze_sec", 10)
+
+    zaehler = {"n": 0}
+
+    def langsamer_werdend(frage, context=None):
+        zaehler["n"] += 1
+        time.sleep(0.05 if zaehler["n"] == 1 else 3)
+        return _antwort()
+
+    monkeypatch.setattr(api_modul, "answer", langsamer_werdend)
+    r = client.post("/fragen", json={"fragen": ["schnell", "langsam", "auch langsam"]},
+                    headers={"X-Falken-Token": TOKEN})
+    assert r.status_code == 200
+    ergebnisse = r.json()["ergebnisse"]
+    assert ergebnisse[0]["antwort"] is not None, "die fertige Frage muss geliefert werden"
+    assert any(e["fehler"] and "Gesamtzeit" in e["fehler"] for e in ergebnisse[1:])

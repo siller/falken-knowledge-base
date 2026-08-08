@@ -135,6 +135,7 @@ Alle über `/etc/horst/api.env` setzbar, Vorgaben in `falken_kb/config.py`:
 | `DGX_TIMEOUT_SEC` | 30 | Grenze je Modellaufruf. Ohne diesen Wert wartet die Bibliothek 600 s. |
 | `API_SAMMEL_MAX` | 10 | Höchstzahl Fragen je Sammelaufruf. |
 | `API_SAMMEL_PARALLEL` | 1 | Gleichzeitigkeit im Sammelaufruf. Nacheinander ist gemessen schneller — siehe Kommentar in der Config. |
+| `API_SAMMEL_GESAMT_SEC` | 180 | Gesamtgrenze des Sammelaufrufs. Danach kommt zurück, was fertig ist. |
 | `WEB_SEARCH_PROVIDER` | auto | `aus` legt die Websuche still, ohne Schlüssel zu entfernen. |
 
 ## Wenn es klemmt
@@ -146,3 +147,14 @@ Alle über `/etc/horst/api.env` setzbar, Vorgaben in `falken_kb/config.py`:
 | 504 nach 40 Sekunden | DGX im Stau | `journalctl -u horst-api` ansehen; hält es an, ist die GPU ausgelastet |
 | Antworten ohne Websuche | Exa- oder Tavily-Schlüssel fehlt | Kasten „Web-Search" in der Umgebungsdatei |
 | Dienst startet nicht | Abhängigkeiten fehlen | `.venv/bin/pip install -r requirements.txt` erneut |
+| Sammelaufruf liefert `"Gesamtzeit … überschritten"` | zu viele oder zu schwere Fragen | Vorrat auf drei bis fünf Fragen begrenzen oder `API_SAMMEL_GESAMT_SEC` anheben |
+
+## Eine Eigenheit, die man kennen sollte
+
+Läuft eine Anfrage in die 40-Sekunden-Grenze, bekommt der Aufrufer sofort sein
+504 — der Arbeits-Thread im Dienst läuft aber weiter, bis die DGX antwortet oder
+deren eigene Grenze greift. Python kann einen Thread nicht abbrechen. Gedeckelt
+ist das durch `DGX_TIMEOUT_SEC` (30 s) und die Wiederholungen im Modell-Client;
+im schlechtesten Fall hängt ein Faden also gut anderthalb Minuten nach. Bei
+anhaltendem Stau sieht man das an steigendem Speicherverbrauch — dann ist die
+GPU das Problem, nicht der Dienst.
