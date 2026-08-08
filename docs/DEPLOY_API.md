@@ -27,38 +27,22 @@ Kopf jeder Anfrage. Ohne gesetztes `API_TOKEN` antwortet sie auf **alles** mit
 - Das Image wurde auf dem Server gebaut und geprüft: Zustandsprüfung antwortet,
   eine echte Frage lief in **4,7 s** durch, ohne Geheimnis kam **401**.
 
-## Schritt 1: Image in eine Registry (braucht deinen Token)
+## Schritt 1 und 2: erledigt
 
-Cloudron installiert Apps aus einer Registry, nicht aus einem lokal gebauten
-Image. Der GitHub-Token auf dem Mac hat nur `repo`-Rechte — zum Hochladen fehlt
-`write:packages`.
+Das Image liegt in einer Registry **auf dem Server selbst** und ist von dort
+abrufbar:
 
-Erzeuge unter https://github.com/settings/tokens einen Token mit **`write:packages`**
-und **`read:packages`**, dann auf dem Server:
-
-```bash
-ssh root@94.130.182.51
-export CR_PAT=<der-neue-token>
-echo "$CR_PAT" | docker login ghcr.io -u siller --password-stdin
-
-cd /tmp && rm -rf horst-build
-git clone --depth 1 https://github.com/siller/falken-knowledge-base.git horst-build
-cd horst-build
-docker build -t ghcr.io/siller/horst-api:1.0.0 .
-docker push ghcr.io/siller/horst-api:1.0.0
+```
+localhost:5555/horst-api:1.0.0
 ```
 
-Danach das Paket unter https://github.com/users/siller/packages auf **öffentlich**
-stellen — dann braucht Cloudron keine Zugangsdaten zum Herunterladen.
+Diesen Weg statt ghcr.io, weil der vorhandene GitHub-Token zwar anmelden, aber
+nicht hochladen darf (`permission_denied: token does not match expected scopes`).
+Die Registry läuft als Container `horst-registry` mit `--restart=always`, die
+Daten liegen unter `/var/lib/horst-registry`. Push und Pull sind geprüft.
 
-## Schritt 2: Geheimnis erzeugen
-
-```bash
-openssl rand -hex 32
-```
-
-Diesen Wert brauchst du zweimal: hier als `API_TOKEN` und später in der
-Convex-Umgebung. Beide Seiten müssen exakt übereinstimmen.
+Das Geheimnis ist ebenfalls erzeugt und steht mit allen übrigen Werten in
+`deploy/cloudron-env.txt` (nicht im Repo, steht in `.gitignore`).
 
 ## Schritt 3: App in Cloudron installieren
 
@@ -66,25 +50,12 @@ In der Cloudron-Oberfläche: **App Store → Custom App → Install from Docker 
 
 | Feld | Wert |
 |---|---|
-| Image | `ghcr.io/siller/horst-api:1.0.0` |
+| Image | `localhost:5555/horst-api:1.0.0` |
 | Domain | `horst-api.siller.io` (oder eine andere freie Subdomain) |
 | Memory | 1 GB |
 
-Danach unter **Environment Variables** eintragen (Werte aus der lokalen `.env`):
-
-```
-API_TOKEN=<das eben erzeugte Geheimnis>
-SUPABASE_URL=https://supabase.siller.io
-SUPABASE_SERVICE_ROLE_KEY=<aus der .env>
-DGX_BASE_URL=https://pgxapi.siller.io/v1
-DGX_API_KEY=<aus der .env>
-DGX_CHAT_MODEL=gemma
-DGX_EMBED_MODEL=nomic-embed-text
-DGX_EMBED_DIM=768
-WEB_SEARCH_PROVIDER=auto
-EXA_API_KEY=<aus der .env>
-TAVILY_API_KEY=<aus der .env>
-```
+Danach unter **Environment Variables** den kompletten Inhalt von
+`deploy/cloudron-env.txt` einfügen (die Kommentarzeilen oben können weg).
 
 ## Schritt 4: Gegenprobe
 
@@ -109,12 +80,16 @@ Verbindungsabbruch.
 ## Aktualisieren
 
 ```bash
-cd /tmp/horst-build && git pull
-docker build -t ghcr.io/siller/horst-api:1.0.1 .
-docker push ghcr.io/siller/horst-api:1.0.1
+ssh root@94.130.182.51
+rm -rf /tmp/horst-build
+git clone --depth 1 https://github.com/siller/falken-knowledge-base.git /tmp/horst-build
+cd /tmp/horst-build
+docker build -t localhost:5555/horst-api:1.0.1 .
+docker push localhost:5555/horst-api:1.0.1
 ```
 
 Dann in Cloudron unter der App das Image auf die neue Marke ändern und neu starten.
+Die alte Marke bleibt in der Registry liegen — ein Rücksprung ist damit möglich.
 
 ## Stellschrauben
 
