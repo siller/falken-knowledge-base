@@ -22,3 +22,7 @@ build/
 .coverage
 htmlcov/
 deploy/cloudron-env.txt
+
+# Zwischenergebnisse einzelner Prüfläufe — nur Meilensteine gehören ins Repo
+tests/eval_check_*.json
+tests/eval_*_trend_vergleich.json

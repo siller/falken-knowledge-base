@@ -29,11 +29,14 @@ import httpx
 ROOT = Path(__file__).resolve().parent.parent
 VERSION_FILE = ROOT / "frontend" / "static" / "version.txt"
 APP_URL = "https://falkenapp.streamlit.app"
-# Community Cloud liefert statische Dateien NUR unter dem Präfix "/~/+" aus
-# (streamlit/streamlit#12821). Ohne das Präfix bekommt man 200 plus die
-# App-Shell zurück — was wie ein veralteter Deploy aussieht und mich einmal
-# zu der falschen Diagnose "die App zieht den Code nicht" verleitet hat.
-# Lokal gilt der Pfad ohne Präfix, deshalb werden beide probiert.
+# Streamlit Community Cloud hat das Ausliefern statischer Dateien mehrfach
+# geändert: erst ging nur "/~/+/app/static/...", seit dem Plattform-Update vom
+# August 2026 antwortet dieser Pfad mit 400 und alle anderen liefern die
+# App-Hülle. Der Stempel ist damit von außen nicht mehr lesbar.
+#
+# Wichtig ist deshalb, WIE das Werkzeug scheitert: es sagt "kann ich nicht
+# messen" statt "Deploy gescheitert". Die falsche Alarmmeldung hat schon einmal
+# zwei Runden Fehlersuche an einer funktionierenden App gekostet.
 VERSION_PFADE = ("/~/+/app/static/version.txt", "/app/static/version.txt")
 
 
@@ -44,6 +47,16 @@ def _git(*args: str) -> str:
 
 
 STAMP_RE = __import__("re").compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z \w+$")
+
+
+def app_erreichbar() -> bool:
+    """Antwortet die App überhaupt? Das ist unabhängig vom Stempel messbar."""
+    try:
+        with httpx.Client(timeout=25, follow_redirects=True,
+                          headers={"User-Agent": "falken-kb-deploycheck/1.0"}) as c:
+            return c.get(APP_URL).status_code == 200
+    except httpx.HTTPError:
+        return False
 
 
 def live_version() -> str | None:
@@ -115,13 +128,24 @@ def main() -> int:
         return 1
     print("Gepusht — warte auf den Rebuild …")
 
+    if live_version() is None:
+        # Der Stempel ist nicht lesbar — das sagt nichts über den Deploy aus.
+        erreichbar = app_erreichbar()
+        print(
+            f"⚠ Der Live-Stand ist nicht messbar: Streamlit liefert version.txt "
+            f"unter keinem bekannten Pfad mehr aus.\n"
+            f"  App erreichbar: {'ja' if erreichbar else 'NEIN — das ist ein echter Befund'}\n"
+            f"  Gepusht wurde {wert}. Ob die App darauf läuft, steht nach dem Login "
+            f"in der Sidebar unter ⚙ Backend, Zeile „Code-Stand\u201c."
+        )
+        return 0 if erreichbar else 1
+
     if warte_auf_deploy(wert, minuten=args.minutes):
         print(f"✓ Live-Stand entspricht jetzt {wert}")
         return 0
     print(
         f"✗ Nach {args.minutes} Minuten liefert die App noch nicht den neuen Stand.\n"
-        f"  Bitte einmal im Dashboard rebooten: {APP_URL} → Manage app → Reboot app.\n"
-        f"  (Diesen Schritt kann nur ein eingeloggter Browser auslösen.)"
+        f"  Bitte einmal im Dashboard rebooten: {APP_URL} → Manage app → Reboot app."
     )
     return 1
 
