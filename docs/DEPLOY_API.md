@@ -21,41 +21,44 @@ Erreichbar ist sie damit öffentlich — geschützt allein durch das Geheimnis i
 Kopf jeder Anfrage. Ohne gesetztes `API_TOKEN` antwortet sie auf **alles** mit
 401; ein Fehlstart stellt sie also nicht offen ins Netz.
 
-## Was bereits erledigt ist
+## Stand: ausgerollt und geprüft (08.08.2026)
 
-- `Dockerfile`, `CloudronManifest.json` und `deploy/start-cloudron.sh` liegen im Repo.
-- Das Image wurde auf dem Server gebaut und geprüft: Zustandsprüfung antwortet,
-  eine echte Frage lief in **4,7 s** durch, ohne Geheimnis kam **401**.
+Die Schnittstelle läuft unter **https://horst-api.siller.io** als Cloudron-App
+(Kennung `9a61a141-6110-4aa7-a714-a50f43707f69`).
 
-## Schritt 1 und 2: erledigt
-
-Das Image liegt in einer Registry **auf dem Server selbst** und ist von dort
-abrufbar:
-
-```
-localhost:5555/horst-api:1.0.0
-```
-
-Diesen Weg statt ghcr.io, weil der vorhandene GitHub-Token zwar anmelden, aber
-nicht hochladen darf (`permission_denied: token does not match expected scopes`).
-Die Registry läuft als Container `horst-registry` mit `--restart=always`, die
-Daten liegen unter `/var/lib/horst-registry`. Push und Pull sind geprüft.
-
-Das Geheimnis ist ebenfalls erzeugt und steht mit allen übrigen Werten in
-`deploy/cloudron-env.txt` (nicht im Repo, steht in `.gitignore`).
-
-## Schritt 3: App in Cloudron installieren
-
-In der Cloudron-Oberfläche: **App Store → Custom App → Install from Docker image**
-
-| Feld | Wert |
+| Prüfung | Ergebnis |
 |---|---|
-| Image | `localhost:5555/horst-api:1.0.0` |
-| Domain | `horst-api.siller.io` (oder eine andere freie Subdomain) |
-| Memory | 1 GB |
+| Zustandsprüfung über IPv4 | `{"status":"ok","modell":"gemma"}` |
+| Zertifikat | Let's Encrypt, gültig bis 06.11.2026 |
+| Echte Frage | Topscorer 2024/25 in **5,2 s**, `beantwortet: true` |
+| Sammelaufruf, zwei Fragen | 15,4 s, beide beantwortet |
+| Ohne Geheimnis | **401** |
+| Überlange Frage | **504** — die Absage geht sauber durch Cloudrons nginx, kein Verbindungsabbruch |
+| IPv6 | **nicht geprüft** — der Server lauscht auf `[::]:443` und der AAAA-Eintrag löst auf, aber der prüfende Rechner hat kein IPv6 ins Netz |
 
-Danach unter **Environment Variables** den kompletten Inhalt von
-`deploy/cloudron-env.txt` einfügen (die Kommentarzeilen oben können weg).
+Der 504-Test lief mit vorübergehend auf 2 Sekunden gesetzter Zeitgrenze; danach
+wurde die Vorgabe von 40 Sekunden wiederhergestellt.
+
+### Wie es dorthin kam
+
+- Image liegt in einer Registry **auf dem Server**: `localhost:5555/horst-api:1.0.0`.
+  Container `horst-registry`, Port 127.0.0.1:5555, Daten in `/var/lib/horst-registry`.
+  Dieser Weg statt ghcr.io, weil der vorhandene GitHub-Token zwar anmelden, aber
+  nicht hochladen darf.
+- DNS steht bei GoDaddy als A **und** AAAA auf `94.130.182.51` beziehungsweise
+  `2a01:4f8:c2c:e66d::1`. Cloudron verwaltet die Zone für `siller.io` nicht selbst.
+- Installiert über die Cloudron-API (`POST /api/v1/apps`), Umgebung über
+  `POST /api/v1/apps/:id/configure/env`.
+
+### Werte für die Convex-Seite
+
+Adresse und Geheimnis stehen in `deploy/cloudron-env.txt` (nicht im Repo). Der
+Convex-Dienst braucht beide:
+
+```
+HORST_API_URL=https://horst-api.siller.io
+HORST_API_TOKEN=<API_TOKEN aus deploy/cloudron-env.txt>
+```
 
 ## Schritt 4: Gegenprobe
 
