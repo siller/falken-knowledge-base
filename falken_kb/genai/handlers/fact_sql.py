@@ -77,9 +77,22 @@ REGELN:
       "aktuelle Saison" ist
       `(SELECT max(season) FROM season_standings WHERE games_played > 0)`.
   (b) Frage nach TERMINEN ("wann spielen", "wann ist das nächste Spiel",
-      "Spielplan", "diese Saison gegen X"): `WHERE g.home_score IS NULL`
-      — und dann KEIN zusätzlicher Saison-Filter über max(season), denn die
-      offenen Spiele liegen per Definition in der noch nicht gespielten Saison.
+      "Spielplan", "diese Saison gegen X"):
+      `WHERE g.home_score IS NULL AND g.date > now()`
+      — beides zusammen. Ohne den Datumsfilter kommen alte Testspiele ohne
+      erfasstes Ergebnis mit (ab 2015). Und KEIN zusätzlicher Saison-Filter über
+      max(season), denn die offenen Spiele liegen per Definition in der noch
+      nicht gespielten Saison.
+- Spalten-Aliasse IMMER deutsch und ohne Unterstrich, notfalls in
+  Anführungszeichen: `AS "Spiele gesamt"`, nicht `AS gesamt_spiele`. Der Alias
+  landet sonst wörtlich in der Antwort, die Fans in der App lesen.
+- "kommende/nächste Saison" ist die Saison MIT Spielplan, aber OHNE Ergebnisse.
+  Nicht über max(season) herleiten — das kippt je nach Filter ins Leere. Direkt:
+  `(SELECT s.label FROM games g JOIN seasons s ON s.id = g.season_id
+     WHERE g.home_score IS NULL AND g.date > now() ORDER BY g.date LIMIT 1)`
+  Der Zusatz `g.date > now()` ist NICHT optional: in alten Saisons stehen
+  Testspiele ohne erfasstes Ergebnis (ab 2015). Ohne den Filter liefert die
+  Abfrage 2015/16 statt der kommenden Saison.
 - "zuletzt"/"wann war der letzte …" heißt CHRONOLOGISCH sortieren
   (`ORDER BY season DESC`), nicht nach dem gefragten Wert.
 - `season` ist TEXT im Format 'YYYY/YY' — NIE `season::int` (kippt mit
@@ -99,6 +112,29 @@ SELECT final_rank FROM season_standings WHERE team = 'Heilbronner Falken' AND se
 SELECT player, points, goals, assists FROM falken_skater_stats
 WHERE season = '2022/23' AND points IS NOT NULL
 ORDER BY points DESC NULLS LAST LIMIT 5;
+
+-- Neuzugänge einer Saison: im Kader, aber in der Vorsaison NICHT dabei.
+-- Eine reine Kaderliste beantwortet die Frage NICHT — es braucht den Vergleich.
+SELECT player, position, jersey_number
+FROM falken_skater_stats
+WHERE season = '2026/27'
+  AND player NOT IN (SELECT player FROM falken_skater_stats WHERE season = '2025/26')
+ORDER BY player;
+
+-- Dasselbe ohne genannte Saison ("neu im Kader", "Neuzugänge für die kommende Saison"):
+WITH kommend AS (
+  SELECT s.label FROM games g JOIN seasons s ON s.id = g.season_id
+  WHERE g.home_score IS NULL AND g.date > now() ORDER BY g.date LIMIT 1
+), vorher AS (
+  SELECT max(season) AS label FROM season_standings
+  WHERE team = 'Heilbronner Falken' AND games_played > 0
+)
+SELECT f.player, f.position
+FROM falken_skater_stats f, kommend
+WHERE f.season = kommend.label
+  AND f.player NOT IN (SELECT player FROM falken_skater_stats, vorher
+                       WHERE season = vorher.label)
+ORDER BY f.player;
 
 -- Trainer einer Saison (via Date-Range-Overlap):
 SELECT c.name, ct.role, ct.start_date, ct.end_date
@@ -287,7 +323,7 @@ SELECT to_char(g.date, 'DD.MM.YYYY HH24:MI') AS termin,
 FROM games g
 JOIN teams ht ON ht.id = g.home_team_id
 JOIN teams at ON at.id = g.away_team_id
-WHERE g.home_score IS NULL
+WHERE g.home_score IS NULL AND g.date > now()
   AND (ht.name ILIKE '%Heilbronner%' OR at.name ILIKE '%Heilbronner%')
   AND (ht.name ILIKE '%Stuttgart%' OR at.name ILIKE '%Stuttgart%')
 ORDER BY g.date ASC;
@@ -385,6 +421,82 @@ def _drop_conflicting_season_filter(sql: str) -> str | None:
     return cleaned if cleaned != sql else None
 
 
+
+# ── Aufbereitung für die Synthese ────────────────────────────────────────────
+# WHY: Die Antworten übernahmen Spaltennamen wörtlich — "93 points den 5.
+# final_rank", "168 erzielte_tore". Statt das Modell zu bitten, Feldnamen zu
+# übersetzen (was es zuverlässig vergisst), bekommt es gar keine englischen
+# Namen mehr zu sehen. Was es nicht sieht, kann es nicht abschreiben.
+_FELDNAMEN = {
+    "season": "Saison", "label": "Saison", "team": "Team", "league": "Liga",
+    "liga": "Liga", "points": "Punkte", "punkte": "Punkte",
+    "final_rank": "Platz", "rank": "Platz", "platz": "Platz",
+    "wins": "Siege", "siege": "Siege", "losses": "Niederlagen",
+    "niederlagen": "Niederlagen", "ot_wins": "Siege nach Verlängerung",
+    "ot_losses": "Niederlagen nach Verlängerung",
+    "goals_for": "erzielte Tore", "erzielte_tore": "erzielte Tore",
+    "goals_against": "Gegentore", "kassierte_tore": "Gegentore",
+    "goals": "Tore", "tore": "Tore", "assists": "Vorlagen", "vorlagen": "Vorlagen",
+    "games_played": "Spiele", "spiele": "Spiele", "gp": "Spiele",
+    "player": "Spieler", "spieler": "Spieler", "goalie": "Torhüter",
+    "coach": "Trainer", "trainer": "Trainer", "name": "Name",
+    "playoff_result": "Playoff-Ergebnis", "round": "Runde",
+    "home_team": "Heim", "away_team": "Gast", "heim": "Heim", "gast": "Gast",
+    "home_score": "Tore Heim", "away_score": "Tore Gast",
+    "date": "Datum", "datum": "Datum", "termin": "Termin",
+    "unentschieden": "Unentschieden", "draws": "Unentschieden",
+    "save_pct": "Fangquote", "gaa": "Gegentorschnitt", "shutouts": "Zu-Null-Spiele",
+    "wins_a": "Siege A", "wins_b": "Siege B", "winner": "Sieger",
+    "jersey_number": "Rückennummer", "position": "Position",
+    "spieltyp": "Spieltyp", "game_type": "Spieltyp",
+}
+
+# Felder, in denen Personennamen stehen. Nur dort wird die Schreibweise
+# angefasst — Vereinsnamen wie "ECDC Memmingen" oder "DEL2" bleiben, wie sie sind.
+_NAMENSFELDER = {"player", "spieler", "goalie", "coach", "trainer", "name",
+                 "topscorer", "winner"}
+
+
+def _name_normalisieren(wert: str) -> str:
+    """"Calder ANDERSON" -> "Calder Anderson". Nur durchgehend große Wörter."""
+    teile = []
+    for wort in wert.split(" "):
+        if len(wort) > 1 and wort.isupper():
+            # Bindestrich-Namen mitnehmen: GRAND-PIERRE -> Grand-Pierre
+            teile.append("-".join(t.capitalize() for t in wort.split("-")))
+        else:
+            teile.append(wort)
+    return " ".join(teile)
+
+
+def fuer_synthese(zeilen: list) -> list:
+    """DB-Zeilen so aufbereiten, dass die Antwort daraus deutsch klingen kann.
+
+    Feldnamen werden übersetzt, Personennamen in normale Schreibweise gebracht.
+    Unbekannte Felder und Nicht-Wörterbücher bleiben unverändert.
+    """
+    auf = []
+    for zeile in zeilen:
+        if not isinstance(zeile, dict):
+            auf.append(zeile)
+            continue
+        neu = {}
+        for schluessel, wert in zeile.items():
+            roh = str(schluessel)
+            beschriftung = _FELDNAMEN.get(roh.lower())
+            if beschriftung is None:
+                # Unbekannt — oft ein vom Modell erfundener Alias wie
+                # "gesamt_spiele". Wenigstens den Unterstrich-Look nehmen wir
+                # ihm, damit die Antwort nicht nach Datenbank klingt.
+                beschriftung = roh.replace("_", " ").strip()
+                if beschriftung and beschriftung[0].islower():
+                    beschriftung = beschriftung[0].upper() + beschriftung[1:]
+            if isinstance(wert, str) and str(schluessel).lower() in _NAMENSFELDER:
+                wert = _name_normalisieren(wert)
+            neu[beschriftung] = wert
+        auf.append(neu)
+    return auf
+
 def answer_fact(question: str, client: DGXClient | None = None) -> dict[str, Any]:
     c = client or DGXClient()
     # Stotter-Bug-Schutz: LLMs verdoppeln manchmal Tokens ("ODER BY" oder
@@ -441,7 +553,7 @@ def answer_fact(question: str, client: DGXClient | None = None) -> dict[str, Any
         }
 
     # Schritt 3: Antwort synthetisieren
-    rows_str = "\n".join(str(r) for r in rows[:30])  # max 30 Zeilen Kontext
+    rows_str = "\n".join(str(r) for r in fuer_synthese(rows[:30]))  # max 30 Zeilen Kontext
     synth = c.chat(
         messages=[
             {
