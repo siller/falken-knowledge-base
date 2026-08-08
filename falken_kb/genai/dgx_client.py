@@ -61,6 +61,10 @@ class DGXClient:
         self.client = OpenAI(
             base_url=settings.dgx_base_url,
             api_key=settings.dgx_api_key,
+            # Ohne expliziten Wert wartet die Bibliothek 600 Sekunden und
+            # wiederholt zweimal. Gemessen dauert ein Aufruf 2 bis 6 Sekunden;
+            # alles jenseits der Zeitgrenze ist ein Stau, kein langsamer Aufruf.
+            timeout=settings.dgx_timeout_sec,
         )
         self.primary_model = settings.dgx_chat_model
         self.fallback_models = [m.strip() for m in settings.dgx_chat_fallbacks.split(",") if m.strip()]

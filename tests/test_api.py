@@ -7,6 +7,7 @@ allen Tests ersetzt: geprüft wird die Schnittstelle, nicht die Antwortqualität
 from __future__ import annotations
 
 import threading
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 import pytest
@@ -161,3 +162,94 @@ def test_zustandspruefung_braucht_kein_geheimnis(client):
     r = client.get("/gesundheit")
     assert r.status_code == 200
     assert r.json()["status"] == "ok"
+
+
+# ── Zeitgrenze ────────────────────────────────────────────────────────────────
+
+def test_zu_lange_antwort_wird_zu_504(client, monkeypatch):
+    """Hängt die Pipeline, bekommt der Aufrufer eine klare Absage statt zu warten.
+
+    Geprüft wird hier nur der Statuscode. Dass die Absage auch WIRKLICH früh
+    kommt, lässt sich mit dem TestClient nicht zeigen: sein Portal hält die
+    Antwort zurück, bis der Arbeits-Thread fertig ist. Am echten uvicorn kam
+    das 504 gemessen nach 1,03 s zurück, während die Pipeline noch 20 s
+    weiterlief (08.08.2026).
+    """
+    monkeypatch.setattr(api_modul.settings, "api_zeitgrenze_sec", 0.2)
+
+    def haengt(frage, context=None):
+        time.sleep(1)
+        return _antwort()
+
+    monkeypatch.setattr(api_modul, "answer", haengt)
+    r = client.post("/frage", json={"frage": "Egal"}, headers={"X-Falken-Token": TOKEN})
+    assert r.status_code == 504
+    assert "1 Sekunden" not in r.json()["fehler"]  # Grenze, nicht Pipeline-Dauer
+
+
+def test_schnelle_antwort_bleibt_unberuehrt(client, monkeypatch):
+    monkeypatch.setattr(api_modul.settings, "api_zeitgrenze_sec", 5)
+    monkeypatch.setattr(api_modul, "answer", lambda frage, context=None: _antwort())
+    r = client.post("/frage", json={"frage": "Egal"}, headers={"X-Falken-Token": TOKEN})
+    assert r.status_code == 200
+
+
+# ── Sammelaufruf für den Spieltags-Vorrat ────────────────────────────────────
+
+def test_sammelaufruf_beantwortet_alle_fragen(client, monkeypatch):
+    monkeypatch.setattr(api_modul, "answer",
+                        lambda frage, context=None: _antwort(answer=f"Antwort auf {frage}"))
+    r = client.post("/fragen", json={"fragen": ["Bilanz gegen Memmingen", "Letztes Duell"]},
+                    headers={"X-Falken-Token": TOKEN})
+    assert r.status_code == 200
+    ergebnisse = r.json()["ergebnisse"]
+    assert [e["frage"] for e in ergebnisse] == ["Bilanz gegen Memmingen", "Letztes Duell"]
+    assert all(e["antwort"]["beantwortet"] for e in ergebnisse)
+
+
+def test_eine_kaputte_frage_kippt_den_sammelaufruf_nicht(client, monkeypatch):
+    """Der Vorrat läuft nachts ohne Aufsicht — ein Ausfall darf nicht alles verwerfen."""
+    def teils_kaputt(frage, context=None):
+        if "kaputt" in frage:
+            raise RuntimeError("DGX weg")
+        return _antwort()
+
+    monkeypatch.setattr(api_modul, "answer", teils_kaputt)
+    r = client.post("/fragen", json={"fragen": ["gut", "kaputt", "auch gut"]},
+                    headers={"X-Falken-Token": TOKEN})
+    assert r.status_code == 200
+    ergebnisse = r.json()["ergebnisse"]
+    assert ergebnisse[0]["antwort"] is not None and ergebnisse[0]["fehler"] is None
+    assert ergebnisse[1]["antwort"] is None and "DGX" in ergebnisse[1]["fehler"]
+    assert ergebnisse[2]["antwort"] is not None
+
+
+def test_sammelaufruf_arbeitet_standardmaessig_nacheinander():
+    """Gegen die DGX ist nacheinander gemessen schneller — das ist die Vorgabe."""
+    from falken_kb.config import Settings
+
+    assert Settings().api_sammel_parallel == 1
+
+
+def test_parallelitaet_ist_einstellbar(client, monkeypatch):
+    """Die Mechanik bleibt vorhanden, falls ein anderes Backend davon profitiert."""
+    monkeypatch.setattr(api_modul.settings, "api_sammel_parallel", 5)
+    monkeypatch.setattr(api_modul, "answer",
+                        lambda frage, context=None: (time.sleep(0.4), _antwort())[1])
+    start = time.time()
+    r = client.post("/fragen", json={"fragen": [f"Frage {i}" for i in range(5)]},
+                    headers={"X-Falken-Token": TOKEN})
+    dauer = time.time() - start
+    assert r.status_code == 200
+    assert dauer < 1.4, f"{dauer:.1f}s — die Einstellung greift nicht"
+
+
+def test_sammelaufruf_begrenzt_die_menge(client):
+    r = client.post("/fragen", json={"fragen": [f"F{i}" for i in range(11)]},
+                    headers={"X-Falken-Token": TOKEN})
+    assert r.status_code == 422
+
+
+def test_sammelaufruf_braucht_das_geheimnis(client):
+    r = client.post("/fragen", json={"fragen": ["Egal"]})
+    assert r.status_code == 401

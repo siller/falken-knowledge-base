@@ -31,6 +31,9 @@ class Settings(BaseSettings):
     dgx_chat_fallbacks: str = ""  # comma-separated, optional
     dgx_embed_model: str = "text-embedding-3-small"
     dgx_embed_dim: int = 768
+    # Ohne eigenen Wert wartet die openai-Bibliothek 600 Sekunden pro Aufruf und
+    # wiederholt zweimal — eine hängende DGX blockiert damit eine halbe Stunde.
+    dgx_timeout_sec: float = 30.0
 
     # Web-Search für Multi-Hop-Fragen und den News-Harvest.
     # Gemessen am 25.07.2026 über unsere sechs Standard-Queries (Treffer auf
@@ -46,6 +49,18 @@ class Settings(BaseSettings):
     # Gemeinsames Geheimnis der Frage-Schnittstelle. Sie ist nur für den
     # Convex-Dienst gedacht; ohne gesetzten Wert nimmt sie keine Fragen an.
     api_token: str = ""
+    # Harte Grenze je Anfrage an die Schnittstelle. Bewusst unter den 45 Sekunden,
+    # die die App wartet: der Aufrufer soll eine klare Absage bekommen statt in
+    # sein eigenes Zeitlimit zu laufen.
+    api_zeitgrenze_sec: float = 40.0
+    api_sammel_max: int = 10
+    # Wie viele Fragen des Sammelaufrufs gleichzeitig laufen. Default 1, also
+    # nacheinander — gemessen am 08.08.2026 mit vier echten Spieltagsfragen:
+    # nacheinander 28,3 s gesamt (12,3 · 7,9 · 3,7 · 4,4 s je Frage),
+    # vierfach parallel 30,4 s gesamt (30,3 · 24,8 · 18,5 · 19,4 s).
+    # Die DGX ist der Engpass; Gleichzeitigkeit verschiebt nur die Warteschlange
+    # und würde einer parallel laufenden Fan-Frage die Antwortzeit verderben.
+    api_sammel_parallel: int = 1
 
     # Scraping
     proxy_pool_url: str = ""

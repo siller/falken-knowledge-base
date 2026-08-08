@@ -1,0 +1,45 @@
+[Unit]
+Description=HORST-Frage-Schnittstelle (Falken-App)
+Documentation=https://github.com/siller/falken-knowledge-base/blob/main/docs/DEPLOY_API.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=exec
+User=horst
+Group=horst
+WorkingDirectory=/opt/horst/falken-knowledge-base
+
+# Geheimnisse und Zugangsdaten stehen in einer Datei, nicht in dieser Unit —
+# sonst landen sie in `systemctl cat` und in jedem Log-Auszug.
+EnvironmentFile=/etc/horst/api.env
+
+ExecStart=/opt/horst/falken-knowledge-base/.venv/bin/uvicorn \
+    falken_kb.api.app:app \
+    --host 127.0.0.1 \
+    --port 8080 \
+    --workers 2 \
+    --timeout-keep-alive 65
+
+Restart=always
+RestartSec=5
+# Die Schnittstelle antwortet spätestens nach api_zeitgrenze_sec (40s). Wer
+# darüber hinaus hängt, ist tot und wird neu gestartet.
+TimeoutStopSec=30
+
+# Absicherung: der Dienst braucht nur sein eigenes Verzeichnis und Netz.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/horst/falken-knowledge-base/cache
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=horst-api
+
+[Install]
+WantedBy=multi-user.target
