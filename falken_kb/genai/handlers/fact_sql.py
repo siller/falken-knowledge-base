@@ -664,6 +664,8 @@ def answer_fact(question: str, client: DGXClient | None = None) -> dict[str, Any
                     "'<Heimteam> <home_score>:<away_score> <Auswärtsteam>' "
                     "(Heim-Score zuerst, NICHT Sieger-Score zuerst). "
                     "Beispiel: 'ECDC Memmingen 7:2 Heilbronner Falken (Memmingen war Heimteam, gewann)'. "
+                    "Bei Terminen OHNE Ergebnis (Spielplan, nächstes Spiel) NIE einen Spielstand "
+                    "wie '0:0' schreiben — nur 'Heimteam – Auswärtsteam' mit Datum und Uhrzeit. "
                     "Erwähne keine SQL-Details."
                 ),
             },
