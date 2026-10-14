@@ -300,3 +300,28 @@ def test_aktualitaet_meldet_eingefrorene_falken_tabellenzeile():
 def test_aktualitaet_toleriert_einzelne_nachzuegler_und_saisonpause():
     assert loaders.aktualitaets_probleme(offene_ergebnisse=2, falken_spiele=8, max_spiele=9) == []
     assert loaders.aktualitaets_probleme(offene_ergebnisse=0, falken_spiele=None, max_spiele=None) == []
+
+
+def test_umlaut_umschrift_trifft_den_kaderspieler(db, monkeypatch):
+    """hockeydata schreibt mal "MUELLER", EliteProspects "Müller"."""
+    sb, _ = db
+    monkeypatch.setattr(loaders, "exec_sql", lambda q: (
+        [{"ps_id": "ps-mueller", "player_id": "p", "name": "Jonas Müller"}] if "player_seasons" in q else []
+    ))
+    loaders.upsert_skater_stats_from_leaders("saison", "team", [_scorer("Jonas", "MUELLER")], {70543})
+    (_, (_, stats, _), _), = [e for e in sb.log if e[0] == "falken_player_stats"]
+    assert stats["player_season_id"] == "ps-mueller"
+
+
+# Die DB kennt D, F, C, LW, RW, W, G (EliteProspects). Nur hockeydata-eigene
+# Kürzel werden übersetzt, sonst stünde "LD" neben 90 Verteidigern mit "D".
+@pytest.mark.parametrize("roh,erwartet", [("RF", "F"), ("LF", "F"), ("LD", "D"), ("RD", "D"),
+                                          ("C", "C"), ("LW", "LW"), ("D", "D"), (None, None)])
+def test_neue_spieler_bekommen_die_positionen_des_schemas(db, monkeypatch, roh, erwartet):
+    sb, _ = db
+    monkeypatch.setattr(loaders, "exec_sql", lambda q: [])
+    sb.antworten[("falken_players", "insert")] = [{"id": "p-neu"}]
+    sb.antworten[("falken_player_seasons", "insert")] = [{"id": "ps-neu"}]
+    loaders.upsert_skater_stats_from_leaders("saison", "team", [_scorer("Neu", "SPIELER", position=roh)], {70543})
+    (_, (_, spieler), _), = [e for e in sb.log if e[0] == "falken_players"]
+    assert spieler["position"] == erwartet

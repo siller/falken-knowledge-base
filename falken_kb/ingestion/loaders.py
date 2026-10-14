@@ -189,10 +189,18 @@ def falken_team_ids(standings_rows: list[dict[str, Any]]) -> set[int]:
     return ids
 
 
+_UMSCHRIFT = str.maketrans({"ä": "ae", "ö": "oe", "ü": "ue", "ß": "ss"})
+
+# hockeydata-eigene Positionskürzel → Schreibweise, die die DB schon kennt.
+_POSITIONEN = {"LD": "D", "RD": "D", "LF": "F", "RF": "F"}
+
+
 def _namensschluessel(name: str) -> str:
-    """"Frédérik Cabana" und "Frederik CABANA" ergeben denselben Schlüssel."""
-    ohne_akzente = "".join(c for c in unicodedata.normalize("NFKD", name) if not unicodedata.combining(c))
-    return " ".join(ohne_akzente.casefold().split())
+    """"Frédérik Cabana" und "Frederik CABANA" ergeben denselben Schlüssel,
+    ebenso "Jonas Müller" und "Jonas MUELLER"."""
+    umgeschrieben = name.casefold().translate(_UMSCHRIFT)
+    ohne_akzente = "".join(c for c in unicodedata.normalize("NFKD", umgeschrieben) if not unicodedata.combining(c))
+    return " ".join(ohne_akzente.split())
 
 
 def _anzeigename(vorname: str, nachname: str) -> str:
@@ -252,7 +260,8 @@ def upsert_skater_stats_from_leaders(
                                 for p in exec_sql("SELECT id, name FROM falken.players")}
             player_id = alle_spieler.get(schluessel)
             if player_id is None:
-                neu = {"name": name, "position": r.get("position"),
+                pos = r.get("position")
+                neu = {"name": name, "position": _POSITIONEN.get(pos, pos),
                        "source_ids": {"hockeydata": str(r.get("id"))}}
                 player_id = _with_retry(
                     lambda d=neu: supabase().table("falken_players").insert(d).execute()).data[0]["id"]

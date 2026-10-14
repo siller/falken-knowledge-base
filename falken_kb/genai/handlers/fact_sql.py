@@ -141,8 +141,12 @@ WITH kommend AS (
   SELECT s.label FROM games g JOIN seasons s ON s.id = g.season_id
   WHERE g.home_score IS NULL AND g.date > now() ORDER BY g.date LIMIT 1
 ), vorher AS (
-  SELECT max(season) AS label FROM season_standings
-  WHERE team = 'Heilbronner Falken' AND games_played > 0
+  -- die letzte ABGESCHLOSSENE Saison, nicht max(season): sonst ist das
+  -- während der laufenden Saison der eigene Kader und es gibt 0 Neuzugänge
+  SELECT max(s.label) AS label FROM seasons s
+  WHERE EXISTS (SELECT 1 FROM games g WHERE g.season_id = s.id AND g.home_score IS NOT NULL)
+    AND NOT EXISTS (SELECT 1 FROM games g WHERE g.season_id = s.id
+                    AND g.home_score IS NULL AND g.date > now())
 )
 SELECT f.player, f.position
 FROM falken_skater_stats f, kommend
@@ -390,6 +394,59 @@ def _generate_and_run_sql(question: str, c: DGXClient, attempt_label: str,
         return (sql, None, str(e))
 
 
+# Die neueste Saison ohne offene künftige Spiele — "letzte Saison" im Sinne der
+# Fans: während einer laufenden Saison die davor, in der Sommerpause die gerade
+# beendete. Wortgleich mit der Regel in SCHEMA_CONTEXT.
+LETZTE_ABGESCHLOSSENE_SAISON = (
+    "(SELECT max(s.label) FROM seasons s"
+    " WHERE EXISTS (SELECT 1 FROM games g WHERE g.season_id = s.id AND g.home_score IS NOT NULL)"
+    " AND NOT EXISTS (SELECT 1 FROM games g WHERE g.season_id = s.id"
+    " AND g.home_score IS NULL AND g.date > now()))"
+)
+
+# Frage meint die Vorsaison — Singular, damit "die letzten 5 Saisons" nicht greift.
+_VORSAISON_FRAGE = re.compile(
+    r"\b(?:letzte[nrs]?|vergangene[nrs]?|vorige[nrs]?)\s+saison\b|\bvorsaison\b",
+    re.IGNORECASE,
+)
+
+# "max(season) mit gespielten Spielen" — die Auflösung der AKTUELLEN Saison,
+# als Skalar oder in einer CTE mit Alias.
+_MAX_SAISON_MIT_SPIELEN = re.compile(
+    r"\(\s*SELECT\s+max\(\s*season\s*\)(\s+AS\s+\w+)?\s+FROM\s+season_standings\b"
+    r"[^()]*?games_played\s*>\s*0\s*\)",
+    re.IGNORECASE | re.DOTALL,
+)
+
+
+_NEUESTE_PER_SORTIERUNG = re.compile(
+    r"ORDER\s+BY\s+(?:\w+\.)?season\s+DESC(?:\s+NULLS\s+LAST)?\s+LIMIT\s+1\b", re.IGNORECASE)
+_SAISON_TABELLE_WHERE = re.compile(
+    r"\bFROM\s+(?:season_standings|falken_skater_stats|falken_goalie_stats)\s+WHERE\b", re.IGNORECASE)
+
+
+def _letzte_saison_einsetzen(question: str, sql: str) -> str | None:
+    """Ersetzt die aktuelle durch die letzte abgeschlossene Saison, wenn die Frage
+    die Vorsaison meint.
+
+    WHY: Seit 2026/27 Ergebnisse hat, nannte HORST auf "Wer war in der letzten
+    Saison der beste Scorer?" den Topscorer der laufenden Saison. Das Modell
+    nimmt trotz Prompt-Regel max(season) — deshalb hier im Code.
+
+    Returnt das umgeschriebene SQL oder None, wenn nichts zu tun war.
+    """
+    if not _VORSAISON_FRAGE.search(question):
+        return None
+    neu = _MAX_SAISON_MIT_SPIELEN.sub(
+        lambda m: f"(SELECT {LETZTE_ABGESCHLOSSENE_SAISON}{m.group(1) or ''})", sql)
+    if neu == sql and _NEUESTE_PER_SORTIERUNG.search(sql):
+        # Zweite Form: "ORDER BY season DESC LIMIT 1" — die laufende Saison
+        # ausblenden, dann bleibt die abgeschlossene oben.
+        neu = _SAISON_TABELLE_WHERE.sub(
+            lambda m: f"{m.group(0)} season <= {LETZTE_ABGESCHLOSSENE_SAISON} AND", sql, count=1)
+    return neu if neu != sql else None
+
+
 # Saison-Filter, der auf die letzte Saison MIT Ergebnissen auflöst.
 # Fängt die üblichen Formulierungen ab, mit und ohne Tabellen-Alias.
 _SEASON_WITH_RESULTS_FILTER = re.compile(
@@ -525,6 +582,15 @@ def answer_fact(question: str, client: DGXClient | None = None) -> dict[str, Any
                 "keine deutschen Keywords (NICHT 'ODER BY'), "
                 "keine verschachtelten Quotes.")
         sql, rows, err = _generate_and_run_sql(question, c, "try2", extra_hint=hint, temperature=0.2)
+
+    if sql and not err:
+        umgestellt = _letzte_saison_einsetzen(question, sql)
+        if umgestellt:
+            logger.info("Frage meint die Vorsaison — Saison-Filter auf die letzte abgeschlossene umgestellt")
+            try:
+                rows, sql = exec_sql(umgestellt), umgestellt
+            except Exception as e:  # noqa: BLE001 — Provider-/DB-Fehler untypisiert
+                logger.warning("Umgestellte Query schlug fehl: %s", str(e)[:120])
 
     # Terminfrage ohne Treffer? Dann prüfen, ob sich die Query selbst blockiert
     # (offene Spiele UND Saison-mit-Ergebnissen gefiltert) und einmal ohne den
