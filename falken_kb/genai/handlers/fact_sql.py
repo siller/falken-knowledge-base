@@ -93,6 +93,14 @@ REGELN:
   Der Zusatz `g.date > now()` ist NICHT optional: in alten Saisons stehen
   Testspiele ohne erfasstes Ergebnis (ab 2015). Ohne den Filter liefert die
   Abfrage 2015/16 statt der kommenden Saison.
+- "letzte/vergangene/vorige Saison", "Vorsaison" ist NICHT die aktuelle Saison,
+  sondern die neueste ABGESCHLOSSENE — eine Saison ohne offene künftige Spiele.
+  Während einer laufenden Saison ist das die davor, in der Sommerpause die
+  gerade beendete. NIE über max(season) herleiten. Direkt:
+  `(SELECT max(s.label) FROM seasons s
+     WHERE EXISTS (SELECT 1 FROM games g WHERE g.season_id = s.id AND g.home_score IS NOT NULL)
+       AND NOT EXISTS (SELECT 1 FROM games g WHERE g.season_id = s.id
+                       AND g.home_score IS NULL AND g.date > now()))`
 - "zuletzt"/"wann war der letzte …" heißt CHRONOLOGISCH sortieren
   (`ORDER BY season DESC`), nicht nach dem gefragten Wert.
 - `season` ist TEXT im Format 'YYYY/YY' — NIE `season::int` (kippt mit
