@@ -12,6 +12,11 @@ on:
         description: "Zeitfenster für die Web-News-Suche (Tage)"
         default: "30"
 
+# actions: write braucht der Keepalive-Schritt unten.
+permissions:
+  contents: read
+  actions: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -42,7 +47,20 @@ jobs:
           HOCKEYDATA_REFERER: deb-online.live
         run: python3 scripts/sync_daily.py --news-days ${{ github.event.inputs.news_days || 30 }}
 
+      # GitHub schaltet Cron-Workflows nach 60 Tagen ohne Commit ab — so geschehen
+      # am 08.10.2026, danach blieb die Wissensbasis stehen. Das erneute
+      # Einschalten über die API setzt die Frist zurück. Läuft auch, wenn der
+      # Sync rot war: gerade dann soll er morgen wieder laufen.
+      - name: Workflow wachhalten
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/sync.yml/enable"
+
       - name: Streamlit-App wachhalten
+        # Auch nach rotem Sync — sonst schläft die App ein, solange er rot bleibt.
+        if: always()
         continue-on-error: true
         # Ohne Cookie-Jar endet der Aufruf bei HTTP 303 auf der Auth-Weiterleitung
         # der Streamlit-Edge — die App selbst wird dabei nie angefasst. Erst der
