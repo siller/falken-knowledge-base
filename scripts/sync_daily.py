@@ -123,7 +123,7 @@ async def sync_skater_stats() -> dict:
         except HockeydataError:
             # Vor dem ersten Spieltag gibt es noch keine Scorerliste. Mitten in
             # der Saison ist derselbe Fehler dagegen ein echter Ausfall.
-            if any(r.get("gamesPlayed") for r in tabelle if r.get("id") in ids):
+            if any(r.get("gamesPlayed") for r in tabelle if r.get("id") is not None and int(r["id"]) in ids):
                 raise
             return {"skipped": "noch keine Scorerliste (Saison nicht gestartet)"}
     # Mit teamId — ohne sie überschriebe der Upsert die hockeydata-ID mit null.
