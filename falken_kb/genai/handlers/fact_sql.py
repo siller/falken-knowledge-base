@@ -113,6 +113,13 @@ SELECT player, points, goals, assists FROM falken_skater_stats
 WHERE season = '2022/23' AND points IS NOT NULL
 ORDER BY points DESC NULLS LAST LIMIT 5;
 
+-- Topscorer der AKTUELLEN Saison ("aktuell", "diese Saison", "gerade") — season
+-- IMMER mitselektieren, damit die Antwort sagt, aus welcher Saison die Zahlen sind:
+SELECT season, player, points, goals, assists, games_played FROM falken_skater_stats
+WHERE season = (SELECT max(season) FROM season_standings WHERE games_played > 0)
+  AND points IS NOT NULL
+ORDER BY points DESC NULLS LAST LIMIT 5;
+
 -- Neuzugänge einer Saison: im Kader, aber in der Vorsaison NICHT dabei.
 -- Eine reine Kaderliste beantwortet die Frage NICHT — es braucht den Vergleich.
 SELECT player, position, jersey_number
@@ -566,6 +573,8 @@ def answer_fact(question: str, client: DGXClient | None = None) -> dict[str, Any
                     "Sage NICHT 'unzureichend' oder 'es liegen keine Daten vor' wenn der relevante Wert "
                     "in den Resultaten steht — die SQL-Query wurde genau für diese Frage formuliert. "
                     "Bei Top-N-Listen ist der ERSTE Eintrag die direkte Antwort, weitere geben Kontext. "
+                    "Steht in den Daten eine Saison, nenne sie in der Antwort ('in der Saison 2026/27') — "
+                    "sonst halten Fans Werte einer früheren Saison für aktuell. "
                     "Nur wenn die Liste WIRKLICH LEER ist (0 Zeilen), sage 'keine Daten'. "
                     "Bei Terminlisten (Spielplan, 'wann spielen') JEDEN gelieferten Termin nennen — "
                     "eine Auswahl daraus wäre für Fans irreführend. Testspiele dabei als solche "

@@ -8,6 +8,8 @@ Schritte:
   1. News-RSS (heilbronner-falken.de)
   2. Web-News-Harvest über Tavily (Lokalpresse, deren RSS-Feeds tot sind)
   3. Spiele + Tabelle der laufenden Saison (nur wenn eine divisionId hinterlegt ist)
+  4. Spielerstatistik der Falken in der laufenden Saison (hockeydata)
+  5. Aktualität — der Lauf wird rot, wenn Ergebnisse oder Tabelle hängen
 
 Alle Schritte sind idempotent und einzeln abschaltbar:
     python3 scripts/sync_daily.py                  # alles
@@ -96,6 +98,55 @@ async def sync_games() -> dict:
     return {"games": games, "team_seasons": teams, "dedup": tail[0] if tail else "ok"}
 
 
+async def sync_skater_stats() -> dict:
+    """Scorerliste der Falken — sonst kennt HORST nur die Vorsaison als "aktuell"."""
+    from falken_kb.ingestion.hockeydata_client import HockeydataClient, HockeydataError
+    from falken_kb.ingestion.loaders import (
+        falken_team_ids,
+        upsert_season,
+        upsert_skater_stats_from_leaders,
+        upsert_team,
+    )
+
+    if CURRENT_SEASON_DIVISION_ID is None:
+        return {"skipped": "keine divisionId für die laufende Saison hinterlegt"}
+
+    season_uuid = upsert_season(CURRENT_SEASON_LABEL, CURRENT_SEASON_LEAGUE, league_tier=3,
+                                hockeydata_season_id=CURRENT_SEASON_DIVISION_ID)
+    async with HockeydataClient() as client:
+        tabelle = await client.get_standings(CURRENT_SEASON_DIVISION_ID)
+        ids = falken_team_ids(tabelle)
+        if not ids:
+            raise RuntimeError("Falken nicht in der hockeydata-Tabelle gefunden")
+        try:
+            leaders = await client.get_leader_field_players(CURRENT_SEASON_DIVISION_ID)
+        except HockeydataError:
+            # Vor dem ersten Spieltag gibt es noch keine Scorerliste. Mitten in
+            # der Saison ist derselbe Fehler dagegen ein echter Ausfall.
+            if any(r.get("gamesPlayed") for r in tabelle if r.get("id") is not None and int(r["id"]) in ids):
+                raise
+            return {"skipped": "noch keine Scorerliste (Saison nicht gestartet)"}
+    # Mit teamId — ohne sie überschriebe der Upsert die hockeydata-ID mit null.
+    team_uuid = upsert_team("Heilbronner Falken", hockeydata_team_id=max(ids))
+    return {"spieler": upsert_skater_stats_from_leaders(season_uuid, team_uuid, leaders, ids)}
+
+
+def current_season_problems() -> list[str]:
+    from falken_kb.ingestion.loaders import aktualitaets_probleme
+
+    saison = f"(SELECT id FROM seasons WHERE label = '{CURRENT_SEASON_LABEL}' AND league = '{CURRENT_SEASON_LEAGUE}')"
+    offen = exec_sql(
+        f"SELECT count(*) c FROM games WHERE season_id = {saison} AND game_type <> 'friendly' "
+        "AND home_score IS NULL AND date < now() - interval '2 days'"
+    )[0]["c"]
+    tabelle = exec_sql(
+        "SELECT max(ts.games_played) FILTER (WHERE t.name = 'Heilbronner Falken') falken, "
+        f"max(ts.games_played) liga FROM team_seasons ts JOIN teams t ON t.id = ts.team_id "
+        f"WHERE ts.season_id = {saison}"
+    )[0]
+    return aktualitaets_probleme(offen, tabelle["falken"], tabelle["liga"])
+
+
 def freshness_report() -> dict:
     return {
         # Nur gespielte Partien — angesetzte Spiele haben keinen Score und
@@ -147,6 +198,15 @@ def main() -> int:
             failures.append("games")
             traceback.print_exc()
 
+        print("\n## Spielerstatistik")
+        try:
+            import asyncio
+
+            print("  ", asyncio.run(sync_skater_stats()))
+        except Exception:
+            failures.append("skater_stats")
+            traceback.print_exc()
+
         print("\n## Testspiele (Vereinsseite)")
         try:
             print("  ", sync_preseason())
@@ -157,6 +217,16 @@ def main() -> int:
     print("\n## Aktualität")
     for k, v in freshness_report().items():
         print(f"   {k:18} {v}")
+    if not args.skip_games:
+        try:
+            probleme = current_season_problems()
+        except Exception:
+            probleme = ["Prüfung der laufenden Saison fehlgeschlagen"]
+            traceback.print_exc()
+        for problem in probleme:
+            print(f"   ⚠ {problem}")
+        if probleme:
+            failures.append("aktualitaet")
 
     if failures:
         print(f"\n⚠ Fehlgeschlagene Schritte: {', '.join(failures)}")
