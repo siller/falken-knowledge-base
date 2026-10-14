@@ -195,12 +195,21 @@ _UMSCHRIFT = str.maketrans({"ä": "ae", "ö": "oe", "ü": "ue", "ß": "ss"})
 _POSITIONEN = {"LD": "D", "RD": "D", "LF": "F", "RF": "F"}
 
 
-def _namensschluessel(name: str) -> str:
-    """"Frédérik Cabana" und "Frederik CABANA" ergeben denselben Schlüssel,
-    ebenso "Jonas Müller" und "Jonas MUELLER"."""
-    umgeschrieben = name.casefold().translate(_UMSCHRIFT)
-    ohne_akzente = "".join(c for c in unicodedata.normalize("NFKD", umgeschrieben) if not unicodedata.combining(c))
+def _namensschluessel(name: str, umschrift: bool = False) -> str:
+    """"Frédérik Cabana" und "Frederik CABANA" ergeben denselben Schlüssel.
+
+    Mit `umschrift` wird aus "Müller" "mueller", ohne "muller" — hockeydata
+    schreibt Umlaute mal so, mal so, deshalb gleicht der Loader beide ab.
+    """
+    text = unicodedata.normalize("NFC", name).casefold()
+    if umschrift:
+        text = text.translate(_UMSCHRIFT)
+    ohne_akzente = "".join(c for c in unicodedata.normalize("NFKD", text) if not unicodedata.combining(c))
     return " ".join(ohne_akzente.split())
+
+
+def _schluessel(name: str) -> set[str]:
+    return {_namensschluessel(name), _namensschluessel(name, umschrift=True)}
 
 
 def _anzeigename(vorname: str, nachname: str) -> str:
@@ -216,12 +225,13 @@ def _kurzform_treffer(schluessel: str, kader: dict[str, str]) -> str | None:
     hockeydata führt den vollen Vornamen, EliteProspects oft die Kurzform.
     """
     vorname, _, nachname = schluessel.rpartition(" ")
-    treffer = [
+    treffer = {
         ps_id for k, ps_id in kader.items()
         if k.rpartition(" ")[2] == nachname
         and (k.rpartition(" ")[0].startswith(vorname) or vorname.startswith(k.rpartition(" ")[0]))
-    ]
-    return treffer[0] if len(treffer) == 1 and vorname else None
+    }
+    # Menge: beide Schlüssel-Varianten eines Spielers zeigen auf dieselbe ID.
+    return next(iter(treffer)) if len(treffer) == 1 and vorname else None
 
 
 def upsert_skater_stats_from_leaders(
@@ -238,12 +248,13 @@ def upsert_skater_stats_from_leaders(
         return 0
 
     kader = {
-        _namensschluessel(r["name"]): r["ps_id"]
+        k: r["ps_id"]
         for r in exec_sql(
             "SELECT ps.id AS ps_id, p.id AS player_id, p.name FROM falken.player_seasons ps "
             "JOIN falken.players p ON p.id = ps.player_id "
             f"WHERE ps.season_id = '{season_id}' AND ps.team_id = '{team_id}'"
         )
+        for k in _schluessel(r["name"])
     }
     alle_spieler: dict[str, str] | None = None
 
@@ -253,24 +264,26 @@ def upsert_skater_stats_from_leaders(
         if not name:
             continue
         schluessel = _namensschluessel(name)
-        ps_id = kader.get(schluessel) or _kurzform_treffer(schluessel, kader)
+        varianten = _schluessel(name)
+        ps_id = (next((kader[k] for k in varianten if k in kader), None)
+                 or _kurzform_treffer(schluessel, kader))
         if ps_id is None:
             if alle_spieler is None:
-                alle_spieler = {_namensschluessel(p["name"]): p["id"]
-                                for p in exec_sql("SELECT id, name FROM falken.players")}
-            player_id = alle_spieler.get(schluessel)
+                alle_spieler = {k: p["id"] for p in exec_sql("SELECT id, name FROM falken.players")
+                                for k in _schluessel(p["name"])}
+            player_id = next((alle_spieler[k] for k in varianten if k in alle_spieler), None)
             if player_id is None:
                 pos = r.get("position")
                 neu = {"name": name, "position": _POSITIONEN.get(pos, pos),
                        "source_ids": {"hockeydata": str(r.get("id"))}}
                 player_id = _with_retry(
                     lambda d=neu: supabase().table("falken_players").insert(d).execute()).data[0]["id"]
-                alle_spieler[schluessel] = player_id
+                alle_spieler.update(dict.fromkeys(varianten, player_id))
             zuordnung = {"player_id": player_id, "team_id": team_id, "season_id": season_id,
                          "jersey_number": r.get("playerJerseyNr"), "source_ids": {"hockeydata": True}}
             ps_id = _with_retry(
                 lambda d=zuordnung: supabase().table("falken_player_seasons").insert(d).execute()).data[0]["id"]
-            kader[schluessel] = ps_id
+            kader.update(dict.fromkeys(varianten, ps_id))
 
         # points ist eine GENERATED Column (goals + assists) — nicht mitschicken.
         stats = {

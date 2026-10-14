@@ -424,6 +424,8 @@ _NEUESTE_PER_SORTIERUNG = re.compile(
 _SAISON_TABELLE_WHERE = re.compile(
     r"\bFROM\s+(?:season_standings|falken_skater_stats|falken_goalie_stats)\s+WHERE\b", re.IGNORECASE)
 
+_NICHT_EINFACH = re.compile(r"\bOR\b|\(\s*SELECT\b|\bWITH\b", re.IGNORECASE)
+
 
 def _letzte_saison_einsetzen(question: str, sql: str) -> str | None:
     """Ersetzt die aktuelle durch die letzte abgeschlossene Saison, wenn die Frage
@@ -439,9 +441,13 @@ def _letzte_saison_einsetzen(question: str, sql: str) -> str | None:
         return None
     neu = _MAX_SAISON_MIT_SPIELEN.sub(
         lambda m: f"(SELECT {LETZTE_ABGESCHLOSSENE_SAISON}{m.group(1) or ''})", sql)
-    if neu == sql and _NEUESTE_PER_SORTIERUNG.search(sql):
+    if (neu == sql and _NEUESTE_PER_SORTIERUNG.search(sql)
+            and len(_SAISON_TABELLE_WHERE.findall(sql)) == 1
+            and not _NICHT_EINFACH.search(sql)):
         # Zweite Form: "ORDER BY season DESC LIMIT 1" — die laufende Saison
-        # ausblenden, dann bleibt die abgeschlossene oben.
+        # ausblenden, dann bleibt die abgeschlossene oben. Nur bei einfachen
+        # Abfragen: mit OR gälte der Filter nur für einen Zweig, mit
+        # Unterabfragen landete er womöglich in der falschen.
         neu = _SAISON_TABELLE_WHERE.sub(
             lambda m: f"{m.group(0)} season <= {LETZTE_ABGESCHLOSSENE_SAISON} AND", sql, count=1)
     return neu if neu != sql else None

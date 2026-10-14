@@ -325,3 +325,30 @@ def test_neue_spieler_bekommen_die_positionen_des_schemas(db, monkeypatch, roh, 
     loaders.upsert_skater_stats_from_leaders("saison", "team", [_scorer("Neu", "SPIELER", position=roh)], {70543})
     (_, (_, spieler), _), = [e for e in sb.log if e[0] == "falken_players"]
     assert spieler["position"] == erwartet
+
+
+@pytest.mark.parametrize("hockeydata,kader", [
+    ("MULLER", "Jonas Müller"),                 # Umlaut weggelassen
+    ("MUELLER", "Jonas Müller"),                # Umlaut umschrieben
+    ("MÜLLER", "Jonas Müller"),           # zerlegtes ü in der DB
+])
+def test_umlaut_varianten_treffen_denselben_spieler(db, monkeypatch, hockeydata, kader):
+    sb, _ = db
+    monkeypatch.setattr(loaders, "exec_sql", lambda q: (
+        [{"ps_id": "ps-mueller", "player_id": "p", "name": kader}] if "player_seasons" in q else []
+    ))
+    loaders.upsert_skater_stats_from_leaders("saison", "team", [_scorer("Jonas", hockeydata)], {70543})
+    assert not [e for e in sb.log if e[0] == "falken_players"], "kein Duplikat anlegen"
+    (_, (_, stats, _), _), = [e for e in sb.log if e[0] == "falken_player_stats"]
+    assert stats["player_season_id"] == "ps-mueller"
+
+
+def test_kurzform_mit_umlaut_bleibt_eindeutig(db, monkeypatch):
+    """Beide Schlüssel-Varianten zeigen auf denselben Kadereintrag — das ist kein Zweifelsfall."""
+    sb, _ = db
+    monkeypatch.setattr(loaders, "exec_sql", lambda q: (
+        [{"ps_id": "ps-0", "player_id": "p", "name": "Chris Schütz"}] if "player_seasons" in q else []
+    ))
+    loaders.upsert_skater_stats_from_leaders("saison", "team", [_scorer("Christopher", "SCHÜTZ")], {70543})
+    (_, (_, stats, _), _), = [e for e in sb.log if e[0] == "falken_player_stats"]
+    assert stats["player_season_id"] == "ps-0"

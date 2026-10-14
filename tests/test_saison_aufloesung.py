@@ -73,3 +73,15 @@ def test_neueste_saison_per_sortierung_wird_ebenfalls_eingeschraenkt():
 def test_sortierung_ohne_limit_1_bleibt_unberuehrt():
     sql = "SELECT season, points FROM season_standings WHERE team = 'Heilbronner Falken' ORDER BY season DESC;"
     assert _letzte_saison_einsetzen("Wie lief die letzte Saison?", sql) is None
+
+
+@pytest.mark.parametrize("sql", [
+    # OR ohne Klammern: der vorangestellte Filter gälte nur für den ersten Zweig
+    "SELECT season, points FROM season_standings WHERE team = 'Heilbronner Falken' OR team = 'HEC' "
+    "ORDER BY season DESC LIMIT 1;",
+    # Unterabfrage vor der äußeren Tabelle: der Filter landete am falschen Ort
+    "SELECT season, points FROM season_standings WHERE season IN (SELECT season FROM falken_skater_stats "
+    "WHERE goals > 0) ORDER BY season DESC LIMIT 1;",
+])
+def test_sortier_variante_laesst_komplexe_abfragen_unberuehrt(sql):
+    assert _letzte_saison_einsetzen("Wie lief die letzte Saison?", sql) is None
