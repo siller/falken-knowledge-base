@@ -4,7 +4,7 @@
   "author": "Mark Siller <mark@siller.ai>",
   "description": "Beantwortet Fragen zu den Heilbronner Falken aus Vereinsdatenbank, News und Websuche. Wird vom Convex-Dienst der Falken-App aufgerufen, nicht von Endnutzern.",
   "tagline": "Fragen zu den Heilbronner Falken",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "healthCheckPath": "/gesundheit",
   "httpPort": 8000,
   "manifestVersion": 2,
