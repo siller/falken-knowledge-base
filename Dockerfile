@@ -5,6 +5,7 @@
 # Container. Ein Host-Dienst wäre also unerreichbar — die Schnittstelle braucht
 # eine eigene App mit eigener Adresse, TLS kommt von Cloudron.
 FROM cloudron/base:5.0.0
+RUN apt-get purge -y 'php*' 'apache2*' && apt-get autoremove -y && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app/code
 
